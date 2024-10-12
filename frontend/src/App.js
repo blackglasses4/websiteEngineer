@@ -7,6 +7,10 @@ import ReviewDetails from './pages/ReviewDetails'
 import Genre from './pages/Genre'
 import SiteHeader from './components/SiteHeader'
 
+//page Inżynierka
+import Navbar from './components/Navbar/Navbar'
+
+
 //apollo client 
 const client = new ApolloClient({
   uri: 'http://localhost:1337/graphql',
@@ -17,6 +21,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <Router>
+      <Navbar />
       <ApolloProvider client={client}>
         <div className="App">
           <SiteHeader />
