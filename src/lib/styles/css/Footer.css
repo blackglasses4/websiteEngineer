@@ -1,1 +1,48 @@
-/*# sourceMappingURL=Footer.css.map */
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --grey_light: #D9D9D9;
+  --grey_dark: #B4B4B4;
+  --green_light: #228B22;
+  --red_light: #8B2222;
+  --grey_dark: #B4B4B4;
+  --blue_light: #225E8B;
+  --blue_dark: #184261;
+}
+
+footer {
+  background-color: #8B2222;
+  width: 100%;
+  height: auto;
+}
+footer .f-top {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 4rem;
+}
+footer .f-top .f-contact-form {
+  padding-bottom: 2rem;
+  color: #ffffff;
+}
+footer .f-top .f-contact-community {
+  color: #ffffff;
+}
+footer .f-top .f-contact-community a {
+  font-size: 1.5rem;
+  padding-right: 2rem;
+  color: #ffffff;
+  text-decoration: none;
+  list-style-type: none;
+  border: none;
+}
+footer .f-top .f-subpages {
+  display: flex;
+  gap: 3rem;
+}
+footer .f-top .f-subpages-name, footer .f-top .f-subpages-offer {
+  color: #ffffff;
+}
+footer p.copyright {
+  color: #ffffff;
+  text-align: center;
+}/*# sourceMappingURL=Footer.css.map */

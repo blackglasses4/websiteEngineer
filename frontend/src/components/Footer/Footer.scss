@@ -1,0 +1,48 @@
+@import '../../scss/variables';
+
+footer {
+    background-color: $red_light;
+    width: 100%;
+    height: auto;
+
+    .f-top {
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem 4rem;
+
+        .f-contact {
+
+            &-form {
+                padding-bottom: 2rem;
+                color: $white;
+            }
+    
+            &-community {
+                color: $white;
+    
+                a {
+                    font-size: 1.5rem;
+                    padding-right: 2rem;
+                    color: $white;
+                    text-decoration: none;
+                    list-style-type: none;
+                    border: none;
+                }
+            }
+        }
+
+        .f-subpages {
+            display: flex;
+            gap: 3rem;
+
+            &-name, &-offer {
+                color: $white;
+            }
+        }
+    }
+
+    p.copyright {
+        color: $white;
+        text-align: center;
+    }
+}

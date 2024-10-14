@@ -10,6 +10,7 @@ import SiteHeader from './components/SiteHeader';
 //page Inżynierka
 import Navbar from './components/Navbar/Navbar';
 import Ad from './components/Ad/Ad';
+import Footer from './components/Footer/Footer';
 
 //apollo client 
 const client = new ApolloClient({
@@ -31,6 +32,7 @@ function App() {
             <Route path="/genre/:id" element={<Genre />} />
           </Routes>
         </div>
+        <Footer/>
       </Router>
     </ApolloProvider>
   );
