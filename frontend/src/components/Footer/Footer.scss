@@ -8,6 +8,7 @@ footer {
     .f-top {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
         padding: 2rem 4rem;
 
         .f-contact {
@@ -45,4 +46,45 @@ footer {
         color: $white;
         text-align: center;
     }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
+    footer {
+        .f-top {
+            flex-direction: column;
+            padding: 2rem 4rem; 
+            align-items: flex-start; 
+
+            .f-contact {
+                margin-bottom: 2rem; 
+            }
+        }
+
+        p.copyright {
+            padding: 0.5rem;
+            font-size: 1em;
+        }
+    }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'phone-wide')}) {
+    footer {
+        position: relative;
+        .f-top {
+            padding: 2rem 2rem; 
+
+            .f-contact {
+                margin-bottom: 2rem;
+
+                &-form {
+                    padding: 2rem;
+                    margin-bottom: 1rem;
+                    background-color: $white;
+                    border-radius: 70px 70px 70px 5px;
+                    color: $black;
+                }
+            }
+        }
+    }
+
 }

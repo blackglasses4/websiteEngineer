@@ -18,6 +18,7 @@ footer {
 footer .f-top {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding: 2rem 4rem;
 }
 footer .f-top .f-contact-form {
@@ -45,4 +46,37 @@ footer .f-top .f-subpages-name, footer .f-top .f-subpages-offer {
 footer p.copyright {
   color: #ffffff;
   text-align: center;
+}
+
+@media only screen and (max-width: 795px) {
+  footer .f-top {
+    flex-direction: column;
+    padding: 2rem 4rem;
+    align-items: flex-start;
+  }
+  footer .f-top .f-contact {
+    margin-bottom: 2rem;
+  }
+  footer p.copyright {
+    padding: 0.5rem;
+    font-size: 1em;
+  }
+}
+@media only screen and (max-width: 480px) {
+  footer {
+    position: relative;
+  }
+  footer .f-top {
+    padding: 2rem 2rem;
+  }
+  footer .f-top .f-contact {
+    margin-bottom: 2rem;
+  }
+  footer .f-top .f-contact-form {
+    padding: 2rem;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+    border-radius: 70px 70px 70px 5px;
+    color: #000000;
+  }
 }/*# sourceMappingURL=Footer.css.map */
