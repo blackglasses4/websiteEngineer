@@ -1,0 +1,28 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --grey_light: #D9D9D9;
+  --grey_dark: #B4B4B4;
+  --green_light: #228B22;
+  --red_light: #8B2222;
+  --grey_dark: #B4B4B4;
+  --blue_light: #225E8B;
+  --blue_dark: #184261;
+}
+
+.ad {
+  background-color: #8B2222;
+  width: 100%;
+  padding: 0.5rem 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  list-style-type: none;
+}
+.ad a {
+  color: #ffffff;
+  text-decoration: none;
+  list-style-type: none;
+  border: none;
+}/*# sourceMappingURL=Ad.css.map */

@@ -9,6 +9,7 @@ import SiteHeader from './components/SiteHeader';
 
 //page Inżynierka
 import Navbar from './components/Navbar/Navbar';
+import Ad from './components/Ad/Ad';
 
 //apollo client 
 const client = new ApolloClient({
@@ -20,6 +21,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+        <Ad />
         <Navbar />
         <div className="App">
           <SiteHeader />

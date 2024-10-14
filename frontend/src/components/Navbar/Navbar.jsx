@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { FaSearch } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
+import { FaUserCircle } from "react-icons/fa";
 import './Navbar.scss';
 
 const GET_REVIEWS = gql`
@@ -40,9 +42,9 @@ const Navbar = () => {
 
   return (
     <nav>
-      <a href="/" rel='internal'>NAZWA</a>
+      <a href="/" className='a-name' rel='internal'>NAZWA</a>
 
-      <div className="search-bar-container">
+      <div className="nav-search">
         <div className='input-wrapper'>
           <FaSearch id="search-icon" />
           <input
@@ -51,10 +53,9 @@ const Navbar = () => {
             onChange={handleInputChange}
           />
         </div>
-        
-        <div>
-          {loading && <p>Loading...</p>}
-          {error && <p>Error: {error.message}</p>}
+        {/* ten error można dodać dodatkowo */}
+        <div className='input-response'>
+          {error && <p>Błąd: {error.message}</p>}
           {input && searchResults.length > 0 && (
             <ul>
               {searchResults.map(review => (
@@ -64,12 +65,14 @@ const Navbar = () => {
               ))}
             </ul>
           )}
-          {/* Jeśli input nie jest pusty i brak wyników */}
-          {input && searchResults.length === 0 && !loading && <p>No results found</p>}
+          {input && searchResults.length === 0 && !loading && <p>Nie znaleziono żadnych wyników</p>}
         </div>
       </div>
 
-      <a href="">coś</a>
+      <div className='nav-icons'>
+        <a href="/"><FaShoppingCart/></a>
+        <a href="/"><FaUserCircle/></a>
+      </div>
     </nav>
   );
 }

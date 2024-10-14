@@ -1,0 +1,19 @@
+@import '../../scss/variables';
+
+.ad {
+    background-color: $red_light;
+    width: 100%;
+    padding: 0.5rem 4rem; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    list-style-type: none;
+
+    a {
+        color: $white;
+        text-decoration: none;
+        list-style-type: none;
+        border: none;
+    }
+}
