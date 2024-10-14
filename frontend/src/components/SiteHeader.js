@@ -22,14 +22,14 @@ export default function SiteHeader() {
     return (
         <div className="site-header">
             <Link to="/"><h1>Coś </h1></Link>
-            <nav className="genres">
+            <div className="genres">
             <span>Filter reviews by genres:</span>
             {data.genres.map(genre => (
                 <Link key={genre.id} to={`/genre/${genre.id}`}>
                     {genre.name}
                 </Link>
             ))}
-            </nav>
+            </div>
         </div>
     )
 }
