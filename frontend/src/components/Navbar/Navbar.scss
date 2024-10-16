@@ -3,9 +3,10 @@
 nav {
     background-color: $red_light;
     width: 100%;
-    padding: 1rem 4rem; 
+    padding: 0.5rem 2rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
     a {
         color: $white;
@@ -14,24 +15,22 @@ nav {
         border: none;
     }
 
-    // .a-name {
-       
-    // }
-
     .nav-search {
         flex: 1;
         display: flex;
-        position: relative; 
-        flex-direction: column; 
-        align-items: center; 
+        position: relative;
+        flex-direction: column;
+        align-items: center;
 
         .input-wrapper {
             background-color: $white;
-            width: 30%;
+            width: 100%;
+            max-width: 500px;
             height: 2.5rem;
             display: flex;
             align-items: center;
             border-radius: 5px;
+            margin: 0 auto;
 
             #search-icon {
                 margin-left: 0.5rem;
@@ -43,7 +42,6 @@ nav {
                 height: 100%;
                 font-size: 1rem;
                 width: 100%;
-                margin-left: 0;
                 padding: 0 10px;
 
                 &:focus {
@@ -53,12 +51,13 @@ nav {
         }
 
         .input-response {
-            position: absolute; 
+            position: absolute;
             top: 80%;
-            width: 30%;
-            background-color: $white;  
-            border-radius: 5px; 
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+            width: 100%;
+            max-width: 500px; 
+            background-color: $white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             max-height: 200px;
             z-index: 2;
 
@@ -68,14 +67,14 @@ nav {
                 margin: 0;
 
                 li {
-                    margin: 0.5rem 0; 
+                    margin: 0.5rem 0;
 
                     a {
                         color: $black;
                         text-decoration: none;
 
                         &:hover {
-                            text-decoration: underline; 
+                            text-decoration: underline;
                         }
                     }
                 }
@@ -90,5 +89,41 @@ nav {
     .nav-icons {
         display: flex;
         gap: 1rem;
+    }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
+    nav {
+        .nav-search {
+            .input-response, .input-wrapper {
+                width: 100%; 
+                max-width: 350px;
+            }
+        }
+
+
+    }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'phablet')}) {
+    nav {
+    padding: 0.5rem 1rem;
+        .nav-search {
+            .input-response, .input-wrapper {
+                width: 100%; 
+                max-width: 220px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'phone')}) {
+    nav {
+        .nav-search {
+            .input-response, .input-wrapper {
+                width: 100%; 
+                max-width: 150px;
+            }
+        }
     }
 }
