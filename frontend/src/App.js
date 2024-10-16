@@ -7,10 +7,14 @@ import ReviewDetails from './pages/ReviewDetails';
 import Genre from './pages/Genre';
 import SiteHeader from './components/SiteHeader';
 
-//page Inżynierka
+//component Inżynierka
 import Navbar from './components/Navbar/Navbar';
 import Ad from './components/Ad/Ad';
 import Footer from './components/Footer/Footer';
+//page
+import Login from './pages/Login/Login';
+import Logout from './pages/Logout/Logout';
+import Registration from './pages/Registration/Registration';
 
 //apollo client 
 const client = new ApolloClient({
@@ -22,17 +26,23 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Ad />
-        <Navbar />
         <div className="App">
-          <SiteHeader />
+          {/* Komponenty Ad i Navbar tylko na stronie głównej */}
           <Routes>
-            <Route exact path="/" element={<Homepage />} />
+            <Route exact path="/" element={
+              <>
+                <Ad />
+                <Navbar />
+                <Homepage />
+                <Footer />
+              </>
+            } />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/registration" element={<Registration />} />
             <Route path="/details/:id" element={<ReviewDetails />} />
             <Route path="/genre/:id" element={<Genre />} />
           </Routes>
         </div>
-        <Footer/>
       </Router>
     </ApolloProvider>
   );
