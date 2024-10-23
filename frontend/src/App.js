@@ -2,16 +2,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { ToastContainer } from 'react-toastify';
 
-//page & layout imports
-import Homepage from './pages/Homepage';
-import ReviewDetails from './pages/ReviewDetails';
-import Genre from './pages/Genre';
-//import SiteHeader from './components/SiteHeader';
-
 //component Inżynierka
 import Navbar from './components/Navbar/Navbar';
 import Ad from './components/Ad/Ad';
 import Footer from './components/Footer/Footer';
+
 //page
 import Login from './pages/Login/Login';
 //import Logout from './pages/Logout/Logout';
@@ -33,14 +28,14 @@ function App() {
               <>
                 <Ad />
                 <Navbar />
-                <Homepage />
+                {/* <Homepage /> */}
                 <Footer />
               </>
             } />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/registration" element={<Registration />} />
-            <Route path="/details/:id" element={<ReviewDetails />} />
-            <Route path="/genre/:id" element={<Genre />} />
+            {/* <Route path="/details/:id" element={<ReviewDetails />} />
+            <Route path="/genre/:id" element={<Genre />} /> */}
           </Routes>
           <ToastContainer />
         </div>

@@ -10,6 +10,11 @@
   text-rendering: optimizeLegibility;
 }
 
+html, body {
+  height: 100%; 
+  margin: 0;
+}
+
 body {
   font-family: "Poppins";
   background: #f1f1f1;
@@ -23,6 +28,9 @@ h1,h2,h3,h4 {
   font-size: 1.2em;
   width: 100%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
 }
 
 a {
