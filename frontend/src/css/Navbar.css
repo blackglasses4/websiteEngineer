@@ -24,6 +24,25 @@ nav a {
   list-style-type: none;
   border: none;
 }
+nav a::-moz-selection {
+  color: #8B2222;
+  background-color: #ffffff;
+}
+nav a::selection {
+  color: #8B2222;
+  background-color: #ffffff;
+}
+nav h3 {
+  color: #ffffff;
+}
+nav h3::-moz-selection {
+  color: #8B2222;
+  background-color: #ffffff;
+}
+nav h3::selection {
+  color: #8B2222;
+  background-color: #ffffff;
+}
 nav .nav-icons {
   display: flex;
   gap: 1rem;

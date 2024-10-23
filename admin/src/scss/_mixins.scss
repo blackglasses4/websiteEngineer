@@ -1,12 +1,6 @@
-@mixin prefix($property, $value, $prefixes: ()) {
-    @each $prefix in $prefixes {
-      -#{$prefix}-#{$property}: $value;
-    }
-  
-    #{$property}: $value;
-}
+@use './variables' as *;
 
-@mixin flex-center($justify) { //@include flex-center;
+@mixin flex-center($justify) {
     display: flex;
     align-items: center;
     justify-content: $justify;
@@ -16,88 +10,16 @@
   transition: all .2s;
 }
 
-@mixin selection-dark {
-  &::selection {
-    color: var(--color-selection);
-    background-color: var(--color-bg-selection);
-  }
-}
-
-@mixin keyframes-fade-up {
-    @keyframes fade-up {
-      0% {
-          opacity: 0;
-          transform: translateY(30px) scale(0.9);
-      }
-      100% {
-          opacity: 1;
-          transform: translateY(0px) scale(1);
-      }
-  }
-}
-
-@mixin keyframes-fade-down {
-  @keyframes fade-down {
-    0% {
-        opacity: 0;
-        transform: translateY(-30px) scale(0.9);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0px) scale(1);
-    }
-  }
-}
-
-@mixin keyframes-reveal {
-  @keyframes reveal {
-    from {
-      background-position-x: 200%;
-    }
-    to {
-      background-position-x: 0%;
-    }
-  }
-}
-
-@keyframes fade {
-  from {
-      opacity: 0;
-  }
-  to {
-      opacity: 1;
-  }
-  0% {
-      opacity: 0;
-  }
-}
-
-@mixin animation-fade {
-  animation: fade linear;
-  animation-timeline: view();
-  animation-range: entry 50% cover 50%;
-}
-
-@mixin animation-reveal {
-  animation: reveal both linear;
-  animation-timeline: view();
-  background-repeat: no-repeat;
-  animation-range: entry 50% cover 50%;
-  background-clip: text;
-  -webkit-background-clip: text;
-}
-
 @mixin selection-light {
   &::selection {
+    color: $red_light;
     background-color: $white;
-    color: $grey;
   }
 }
 
-@mixin input-placeholder {
-	&.placeholder { @content; }
-	&:-moz-placeholder { @content; }
-	&::-moz-placeholder { @content; }
-	&:-ms-input-placeholder { @content; }
-	&::-webkit-input-placeholder { @content; }
+@mixin selection-dark {
+  &::selection {
+    color: $red_light;
+    background-color: $black;
+  }
 }
