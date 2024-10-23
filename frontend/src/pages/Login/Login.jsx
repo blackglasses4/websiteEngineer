@@ -1,19 +1,41 @@
-import React, {useState} from 'react'
-import {Col, Row, Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap';
+import React, {useEffect, useState} from 'react'
+import {Col, Row, Button, FormGroup, Input} from 'reactstrap';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import './Login.scss';
 
 const initialUser = {password: "", identifier: ""};
 
 const Login = () => {
   const [user, setUser] = useState(initialUser);
-  const handleChange = () => {};
-  const handleLogin = () => {};
+  const handleChange = ({target}) => {
+    const { name, value } = target;
+
+    setUser((currentUser) => ({
+      ...currentUser,
+      [name]: value,
+    }))
+  };
+  const handleLogin = async () => {
+    const url = `http://localhost:1337/api/auth/local`;
+    try {
+      if (user.identifier && user.password) {
+        const res = await axios.post(url, user);
+        console.log({res});
+      }
+    }
+    catch (error) {
+      toast.error(error.message, {
+        hideProgressBar: true,
+      })
+    }
+  };
 
   return (
     <Row className="login">
       <Col sm='12' md={{ size: 4, offset: 4}}>
         <div>
-          <h2>Zaloguj się: </h2>
+          <h1>Zaloguj się!</h1>
           <FormGroup>
             <Input
               type="email"
@@ -31,8 +53,12 @@ const Login = () => {
               onChange={handleChange}
               placeholder="Hasło">
             </Input>
+            <p className='p-min'>Min. 8 znaków &bull; wielka litera &bull; mała litera &bull; cyfra</p>
           </FormGroup>
-          <Button color='primary' onClick={handleLogin}>Zaloguj się</Button>
+          <div className="d-grid gap-2">
+            <Button color='primary' onClick={handleLogin}>Zaloguj się</Button>
+          </div>
+          <p>Nie masz jeszcze konta? <a href="/registration">Zarejestruj się</a></p>
         </div>
       </Col>
     </Row>
