@@ -11,11 +11,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background-color: #f6f6f6;
-  min-height: 100vh;
-}
-
 html, body {
   height: 100%;
   margin: 0;
@@ -37,4 +32,5 @@ a {
   text-decoration: none;
   color: #8e2ad6;
   border-bottom: 1px dotted;
+}/*# sourceMappingURL=index.css.map */r-bottom: 1px dotted;
 }/*# sourceMappingURL=index.css.map */

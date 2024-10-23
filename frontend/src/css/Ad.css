@@ -25,4 +25,12 @@
   text-decoration: none;
   list-style-type: none;
   border: none;
+}
+.ad a::-moz-selection {
+  color: #225E8B;
+  background-color: #ffffff;
+}
+.ad a::selection {
+  color: #225E8B;
+  background-color: #ffffff;
 }/*# sourceMappingURL=Ad.css.map */

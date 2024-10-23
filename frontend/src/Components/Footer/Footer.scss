@@ -1,11 +1,11 @@
-@import '../../scss/variables';
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
 
 footer {
     background-color: $red_light;
     width: 100%;
     height: auto;
     margin-top: auto;
-    
 
     .f-top {
         display: flex;
@@ -32,6 +32,12 @@ footer {
                     border: none;
                 }
             }
+
+            &-form, &-community {
+                h2, p {
+                    @include selection-light;
+                }
+            }
         }
 
         .f-subpages {
@@ -39,7 +45,10 @@ footer {
             gap: 3rem;
 
             &-name, &-offer {
-                color: $white;
+                h2, p {
+                    color: $white;
+                    @include selection-light;
+                }
             }
         }
     }
@@ -47,6 +56,7 @@ footer {
     p.copyright {
         color: $white;
         text-align: center;
+        @include selection-light;
     }
 }
 

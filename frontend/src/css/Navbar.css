@@ -13,7 +13,7 @@
 nav {
   background-color: #8B2222;
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 0.5rem 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,21 +32,27 @@ nav a::selection {
   color: #8B2222;
   background-color: #ffffff;
 }
-nav h3 {
-  color: #ffffff;
-}
-nav h3::-moz-selection {
-  color: #8B2222;
-  background-color: #ffffff;
-}
-nav h3::selection {
-  color: #8B2222;
-  background-color: #ffffff;
-}
-nav .nav-icons {
+nav .nav-search {
+  flex: 1;
   display: flex;
-  gap: 1rem;
-}/*# sourceMappingURL=Navbar.css.map */earch .input-wrapper input {
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+}
+nav .nav-search .input-wrapper {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 500px;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+nav .nav-search .input-wrapper #search-icon {
+  margin-left: 0.5rem;
+}
+nav .nav-search .input-wrapper input {
   background-color: transparent;
   border: none;
   height: 100%;
@@ -67,6 +73,14 @@ nav .nav-search .input-response {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-height: 200px;
   z-index: 2;
+}
+nav .nav-search .input-response p::-moz-selection {
+  color: #ffffff;
+  background-color: #8B2222;
+}
+nav .nav-search .input-response p::selection {
+  color: #ffffff;
+  background-color: #8B2222;
 }
 nav .nav-search .input-response ul {
   list-style-type: none;
