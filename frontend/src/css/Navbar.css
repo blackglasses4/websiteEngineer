@@ -13,7 +13,7 @@
 nav {
   background-color: #8B2222;
   width: 100%;
-  padding: 0.5rem 2rem;
+  padding: 1rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,89 +24,7 @@ nav a {
   list-style-type: none;
   border: none;
 }
-nav .nav-search {
-  flex: 1;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: center;
-}
-nav .nav-search .input-wrapper {
-  background-color: #ffffff;
-  width: 100%;
-  max-width: 500px;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  border-radius: 5px;
-  margin: 0 auto;
-}
-nav .nav-search .input-wrapper #search-icon {
-  margin-left: 0.5rem;
-}
-nav .nav-search .input-wrapper input {
-  background-color: transparent;
-  border: none;
-  height: 100%;
-  font-size: 1rem;
-  width: 100%;
-  padding: 0 10px;
-}
-nav .nav-search .input-wrapper input:focus {
-  outline: none;
-}
-nav .nav-search .input-response {
-  position: absolute;
-  top: 80%;
-  width: 100%;
-  max-width: 500px;
-  background-color: #ffffff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-height: 200px;
-  z-index: 2;
-}
-nav .nav-search .input-response ul {
-  list-style-type: none;
-  padding: 0 0.5rem;
-  margin: 0;
-}
-nav .nav-search .input-response ul li {
-  margin: 0.5rem 0;
-}
-nav .nav-search .input-response ul li a {
-  color: #000000;
-  text-decoration: none;
-}
-nav .nav-search .input-response ul li a:hover {
-  text-decoration: underline;
-}
-nav .nav-search .input-response p {
-  margin: 0.5rem;
-}
 nav .nav-icons {
   display: flex;
   gap: 1rem;
-}
-
-@media only screen and (max-width: 795px) {
-  nav .nav-search .input-response, nav .nav-search .input-wrapper {
-    width: 100%;
-    max-width: 350px;
-  }
-}
-@media only screen and (max-width: 554px) {
-  nav {
-    padding: 0.5rem 1rem;
-  }
-  nav .nav-search .input-response, nav .nav-search .input-wrapper {
-    width: 100%;
-    max-width: 220px;
-  }
-}
-@media only screen and (max-width: 410px) {
-  nav .nav-search .input-response, nav .nav-search .input-wrapper {
-    width: 100%;
-    max-width: 150px;
-  }
 }/*# sourceMappingURL=Navbar.css.map */

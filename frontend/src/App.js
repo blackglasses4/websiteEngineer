@@ -3,14 +3,14 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { ToastContainer } from 'react-toastify';
 
 //component Inżynierka
-import Navbar from './components/Navbar/Navbar';
-import Ad from './components/Ad/Ad';
-import Footer from './components/Footer/Footer';
+import Navbar from './Components/Navbar/Navbar';
+import Ad from './Components/Ad/Ad';
+import Footer from './Components/Footer/Footer';
 
 //page
-import Login from './pages/Login/Login';
+import Login from './Pages/Login/Login';
 //import Logout from './pages/Logout/Logout';
-import Registration from './pages/Registration/Registration';
+import Registration from './Pages/Registration/Registration';
 
 //apollo client 
 const client = new ApolloClient({
