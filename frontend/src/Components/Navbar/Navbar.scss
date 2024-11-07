@@ -2,7 +2,7 @@
 @use '../../scss/mixins' as *;
 
 nav {
-    background-color: $red_light;
+    background-color: var(--color-red);
     width: 100%;
     padding: 0.5rem 4rem;
     display: flex;

@@ -2,7 +2,7 @@
 @use '../../scss/mixins' as *;
 
 footer {
-    background-color: $red_light;
+    background-color: var(--color-red);
     width: 100%;
     height: auto;
     margin-top: auto;

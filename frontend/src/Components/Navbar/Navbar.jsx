@@ -3,6 +3,7 @@ import { useQuery, gql } from '@apollo/client';
 import { FaSearch } from 'react-icons/fa';
 import { FaShoppingCart } from 'react-icons/fa';
 import { FaUserCircle } from "react-icons/fa";
+import ThemeSwitch from '../ThemeSwitch/ThemeSwitch.jsx';
 import './Navbar.scss';
 
 const GET_REVIEWS = gql`
@@ -70,6 +71,7 @@ const Navbar = () => {
       </div>
 
       <div className='nav-icons'>
+        <ThemeSwitch/>
         <a href="/"><FaShoppingCart/></a>
         <a href="/"><FaUserCircle/></a>
       </div>
