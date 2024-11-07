@@ -56,7 +56,7 @@ const Navbar = () => {
         </div>
         {/* ten error można dodać dodatkowo */}
         <div className='input-response'>
-          {error && <p>Błąd: {error.message}</p>}
+          {/* {error && <p>Błąd: {error.message}</p>}
           {input && searchResults.length > 0 && (
             <ul>
               {searchResults.map(review => (
@@ -65,8 +65,8 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-          )}
-          {input && searchResults.length === 0 && !loading && <p>Nie znaleziono żadnych wyników</p>}
+          )} */}
+          {/* {input && searchResults.length === 0 && !loading && <p>Nie znaleziono żadnych wyników</p>} */}
         </div>
       </div>
 

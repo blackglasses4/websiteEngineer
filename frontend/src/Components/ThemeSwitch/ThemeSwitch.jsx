@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const ThemeSwitcher = ({ iconSize = 24 }) => {
+const ThemeSwitcher = ({ iconSize = 22 }) => {
     const [theme, setTheme] = useState(() => {
         if (typeof window !== 'undefined') {
             return localStorage.getItem('theme') ?? 'system';

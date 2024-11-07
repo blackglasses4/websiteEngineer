@@ -26,11 +26,11 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
+  background-color: var(--dominant-light);
 }
 
 a {
   text-decoration: none;
   color: #8e2ad6;
   border-bottom: 1px dotted;
-}/*# sourceMappingURL=index.css.map */r-bottom: 1px dotted;
 }/*# sourceMappingURL=index.css.map */

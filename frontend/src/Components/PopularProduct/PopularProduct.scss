@@ -1,0 +1,20 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.popularProduct {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+
+    h1 {
+        color: var(--dominant-dark);
+        padding: 1em;
+    }
+
+    .popular-item {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        justify-content: center;
+    }
+}

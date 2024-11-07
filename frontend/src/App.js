@@ -11,6 +11,7 @@ import Footer from './Components/Footer/Footer';
 import Login from './Pages/Login/Login';
 //import Logout from './pages/Logout/Logout';
 import Registration from './Pages/Registration/Registration';
+import Home from './Pages/Home/Home';
 
 //apollo client 
 const client = new ApolloClient({
@@ -28,7 +29,7 @@ function App() {
               <>
                 <Ad />
                 <Navbar />
-                {/* <Homepage /> */}
+                <Home/>
                 <Footer />
               </>
             } />
