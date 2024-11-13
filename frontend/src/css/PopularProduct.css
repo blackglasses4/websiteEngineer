@@ -1,11 +1,11 @@
 :root {
   --white: #ffffff;
   --black: #000000;
-  --grey_light: #D9D9D9;
-  --grey_dark: #B4B4B4;
+  --grey_light: #8c8c8c;
+  --grey_dark: #232933;
   --green_light: #228B22;
   --red_light: hsl(0, 61%, 34%);
-  --grey_dark: #B4B4B4;
+  --grey_dark: #232933;
   --blue_light: #225E8B;
   --blue_dark: #184261;
 }
@@ -17,6 +17,8 @@
   --color-ad: hsl(206, 100%, 32%);
   --color-red: hsl(0, 100%, 33%);
   --color-green: hsl(120, 61%, 34%);
+  --grey_light: hsl(0, 0%, 55%);
+  --grey_dark: hsl(218, 19%, 17%);
   --color-bg-selection: hsl(0, 0%, 15%);
   --color-selection: hsl(0, 0%, 98%);
   --color-font-grey: hsl(0, 0%, 21%);
@@ -32,6 +34,8 @@
     --color-ad: hsl(205, 100%, 32%);
     --color-red: hsl(0, 100%, 34%);
     --color-green: hsl(144, 96%, 10%);
+    --grey_light: hsl(0, 0%, 100%);
+    --grey_dark: hsl(0, 0%, 100%);
     --color-bg-selection: hsl(0, 0%, 15%);
     --color-selection: hsl(0, 0%, 98%);
     --color-font-grey: hsl(0, 0%, 21%);
@@ -46,6 +50,8 @@
   --color-ad: hsl(205, 100%, 22%);
   --color-red: hsl(0, 98%, 21%);
   --color-green: hsl(144, 96%, 10%);
+  --grey_light: hsl(0, 0%, 100%);
+  --grey_dark: hsl(0, 0%, 100%);
   --color-bg-selection: hsl(0, 0%, 15%);
   --color-selection: hsl(0, 0%, 98%);
   --color-font-grey: hsl(0, 0%, 21%);
@@ -61,11 +67,69 @@
 }
 .popularProduct h1 {
   color: var(--dominant-dark);
-  padding: 1em;
+  padding: 1.1em;
 }
 .popularProduct .popular-item {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
+  display: grid;
+  grid-template-areas: "one two three four";
   justify-content: center;
+  gap: 1.1em;
+}
+.popularProduct .popular-item .item img::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.popularProduct .popular-item .item img::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.popularProduct .popular-item .item p {
+  margin: 6px 0;
+  color: var(--grey_dark);
+}
+.popularProduct .popular-item .item p::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.popularProduct .popular-item .item p::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.popularProduct .popular-item .item-prices {
+  display: flex;
+  gap: 20px;
+}
+.popularProduct .popular-item .item-prices-new {
+  color: var(--grey_dark);
+  font-size: 1em;
+  font-weight: 400;
+}
+.popularProduct .popular-item .item-prices-new::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.popularProduct .popular-item .item-prices-new::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.popularProduct .popular-item .item-prices-old {
+  color: var(--red_light);
+  font-size: 1em;
+  font-weight: 500;
+  text-decoration: line-through;
+}
+.popularProduct .popular-item .item-prices-old::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.popularProduct .popular-item .item-prices-old::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+
+@media only screen and (max-width: 1550px) {
+  .popularProduct .popular-item {
+    grid-template-areas: "one two" "three four";
+    gap: 3em;
+  }
 }/*# sourceMappingURL=PopularProduct.css.map */

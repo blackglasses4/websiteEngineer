@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+// import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { ToastContainer } from 'react-toastify';
 
 //component Inżynierka
@@ -14,14 +14,14 @@ import Registration from './Pages/Registration/Registration';
 import Home from './Pages/Home/Home';
 
 //apollo client 
-const client = new ApolloClient({
-  uri: 'http://localhost:1337/graphql',
-  cache: new InMemoryCache()
-});
+// const client = new ApolloClient({
+//   uri: 'http://localhost:1337/graphql',
+//   cache: new InMemoryCache()
+// });
 
 function App() {
   return (
-    <ApolloProvider client={client}>
+    // <ApolloProvider client={client}>
       <Router>
         <div className="App">
           <Routes>
@@ -41,7 +41,8 @@ function App() {
           <ToastContainer />
         </div>
       </Router>
-    </ApolloProvider>
+    // </ApolloProvider>
+    
   );
 }
 

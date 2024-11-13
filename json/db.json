@@ -1,13 +1,32 @@
 {
-  "posts": [
-    { "id": "1", "title": "a title", "views": 100 },
-    { "id": "2", "title": "another title", "views": 200 }
-  ],
-  "comments": [
-    { "id": "1", "text": "a comment about post 1", "postId": "1" },
-    { "id": "2", "text": "another comment about post 1", "postId": "1" }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  "products": [
+    {
+      "id": "1",
+      "name": "Some text",
+      "image": "http://localhost:3001/product_1.png",
+      "new_price": "86.00",
+      "old_price": "100.00"
+    },
+    {
+      "id": "2",
+      "name": "Some text",
+      "image": "http://localhost:3001/product_2.png",
+      "new_price": "50.00",
+      "old_price": "80.00"
+    },
+    {
+      "id": "3",
+      "name": "Some text",
+      "image": "http://localhost:3001/product_3.png",
+      "new_price": "100.00",
+      "old_price": "150.00"
+    },
+    {
+      "id": "4",
+      "name": "Some text",
+      "image": "http://localhost:3001/product_4.png",
+      "new_price": "35.00",
+      "old_price": "85.00"
+    }
+  ]
 }

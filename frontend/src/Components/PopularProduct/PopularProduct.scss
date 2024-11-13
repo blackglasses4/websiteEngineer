@@ -8,13 +8,57 @@
 
     h1 {
         color: var(--dominant-dark);
-        padding: 1em;
+        padding: 1.1em;
     }
 
     .popular-item {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 25px;
+        display: grid;
+        grid-template-areas:
+        'one two three four';
         justify-content: center;
+        gap: 1.1em;
+
+        .item {
+            img {
+                @include selection-whitedark;
+            }
+
+            p {
+                margin: 6px 0;
+                color: var(--grey_dark);
+                @include selection-whitedark;
+            }
+
+            &-prices {
+                display: flex;
+                gap: 20px;
+
+                &-new {
+                    color: var(--grey_dark);
+                    font-size: 1em;
+                    font-weight: 400;
+                    @include selection-whitedark;
+                }
+
+                &-old {
+                    color: var(--red_light);
+                    font-size: 1em;
+                    font-weight: 500;
+                    text-decoration: line-through;
+                    @include selection-whitedark;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'desktop-Lwide')}) {
+    .popularProduct {
+        .popular-item {
+            grid-template-areas:
+            'one two'
+            'three four';
+            gap: 3em;
+        }    
     }
 }

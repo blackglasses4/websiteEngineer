@@ -1,11 +1,11 @@
 :root {
   --white: #ffffff;
   --black: #000000;
-  --grey_light: #D9D9D9;
-  --grey_dark: #B4B4B4;
+  --grey_light: #8c8c8c;
+  --grey_dark: #232933;
   --green_light: #228B22;
   --red_light: hsl(0, 61%, 34%);
-  --grey_dark: #B4B4B4;
+  --grey_dark: #232933;
   --blue_light: #225E8B;
   --blue_dark: #184261;
 }
@@ -17,6 +17,8 @@
   --color-ad: hsl(206, 100%, 32%);
   --color-red: hsl(0, 100%, 33%);
   --color-green: hsl(120, 61%, 34%);
+  --grey_light: hsl(0, 0%, 55%);
+  --grey_dark: hsl(218, 19%, 17%);
   --color-bg-selection: hsl(0, 0%, 15%);
   --color-selection: hsl(0, 0%, 98%);
   --color-font-grey: hsl(0, 0%, 21%);
@@ -32,6 +34,8 @@
     --color-ad: hsl(205, 100%, 32%);
     --color-red: hsl(0, 100%, 34%);
     --color-green: hsl(144, 96%, 10%);
+    --grey_light: hsl(0, 0%, 100%);
+    --grey_dark: hsl(0, 0%, 100%);
     --color-bg-selection: hsl(0, 0%, 15%);
     --color-selection: hsl(0, 0%, 98%);
     --color-font-grey: hsl(0, 0%, 21%);
@@ -46,6 +50,8 @@
   --color-ad: hsl(205, 100%, 22%);
   --color-red: hsl(0, 98%, 21%);
   --color-green: hsl(144, 96%, 10%);
+  --grey_light: hsl(0, 0%, 100%);
+  --grey_dark: hsl(0, 0%, 100%);
   --color-bg-selection: hsl(0, 0%, 15%);
   --color-selection: hsl(0, 0%, 98%);
   --color-font-grey: hsl(0, 0%, 21%);

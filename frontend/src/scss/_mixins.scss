@@ -25,6 +25,13 @@
   }
 }
 
+@mixin selection-whitedark {
+  &::selection {
+    color: var(--dominant-light);
+    background-color: var(--dominant-dark);
+  }
+}
+
 // @mixin prefix($property, $value, $prefixes: ()) {
 //     @each $prefix in $prefixes {
 //       -#{$prefix}-#{$property}: $value;
