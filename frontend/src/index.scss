@@ -17,17 +17,16 @@ html, body {
   margin: 0;
 }
 
-h1,h2,h3,h4 {
-  font-weight: 500;
-}
-
 .App {
   font-size: 1.2em;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  min-height: auto;
+  min-height: 100vh; 
   background-color: var(--dominant-light);
+}
+
+h1,h2,h3,h4 {
+  font-weight: 500;
 }
 
 a {

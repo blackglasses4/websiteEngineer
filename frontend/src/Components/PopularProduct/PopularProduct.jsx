@@ -3,28 +3,45 @@ import './PopularProduct.scss';
 
 const PopularProduct = () => {
   const [dataProduct, setDataProduct] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [isFetched, setIsFetched] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch('http://localhost:3001/products');
+
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`Błąd połączenia! Status: ${response.status}`);
         }
+
         const data = await response.json();
-        setDataProduct(data);
-        setLoading(false);
+        const popularProducts = data.filter(product => product.popular === "true");
+
+        setDataProduct(popularProducts);
+        setIsFetched(true);
+
       } catch (error) {
         console.error("Błąd podczas pobierania danych:", error);
-        setLoading(false);
+        setError(true);
       }
     };
 
-    fetchProducts();
-  }, []);
+    if (!isFetched) {
+      fetchProducts();
+    }
+  }, [isFetched]);
 
-  if (loading) return <p>Ładowanie produktów...</p>;
+  if (error) {
+    return (
+      <section className='popularProduct'>
+        <h1>POPULAR PRODUCT</h1>
+        <div className="error-product">
+          <p>Błąd podczas pobierania produktów. Przepraszamy za utrudnienia</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className='popularProduct'>

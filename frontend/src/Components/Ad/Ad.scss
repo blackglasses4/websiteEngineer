@@ -19,3 +19,9 @@
         @include selection-blue;
     }
 }
+
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet-wide')}) {
+    .ad {
+        padding: 0.5rem 1rem; 
+    }
+}
