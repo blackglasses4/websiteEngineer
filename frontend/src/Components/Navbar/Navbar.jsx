@@ -41,8 +41,8 @@ const Navbar = () => {
   }
 
   return (
-    <nav>
-      <a href="/" className='a-name' rel='internal'>NAZWA</a>
+    <header>
+      <a href="/" className='a-name' rel='internal'>NAZWAAAAA</a>
 
       <div className="nav-search">
         <div className='input-wrapper'>
@@ -70,10 +70,11 @@ const Navbar = () => {
 
       <div className='nav-icons'>
         <ThemeSwitch/>
-        <a href="/"><FaShoppingCart/></a>
-        <a href="/"><FaUserCircle/></a>
+        <a href="/cart"><FaShoppingCart/><div className="nav-icons-cart">0</div></a>
+        <a href="/"><FaUserCircle/>
+        </a>
       </div>
-    </nav>
+    </header>
   );
 }
 

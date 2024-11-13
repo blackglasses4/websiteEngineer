@@ -1,7 +1,7 @@
 @use '../../scss/variables' as *;
 @use '../../scss/mixins' as *;
 
-nav {
+header {
     background-color: var(--color-red);
     width: 100%;
     padding: 0.5rem 4rem;
@@ -95,6 +95,23 @@ nav {
     .nav-icons {
         display: flex;
         gap: 1rem;
+        z-index: 0;
+
+        &-cart {
+            position: absolute;
+            width: 1.4em;
+            height: 1.4em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: -2.7em;
+            margin-left: 1em;
+            border-radius: 50%;
+            font-size: 0.6em;
+            background-color: var(--color-ad);
+            color: var(--white);
+            z-index: 10;
+        }
     }
 }
 

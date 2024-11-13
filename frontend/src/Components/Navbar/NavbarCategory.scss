@@ -1,0 +1,19 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+nav {
+    background-color: var(--color-red);
+    width: 100%;
+    padding: 0.5rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    a {
+        color: $white;
+        text-decoration: none;
+        list-style-type: none;
+        border: none;
+        @include selection-light;
+    }
+}

@@ -1,48 +1,49 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
-//component Inżynierka
+// Komponenty
 import Navbar from './Components/Navbar/Navbar';
 import Ad from './Components/Ad/Ad';
 import Footer from './Components/Footer/Footer';
+import NavbarCategory from './Components/Navbar/NavbarCategory';
 
-//page
+// Strony
 import Login from './Pages/Login/Login';
-//import Logout from './pages/Logout/Logout';
 import Registration from './Pages/Registration/Registration';
 import Home from './Pages/Home/Home';
+import CategoryProducts from './Components/CategoryProduct/CategoryProduct';
 
-//apollo client 
-// const client = new ApolloClient({
-//   uri: 'http://localhost:1337/graphql',
-//   cache: new InMemoryCache()
-// });
+// Główny układ z Navbar, Kategoriami i Footerem
+function AppLayout() {
+  return (
+    <>
+      <Ad />
+      <Navbar />
+      <NavbarCategory />
+      <div className="content">
+        <Outlet />
+      </div>
+      <Footer />
+    </>
+  );
+}
 
 function App() {
   return (
-    // <ApolloProvider client={client}>
-      <Router>
-        <div className="App">
-          <Routes>
-            <Route exact path="/" element={
-              <>
-                <Ad />
-                <Navbar />
-                <Home/>
-                <Footer />
-              </>
-            } />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/registration" element={<Registration />} />
-            {/* <Route path="/details/:id" element={<ReviewDetails />} />
-            <Route path="/genre/:id" element={<Genre />} /> */}
-          </Routes>
-          <ToastContainer />
-        </div>
-      </Router>
-    // </ApolloProvider>
-    
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<AppLayout />}>
+            <Route index element={<Home />} />
+            <Route path=":category" element={<CategoryProducts />} />
+          </Route>
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
+        </Routes>
+        <ToastContainer />
+      </div>
+    </Router>
   );
 }
 
