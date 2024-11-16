@@ -6,6 +6,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Ad from './Components/Ad/Ad';
 import Footer from './Components/Footer/Footer';
 import NavbarCategory from './Components/Navbar/NavbarCategory';
+import DisplayProduct from './Components/DisplayProduct/DisplayProduct';
 
 // Strony
 import Login from './Pages/Login/Login';
@@ -36,6 +37,7 @@ function App() {
           <Route path="/" element={<AppLayout />}>
             <Route index element={<Home />} />
             <Route path=":category" element={<CategoryProducts />} />
+            <Route path='product/:id' element={<DisplayProduct/>} />
           </Route>
 
           <Route path="/login" element={<Login />} />

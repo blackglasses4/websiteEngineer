@@ -36,7 +36,7 @@ const PopularProduct = () => {
     return (
       <section className='popularProduct'>
         <h1>POPULAR PRODUCT</h1>
-        <div className="error-product">
+        <div className="error-products">
           <p>Błąd podczas pobierania produktów. Przepraszamy za utrudnienia</p>
         </div>
       </section>

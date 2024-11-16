@@ -1,3 +1,5 @@
+
+
 {
   "products": [
     {
@@ -7,7 +9,9 @@
       "image": "http://localhost:3001/product_1.png",
       "popular": "true",
       "new_price": "86.00",
-      "old_price": "100.00"
+      "old_price": "100.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "L", "XL"]
     },
     {
       "id": "2",
@@ -16,7 +20,9 @@
       "image": "http://localhost:3001/product_2.png",
       "popular": "true",
       "new_price": "50.00",
-      "old_price": "80.00"
+      "old_price": "80.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "L", "XL"]
     },
     {
       "id": "3",
@@ -25,7 +31,9 @@
       "image": "http://localhost:3001/product_3.png",
       "popular": "true",
       "new_price": "100.00",
-      "old_price": "150.00"
+      "old_price": "150.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M"]
     },
     {
       "id": "4",
@@ -34,7 +42,9 @@
       "image": "http://localhost:3001/product_4.png",
       "popular": "true",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "L", "XL"]
     },
     {
       "id": "5",
@@ -43,7 +53,9 @@
       "image": "http://localhost:3001/product_5.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "L", "XL"]
     },
     {
       "id": "6",
@@ -52,7 +64,9 @@
       "image": "http://localhost:3001/product_6.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["M", "L", "XL"]
     },
     {
       "id": "7",
@@ -61,7 +75,9 @@
       "image": "http://localhost:3001/product_7.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M"]
     },
     {
       "id": "8",
@@ -70,7 +86,9 @@
       "image": "http://localhost:3001/product_8.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "L"]
     },
     {
       "id": "9",
@@ -79,7 +97,9 @@
       "image": "http://localhost:3001/product_9.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "XL"]
     },
     {
       "id": "10",
@@ -88,7 +108,9 @@
       "image": "http://localhost:3001/product_10.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "L", "XL"]
     },
     {
       "id": "11",
@@ -97,7 +119,9 @@
       "image": "http://localhost:3001/product_11.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "L", "XL"]
     },
     {
       "id": "12",
@@ -106,16 +130,20 @@
       "image": "http://localhost:3001/product_12.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": []
     },
     {
       "id": "13",
       "category": "men",
-      "name": "Some text",
+      "name": "Jakaś nazwa nowa",
       "image": "http://localhost:3001/product_13.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M"]
     },
     {
       "id": "14",
@@ -124,7 +152,9 @@
       "image": "http://localhost:3001/product_14.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "L", "XL"]
     },
     {
       "id": "15",
@@ -133,7 +163,9 @@
       "image": "http://localhost:3001/product_15.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S"]
     },
     {
       "id": "16",
@@ -142,7 +174,9 @@
       "image": "http://localhost:3001/product_16.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["L"]
     },
     {
       "id": "17",
@@ -151,7 +185,9 @@
       "image": "http://localhost:3001/product_17.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "XL"]
     },
     {
       "id": "18",
@@ -160,7 +196,9 @@
       "image": "http://localhost:3001/product_18.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["M"]
     },
     {
       "id": "19",
@@ -169,7 +207,9 @@
       "image": "http://localhost:3001/product_19.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["L", "XL"]
     },
     {
       "id": "20",
@@ -178,7 +218,9 @@
       "image": "http://localhost:3001/product_20.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "L", "XL"]
     },
     {
       "id": "21",
@@ -187,7 +229,9 @@
       "image": "http://localhost:3001/product_21.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": []
     },
     {
       "id": "22",
@@ -196,7 +240,9 @@
       "image": "http://localhost:3001/product_22.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "L", "XL"]
     },
     {
       "id": "23",
@@ -205,7 +251,9 @@
       "image": "http://localhost:3001/product_23.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": []
     },
     {
       "id": "24",
@@ -214,7 +262,9 @@
       "image": "http://localhost:3001/product_24.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["XL"]
     },
     {
       "id": "25",
@@ -223,7 +273,9 @@
       "image": "http://localhost:3001/product_25.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "XL"]
     },
     {
       "id": "26",
@@ -232,7 +284,9 @@
       "image": "http://localhost:3001/product_26.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["M", "L", "XL"]
     },
     {
       "id": "27",
@@ -241,7 +295,9 @@
       "image": "http://localhost:3001/product_27.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "L", "XL"]
     },
     {
       "id": "28",
@@ -250,7 +306,9 @@
       "image": "http://localhost:3001/product_28.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": []
     },
     {
       "id": "29",
@@ -259,7 +317,9 @@
       "image": "http://localhost:3001/product_29.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": []
     },
     {
       "id": "30",
@@ -268,7 +328,9 @@
       "image": "http://localhost:3001/product_30.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "XL"]
     },
     {
       "id": "31",
@@ -277,7 +339,9 @@
       "image": "http://localhost:3001/product_31.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "XL"]
     },
     {
       "id": "32",
@@ -286,7 +350,9 @@
       "image": "http://localhost:3001/product_32.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "L"]
     },
     {
       "id": "33",
@@ -295,7 +361,9 @@
       "image": "http://localhost:3001/product_33.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "L", "XL"]
     },
     {
       "id": "34",
@@ -304,7 +372,9 @@
       "image": "http://localhost:3001/product_34.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": []
     },
     {
       "id": "35",
@@ -313,7 +383,9 @@
       "image": "http://localhost:3001/product_35.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S","XL"]
     },
     {
       "id": "36",
@@ -322,7 +394,9 @@
       "image": "http://localhost:3001/product_36.png",
       "popular": "false",
       "new_price": "35.00",
-      "old_price": "85.00"
+      "old_price": "85.00",
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
+      "sizes": ["S", "M", "L", "XL"]
     }
   ]
 }

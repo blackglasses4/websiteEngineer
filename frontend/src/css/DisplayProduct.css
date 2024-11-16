@@ -1,0 +1,227 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --grey_light: #8c8c8c;
+  --grey_dark: #232933;
+  --green_light: #228B22;
+  --red_light: hsl(0, 61%, 34%);
+  --grey_dark: #232933;
+  --blue_light: #225E8B;
+  --blue_dark: #184261;
+}
+
+[data-theme=light],
+:root:not([data-theme=dark]) {
+  --dominant-light: hsl(0, 0%, 100%);
+  --dominant-dark: hsl(0, 0%, 5%);
+  --color-ad: hsl(206, 100%, 32%);
+  --color-red: hsl(0, 100%, 33%);
+  --color-green: hsl(120, 61%, 34%);
+  --grey_light: hsl(0, 0%, 55%);
+  --grey_dark: hsl(218, 19%, 17%);
+  --color-bg-selection: hsl(0, 0%, 15%);
+  --color-selection: hsl(0, 0%, 98%);
+  --color-font-grey: hsl(0, 0%, 21%);
+  --darkgrey: hsl(0, 0%, 13%);
+  --lightgreen: hsl(146, 97%, 23%);
+  --darkgreen: hsl(144, 96%, 10%);
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --dominant-light: hsl(0, 0%, 5%);
+    --dominant-dark: hsl(0, 0%, 100%);
+    --color-ad: hsl(205, 100%, 32%);
+    --color-red: hsl(0, 100%, 34%);
+    --color-green: hsl(144, 96%, 10%);
+    --grey_light: hsl(0, 0%, 100%);
+    --grey_dark: hsl(0, 0%, 100%);
+    --color-bg-selection: hsl(0, 0%, 15%);
+    --color-selection: hsl(0, 0%, 98%);
+    --color-font-grey: hsl(0, 0%, 21%);
+    --darkgrey: hsl(0, 0%, 13%);
+    --lightgreen: hsl(146, 97%, 23%);
+    --darkgreen: hsl(144, 96%, 10%);
+  }
+}
+[data-theme=dark] {
+  --dominant-light: hsl(0, 0%, 5%);
+  --dominant-dark: hsl(0, 0%, 100%);
+  --color-ad: hsl(205, 100%, 22%);
+  --color-red: hsl(0, 98%, 21%);
+  --color-green: hsl(144, 96%, 10%);
+  --grey_light: hsl(0, 0%, 100%);
+  --grey_dark: hsl(0, 0%, 100%);
+  --color-bg-selection: hsl(0, 0%, 15%);
+  --color-selection: hsl(0, 0%, 98%);
+  --color-font-grey: hsl(0, 0%, 21%);
+  --darkgrey: hsl(0, 0%, 13%);
+  --lightgreen: hsl(146, 97%, 23%);
+  --darkgreen: hsl(144, 96%, 10%);
+}
+
+.product-display {
+  color: var(--grey_dark);
+  margin: 1em;
+}
+.product-display h1 {
+  color: var(--dominant-dark);
+  padding: 1.1em 1.1em 0.5em 1.1em;
+}
+.product-display h1::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display h1::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__content {
+  display: flex;
+  gap: 0px;
+}
+.product-display__image-gallery {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  margin: 0 2em 2em 2.5em;
+}
+.product-display__image-gallery img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.product-display__image-gallery img::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__image-gallery img::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__image-gallery .additional-images {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 1em 0 0.5em;
+}
+.product-display__image-gallery .additional-images img {
+  width: 100%;
+  max-width: 100px;
+  height: auto;
+  border-radius: 8px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.product-display__image-gallery .additional-images img:hover {
+  transform: scale(1.1);
+}
+.product-display__details {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.product-display__details .description {
+  color: var(--grey_dark);
+  margin-bottom: 10px;
+}
+.product-display__details .description::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details .description::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details p::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details p::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details p span {
+  text-decoration: line-through;
+}
+.product-display__details p span::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details p span::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details .product-display__sizes h3 {
+  color: var(--grey_dark);
+  margin-bottom: 0.5em;
+}
+.product-display__details .product-display__sizes h3::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details .product-display__sizes h3::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details .product-display__sizes ul {
+  display: flex;
+  gap: 0.5em;
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+}
+.product-display__details .product-display__sizes ul li {
+  font-size: 1rem;
+  padding: 5px 10px;
+  border: 1px solid var(--dominant-dark);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.product-display__details .product-display__sizes ul li::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details .product-display__sizes ul li::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details .product-display__sizes ul li:hover {
+  background-color: var(--dominant-dark);
+  color: var(--dominant-light);
+}
+.product-display__details button {
+  background-color: var(--color-green);
+  color: #ffffff;
+  border: none;
+  padding: 0.6em 1em;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+  align-self: flex-start;
+}
+.product-display__details button:hover {
+  background-color: var(--dominant-dark);
+  color: var(--dominant-light);
+}
+
+.error-product {
+  color: var(--color-red);
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 860px) {
+  .product-display__content {
+    flex-direction: column;
+    align-items: center;
+  }
+}/*# sourceMappingURL=DisplayProduct.css.map */
