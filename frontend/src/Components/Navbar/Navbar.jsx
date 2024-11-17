@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FaSearch } from 'react-icons/fa';
-import { FaShoppingCart } from 'react-icons/fa';
-import { FaUserCircle } from "react-icons/fa";
+import { FaSearch, FaShoppingCart, FaUserCircle, FaBars, FaTimes } from 'react-icons/fa';
+import { FaBarsStaggered } from "react-icons/fa6";
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch.jsx';
 import './Navbar.scss';
 
@@ -9,6 +8,7 @@ const Navbar = () => {
   const [input, setInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [dataProducts, setDataProducts] = useState([]);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
       const fetchProducts = async () => {
@@ -38,7 +38,15 @@ const Navbar = () => {
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
-  }
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
 
   return (
     <header>
@@ -68,14 +76,28 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className='nav-icons'>
-        <ThemeSwitch/>
-        <a href="/cart"><FaShoppingCart/><div className="nav-icons-cart">0</div></a>
-        <a href="/"><FaUserCircle/>
-        </a>
+      <div className={`nav-icons ${isMenuOpen ? 'menu-open' : ''}`}>
+        <ThemeSwitch />
+        <a href="/cart"><FaShoppingCart /><div className="nav-icons-cart">0</div></a>
+        <a href="/"><FaUserCircle /></a>
       </div>
+
+      <div className="hamburger-menu" onClick={toggleMenu}>
+        <FaBarsStaggered id="hamburger-icon" />
+      </div>
+
+      {isMenuOpen && (
+        <div className="mobile-menu">
+          <div className="close-menu" onClick={closeMenu}>
+            <FaTimes id="close-icon" />
+          </div>
+          <a href="/cart"><FaShoppingCart /></a>
+          <a href="/"><FaUserCircle /></a>
+          <ThemeSwitch />
+        </div>
+      )}
     </header>
   );
-}
+};
 
 export default Navbar;

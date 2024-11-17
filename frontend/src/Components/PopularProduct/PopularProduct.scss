@@ -15,18 +15,51 @@
     h1 {
         color: var(--dominant-dark);
         padding: 1.1em;
+        padding-bottom: 0;
         @include selection-whitedark;
+    }
+
+    .numberOfPages {
+        padding: 0 2em 2em 2em;
+
+        button {
+            background-color: var(--color-green);
+            color: $white;
+            border: none;
+            padding: 0.4em 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+
+            &:hover {
+                background-color: var(--dominant-dark);
+                color: var(--dominant-light);
+            }
+        }
+
+        span {
+            padding: 1em;
+            color: var(--grey_dark);
+            @include selection-whitedark;
+        }
     }
 
     .popular-item {
         display: grid;
-        grid-template-areas:
-        'one two three four';
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         justify-content: center;
         gap: 1.1em;
+        margin: 0 2em;
 
         .item {
             img {
+                width: 100%;
+                max-width: 1000px;
+                height: auto;
+                border-radius: 10px;
+                object-fit: cover;
                 @include selection-whitedark;
             }
 
@@ -59,39 +92,58 @@
     }
 }
 
-@media only screen and (max-width: #{map-get($breakpoints, 'desktop-Lwide')}) {
+@media only screen and (max-width: #{map-get($breakpoints, 'phone-wide')}) {
     .popularProduct {
-        .popular-item {
-            grid-template-areas:
-            'one two'
-            'three four';
-            gap: 3em;
-        }    
-    }
-}
+        margin: 1em;
 
-@media only screen and (max-width: #{map-get($breakpoints, 'tablet-wide')}) {
-    .popularProduct {
         h1 {
-            padding: 1em 0em;
-            text-align: center;
+            padding: 0.5em 0;
+        }
+
+        .error-products {
+            text-align: left;
+        }
+
+        .numberOfPages {
+            padding: 0 1em 1em 0;
+    
+            button {
+                padding: 0.3em 0.5em;
+                margin-top: 15px;
+            }
+    
+            span {
+                padding: 0.5em;
+            }
         }
 
         .popular-item {
-            grid-template-areas:
-            'one' 
-            'two'
-            'three'
-            'four';
-            gap: 3em;
-
+            gap: 1.1em;
+            margin: 0em;
+    
             .item {
                 img {
                     width: 100%;
-                    max-width: 350px;
-                    padding: 1em;
+                    max-width: 1000px;
+                    height: auto;
+                    border-radius: 10px;
+                    object-fit: cover;
+                    @include selection-whitedark;
                 }
             }
-        }    
+        }
+    }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'phone-wide')}) {
+    .categoryProduct {
+        .numberOfPages {
+            padding: 0 0 1em 0;
+    
+            button {
+                padding: 0.2em 0.3em;
+                margin-top: 15px;
+            }
+        }
     }
 }

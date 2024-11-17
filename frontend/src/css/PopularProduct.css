@@ -80,6 +80,7 @@
 .popularProduct h1 {
   color: var(--dominant-dark);
   padding: 1.1em;
+  padding-bottom: 0;
 }
 .popularProduct h1::-moz-selection {
   color: var(--dominant-light);
@@ -89,11 +90,50 @@
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
+.popularProduct .numberOfPages {
+  padding: 0 2em 2em 2em;
+}
+.popularProduct .numberOfPages button {
+  background-color: var(--color-green);
+  color: #ffffff;
+  border: none;
+  padding: 0.4em 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+  align-self: flex-start;
+}
+.popularProduct .numberOfPages button:hover {
+  background-color: var(--dominant-dark);
+  color: var(--dominant-light);
+}
+.popularProduct .numberOfPages span {
+  padding: 1em;
+  color: var(--grey_dark);
+}
+.popularProduct .numberOfPages span::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.popularProduct .numberOfPages span::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
 .popularProduct .popular-item {
   display: grid;
-  grid-template-areas: "one two three four";
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   justify-content: center;
   gap: 1.1em;
+  margin: 0 2em;
+}
+.popularProduct .popular-item .item img {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .popularProduct .popular-item .item img::-moz-selection {
   color: var(--dominant-light);
@@ -147,24 +187,53 @@
   background-color: var(--dominant-dark);
 }
 
-@media only screen and (max-width: 1550px) {
-  .popularProduct .popular-item {
-    grid-template-areas: "one two" "three four";
-    gap: 3em;
+@media only screen and (max-width: 480px) {
+  .popularProduct {
+    margin: 1em;
   }
-}
-@media only screen and (max-width: 860px) {
   .popularProduct h1 {
-    padding: 1em 0em;
-    text-align: center;
+    padding: 0.5em 0;
+  }
+  .popularProduct .error-products {
+    text-align: left;
+  }
+  .popularProduct .numberOfPages {
+    padding: 0 1em 1em 0;
+  }
+  .popularProduct .numberOfPages button {
+    padding: 0.3em 0.5em;
+    margin-top: 15px;
+  }
+  .popularProduct .numberOfPages span {
+    padding: 0.5em;
   }
   .popularProduct .popular-item {
-    grid-template-areas: "one" "two" "three" "four";
-    gap: 3em;
+    gap: 1.1em;
+    margin: 0em;
   }
   .popularProduct .popular-item .item img {
     width: 100%;
-    max-width: 350px;
-    padding: 1em;
+    max-width: 1000px;
+    height: auto;
+    border-radius: 10px;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .popularProduct .popular-item .item img::-moz-selection {
+    color: var(--dominant-light);
+    background-color: var(--dominant-dark);
+  }
+  .popularProduct .popular-item .item img::selection {
+    color: var(--dominant-light);
+    background-color: var(--dominant-dark);
+  }
+}
+@media only screen and (max-width: 480px) {
+  .categoryProduct .numberOfPages {
+    padding: 0 0 1em 0;
+  }
+  .categoryProduct .numberOfPages button {
+    padding: 0.2em 0.3em;
+    margin-top: 15px;
   }
 }/*# sourceMappingURL=PopularProduct.css.map */

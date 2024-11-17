@@ -26,7 +26,7 @@ const DisplayProduct = () => {
     }, [id]);
 
     if (error) return <p className="error-product">Nie udało się załadować danych o produkcie</p>;
-    if (loading) return <p>Ładowanie produktu...</p>;
+    if (loading) return <p className='loading-product'>Ładowanie produktu...</p>;
     if (!product) return <p className="error-product">Produkt nie został odnaleziony</p>;
 
     return (

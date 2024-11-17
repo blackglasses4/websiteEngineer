@@ -81,4 +81,11 @@ nav a::-moz-selection {
 nav a::selection {
   color: hsl(0, 61%, 34%);
   background-color: #ffffff;
+}
+
+@media only screen and (max-width: 480px) {
+  nav {
+    width: 100%;
+    padding: 0.5rem 1rem;
+  }
 }/*# sourceMappingURL=NavbarCategory.css.map */
