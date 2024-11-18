@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useCart } from '../Cart/CartContext';
+import { toast } from 'react-toastify';
 import './DisplayProduct.scss';
 
 const DisplayProduct = () => {
@@ -7,6 +9,8 @@ const DisplayProduct = () => {
     const [product, setProduct] = useState(null);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
+
+    const { addToCart } = useCart();
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -28,6 +32,19 @@ const DisplayProduct = () => {
     if (error) return <p className="error-product">Nie udało się załadować danych o produkcie</p>;
     if (loading) return <p className='loading-product'>Ładowanie produktu...</p>;
     if (!product) return <p className="error-product">Produkt nie został odnaleziony</p>;
+
+    const handleAddToCart = () => {
+        addToCart(product.id);
+        toast.success('Dodano produkt do koszyka!', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+    };
 
     return (
         <section className="product-display">
@@ -52,10 +69,9 @@ const DisplayProduct = () => {
                             ) : (
                                 <p>Nie posiadamy aktualnie żadnych rozmiarów</p>
                             )}
-                            
                         </ul>
                     </div>
-                    <button>Dodaj do koszyka</button>
+                    <button onClick={handleAddToCart}>Dodaj do koszyka</button>
                 </div>
             </div>
         </section>

@@ -20,8 +20,8 @@
 
 @mixin selection-blue {
   &::selection {
-    color: $blue_light;
-    background-color: $white;
+    color: $blue_brighter;
+    background-color: var(--dominant-dark);
   }
 }
 

@@ -8,12 +8,20 @@
   --grey_dark: #232933;
   --blue_light: #225E8B;
   --blue_dark: #184261;
+  --table_td: #f8f8f8;
+  --table_border: #ddd;
+  --table_th-color: #555;
+  --table_shadow: rgba(0, 0, 0, 0.1);
 }
 
 [data-theme=light],
 :root:not([data-theme=dark]) {
   --dominant-light: hsl(0, 0%, 100%);
   --dominant-dark: hsl(0, 0%, 5%);
+  --table_td: hsl(0, 0%, 94%);
+  --table_border: hsl(0, 0%, 87%);
+  --table_th-color: hsl(0, 0%, 19%);
+  --table_shadow: rgba(0, 0, 0, 0.1);
   --color-ad: hsl(206, 100%, 32%);
   --color-red: hsl(0, 100%, 33%);
   --color-green: hsl(120, 61%, 34%);
@@ -31,8 +39,12 @@
   :root:not([data-theme]) {
     --dominant-light: hsl(0, 0%, 5%);
     --dominant-dark: hsl(0, 0%, 100%);
-    --color-ad: hsl(205, 100%, 32%);
-    --color-red: hsl(0, 100%, 34%);
+    --table_td: hsl(0, 0%, 12%);
+    --table_border: hsl(0, 0%, 26%);
+    --table_th-color: rgb(160, 157, 157);
+    --table_shadow: rgba(136, 136, 136, 0.1);
+    --color-ad: hsl(205, 100%, 22%);
+    --color-red: hsl(0, 98%, 21%);
     --color-green: hsl(144, 96%, 10%);
     --grey_light: hsl(0, 0%, 100%);
     --grey_dark: hsl(0, 0%, 100%);
@@ -47,6 +59,10 @@
 [data-theme=dark] {
   --dominant-light: hsl(0, 0%, 5%);
   --dominant-dark: hsl(0, 0%, 100%);
+  --table_td: hsl(0, 0%, 12%);
+  --table_border: hsl(0, 0%, 26%);
+  --table_th-color: rgb(160, 157, 157);
+  --table_shadow: rgba(136, 136, 136, 0.1);
   --color-ad: hsl(205, 100%, 22%);
   --color-red: hsl(0, 98%, 21%);
   --color-green: hsl(144, 96%, 10%);
@@ -77,12 +93,12 @@
   border: none;
 }
 .ad a::-moz-selection {
-  color: #225E8B;
-  background-color: #ffffff;
+  color: #399be6;
+  background-color: var(--dominant-dark);
 }
 .ad a::selection {
-  color: #225E8B;
-  background-color: #ffffff;
+  color: #399be6;
+  background-color: var(--dominant-dark);
 }
 
 @media only screen and (max-width: 860px) {
