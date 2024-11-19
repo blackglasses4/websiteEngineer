@@ -15,6 +15,7 @@ import Login from './Pages/Login/Login';
 import Registration from './Pages/Registration/Registration';
 import Home from './Pages/Home/Home';
 import CategoryProducts from './Components/CategoryProduct/CategoryProduct';
+import Admin from './Components/Admin/Admin';
 
 // Główny układ z Navbar, Kategoriami i Footerem
 function AppLayout() {
@@ -46,6 +47,7 @@ function App() {
 
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
           <ToastContainer />
         </div>

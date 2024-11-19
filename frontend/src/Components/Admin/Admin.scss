@@ -1,13 +1,13 @@
 @use '../../scss/variables' as *;
 @use '../../scss/mixins' as *;
 
-nav.nav-admin {
-    background-color: $red_light;
+header.header-admin {
+    background-color: var(--color-red);
     width: 100%;
-    padding: 1rem 2rem;
+    padding: 1rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 
     a {
         color: $white;
@@ -24,6 +24,6 @@ nav.nav-admin {
 
     .nav-icons {
         display: flex;
-        gap: 1rem;
+        gap: 1em;
     }
 }

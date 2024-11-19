@@ -76,7 +76,7 @@
   --darkgreen: hsl(144, 96%, 10%);
 }
 
-nav {
+nav.nav-category {
   background-color: var(--color-red);
   width: 100%;
   padding: 0.5rem 4rem;
@@ -85,17 +85,17 @@ nav {
   justify-content: space-evenly;
   z-index: 1;
 }
-nav a {
+nav.nav-category a {
   color: #ffffff;
   text-decoration: none;
   list-style-type: none;
   border: none;
 }
-nav a::-moz-selection {
+nav.nav-category a::-moz-selection {
   color: hsl(0, 61%, 34%);
   background-color: #ffffff;
 }
-nav a::selection {
+nav.nav-category a::selection {
   color: hsl(0, 61%, 34%);
   background-color: #ffffff;
 }
