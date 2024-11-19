@@ -83,6 +83,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  z-index: 1;
 }
 nav a {
   color: #ffffff;

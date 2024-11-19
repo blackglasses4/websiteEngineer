@@ -49,6 +49,7 @@ const CartPage = () => {
   if (loading) return <p>Ładowanie koszyka...</p>;
 
   return (
+    <>
     <section className="cart">
       <h1>Twój koszyk</h1>
       {products.length === 0 ? (
@@ -69,10 +70,10 @@ const CartPage = () => {
             <tbody>
               {products.map((product) => (
                 <tr key={product.id}>
-                  <td><img src={product.image} alt={product.name} className="cart-item-image" /></td>
-                  <td><p>{product.name.length > 25 ? `${product.name.slice(0,25)}...` : product.name}</p></td>
-                  <td>{product.new_price} zł</td>
-                  <td>
+                  <td data-label="Produkt"><img src={product.image} alt={product.name} className="cart-item-image" /></td>
+                  <td data-label="Tytuł"><p>{product.name.length > 25 ? `${product.name.slice(0,25)}...` : product.name}</p></td>
+                  <td data-label="Cena">{product.new_price} zł</td>
+                  <td data-label="Ilość">
                     <input
                       type="number"
                       value={product.quantity}
@@ -80,7 +81,7 @@ const CartPage = () => {
                       onChange={(e) => updateQuantity(product.id, parseInt(e.target.value, 10))}
                     />
                   </td>
-                  <td>{(product.new_price * product.quantity).toFixed(2)} zł</td>
+                  <td data-label="Całkowita cena">{(product.new_price * product.quantity).toFixed(2)} zł</td>
                   <td>
                     <button onClick={() => removeFromCart(product.id)} className="remove-button">
                       Usuń
@@ -98,6 +99,47 @@ const CartPage = () => {
         </>
       )}
     </section>
+
+    <section className="cart-mobile">
+        <h1>Twój koszyk</h1>
+          {products.length === 0 ? (
+            <p className='cart-empty'>Koszyk jest pusty &nbsp;&rarr; &nbsp;<a href="/">Przejdź do sklepu</a></p>
+          ) : (
+            <>
+          <div className="cart-cards">
+            {products.map((product) => (
+              <div className="cart-card" key={product.id}>
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="cart-item-image"
+                />
+                <div className="cart-card-details">
+                  <p className='product-name'>{product.name.length > 25 ? `${product.name.slice(0,25)}...` : product.name}</p>
+                  <p><span>Cena:</span> {product.new_price} zł</p>
+                  <div className="product-quantity">
+                  <span>Ilość:</span>
+                    <input
+                      type="number"
+                      value={product.quantity}
+                      min="1"
+                      onChange={(e) => updateQuantity(product.id, parseInt(e.target.value, 10))}
+                    />
+                  </div>
+                  <p><span>Całkowita cena: </span>{(product.new_price * product.quantity).toFixed(2)} zł</p>
+                  <button className="remove-button" onClick={() => removeFromCart(product.id)}>Usuń</button>
+                </div>
+            </div>))}
+          </div>
+          <div className="cart-summary">
+            <h2>Podsumowanie</h2>
+            <p>Łączna kwota: {calculateTotal().toFixed(2)} zł</p>
+            <button className="checkout-button">Przejdź do płatności</button>
+          </div>
+          </>
+        )}
+    </section>
+  </>
   );
 };
 

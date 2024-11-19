@@ -146,47 +146,186 @@
       }
     }
   }
+}
 
-  @media only screen and (max-width: #{map-get($breakpoints, 'tablet-XLwide')}) {
-    .cart-table-wrapper {
-      -webkit-overflow-scrolling: touch;
-      overflow-x: auto;
-    }
-  
-    .cart-table {
-      display: block;
-      width: 100%;
-      border-collapse: separate;
-    }
+.cart-mobile {
+  display: none;
+  padding: 2em;
 
-    thead {
-      display: none;
-    }
-  
-    td {
-      padding: 10px 15px;
-      text-align: left;
-      display: block;
-      width: 100%;
-    }
-  
-    th {
-      font-size: 14px;
-    }
-  
-    .cart-summary {
+  h1 {
+    margin-bottom: 1em;
+    @include selection-whitedark;
+  }
+
+  .cart-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1em;
+
+    .cart-card {
+      display: flex;
+      flex-direction: row;
       padding: 1em;
-      margin-top: 1em;
-    }
-  
-    .cart-item-details {
-      display: block;
-      margin-bottom: 10px;
-    }
-  
-    .cart-summary p {
-      margin-bottom: 1em;
+      background-color: var(--dominant-light);
+      border: 1px solid var(--table_border);
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
   }
-  
+
+  .cart-item-image {
+    width: 100%;
+    max-width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    @include selection-whitedark;
+  }
+
+  .cart-card-details {
+    display: flex;
+    padding-left: 1em;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.2em;
+
+    p.product-name {
+      margin-bottom: 1em;
+    }
+
+    .product-name, span {
+      font-weight: 500;
+      @include selection-whitedark;
+    }
+
+    p,
+    .product-quantity {
+      font-size: 1rem;
+      color: var(--dominant-dark);
+      margin: 0;
+      @include selection-whitedark;
+    }
+
+    .product-quantity {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      input {
+        width: 50px;
+        padding: 0.5em;
+        border: 1px solid var(--table_border);
+        border-radius: 5px;
+        text-align: center;
+        @include selection-whitedark;
+      }
+    }
+
+    .remove-button {
+      align-self: flex-end;
+      margin-top: auto;
+      right: 0;
+      background-color: $red_brighter;
+      color: #fff;
+      border: none;
+      padding: 0.5em 1em;
+      font-size: 0.9rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      @include selection-whitedark;
+
+      &:hover {
+        background-color: $red_light;
+      }
+    }
+  }
 }
+
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
+  .cart {
+    display: none;
+  }
+
+  .cart-mobile {
+    display: block;
+  }
+
+  .cart-item-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .cart-card {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'phablet')}) {
+  .cart-mobile {
+    padding: 1em;
+  
+    .cart-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 1em;
+  
+      .cart-card {
+        display: block;
+        padding: 1em;
+      }
+    }
+  
+    .cart-item-image {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .cart-item-image {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      object-fit: cover;
+    }
+  
+    .cart-card-details {
+      padding-left: 0;
+      gap: 0;
+  
+      p.product-name {
+        margin-top: 1em;
+      }
+  
+      .remove-button {
+        align-self: flex-end;
+        margin-top: 1em;
+        right: 0;
+        background-color: $red_brighter;
+        color: #fff;
+        border: none;
+        padding: 0.5em 1em;
+        font-size: 0.9rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        @include selection-whitedark;
+  
+        &:hover {
+          background-color: $red_light;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'phone-wide')}) {
+  .cart-empty {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
