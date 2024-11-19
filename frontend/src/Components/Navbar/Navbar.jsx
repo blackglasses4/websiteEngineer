@@ -6,9 +6,37 @@ import './Navbar.scss';
 
 const Navbar = () => {
   const [input, setInput] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [dataProducts, setDataProducts] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { cart } = useCart();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/products');
+        const data = await response.json();
+        setDataProducts(data);
+      } catch(error) {
+        console.error("Błąd podczas pobierania danych:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+  
+  useEffect(() => {
+    if (input === "") {
+      setSearchResults([]);
+    } else {
+      const filterResults = dataProducts.filter(product =>
+        product.name.toLowerCase().includes(input.toLowerCase())
+      );
+      setSearchResults(filterResults);
+      console.log("Wyniki wyszukiwania:", filterResults);
+    }
+  }, [input, dataProducts]);
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -23,7 +51,7 @@ const Navbar = () => {
   };
 
   return (
-    <header>
+    <header className='header-main'>
       <a href="/" className="a-name" rel="internal">NAZWAAAAA</a>
 
       <div className="nav-search">
@@ -35,7 +63,23 @@ const Navbar = () => {
             onChange={handleInputChange}
           />
         </div>
+
+        <div className='input-response'>
+        {input && searchResults.length === 0 && <p>Nie znaleziono żadnych wyników</p>} 
+        {input && searchResults.length > 0 && (
+          <ul>
+            {searchResults.map((product) => (
+              <li key={product.id}>
+                <a href={`/product/${product.id}`} onClick={closeMenu}>{product.name}</a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
+      </div>
+
+      
+
 
       <div className={`nav-icons ${isMenuOpen ? 'menu-open' : ''}`}>
         <ThemeSwitch />

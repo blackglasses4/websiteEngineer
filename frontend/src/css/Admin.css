@@ -76,7 +76,7 @@
   --darkgreen: hsl(144, 96%, 10%);
 }
 
-header.nav-admin {
+header.header-admin {
   background-color: var(--color-red);
   width: 100%;
   padding: 1rem;
@@ -84,32 +84,32 @@ header.nav-admin {
   align-items: center;
   justify-content: space-around;
 }
-header.nav-admin a {
+header.header-admin a {
   color: #ffffff;
   text-decoration: none;
   list-style-type: none;
   border: none;
 }
-header.nav-admin a::-moz-selection {
+header.header-admin a::-moz-selection {
   color: hsl(0, 61%, 34%);
   background-color: #ffffff;
 }
-header.nav-admin a::selection {
+header.header-admin a::selection {
   color: hsl(0, 61%, 34%);
   background-color: #ffffff;
 }
-header.nav-admin h3 {
+header.header-admin h3 {
   color: #ffffff;
 }
-header.nav-admin h3::-moz-selection {
+header.header-admin h3::-moz-selection {
   color: hsl(0, 61%, 34%);
   background-color: #ffffff;
 }
-header.nav-admin h3::selection {
+header.header-admin h3::selection {
   color: hsl(0, 61%, 34%);
   background-color: #ffffff;
 }
-header.nav-admin .nav-icons {
+header.header-admin .nav-icons {
   display: flex;
   gap: 1em;
 }/*# sourceMappingURL=Admin.css.map */
