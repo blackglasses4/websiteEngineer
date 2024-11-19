@@ -75,12 +75,9 @@ const Navbar = () => {
             ))}
           </ul>
         )}
+        </div>
       </div>
-      </div>
-
       
-
-
       <div className={`nav-icons ${isMenuOpen ? 'menu-open' : ''}`}>
         <ThemeSwitch />
         <a href="/cart">

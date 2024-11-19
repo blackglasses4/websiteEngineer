@@ -268,26 +268,26 @@ header.header-main .mobile-menu .close-menu {
 }
 
 @media only screen and (max-width: 888px) {
-  header .nav-search .input-response, header .nav-search .input-wrapper {
+  header.header-main .nav-search .input-response, header.header-main .nav-search .input-wrapper {
     width: 100%;
     max-width: 350px;
   }
 }
 @media only screen and (max-width: 640px) {
-  header {
+  header.header-main {
     padding: 0.5rem 1rem;
   }
-  header .nav-search .input-response, header .nav-search .input-wrapper {
+  header.header-main .nav-search .input-response, header.header-main .nav-search .input-wrapper {
     width: 100%;
     max-width: 220px;
   }
 }
 @media only screen and (max-width: 410px) {
-  header .nav-search .input-response, header .nav-search .input-wrapper {
+  header.header-main .nav-search .input-response, header.header-main .nav-search .input-wrapper {
     width: 100%;
     max-width: 150px;
   }
-  header .mobile-menu a {
+  header.header-main .mobile-menu a {
     padding: 0.5rem;
   }
 }/*# sourceMappingURL=Navbar.css.map */
