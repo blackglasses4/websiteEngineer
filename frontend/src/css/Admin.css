@@ -195,4 +195,51 @@ nav.nav-admin .input-response p {
 .search-products h1::selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
+}
+.search-products .search-products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}
+.search-products button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 0.5em 0.75em;
+  font-size: 0.9em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.search-products button::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.search-products button::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.search-products button:hover {
+  background-color: hsl(0, 61%, 34%);
+}
+.search-products .button-edit {
+  background-color: #399be6;
+}
+.search-products .button-edit:hover {
+  background-color: #225E8B;
+}
+.search-products .button-delete {
+  background-color: #e74c3c;
+}
+.search-products .button-delete:hover {
+  background-color: hsl(0, 61%, 34%);
+}
+.search-products .button-reset {
+  background-color: #8c8c8c;
+  display: flex;
+  margin-left: auto;
+}
+.search-products .button-reset:hover {
+  background-color: #232933;
 }/*# sourceMappingURL=Admin.css.map */

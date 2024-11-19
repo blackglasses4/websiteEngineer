@@ -279,6 +279,7 @@
   padding: 2em;
 }
 .cart-mobile h1 {
+  color: var(--dominant-dark);
   margin-bottom: 1em;
 }
 .cart-mobile h1::-moz-selection {
@@ -362,11 +363,13 @@
   gap: 0.5rem;
 }
 .cart-mobile .cart-card-details .product-quantity input {
+  background-color: var(--table_td);
+  color: var(--dominant-dark);
   width: 50px;
-  padding: 0.5em;
-  border: 1px solid var(--table_border);
-  border-radius: 5px;
+  padding: 5px;
   text-align: center;
+  border: 1px solid var(--table_th-color);
+  border-radius: 5px;
 }
 .cart-mobile .cart-card-details .product-quantity input::-moz-selection {
   color: var(--dominant-light);

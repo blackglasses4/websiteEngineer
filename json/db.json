@@ -37,7 +37,7 @@
     },
     {
       "id": "4",
-      "category": "women",
+      "category": "",
       "name": "Some text",
       "image": "http://localhost:3001/product_4.png",
       "popular": "true",

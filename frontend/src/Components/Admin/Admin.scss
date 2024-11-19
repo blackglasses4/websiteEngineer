@@ -115,4 +115,53 @@ nav.nav-admin {
         padding: 1em;
         @include selection-whitedark;
     }
+
+    .search-products-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1em;
+    }
+
+    button {
+        background-color: $red_brighter;
+        color: #fff;
+        border: none;
+        padding: 0.5em 0.75em;
+        font-size: 0.9em;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        @include selection-whitedark;
+
+        &:hover {
+            background-color: $red_light;
+        }
+    }
+
+    .button-edit {
+        background-color: $blue_brighter;
+
+        &:hover {
+            background-color: $blue_light;
+        }
+    }
+
+    .button-delete {
+        background-color: $red_brighter;
+
+        &:hover {
+            background-color: $red_light;
+        }
+    }
+
+    .button-reset {
+        background-color: $grey_light;
+        display: flex;
+        margin-left: auto;
+
+        &:hover {
+            background-color: $grey_dark;
+        }
+    }
 }
