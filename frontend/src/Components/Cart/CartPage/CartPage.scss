@@ -153,6 +153,7 @@
   padding: 2em;
 
   h1 {
+    color: var(--dominant-dark);
     margin-bottom: 1em;
     @include selection-whitedark;
   }
@@ -213,11 +214,13 @@
       gap: 0.5rem;
 
       input {
+        background-color: var(--table_td);
+        color: var(--dominant-dark);
         width: 50px;
-        padding: 0.5em;
-        border: 1px solid var(--table_border);
-        border-radius: 5px;
+        padding: 5px;
         text-align: center;
+        border: 1px solid var(--table_th-color);
+        border-radius: 5px;
         @include selection-whitedark;
       }
     }
