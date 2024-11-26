@@ -1,13 +1,39 @@
 @use '../../scss/variables' as *;
 @use '../../scss/mixins' as *;
 
+.welcome-admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 2rem;
+
+    h2, p {
+        @include selection-whitedark;
+    }
+
+    h2 {
+        color: var(--dominant-dark);
+        margin-bottom: 1rem;
+    }
+
+    p {
+        color: var(--grey_dark);
+        max-width: 600px;
+        line-height: 1.5;
+    }
+}
+
 header.header-admin {
     background-color: var(--color-red);
     width: 100%;
-    padding: 1rem;
+    padding: 1em 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 1;
 
     a {
         color: $white;
@@ -28,140 +54,23 @@ header.header-admin {
     }
 }
 
-nav.nav-admin {
-    background-color: var(--color-red);
+.admin-container {
     display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 1rem;
 
-    .nav-search {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        width: 100%;
-        max-width: 600px;
-
-        .input-wrapper {
-            background-color: $white;
-            width: 100%;
-            height: 2.5rem;
-            display: flex;
-            align-items: center;
-            border-radius: 5px;
-            margin: 0 auto;
-
-            #search-icon {
-                margin-left: 0.5rem;
-            }
-
-            input {
-                background-color: transparent;
-                border: none;
-                height: 100%;
-                font-size: 1rem;
-                width: 100%;
-                padding: 0 10px;
-
-                &:focus {
-                    outline: none;
-                }
-            }
-        }
+    .admin-main {
+        margin-left: 250px;
+        padding: 2rem;
+        flex-grow: 1;
+        background-color: var(--color-light-gray);
+        min-height: calc(100vh - 4rem);
     }
 
-    .input-response {
-        position: absolute;
-        top: 80%;
-        width: 100%;
-        max-width: 600px;
-        background-color: $white;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        max-height: 200px;
-        overflow-y: auto;
-        z-index: 2;
+    @media (max-width: 768px) {
+        flex-direction: column;
 
-        ul {
-            list-style-type: none;
-            padding: 0 0.5rem;
-            margin: 0;
-
-            li {
-                margin: 0.5rem 0;
-
-                a {
-                    color: $black;
-                    text-decoration: none;
-                    border-bottom: none;
-
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                }
-            }
-        }
-
-        p {
-            margin: 0.5rem;
-        }
-    }
-}
-
-.search-products {
-    h1 {
-        color: var(--dominant-dark);
-        padding: 1em;
-        @include selection-whitedark;
-    }
-
-    .search-products-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1em;
-    }
-
-    button {
-        background-color: $red_brighter;
-        color: #fff;
-        border: none;
-        padding: 0.5em 0.75em;
-        font-size: 0.9em;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        @include selection-whitedark;
-
-        &:hover {
-            background-color: $red_light;
-        }
-    }
-
-    .button-edit {
-        background-color: $blue_brighter;
-
-        &:hover {
-            background-color: $blue_light;
-        }
-    }
-
-    .button-delete {
-        background-color: $red_brighter;
-
-        &:hover {
-            background-color: $red_light;
-        }
-    }
-
-    .button-reset {
-        background-color: $grey_light;
-        display: flex;
-        margin-left: auto;
-
-        &:hover {
-            background-color: $grey_dark;
+        .admin-main {
+            margin-left: 0;
+            padding: 1rem;
         }
     }
 }

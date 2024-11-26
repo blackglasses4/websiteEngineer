@@ -76,33 +76,6 @@
   --darkgreen: hsl(144, 96%, 10%);
 }
 
-.welcome-admin {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  text-align: center;
-  padding: 2rem;
-}
-.welcome-admin h2::-moz-selection, .welcome-admin p::-moz-selection {
-  color: var(--dominant-light);
-  background-color: var(--dominant-dark);
-}
-.welcome-admin h2::selection, .welcome-admin p::selection {
-  color: var(--dominant-light);
-  background-color: var(--dominant-dark);
-}
-.welcome-admin h2 {
-  color: var(--dominant-dark);
-  margin-bottom: 1rem;
-}
-.welcome-admin p {
-  color: var(--grey_dark);
-  max-width: 600px;
-  line-height: 1.5;
-}
-
 header.header-admin {
   background-color: var(--color-red);
   width: 100%;
@@ -110,7 +83,6 @@ header.header-admin {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 1;
 }
 header.header-admin a {
   color: #ffffff;
@@ -142,22 +114,132 @@ header.header-admin .nav-icons {
   gap: 1em;
 }
 
-.admin-container {
+nav.nav-admin {
+  background-color: var(--color-red);
   display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem;
 }
-.admin-container .admin-main {
-  margin-left: 250px;
-  padding: 2rem;
-  flex-grow: 1;
-  background-color: var(--color-light-gray);
-  min-height: calc(100vh - 4rem);
+nav.nav-admin .nav-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
 }
-@media (max-width: 768px) {
-  .admin-container {
-    flex-direction: column;
-  }
-  .admin-container .admin-main {
-    margin-left: 0;
-    padding: 1rem;
-  }
-}/*# sourceMappingURL=Admin.css.map */
+nav.nav-admin .nav-search .input-wrapper {
+  background-color: #ffffff;
+  width: 100%;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+nav.nav-admin .nav-search .input-wrapper #search-icon {
+  margin-left: 0.5rem;
+}
+nav.nav-admin .nav-search .input-wrapper input {
+  background-color: transparent;
+  border: none;
+  height: 100%;
+  font-size: 1rem;
+  width: 100%;
+  padding: 0 10px;
+}
+nav.nav-admin .nav-search .input-wrapper input:focus {
+  outline: none;
+}
+nav.nav-admin .input-response {
+  position: absolute;
+  top: 80%;
+  width: 100%;
+  max-width: 600px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 2;
+}
+nav.nav-admin .input-response ul {
+  list-style-type: none;
+  padding: 0 0.5rem;
+  margin: 0;
+}
+nav.nav-admin .input-response ul li {
+  margin: 0.5rem 0;
+}
+nav.nav-admin .input-response ul li a {
+  color: #000000;
+  text-decoration: none;
+  border-bottom: none;
+}
+nav.nav-admin .input-response ul li a:hover {
+  text-decoration: underline;
+}
+nav.nav-admin .input-response p {
+  margin: 0.5rem;
+}
+
+.search-products h1 {
+  color: var(--dominant-dark);
+  padding: 0.5em 1em;
+}
+.search-products h1::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.search-products h1::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.search-products .cart-empty {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.search-products button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 0.5em 0.75em;
+  font-size: 0.9em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.search-products button::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.search-products button::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.search-products button:hover {
+  background-color: hsl(0, 61%, 34%);
+}
+.search-products .button-edit {
+  background-color: #399be6;
+}
+.search-products .button-edit:hover {
+  background-color: #225E8B;
+}
+.search-products .button-delete {
+  background-color: #e74c3c;
+}
+.search-products .button-delete:hover {
+  background-color: hsl(0, 61%, 34%);
+}
+.search-products .button-reset {
+  background-color: #8c8c8c;
+  display: flex;
+  margin: 1em 2.2em;
+}
+.search-products .button-reset:hover {
+  background-color: #232933;
+}/*# sourceMappingURL=SearchProduct.css.map */
