@@ -57,15 +57,26 @@ const SearchProduct = () => {
         }
     };
 
+    const handleEscKey = (e) => {
+        if (e.key === 'Escape') {
+            setInput("");
+        }
+    };
+
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("keydown", handleEscKey);
+
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("keydown", handleEscKey);
         };
     }, []);
 
     return (
         <>
+            <h1 className='admin-h1'>Wyszukane produkty</h1>
+
             <div className="admin-search" ref={inputWrapperRef}>
                 <div className="input-wrapper">
                     <FaSearch id="search-icon" />
@@ -100,7 +111,6 @@ const SearchProduct = () => {
             </div>
 
             <section className="admin-search_products">
-                <h1>Wyszukane produkty</h1>
                 <button className='button-reset' onClick={handleReset}>Resetuj</button>
                 {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
@@ -126,12 +136,12 @@ const SearchProduct = () => {
                                 <tr key={product.id}>
                                     <td>{product.id}</td>
                                     <td>{product.category || 'Brak'}</td>
-                                    <td>{product.name}</td>
+                                    <td>{product.name.length > 25 ? `${product.name.slice(0,25)}...` : product.name}</td>
                                     <td><img src={product.image} alt={product.name} className="cart-item-image" /></td>
-                                    <td>{product.popular ? 'Tak' : 'Nie'}</td>
+                                    <td>{product.popular === "true" ? 'Tak' : 'Nie'}</td>
                                     <td>{product.new_price} zł</td>
                                     <td>{product.old_price ? `${product.old_price} zł` : '—'}</td>
-                                    <td>{product.description ? product.description.slice(0, 50) + '...' : 'Brak opisu'}</td>
+                                    <td>{product.description ? product.description.slice(0,25) + '...' : 'Brak opisu'}</td>
                                     <td>{product.sizes.join(', ') || 'Brak'}</td>
                                     <td><button className='button-edit'>Edytuj</button></td>
                                     <td><button className='button-delete'>Usuń</button></td>
@@ -143,20 +153,19 @@ const SearchProduct = () => {
             </section>
 
             <section className="admin-search_products-mobile">
-                <h1>Wyszukane produkty</h1>
                 <button className='button-reset' onClick={handleReset}>Resetuj</button>
                 {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
                 ) : (
-                    <div className="search_mobile">
+                    <div className="search-mobile">
                         {confirmedResults.map((product) => (
                             <div className="search-mobile_product" key={product.id}>
                                 <img
                                     src={product.image}
                                     alt={product.name}
-                                    className="cart-item-image"
+                                    className="product-image"
                                 />
-                                <div className="cart-card-details">
+                                <div className="product-details">
                                     <p><span>ID: </span>{product.id}</p>
                                     <p><span>Nazwa: </span>{product.name.length > 25 ? `${product.name.slice(0, 25)}...` : product.name}</p>
                                     <p><span>Popularne: </span>{product.popular ? 'Tak' : 'Nie'}</p>

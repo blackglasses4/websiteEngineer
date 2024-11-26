@@ -62,15 +62,31 @@ header.header-admin {
         padding: 2rem;
         flex-grow: 1;
         background-color: var(--color-light-gray);
-        min-height: calc(100vh - 4rem);
+        height: auto;
     }
+}
 
-    @media (max-width: 768px) {
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) { //795px
+    .admin-container {
         flex-direction: column;
-
+    
         .admin-main {
             margin-left: 0;
+            flex-grow: 0;
+            background-color: var(--color-light-gray);
+            min-height: auto;
+        }
+    }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'phablet')}) {
+    .admin-container { 
+        .admin-main {
             padding: 1rem;
         }
+    }
+
+    header.header-admin {
+        padding: 1em;
     }
 }

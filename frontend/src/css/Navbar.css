@@ -1,37 +1,52 @@
 :root {
   --white: #ffffff;
   --black: #000000;
-  --grey_light: #8c8c8c;
-  --grey_dark: #232933;
+  --grey_light: #D9D9D9;
+  --grey_dark: #B4B4B4;
   --green_light: #228B22;
-  --red_light: hsl(0, 61%, 34%);
-  --grey_dark: #232933;
+  --red_light: #8B2222;
+  --grey_dark: #B4B4B4;
   --blue_light: #225E8B;
   --blue_dark: #184261;
-  --table_td: #f8f8f8;
-  --table_border: #ddd;
-  --table_th-color: #555;
-  --table_shadow: rgba(0, 0, 0, 0.1);
-  --table_s: rgba(0, 0, 0, 0.1);
 }
 
-[data-theme=light],
-:root:not([data-theme=dark]) {
-  --dominant-light: hsl(0, 0%, 100%);
-  --dominant-dark: hsl(0, 0%, 5%);
-  --table_td: hsl(0, 0%, 94%);
-  --table_border: hsl(0, 0%, 87%);
-  --table_th-color: hsl(0, 0%, 19%);
-  --table_shadow: rgba(0, 0, 0, 0.1);
-  --table_s: rgba(0, 0, 0, 0.1);
-  --color-ad: hsl(206, 100%, 32%);
-  --color-red: hsl(0, 100%, 33%);
-  --color-green: hsl(120, 61%, 34%);
-  --grey_light: hsl(0, 0%, 55%);
-  --grey_dark: hsl(218, 19%, 17%);
-  --color-bg-selection: hsl(0, 0%, 15%);
-  --color-selection: hsl(0, 0%, 98%);
-  --color-font-grey: hsl(0, 0%, 21%);
+nav.nav-admin {
+  background-color: #8B2222;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav.nav-admin a {
+  color: #ffffff;
+  text-decoration: none;
+  list-style-type: none;
+  border: none;
+}
+nav.nav-admin a::-moz-selection {
+  color: #8B2222;
+  background-color: #ffffff;
+}
+nav.nav-admin a::selection {
+  color: #8B2222;
+  background-color: #ffffff;
+}
+nav.nav-admin h3 {
+  color: #ffffff;
+}
+nav.nav-admin h3::-moz-selection {
+  color: #8B2222;
+  background-color: #ffffff;
+}
+nav.nav-admin h3::selection {
+  color: #8B2222;
+  background-color: #ffffff;
+}
+nav.nav-admin .nav-icons {
+  display: flex;
+  gap: 1rem;
+}/*# sourceMappingURL=Navbar.css.map */ey: hsl(0, 0%, 21%);
   --darkgrey: hsl(0, 0%, 13%);
   --lightgreen: hsl(146, 97%, 23%);
   --darkgreen: hsl(144, 96%, 10%);
@@ -45,7 +60,7 @@
     --table_border: hsl(0, 0%, 26%);
     --table_th-color: rgb(160, 157, 157);
     --table_shadow: rgba(136, 136, 136, 0.1);
-    --table_s: rgba(136, 136, 136, 0.1);
+    --table_s: rgba(0, 0, 0, 0.3);
     --color-ad: hsl(205, 100%, 22%);
     --color-red: hsl(0, 98%, 21%);
     --color-green: hsl(144, 96%, 10%);
@@ -66,7 +81,7 @@
   --table_border: hsl(0, 0%, 26%);
   --table_th-color: rgb(160, 157, 157);
   --table_shadow: rgba(136, 136, 136, 0.1);
-  --table_s: rgba(231, 26, 26, 0.1);
+  --table_s: rgba(0, 0, 0, 0.6);
   --color-ad: hsl(205, 100%, 22%);
   --color-red: hsl(0, 98%, 21%);
   --color-green: hsl(144, 96%, 10%);

@@ -2,18 +2,18 @@
 @use '../../scss/mixins' as *;
 
 .admin-sidebar {
-    position: absolute;
-    left: 0;
+    position: fixed;
     top: 4.8rem;
+    left: 0;
     width: 250px;
     height: 100%;
     background-color: $bluegray_sidebar;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     padding: 1rem;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
+    transition: top 0.3s ease;
     z-index: 0;
 
     button {
@@ -47,14 +47,16 @@
             font-size: 1.5rem;
         }
     }
+}
 
-    @media (max-width: 768px) {
-        position: relative;
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
+    .admin-sidebar {
+        position: static;
         width: 100%;
-        height: auto;
-        flex-direction: row;
-        justify-content: center;
         top: 0;
+        box-shadow: none;
+        flex-direction: row;
+        justify-content: space-around;
 
         button {
             padding: 0.5rem 0.75rem;
