@@ -32,6 +32,13 @@
   }
 }
 
+@mixin selection-sidebar {
+  &::selection {
+    color: $bluegray_sidebar;
+    background-color: $white;
+  }
+}
+
 // @mixin prefix($property, $value, $prefixes: ()) {
 //     @each $prefix in $prefixes {
 //       -#{$prefix}-#{$property}: $value;

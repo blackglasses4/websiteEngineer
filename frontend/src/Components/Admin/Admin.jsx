@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 import CreateProduct from '../CreateProduct/CreateProduct';
-// import SearchProducts from '../SearchProducts/SearchProducts';
+import SearchProduct from '../SearchProduct/SearchProduct';
 import Sidebar from '../Sidebar/Sidebar';
 import './Admin.scss';
 
@@ -37,7 +37,7 @@ const Admin = () => {
             case 'createProduct':
                 return <CreateProduct />;
             case 'searchProducts':
-                return <p className="p-admin_info">Komponent wyszukiwania jest jeszcze w budowie!</p>;
+                return <SearchProduct />
             default:
                 return <WelcomeAdmin />;
         }
@@ -46,7 +46,7 @@ const Admin = () => {
     return (
         <>
             <header className='header-admin'>
-                <a href="/" className='a-name' rel='internal'>NAZWA</a>
+                <a href="/admin" className='a-name' rel='internal'>NAZWA</a>
                 <h3>Admin Panel</h3>
                 <div className='nav-icons'>
                     <ThemeSwitch />

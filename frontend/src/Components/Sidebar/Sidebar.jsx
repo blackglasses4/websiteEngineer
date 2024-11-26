@@ -12,7 +12,7 @@ const Sidebar = ({ onSelect }) => {
             </button>
             <button onClick={() => onSelect('searchProducts')}>
                 <TbShoppingBagSearch className="icon"/>
-                <span>Dodaj Product</span>
+                <span>Wyszukaj Product</span>
             </button>
         </aside>
     );

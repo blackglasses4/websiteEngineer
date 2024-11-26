@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { FaUserCircle, FaSearch } from 'react-icons/fa';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
-import CreateProduct from '../CreateProduct/CreateProduct';
 import './SearchProduct.scss';
 
 const SearchProduct = () => {
@@ -10,7 +8,7 @@ const SearchProduct = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [dataProducts, setDataProducts] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
-    const inputWrapperRef = useRef(null); // Ref to detect clicks outside
+    const inputWrapperRef = useRef(null);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -68,59 +66,46 @@ const SearchProduct = () => {
 
     return (
         <>
-            <header className='header-admin'>
-                <a href="/" className='a-name' rel='internal'>NAZWA</a>
-                <h3>Admin Panel</h3>
-                <div className='nav-icons'>
-                    <ThemeSwitch />
-                    <a href="/"><FaUserCircle /></a>
+            <div className="admin-search" ref={inputWrapperRef}>
+                <div className="input-wrapper">
+                    <FaSearch id="search-icon" />
+                    <input
+                        placeholder="Szukaj..."
+                        value={input}
+                        onChange={handleInputChange}
+                        onKeyDown={handleKey}
+                    />
                 </div>
-            </header>
 
-            <nav className='nav-admin'>
-                <div className="nav-search" ref={inputWrapperRef}>
-                    <div className="input-wrapper">
-                        <FaSearch id="search-icon" />
-                        <input
-                            placeholder="Szukaj..."
-                            value={input}
-                            onChange={handleInputChange}
-                            onKeyDown={handleKey}
-                        />
-                    </div>
-
-                    <div className='input-response'>
-                        {input && searchResults.length === 0 && <p>Nie znaleziono żadnych wyników</p>}
-                        {input && searchResults.length > 0 && (
-                            <ul>
-                                {searchResults.map((product) => (
-                                    <li key={product.id}>
-                                        <a href="#" onClick={(e) => {
-                                            e.preventDefault();
-                                            setConfirmedResults((prevResults) => {
-                                                if(prevResults.some((item) => item.id === product.item)) {
-                                                    return prevResults;
-                                                }
-                                                return [...prevResults, product];
-                                            });
-                                        }}>{product.name.length > 50 ? `${product.name.slice(0, 50)}...` : product.name}</a>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
+                <div className='input-response'>
+                    {input && searchResults.length === 0 && <p>Nie znaleziono żadnych wyników</p>}
+                    {input && searchResults.length > 0 && (
+                        <ul>
+                            {searchResults.map((product) => (
+                                <li key={product.id}>
+                                    <a href="#" onClick={(e) => {
+                                        e.preventDefault();
+                                        setConfirmedResults((prevResults) => {
+                                            if(prevResults.some((item) => item.id === product.item)) {
+                                                return prevResults;
+                                            }
+                                            return [...prevResults, product];
+                                        });
+                                    }}>{product.name.length > 50 ? `${product.name.slice(0, 50)}...` : product.name}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
-            </nav>
+            </div>
 
-            <CreateProduct/>
-
-            <section className="search-products">
+            <section className="admin-search_products">
                 <h1>Wyszukane produkty</h1>
                 <button className='button-reset' onClick={handleReset}>Resetuj</button>
                 {confirmedResults.length === 0 ? (
-                    <p className='cart-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
+                    <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
                 ) : (
-                    <table className="cart-table">
+                    <table className="admin-search_table">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -154,6 +139,40 @@ const SearchProduct = () => {
                             ))}
                         </tbody>
                     </table>
+                )}
+            </section>
+
+            <section className="admin-search_products-mobile">
+                <h1>Wyszukane produkty</h1>
+                <button className='button-reset' onClick={handleReset}>Resetuj</button>
+                {confirmedResults.length === 0 ? (
+                    <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
+                ) : (
+                    <div className="search_mobile">
+                        {confirmedResults.map((product) => (
+                            <div className="search-mobile_product" key={product.id}>
+                                <img
+                                    src={product.image}
+                                    alt={product.name}
+                                    className="cart-item-image"
+                                />
+                                <div className="cart-card-details">
+                                    <p><span>ID: </span>{product.id}</p>
+                                    <p><span>Nazwa: </span>{product.name.length > 25 ? `${product.name.slice(0, 25)}...` : product.name}</p>
+                                    <p><span>Popularne: </span>{product.popular ? 'Tak' : 'Nie'}</p>
+                                    <p><span>Nowa cena: </span>{product.new_price} zł</p>
+                                    <p><span>Stara cena: </span>{product.old_price ? `${product.old_price} zł` : '—'}</p>
+                                    <p><span>Opis: </span>{product.description ? product.description.slice(0, 50) + '...' : 'Brak opisu'}</p>
+                                    <p><span>Rozmiary: </span>{product.sizes.join(', ') || 'Brak'}</p>
+                                    
+                                    <div className="mobile-button">
+                                        <button className='button-edit'>Edytuj</button>
+                                        <button className='button-delete'>Usuń</button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 )}
             </section>
         </>
