@@ -15,7 +15,7 @@ const PopularProduct = () => {
         const response = await fetch('http://localhost:3001/products');
 
         const data = await response.json();
-        const popularProducts = data.filter(product => product.popular === "true");
+        const popularProducts = data.filter(product => product.popular === true);
 
         setDataProduct(popularProducts);
         setIsFetched(true);

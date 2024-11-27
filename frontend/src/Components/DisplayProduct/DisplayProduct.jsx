@@ -15,9 +15,13 @@ const DisplayProduct = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
+                console.log(id);
                 const response = await fetch(`http://localhost:3001/products/${id}`);
                 if (!response.ok) throw new Error("Błąd podczas pobierania danych");
+
                 const data = await response.json();
+                if (!data) throw new Error("Produkt nie został znaleziony");
+
                 setProduct(data);
             } catch (error) {
                 console.error("Błąd", error);
@@ -26,8 +30,9 @@ const DisplayProduct = () => {
                 setLoading(false);
             }
         };
+
         fetchProduct();
-    }, [id]);
+    }, [id]);  // Efekt uruchamia się przy każdej zmianie id w URL
 
     if (error) return <p className="error-product">Nie udało się załadować danych o produkcie</p>;
     if (loading) return <p className='loading-product'>Ładowanie produktu...</p>;
@@ -43,7 +48,7 @@ const DisplayProduct = () => {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-          });
+        });
     };
 
     return (

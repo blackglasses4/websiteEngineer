@@ -74,7 +74,7 @@ const SearchProduct = () => {
     }, []);
 
     return (
-        <>
+        <div className="search-product">
             <h1 className='admin-h1'>Wyszukane produkty</h1>
 
             <div className="admin-search" ref={inputWrapperRef}>
@@ -184,7 +184,7 @@ const SearchProduct = () => {
                     </div>
                 )}
             </section>
-        </>
+        </div>
     );
 };
 
