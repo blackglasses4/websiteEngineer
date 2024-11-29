@@ -125,6 +125,12 @@
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
+.create-product .form-container form label .add-img {
+  max-width: 100%;
+  width: 100px;
+  margin: 0.5em 0;
+  border-radius: 5px;
+}
 .create-product .form-container form label input,
 .create-product .form-container form label textarea,
 .create-product .form-container form label select {

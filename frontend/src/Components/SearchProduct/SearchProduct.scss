@@ -341,6 +341,46 @@
     }    
 }
 
+.custom-toast {
+    p {
+        margin: 0 0 10px 0;
+    }
+
+    .toast-div {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:nth-child(1) {
+                background-color: $red_brighter;
+                color: $white;
+
+                &:hover {
+                    background-color: $red_light;
+                }
+            }
+
+            &:nth-child(2) {
+                background-color: $grey_light;
+                color: $white;
+
+                &:hover {
+                    background-color: $grey_dark;
+                }
+            }
+        }
+    }
+}
+
+
+
 
 @media only screen and (max-width: #{map-get($breakpoints, 'desktop-wide')}) {
     .search-product {  

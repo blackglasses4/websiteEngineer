@@ -33,6 +33,13 @@
                 color: var(--grey_light);
                 @include selection-whitedark;
 
+                .add-img {
+                    max-width: 100%;
+                    width: 100px;
+                    margin: 0.5em 0;
+                    border-radius: 5px;
+                }
+
                 input,
                 textarea,
                 select {

@@ -150,12 +150,20 @@ const CreateProduct = () => {
             <div className='form-container expand'>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="nazwa">Nazwa: <input type="text" name="name" id="name" maxLength="30" value={product.name} onChange={handleInputChange} required/></label>
-                    <label htmlFor="category">Kategoria: <input type="text" name="category" id="category" value={product.category} onChange={handleInputChange} required/></label>
+                    <label htmlFor="category">Kategoria: 
+                        <select name="category" id="category" value={product.category} onChange={handleInputChange} required>
+                            <option value="">Wybierz kategorię</option>
+                            <option value="women">Kobieta</option>
+                            <option value="men">Mężczyzna</option>
+                            <option value="equipment">Sprzęt</option>
+                        </select>
+                    </label>
+
                     <label htmlFor="image">Obraz: 
                         <input type="file" name="image" accept='image/*' id="image" onChange={handleInputChange} required/>
-                        {imagePreview && <img src={imagePreview} alt="preview" width="100" />}
+                        {imagePreview && <img className='add-img' src={imagePreview} alt="preview" />}
                     </label>
-                    <label htmlFor="popular">Czy jest popularny: <input type="checkbox" name="popular" id="popular" onChange={handleInputChange} checked={product.popular} required/></label>
+                    <label htmlFor="popular">Czy jest popularny: <input type="checkbox" name="popular" id="popular" onChange={handleInputChange} checked={product.popular}/></label>
                     <label htmlFor="new_price">Nowa cena: <input type="number" name="new_price" id="new_price" min="0" step="0.01" value={product.new_price} onChange={handleInputChange} required/></label>
                     <label htmlFor="old_price">Stara cena: <input type="number" name="old_price" id="old_price" min="0" step="0.01" value={product.old_price} onChange={handleInputChange} /></label>
                     <label htmlFor="description">Opis: <textarea name="description" id="description" maxLength="80" value={product.description} onChange={handleInputChange} required></textarea></label>

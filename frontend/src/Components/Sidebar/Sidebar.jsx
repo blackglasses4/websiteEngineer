@@ -4,7 +4,7 @@ import { FaPlusCircle } from 'react-icons/fa';
 import { TbShoppingBagSearch } from "react-icons/tb";
 
 const Sidebar = ({ onSelect }) => {
-    const [topOffset, setTopOffset] = useState(4.8); // Inicjalny offset w rem
+    const [topOffset, setTopOffset] = useState(4.3); // Inicjalny offset w rem
     const [isDynamic, setIsDynamic] = useState(window.innerWidth > 795); // Aktywne tylko dla szerokości > 795px
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const Sidebar = ({ onSelect }) => {
         const handleScroll = () => {
             if (!isDynamic) return; // Nie rób nic, jeśli dynamiczność jest wyłączona
             const scrollTop = window.scrollY;
-            setTopOffset(scrollTop > 0 ? 0 : 4.8);
+            setTopOffset(scrollTop > 0 ? 0 : 4.3);
         };
 
         window.addEventListener('resize', handleResize);
@@ -31,7 +31,7 @@ const Sidebar = ({ onSelect }) => {
         <aside
             className="admin-sidebar"
             style={{
-                top: isDynamic ? `${topOffset}rem` : '4.8rem', // Dynamiczne dla szerokości > 795px
+                top: isDynamic ? `${topOffset}rem` : '4.3rem', // Dynamiczne dla szerokości > 795px
             }}
         >
             <button onClick={() => onSelect('createProduct')}>

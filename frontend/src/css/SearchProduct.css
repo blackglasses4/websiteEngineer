@@ -483,6 +483,36 @@
   background-color: hsl(0, 61%, 34%);
 }
 
+.custom-toast p {
+  margin: 0 0 10px 0;
+}
+.custom-toast .toast-div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.custom-toast .toast-div button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.custom-toast .toast-div button:nth-child(1) {
+  background-color: #e74c3c;
+  color: #ffffff;
+}
+.custom-toast .toast-div button:nth-child(1):hover {
+  background-color: hsl(0, 61%, 34%);
+}
+.custom-toast .toast-div button:nth-child(2) {
+  background-color: #8c8c8c;
+  color: #ffffff;
+}
+.custom-toast .toast-div button:nth-child(2):hover {
+  background-color: #232933;
+}
+
 @media only screen and (max-width: 1440px) {
   .search-product .admin-search_products {
     display: none;

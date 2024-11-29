@@ -1,39 +1,119 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaUserCircle, FaSearch } from 'react-icons/fa';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import './SearchProduct.scss';
 
 const SearchProduct = () => {
     const [input, setInput] = useState("");
     const [searchResults, setSearchResults] = useState([]);
-    const [dataProducts, setDataProducts] = useState([]);
+    const [products, setProducts] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
     const inputWrapperRef = useRef(null);
+    const [productToDelete, setProductToDelete] = useState(null);
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
                 const response = await fetch('http://localhost:3001/products');
                 const data = await response.json();
-                setDataProducts(data);
+                setProducts(data);
             } catch (error) {
-                console.error("Błąd podczas pobierania danych:", error);
+                toast.error('Nie udało się załadować produktów.', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             }
         };
 
         fetchProducts();
     }, []);
 
+    const handleConfirmDelete = (id) => {
+        if(!id) {
+            console.error('Id is undefined or invalid');
+            return;
+        }
+
+        setProductToDelete(id);
+        
+        const toastId = toast.info((
+            <div>
+                <p>Czy na pewno chcesz usunąć ten produkt?</p>
+                <div className='toast-div'>
+                    <button onClick={() => handleDeleteProdukt(id, toastId)}>Usuń</button>
+                    <button onClick={() => toast.dismiss(toastId)}>Anuluj</button>
+                </div>
+            </div>
+        ), {
+            className: "custom-toast",
+            autoClose: false,
+        });
+              
+    };    
+
+    const handleDeleteProdukt = async (id, toastId) => {
+        if (!id) {
+            console.error('ID is undefined or invalid');
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:3001/products/${id}`, {
+                method: 'DELETE',
+            });
+    
+            if (!response.ok) {
+                throw new Error('Wystąpił błąd podczas usuwania produktu.');
+            }
+    
+            setProducts((prev) => prev.filter((product) => product.id !== id));
+    
+            toast.success('Produkt został usunięty!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+            toast.dismiss(toastId);
+        } catch (err) {
+            toast.error(err.message || 'Nie udało się usunąć produktu.', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            toast.dismiss(toastId);
+        } finally {
+            setProductToDelete(null);
+            toast.dismiss(toastId);
+        }
+    };
+
     useEffect(() => {
         if (input === "") {
             setSearchResults([]);
         } else {
-            const filterResults = dataProducts.filter(product =>
+            const filterResults = products.filter(product =>
                 product.name.toLowerCase().includes(input.toLowerCase())
             );
             setSearchResults(filterResults);
         }
-    }, [input, dataProducts]);
+    }, [input, products]);
 
     const handleInputChange = (e) => {
         setInput(e.target.value);
@@ -144,7 +224,7 @@ const SearchProduct = () => {
                                     <td>{product.description ? product.description.slice(0,25) + '...' : 'Brak opisu'}</td>
                                     <td>{product.sizes.join(', ') || 'Brak'}</td>
                                     <td><button className='button-edit'>Edytuj</button></td>
-                                    <td><button className='button-delete'>Usuń</button></td>
+                                    <td><button className='button-delete' onClick={() => handleConfirmDelete(product.id)}>Usuń</button></td>
                                 </tr>
                             ))}
                         </tbody>
@@ -176,7 +256,7 @@ const SearchProduct = () => {
                                     
                                     <div className="mobile-button">
                                         <button className='button-edit'>Edytuj</button>
-                                        <button className='button-delete'>Usuń</button>
+                                        <button className='button-delete' onClick={() => handleConfirmDelete(product.id)}>Usuń</button>
                                     </div>
                                 </div>
                             </div>

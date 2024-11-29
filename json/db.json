@@ -1,23 +1,7 @@
 {
   "products": [
     {
-      "id": "1",
-      "category": "women",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_1.png",
-      "popular": true,
-      "new_price": 86,
-      "old_price": 100,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ]
-    },
-    {
-      "id": "2",
+      "id": 1,
       "category": "women",
       "name": "Hantle It has survived not only five centuries but also the leap into electronic typesetting remaining",
       "image": "http://localhost:3001/product_2.png",
@@ -32,7 +16,7 @@
       ]
     },
     {
-      "id": "3",
+      "id": 2,
       "category": "women",
       "name": "Some text",
       "image": "http://localhost:3001/product_3.png",
@@ -46,7 +30,7 @@
       ]
     },
     {
-      "id": "4",
+      "id": 3,
       "category": "",
       "name": "Some text",
       "image": "http://localhost:3001/product_4.png",
@@ -62,7 +46,7 @@
       ]
     },
     {
-      "id": "5",
+      "id": 4,
       "category": "women",
       "name": "Some text",
       "image": "http://localhost:3001/product_5.png",
@@ -78,7 +62,7 @@
       ]
     },
     {
-      "id": "6",
+      "id": 5,
       "category": "women",
       "name": "Some text",
       "image": "http://localhost:3001/product_6.png",
@@ -93,7 +77,7 @@
       ]
     },
     {
-      "id": "7",
+      "id": 6,
       "category": "women",
       "name": "Some text",
       "image": "http://localhost:3001/product_7.png",
@@ -107,7 +91,7 @@
       ]
     },
     {
-      "id": "8",
+      "id": 7,
       "category": "women",
       "name": "Some text",
       "image": "http://localhost:3001/product_8.png",
@@ -122,7 +106,7 @@
       ]
     },
     {
-      "id": "9",
+      "id": 8,
       "category": "women",
       "name": "Some text",
       "image": "http://localhost:3001/product_9.png",
@@ -137,7 +121,7 @@
       ]
     },
     {
-      "id": "10",
+      "id": 9,
       "category": "women",
       "name": "Some text",
       "image": "http://localhost:3001/product_10.png",
@@ -153,7 +137,7 @@
       ]
     },
     {
-      "id": "11",
+      "id": 10,
       "category": "women",
       "name": "Some text",
       "image": "http://localhost:3001/product_11.png",
@@ -169,7 +153,7 @@
       ]
     },
     {
-      "id": "12",
+      "id": 11,
       "category": "women",
       "name": "Some text",
       "image": "http://localhost:3001/product_12.png",
@@ -180,7 +164,7 @@
       "sizes": []
     },
     {
-      "id": "13",
+      "id": 12,
       "category": "men",
       "name": "Jakaś nazwa nowa",
       "image": "http://localhost:3001/product_13.png",
@@ -194,7 +178,7 @@
       ]
     },
     {
-      "id": "14",
+      "id": 13,
       "category": "men",
       "name": "Some text",
       "image": "http://localhost:3001/product_14.png",
@@ -210,7 +194,7 @@
       ]
     },
     {
-      "id": "15",
+      "id": 14,
       "category": "men",
       "name": "Some text",
       "image": "http://localhost:3001/product_15.png",
@@ -223,7 +207,7 @@
       ]
     },
     {
-      "id": "16",
+      "id": 15,
       "category": "men",
       "name": "Some text",
       "image": "http://localhost:3001/product_16.png",
@@ -236,7 +220,7 @@
       ]
     },
     {
-      "id": "17",
+      "id": 16,
       "category": "men",
       "name": "Some text",
       "image": "http://localhost:3001/product_17.png",
@@ -250,7 +234,7 @@
       ]
     },
     {
-      "id": "18",
+      "id": 18,
       "category": "men",
       "name": "Some text",
       "image": "http://localhost:3001/product_18.png",
@@ -263,7 +247,7 @@
       ]
     },
     {
-      "id": "19",
+      "id": 19,
       "category": "men",
       "name": "Some text",
       "image": "http://localhost:3001/product_19.png",
@@ -277,7 +261,7 @@
       ]
     },
     {
-      "id": "20",
+      "id": 20,
       "category": "men",
       "name": "Some text",
       "image": "http://localhost:3001/product_20.png",
@@ -293,7 +277,7 @@
       ]
     },
     {
-      "id": "21",
+      "id": 21,
       "category": "men",
       "name": "Some text",
       "image": "http://localhost:3001/product_21.png",
@@ -304,7 +288,7 @@
       "sizes": []
     },
     {
-      "id": "22",
+      "id": 22,
       "category": "men",
       "name": "Some text",
       "image": "http://localhost:3001/product_22.png",
@@ -320,7 +304,7 @@
       ]
     },
     {
-      "id": "23",
+      "id": 23,
       "category": "men",
       "name": "Some text",
       "image": "http://localhost:3001/product_23.png",
@@ -331,7 +315,7 @@
       "sizes": []
     },
     {
-      "id": "24",
+      "id": 24,
       "category": "men",
       "name": "Some text",
       "image": "http://localhost:3001/product_24.png",
@@ -344,7 +328,7 @@
       ]
     },
     {
-      "id": "25",
+      "id": 25,
       "category": "equipment",
       "name": "Some text",
       "image": "http://localhost:3001/product_25.png",
@@ -358,7 +342,7 @@
       ]
     },
     {
-      "id": "26",
+      "id": 26,
       "category": "equipment",
       "name": "Some text",
       "image": "http://localhost:3001/product_26.png",
@@ -373,7 +357,7 @@
       ]
     },
     {
-      "id": "27",
+      "id": 27,
       "category": "equipment",
       "name": "Some text",
       "image": "http://localhost:3001/product_27.png",
@@ -389,7 +373,7 @@
       ]
     },
     {
-      "id": "28",
+      "id": 28,
       "category": "equipment",
       "name": "Some text",
       "image": "http://localhost:3001/product_28.png",
@@ -400,7 +384,7 @@
       "sizes": []
     },
     {
-      "id": "29",
+      "id": 29,
       "category": "equipment",
       "name": "Some text",
       "image": "http://localhost:3001/product_29.png",
@@ -411,7 +395,7 @@
       "sizes": []
     },
     {
-      "id": "30",
+      "id": 30,
       "category": "equipment",
       "name": "Some text",
       "image": "http://localhost:3001/product_30.png",
@@ -426,7 +410,7 @@
       ]
     },
     {
-      "id": "31",
+      "id": 31,
       "category": "equipment",
       "name": "Some text",
       "image": "http://localhost:3001/product_31.png",
@@ -436,124 +420,6 @@
       "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
       "sizes": [
         "S",
-        "XL"
-      ]
-    },
-    {
-      "id": "32",
-      "category": "equipment",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_32.png",
-      "popular": false,
-      "new_price": 29.99,
-      "old_price": 76,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M",
-        "L"
-      ]
-    },
-    {
-      "id": "33",
-      "category": "equipment",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_33.png",
-      "popular": false,
-      "new_price": 12.99,
-      "old_price": 37.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ]
-    },
-    {
-      "id": "34",
-      "category": "equipment",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_34.png",
-      "popular": false,
-      "new_price": 45,
-      "old_price": 85.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": []
-    },
-    {
-      "id": "35",
-      "category": "equipment",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_35.png",
-      "popular": false,
-      "new_price": 25.99,
-      "old_price": 55.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "XL"
-      ]
-    },
-    {
-      "id": "36",
-      "category": "equipment",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_36.png",
-      "popular": false,
-      "new_price": 38.99,
-      "old_price": 58.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ]
-    },
-    {
-      "id": "37",
-      "name": "nowy",
-      "category": "women",
-      "image": "DSC02236.JPG",
-      "popular": true,
-      "new_price": 45,
-      "old_price": 77,
-      "description": "dgfgdfg  gffgdfgdfgdfgdfgd",
-      "sizes": [
-        "M",
-        "S",
-        "XS"
-      ]
-    },
-    {
-      "id": "38",
-      "name": "jfjhfdjkdfjkfd",
-      "category": "dfkdfkkdf",
-      "image": "DSC02244.JPG",
-      "popular": true,
-      "new_price": "23",
-      "old_price": "56.99",
-      "description": "rrtrtfgfgfgfgfgfg",
-      "sizes": [
-        "M",
-        "XS",
-        "S"
-      ]
-    },
-    {
-      "id": 39,
-      "name": "Nowy Produkt",
-      "category": "women",
-      "image": "DSC02249.JPG",
-      "popular": true,
-      "new_price": 34,
-      "old_price": 44.99,
-      "description": "edfhfddfhhdfhghfghgfhghf",
-      "sizes": [
-        "XS",
-        "S",
-        "M",
         "XL"
       ]
     }
