@@ -1,18 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaUserCircle, FaSearch } from 'react-icons/fa';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import SearchBar from './SearchBar';
+import EditProduct from './EditProduct';
+
 import './SearchProduct.scss';
 
 const SearchProduct = () => {
-    const [input, setInput] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
     const [products, setProducts] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
-    const inputWrapperRef = useRef(null);
+    const [productToEdit, setProductToEdit] = useState(null);
     const [productToDelete, setProductToDelete] = useState(null);
+    const inputWrapperRef = useRef(null);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -104,94 +105,27 @@ const SearchProduct = () => {
         }
     };
 
-    useEffect(() => {
-        if (input === "") {
-            setSearchResults([]);
-        } else {
-            const filterResults = products.filter(product =>
-                product.name.toLowerCase().includes(input.toLowerCase())
-            );
-            setSearchResults(filterResults);
-        }
-    }, [input, products]);
-
-    const handleInputChange = (e) => {
-        setInput(e.target.value);
+    const handleSaveProduct = (updatedProduct) => {
+        setProducts((prevProducts) => prevProducts.map((product) => 
+            product.id === updatedProduct.id ? updatedProduct : product
+        ));
+        setProductToEdit(null); 
+        toast.success('Produkt został zaktualizowany!', {
+            position: 'top-right',
+            autoClose: 5000,
+        });
     };
 
-    const handleKey = (e) => {
-        if (e.key === "Enter") {
-            setConfirmedResults(searchResults);
-            setInput("");
-        }
+    const handleCancelEdit = () => {
+        setProductToEdit(null);
     };
-
-    const handleReset = () => {
-        setConfirmedResults([]);
-        setInput("");
-    };
-
-    const handleClickOutside = (event) => {
-        if (inputWrapperRef.current && !inputWrapperRef.current.contains(event.target)) {
-            setInput("");
-        }
-    };
-
-    const handleEscKey = (e) => {
-        if (e.key === 'Escape') {
-            setInput("");
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
-        document.addEventListener("keydown", handleEscKey);
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-            document.removeEventListener("keydown", handleEscKey);
-        };
-    }, []);
 
     return (
         <div className="search-product">
-            <h1 className='admin-h1'>Wyszukane produkty</h1>
-
-            <div className="admin-search" ref={inputWrapperRef}>
-                <div className="input-wrapper">
-                    <FaSearch id="search-icon" />
-                    <input
-                        placeholder="Szukaj..."
-                        value={input}
-                        onChange={handleInputChange}
-                        onKeyDown={handleKey}
-                    />
-                </div>
-
-                <div className='input-response'>
-                    {input && searchResults.length === 0 && <p>Nie znaleziono żadnych wyników</p>}
-                    {input && searchResults.length > 0 && (
-                        <ul>
-                            {searchResults.map((product) => (
-                                <li key={product.id}>
-                                    <a href="#" onClick={(e) => {
-                                        e.preventDefault();
-                                        setConfirmedResults((prevResults) => {
-                                            if(prevResults.some((item) => item.id === product.item)) {
-                                                return prevResults;
-                                            }
-                                            return [...prevResults, product];
-                                        });
-                                    }}>{product.name.length > 50 ? `${product.name.slice(0, 50)}...` : product.name}</a>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
-            </div>
+            <SearchBar products={products} setConfirmedResults={setConfirmedResults} />
 
             <section className="admin-search_products">
-                <button className='button-reset' onClick={handleReset}>Resetuj</button>
+                <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                 {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
                 ) : (
@@ -213,6 +147,7 @@ const SearchProduct = () => {
                         </thead>
                         <tbody>
                             {confirmedResults.map((product) => (
+                                <React.Fragment key={product.id}>
                                 <tr key={product.id}>
                                     <td>{product.id}</td>
                                     <td>{product.category || 'Brak'}</td>
@@ -222,10 +157,22 @@ const SearchProduct = () => {
                                     <td>{product.new_price} zł</td>
                                     <td>{product.old_price ? `${product.old_price} zł` : '—'}</td>
                                     <td>{product.description ? product.description.slice(0,25) + '...' : 'Brak opisu'}</td>
-                                    <td>{product.sizes.join(', ') || 'Brak'}</td>
-                                    <td><button className='button-edit'>Edytuj</button></td>
+                                    <td>{product.sizes && product.sizes.length > 0 ? product.sizes.join(', ') : 'Brak'}</td>
+                                    <td><button className='button-edit' onClick={() => setProductToEdit(product)}>Edytuj</button></td>
                                     <td><button className='button-delete' onClick={() => handleConfirmDelete(product.id)}>Usuń</button></td>
                                 </tr>
+                                {productToEdit && productToEdit.id === product.id && (
+                                    <tr className="edit-product open">
+                                        <td colSpan="11">
+                                                <EditProduct
+                                                    product={productToEdit}
+                                                    onSave={handleSaveProduct}
+                                                    onCancel={handleCancelEdit}
+                                                />
+                                        </td>
+                                    </tr>
+                                )}
+                                </React.Fragment>
                             ))}
                         </tbody>
                     </table>
@@ -233,7 +180,7 @@ const SearchProduct = () => {
             </section>
 
             <section className="admin-search_products-mobile">
-                <button className='button-reset' onClick={handleReset}>Resetuj</button>
+                <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                 {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
                 ) : (
@@ -252,10 +199,10 @@ const SearchProduct = () => {
                                     <p><span>Nowa cena: </span>{product.new_price} zł</p>
                                     <p><span>Stara cena: </span>{product.old_price ? `${product.old_price} zł` : '—'}</p>
                                     <p><span>Opis: </span>{product.description ? product.description.slice(0, 50) + '...' : 'Brak opisu'}</p>
-                                    <p><span>Rozmiary: </span>{product.sizes.join(', ') || 'Brak'}</p>
+                                    <p>{product.sizes && product.sizes.length > 0 ? product.sizes.join(', ') : 'Brak'}</p>
                                     
                                     <div className="mobile-button">
-                                        <button className='button-edit'>Edytuj</button>
+                                        <button className='button-edit' onClick={() => setProductToEdit(product)}>Edytuj</button>
                                         <button className='button-delete' onClick={() => handleConfirmDelete(product.id)}>Usuń</button>
                                     </div>
                                 </div>
