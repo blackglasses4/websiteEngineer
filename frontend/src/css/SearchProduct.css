@@ -274,9 +274,6 @@
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.search-product .admin-search_products .admin-search_table tr:hover {
-  background-color: var(--table_td);
-}
 .search-product .admin-search_products .admin-search_table .cart-item-image {
   width: 60px;
   height: 60px;

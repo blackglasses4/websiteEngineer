@@ -159,10 +159,6 @@
             tr {
                 color: var(--dominant-dark);
                 @include selection-whitedark;
-        
-            &:hover {
-                background-color: var(--table_td);
-            }
             }
         
             .cart-item-image {

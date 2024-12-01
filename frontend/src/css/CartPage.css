@@ -131,7 +131,7 @@
 .cart-empty a:hover {
   color: #184261;
 }
-.cart-table {
+.cart-table.cart-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1em;
@@ -139,50 +139,50 @@
   background-color: var(--dominant-light);
   box-shadow: 0 4px 6px var(--table_shadow);
 }
-.cart-table th, .cart-table td {
+.cart-table.cart-table th, .cart-table.cart-table td {
   padding: 15px;
   text-align: center;
   border-bottom: 1px solid var(--table_border);
 }
-.cart-table th, .cart-table th p, .cart-table td, .cart-table td p {
+.cart-table.cart-table th, .cart-table.cart-table th p, .cart-table.cart-table td, .cart-table.cart-table td p {
   text-align: left;
 }
-.cart-table th::-moz-selection, .cart-table th p::-moz-selection, .cart-table td::-moz-selection, .cart-table td p::-moz-selection {
+.cart-table.cart-table th::-moz-selection, .cart-table.cart-table th p::-moz-selection, .cart-table.cart-table td::-moz-selection, .cart-table.cart-table td p::-moz-selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.cart-table th::selection, .cart-table th p::selection, .cart-table td::selection, .cart-table td p::selection {
+.cart-table.cart-table th::selection, .cart-table.cart-table th p::selection, .cart-table.cart-table td::selection, .cart-table.cart-table td p::selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.cart-table th p, .cart-table td p {
+.cart-table.cart-table th p, .cart-table.cart-table td p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 500px;
   vertical-align: middle;
 }
-.cart-table th {
+.cart-table.cart-table th {
   background-color: var(--table_td);
   color: var(--table_th-color);
   font-weight: normal;
   text-transform: uppercase;
 }
-.cart-table tr {
+.cart-table.cart-table tr {
   color: var(--dominant-dark);
 }
-.cart-table tr::-moz-selection {
+.cart-table.cart-table tr::-moz-selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.cart-table tr::selection {
+.cart-table.cart-table tr::selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.cart-table tr:hover {
+.cart-table.cart-table tr:hover {
   background-color: var(--table_td);
 }
-.cart-table .cart-item-image {
+.cart-table.cart-table .cart-item-image {
   width: 60px;
   height: 60px;
   -o-object-fit: cover;
@@ -190,15 +190,15 @@
   border-radius: 5px;
   margin-right: 10px;
 }
-.cart-table .cart-item-image::-moz-selection {
+.cart-table.cart-table .cart-item-image::-moz-selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.cart-table .cart-item-image::selection {
+.cart-table.cart-table .cart-item-image::selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.cart-table input {
+.cart-table.cart-table input {
   background-color: var(--table_td);
   color: var(--dominant-dark);
   width: 50px;
@@ -207,15 +207,15 @@
   border: 1px solid var(--table_th-color);
   border-radius: 5px;
 }
-.cart-table input::-moz-selection {
+.cart-table.cart-table input::-moz-selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.cart-table input::selection {
+.cart-table.cart-table input::selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.cart-table .remove-button {
+.cart-table.cart-table .remove-button {
   background-color: #e74c3c;
   color: #fff;
   border: none;
@@ -225,15 +225,15 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.cart-table .remove-button::-moz-selection {
+.cart-table.cart-table .remove-button::-moz-selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.cart-table .remove-button::selection {
+.cart-table.cart-table .remove-button::selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.cart-table .remove-button:hover {
+.cart-table.cart-table .remove-button:hover {
   background-color: hsl(0, 61%, 34%);
 }
 .cart-summary {

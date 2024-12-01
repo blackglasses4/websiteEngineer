@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 import CreateProduct from '../CreateProduct/CreateProduct';
 import SearchProduct from '../SearchProduct/SearchProduct';
@@ -18,7 +19,7 @@ const WelcomeAdmin = () => {
 };
 
 const Admin = () => {
-    const [activeView, setActiveView] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         toast.success('Witaj w panelu administracyjnym!', {
@@ -32,16 +33,16 @@ const Admin = () => {
         });
     }, []);
 
-    const renderContent = () => {
-        switch (activeView) {
-            case 'createProduct':
-                return <CreateProduct />;
-            case 'searchProducts':
-                return <SearchProduct />
-            default:
-                return <WelcomeAdmin />;
-        }
-    };
+    // const renderContent = () => {
+    //     switch (activeView) {
+    //         case 'createProduct':
+    //             return <CreateProduct />;
+    //         case 'searchProducts':
+    //             return <SearchProduct />
+    //         default:
+    //             return <WelcomeAdmin />;
+    //     }
+    // };
 
     return (
         <>
@@ -56,11 +57,15 @@ const Admin = () => {
 
             <div className="admin-container">
                 {/* Sidebar */}
-                <Sidebar onSelect={(view) => setActiveView(view)} />
+                <Sidebar onSelect={(view) => navigate(`/admin/${view}`)} />
 
                 {/* Main Content */}
                 <main className="admin-main">
-                    {renderContent()}
+                    <Routes>
+                        <Route path="/" element={<WelcomeAdmin />}></Route>
+                        <Route path="createProduct" element={<CreateProduct />}></Route>
+                        <Route path="searchProducts" element={<SearchProduct />}></Route>
+                    </Routes>
                 </main>
             </div>
 

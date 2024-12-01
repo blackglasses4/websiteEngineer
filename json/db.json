@@ -1,41 +1,35 @@
 {
-  "products": [
+  "images": [
     {
-      "id": "3",
-      "name": "Some text",
-      "new_price": "36",
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum"
+      "id": 1,
+      "path": "img/1.jpg",
+      "productId": "4"
     },
     {
+      "id": 2,
+      "path": "img/2.jpg",
+      "productId": "4"
+    }
+  ],
+  "products": [
+    {
       "id": "4",
-      "category": "women",
+      "category": "",
       "name": "Some text",
-      "image": "http://localhost:3001/product_5.png",
-      "popular": true,
+      "popular": false,
       "new_price": 35.99,
-      "old_price": 139.99,
+      "old_price": "125",
       "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ]
+      "sizes": []
     },
     {
       "id": "5",
       "category": "women",
       "name": "Some text",
-      "image": "http://localhost:3001/product_6.png",
-      "popular": true,
+      "image": {},
       "new_price": 125,
       "old_price": 300,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "M",
-        "L",
-        "XL"
-      ]
+      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum"
     },
     {
       "id": "6",
@@ -382,6 +376,20 @@
       "sizes": [
         "S",
         "XL"
+      ]
+    },
+    {
+      "id": 32,
+      "name": "sss",
+      "category": "men",
+      "image": "DSC02239.JPG",
+      "popular": true,
+      "new_price": 23,
+      "old_price": 455,
+      "description": "sdfsdfsdfsdffd",
+      "sizes": [
+        "M",
+        "L"
       ]
     }
   ]

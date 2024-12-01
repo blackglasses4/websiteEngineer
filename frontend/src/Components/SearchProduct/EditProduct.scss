@@ -1,7 +1,7 @@
 @use '../../scss/variables' as *;
 @use '../../scss/mixins' as *;
 
-table.edit-product-form {
+.edit-product-form {
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
@@ -12,6 +12,10 @@ table.edit-product-form {
     tr {
         width: 100%;
         border-spacing: 0;
+
+        &:hover {
+            background-color: none;
+        }
 
         td {
             padding: 1em;
@@ -24,17 +28,44 @@ table.edit-product-form {
         font-size: 1em;
         margin-bottom: 8px;
         font-weight: 600;
+        @include selection-whitedark;
     }
 
-    .input-text {
-        width: 100%;
+    #input-text {
+        width: 50%;
+        margin: 0 1em;
+        text-align: left;
+
         &:focus {
             border-color: $blue_brighter;
             outline: none;
         }
     }
+
+    #input-size {
+        display: flex;
+        align-self: start;
+        font-size: 1em;
+        margin-bottom: 8px;
+        font-weight: 600;
+        @include selection-whitedark;
+
+        label {
+            text-align: center;
+        }
+    }
+
+    select, input {
+        background-color: var(--table_td);
+        color: var(--dominant-dark);
+        padding: 5px;
+        text-align: center;
+        border: 1px solid var(--table_th-color);
+        border-radius: 5px;
+        @include selection-whitedark;
+    }
     
-    input, textarea {
+    textarea {
         width: calc(100% - 2em);
         padding: 12px 16px;
         margin-top: 6px;
@@ -42,13 +73,13 @@ table.edit-product-form {
         border-radius: 5px;
         font-size: 1em;
         box-sizing: border-box;
+        @include selection-whitedark;
+
         &:focus {
             border-color: $blue_brighter;
             outline: none;
         }
     }    
-    
-
 
     textarea {
         height: 120px;
@@ -92,7 +123,7 @@ table.edit-product-form {
         font-size: 24px;
         margin-bottom: 20px;
         font-weight: 700;
-        color: #333;
+        color: var(--table_border);
         text-align: center;
     }
 }
