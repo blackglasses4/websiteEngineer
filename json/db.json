@@ -11,386 +11,294 @@
       "productId": "4"
     }
   ],
+
+
+  
   "products": [
     {
-      "id": "4",
-      "category": "",
-      "name": "Some text",
+      "id": 1,
+      "category": "Koszulka",
+      "gender": "women",
+      "name": "Koszulka sportowa",
       "popular": false,
-      "new_price": 35.99,
-      "old_price": "125",
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": []
-    },
-    {
-      "id": "5",
-      "category": "women",
-      "name": "Some text",
-      "image": {},
-      "new_price": 125,
-      "old_price": 300,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum"
-    },
-    {
-      "id": "6",
-      "category": "women",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_7.png",
-      "popular": true,
-      "new_price": 12.99,
-      "old_price": 50.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M"
-      ]
-    },
-    {
-      "id": "7",
-      "category": "women",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_8.png",
-      "popular": true,
-      "new_price": 30,
-      "old_price": 59.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M",
-        "L"
-      ]
-    },
-    {
-      "id": "8",
-      "category": "women",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_9.png",
-      "popular": false,
-      "new_price": 99.99,
-      "old_price": 199.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M",
-        "XL"
-      ]
-    },
-    {
-      "id": "9",
-      "category": "women",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_10.png",
-      "popular": false,
-      "new_price": 45.99,
-      "old_price": 95.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ]
-    },
-    {
-      "id": "10",
-      "category": "women",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_11.png",
-      "popular": false,
-      "new_price": 45,
-      "old_price": 85,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ]
-    },
-    {
-      "id": "11",
-      "category": "women",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_12.png",
-      "popular": false,
-      "new_price": 45,
-      "old_price": 75,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": []
-    },
-    {
-      "id": "12",
-      "category": "men",
-      "name": "Jakaś nazwa nowa",
-      "image": "http://localhost:3001/product_13.png",
-      "popular": false,
-      "new_price": 99.99,
-      "old_price": 200,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M"
-      ]
-    },
-    {
-      "id": "13",
-      "category": "men",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_14.png",
-      "popular": false,
-      "new_price": 25.99,
-      "old_price": 75.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ]
-    },
-    {
-      "id": "14",
-      "category": "men",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_15.png",
-      "popular": false,
-      "new_price": 12.99,
-      "old_price": 99.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S"
-      ]
-    },
-    {
-      "id": "15",
-      "category": "men",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_16.png",
-      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/shirt_women1.jpg",
+        "alt": "Koszulka sportowa dla kobiet"
+      },
       "new_price": 40,
       "old_price": 80,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "L"
-      ]
+      "description": "Lekka koszulka sportowa, idealna na treningi.",
+      "attributes": {
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["czarny", "biały", "niebieski", "czerwony"],
+        "material": "poliester",
+        "stock": 100
+      }
     },
     {
-      "id": "16",
-      "category": "men",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_17.png",
-      "popular": false,
-      "new_price": 45.99,
-      "old_price": 65.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "XL"
-      ]
-    },
-    {
-      "id": "18",
-      "category": "men",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_18.png",
-      "popular": false,
-      "new_price": 95,
-      "old_price": 135,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "M"
-      ]
-    },
-    {
-      "id": "19",
-      "category": "men",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_19.png",
-      "popular": false,
-      "new_price": 34.99,
-      "old_price": 85.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "L",
-        "XL"
-      ]
-    },
-    {
-      "id": "20",
-      "category": "men",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_20.png",
-      "popular": false,
-      "new_price": 45,
-      "old_price": 85,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ]
-    },
-    {
-      "id": "21",
-      "category": "men",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_21.png",
-      "popular": false,
-      "new_price": 76,
-      "old_price": 127.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": []
-    },
-    {
-      "id": "22",
-      "category": "men",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_22.png",
-      "popular": false,
-      "new_price": 23.99,
-      "old_price": 56,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ]
-    },
-    {
-      "id": "23",
-      "category": "men",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_23.png",
-      "popular": false,
-      "new_price": 50,
-      "old_price": 120.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": []
-    },
-    {
-      "id": "24",
-      "category": "men",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_24.png",
-      "popular": false,
-      "new_price": 34,
-      "old_price": 69.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "XL"
-      ]
-    },
-    {
-      "id": "25",
-      "category": "equipment",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_25.png",
-      "popular": false,
-      "new_price": 35,
-      "old_price": 67,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "XL"
-      ]
-    },
-    {
-      "id": "26",
-      "category": "equipment",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_26.png",
-      "popular": false,
-      "new_price": 25,
-      "old_price": 55.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "M",
-        "L",
-        "XL"
-      ]
-    },
-    {
-      "id": "27",
-      "category": "equipment",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_27.png",
-      "popular": false,
-      "new_price": 45.99,
-      "old_price": 84.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ]
-    },
-    {
-      "id": "28",
-      "category": "equipment",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_28.png",
-      "popular": false,
-      "new_price": 65,
-      "old_price": 85,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": []
-    },
-    {
-      "id": "29",
-      "category": "equipment",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_29.png",
-      "popular": false,
-      "new_price": 35,
-      "old_price": 85,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": []
-    },
-    {
-      "id": "30",
-      "category": "equipment",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_30.png",
-      "popular": false,
-      "new_price": 24.99,
-      "old_price": 74.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "M",
-        "XL"
-      ]
-    },
-    {
-      "id": "31",
-      "category": "equipment",
-      "name": "Some text",
-      "image": "http://localhost:3001/product_31.png",
-      "popular": false,
-      "new_price": 26.99,
-      "old_price": 86.99,
-      "description": "It has survived not only five centuries but also the leap into electronic typesetting remaining essentially unchanged It was popularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages and more recently with desktop publishing software like Aldus PageMaker versions of Lorem Ipsum",
-      "sizes": [
-        "S",
-        "XL"
-      ]
-    },
-    {
-      "id": 32,
-      "name": "sss",
-      "category": "men",
-      "image": "DSC02239.JPG",
+      "id": 2,
+      "category": "Koszulka",
+      "gender": "women",
+      "name": "Koszulka sportowa",
       "popular": true,
-      "new_price": 23,
-      "old_price": 455,
-      "description": "sdfsdfsdfsdffd",
-      "sizes": [
-        "M",
-        "L"
-      ]
+      "image": {
+        "url": "http://localhost:3001/shirt_women2.jpg",
+        "alt": "Koszulka sportowa dla kobiet"
+      },
+      "new_price": 35,
+      "old_price": 80,
+      "description": "Lekka koszulka sportowa, idealna na treningi.",
+      "attributes": {
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["czarny", "biały", "niebieski", "czerwony"],
+        "material": "poliester",
+        "stock": 100
+      }
+    },
+    {
+      "id": 3,
+      "category": "Koszulka",
+      "gender": "women",
+      "name": "Koszulka treningowa",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/shirt_women3.jpg",
+        "alt": "Koszulka treningowa dla kobiet"
+      },
+      "new_price": 45,
+      "old_price": 90,
+      "description": "Koszulka do intensywnych treningów, przewiewna i elastyczna.",
+      "attributes": {
+        "sizes": ["S", "M", "L"],
+        "color": ["szary", "różowy", "zielony"],
+        "material": "bawełna",
+        "stock": 80
+      }
+    },
+    {
+      "id": 4,
+      "category": "Koszulka",
+      "gender": "women",
+      "name": "Koszulka do tenisa",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/shirt_women4.jpeg",
+        "alt": "Koszulki sportowe dla kobiet do tenisa"
+      },
+      "new_price": 65,
+      "old_price": 130,
+      "description": "Koszulka do intensywnych treningów na tenis, przewiewna i elastyczna.",
+      "attributes": {
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["czarny", "granatowy", "fioletowy"],
+        "material": "poliester",
+        "stock": 50
+      }
+    },
+    {
+      "id": 5,
+      "category": "Koszulka",
+      "gender": "women",
+      "name": "Koszulka fitness",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/shirt_women5.jpg",
+        "alt": "Koszulka fitness dla kobiet"
+      },
+      "new_price": 45,
+      "old_price": 90,
+      "description": "Koszulka fitnessowa z oddychającego materiału, zapewnia wygodę podczas intensywnych treningów.",
+      "attributes": {
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["czarny", "różowy", "niebieski"],
+        "material": "poliester",
+        "stock": 80
+      }
+    },
+    {
+      "id": 6,
+      "category": "Koszulka",
+      "gender": "women",
+      "name": "Koszulka do jogi",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/shirt_women6.jpg",
+        "alt": "Koszulka do jogi dla kobiet"
+      },
+      "new_price": 35,
+      "old_price": 70,
+      "description": "Koszulka do jogi, wygodna i elastyczna, wykonana z naturalnych materiałów.",
+      "attributes": {
+        "sizes": ["S", "M", "L"],
+        "color": ["biały", "szary", "zielony"],
+        "material": "bawełna",
+        "stock": 100
+      }
+    },
+    {
+      "id": 7,
+      "category": "Koszulka",
+      "gender": "women",
+      "name": "Koszulka do biegania",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/shirt_women7.jpg",
+        "alt": "Koszulka do biegania dla kobiet"
+      },
+      "new_price": 50,
+      "old_price": 100,
+      "description": "Lekka koszulka do biegania, z materiału odprowadzającego wilgoć, zapewnia komfort podczas treningu.",
+      "attributes": {
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["czarny", "fioletowy", "niebieski"],
+        "material": "elastan",
+        "stock": 60
+      }
+    },
+    {
+      "id": 8,
+      "category": "Koszulka",
+      "gender": "women",
+      "name": "Koszulka sportowa z długim rękawem",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/shirt_women8.jpg",
+        "alt": "Koszulka sportowa z krótkim rękawem dla kobiet"
+      },
+      "new_price": 42,
+      "old_price": 85,
+      "description": "Wygodna koszulka sportowa z krótkim rękawem, odpowiednia do aktywności fizycznej w cieplejsze dni.",
+      "attributes": {
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["czarny", "turkusowy", "czerwony"],
+        "material": "bawełna",
+        "stock": 90
+      }
+    },
+    {
+      "id": 9,
+      "category": "Koszulka",
+      "gender": "men",
+      "name": "Koszula komercyjna",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/shirt_men1.jpg",
+        "alt": "Kurtka treningowa, komercyjna dla mężczyzn"
+      },
+      "new_price": 150,
+      "old_price": 300,
+      "description": "Koszula sportowa idealna do biegania w chłodniejsze dni. Lekka i oddychająca.",
+      "attributes": {
+        "sizes": ["M", "L", "XL"],
+        "color": ["czarny", "szary", "niebieski"],
+        "material": "spandex",
+        "stock": 80
+      }
+    }, 
+    {
+      "id": 10,
+      "category": "Kurtki",
+      "gender": "men",
+      "name": "Kurtka treningowa",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/jacket_men1.png",
+        "alt": "Kurtka treningowa dla mężczyzn"
+      },
+      "new_price": 150,
+      "old_price": 300,
+      "description": "Kurtka sportowa idealna do biegania w chłodniejsze dni. Lekka i oddychająca.",
+      "attributes": {
+        "sizes": ["M", "L", "XL"],
+        "color": ["czarny", "szary", "niebieski"],
+        "material": "nylon",
+        "stock": 80
+      }
+    }, 
+    {
+      "id": 11,
+      "category": "Kurtki",
+      "gender": "men",
+      "name": "Kurtka",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/jacket_men2.png",
+        "alt": "Kurtka windbreaker dla mężczyzn"
+      },
+      "new_price": 120,
+      "old_price": 240,
+      "description": "Kurtka windbreaker do ochrony przed wiatrem, świetna na lekkie treningi na świeżym powietrzu.",
+      "attributes": {
+        "sizes": ["M", "L", "XL"],
+        "color": ["czarny", "zielony", "granatowy"],
+        "material": "poliamid",
+        "stock": 50
+      }
+    },
+    {
+      "id": 12,
+      "category": "Kurtki",
+      "gender": "men",
+      "name": "Kurtka sportowa z kapturem",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/jacket_men3.png",
+        "alt": "Kurtka sportowa z kapturem dla mężczyzn"
+      },
+      "new_price": 180,
+      "old_price": 350,
+      "description": "Kurtka sportowa z funkcjonalnym kapturem, doskonała do aktywności na świeżym powietrzu w każdą pogodę.",
+      "attributes": {
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["czarny", "szary", "czerwony"],
+        "material": "poliester",
+        "stock": 100
+      }
+    },
+    {
+      "id": 13,
+      "category": "Kurtki",
+      "gender": "men",
+      "name": "Kurtka polarowa",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/jacket_men4.png",
+        "alt": "Kurtka polarowa dla mężczyzn"
+      },
+      "new_price": 130,
+      "old_price": 260,
+      "description": "Polarowa kurtka sportowa do biegania w zimne dni. Ciepła i wygodna.",
+      "attributes": {
+        "sizes": ["M", "L", "XL"],
+        "color": ["granatowy", "czarny", "zielony"],
+        "material": "polar",
+        "stock": 70
+      }
+    },
+    {
+      "id": 14,
+      "category": "Kurtki",
+      "gender": "men",
+      "name": "Kurtka puchowa sportowa",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/jacket_men6.png",
+        "alt": "Kurtka puchowa sportowa dla mężczyzn"
+      },
+      "new_price": 250,
+      "old_price": 500,
+      "description": "Wysokiej jakości kurtka puchowa, idealna na zimowe treningi na świeżym powietrzu.",
+      "attributes": {
+        "sizes": ["M", "L", "XL"],
+        "color": ["czarny", "szary", "niebieski"],
+        "material": "puch",
+        "stock": 40
+      }
     }
+
+
+
+
+
   ]
 }

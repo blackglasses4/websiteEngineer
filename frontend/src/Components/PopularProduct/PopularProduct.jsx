@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './PopularProduct.scss';
 
 const PopularProduct = () => {
@@ -79,7 +79,7 @@ const PopularProduct = () => {
         {currentProducts.map(item => (
           <div className="item" key={item.id}>
             <Link to={`/product/${item.id}`}>
-              <img src={item.image} alt={item.name} />
+              <img src={item.image.url} alt={item.image.alt} />
               <p>{item.name}</p>
               <div className="item-prices">
                 <div className="item-prices-new">{item.new_price}zł</div>
