@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import './PopularProduct.scss';
 
 const PopularProduct = () => {
@@ -79,7 +81,14 @@ const PopularProduct = () => {
         {currentProducts.map(item => (
           <div className="item" key={item.id}>
             <Link to={`/product/${item.id}`}>
-              <img src={item.image.url} alt={item.image.alt} />
+              <LazyLoadImage
+                alt={item.image.alt}
+                effect="blur"
+                src={item.image.url}
+                width="100%"
+                height="auto"
+                threshold={100}
+              />
               <p>{item.name}</p>
               <div className="item-prices">
                 <div className="item-prices-new">{item.new_price}zł</div>

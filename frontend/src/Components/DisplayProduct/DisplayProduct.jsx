@@ -79,7 +79,7 @@ const DisplayProduct = () => {
             <h1>{product.name}</h1>
             <div className="product-display__content">
                 <div className="product-display__image-gallery">
-                    <img src={product.image.url} alt={product.image.alt} />
+                    <img src={product.image.url} loading="lazy" alt={product.image.alt} />
                 </div>
                 <div className="product-display__details">
                     <p className='description'>{product.description}</p>

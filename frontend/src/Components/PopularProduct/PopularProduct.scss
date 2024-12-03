@@ -55,12 +55,20 @@
     
         .item {
             img {
+                background-color: #f0f0f0;
                 width: 100%;
                 max-width: 1000px;
                 height: 400px;
                 border-radius: 10px;
                 object-fit: cover;
                 @include selection-whitedark;
+                transition: filter 0.3s ease;
+                filter: blur(0);
+                vertical-align: none;
+
+                &.loaded {
+                    filter: blur(10px);
+                }
             }
     
             p {

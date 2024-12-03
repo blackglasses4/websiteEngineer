@@ -66,7 +66,7 @@ const CartPage = () => {
               {products.map((product) => (
                 <tr key={product.productId}>
                   <td data-label="Produkt"> {product.image ? (
-                        <img src={product.image} alt={product.name} className="cart-item-image" />
+                        <img src={product.image} alt={product.name} loading="lazy" className="cart-item-image" />
                       ) : (
                         <span>Brak zdjęcia</span>
                       )}</td>
