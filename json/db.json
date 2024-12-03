@@ -30,7 +30,7 @@
       "description": "Lekka koszulka sportowa, idealna na treningi.",
       "attributes": {
         "sizes": ["S", "M", "L", "XL"],
-        "color": ["czarny", "biały", "niebieski", "czerwony"],
+        "color": ["black", "white", "blue", "red"],
         "material": "poliester",
         "stock": 100
       }
@@ -50,7 +50,7 @@
       "description": "Lekka koszulka sportowa, idealna na treningi.",
       "attributes": {
         "sizes": ["S", "M", "L", "XL"],
-        "color": ["czarny", "biały", "niebieski", "czerwony"],
+        "color": ["black", "white", "blue", "red"],
         "material": "poliester",
         "stock": 100
       }
@@ -70,7 +70,7 @@
       "description": "Koszulka do intensywnych treningów, przewiewna i elastyczna.",
       "attributes": {
         "sizes": ["S", "M", "L"],
-        "color": ["szary", "różowy", "zielony"],
+        "color": ["grey", "pink", "green"],
         "material": "bawełna",
         "stock": 80
       }
@@ -90,7 +90,7 @@
       "description": "Koszulka do intensywnych treningów na tenis, przewiewna i elastyczna.",
       "attributes": {
         "sizes": ["S", "M", "L", "XL"],
-        "color": ["czarny", "granatowy", "fioletowy"],
+        "color": ["black", "navy", "purple"],
         "material": "poliester",
         "stock": 50
       }
@@ -110,7 +110,7 @@
       "description": "Koszulka fitnessowa z oddychającego materiału, zapewnia wygodę podczas intensywnych treningów.",
       "attributes": {
         "sizes": ["S", "M", "L", "XL"],
-        "color": ["czarny", "różowy", "niebieski"],
+        "color": ["black", "red", "blue"],
         "material": "poliester",
         "stock": 80
       }
@@ -130,7 +130,7 @@
       "description": "Koszulka do jogi, wygodna i elastyczna, wykonana z naturalnych materiałów.",
       "attributes": {
         "sizes": ["S", "M", "L"],
-        "color": ["biały", "szary", "zielony"],
+        "color": ["white", "grey", "lime"],
         "material": "bawełna",
         "stock": 100
       }
@@ -150,7 +150,7 @@
       "description": "Lekka koszulka do biegania, z materiału odprowadzającego wilgoć, zapewnia komfort podczas treningu.",
       "attributes": {
         "sizes": ["S", "M", "L", "XL"],
-        "color": ["czarny", "fioletowy", "niebieski"],
+        "color": ["black", "purple", "blue", "yellow", "salmon"],
         "material": "elastan",
         "stock": 60
       }
@@ -170,7 +170,7 @@
       "description": "Wygodna koszulka sportowa z krótkim rękawem, odpowiednia do aktywności fizycznej w cieplejsze dni.",
       "attributes": {
         "sizes": ["S", "M", "L", "XL"],
-        "color": ["czarny", "turkusowy", "czerwony"],
+        "color": ["black", "turquoise", "red"],
         "material": "bawełna",
         "stock": 90
       }
@@ -190,7 +190,7 @@
       "description": "Koszula sportowa idealna do biegania w chłodniejsze dni. Lekka i oddychająca.",
       "attributes": {
         "sizes": ["M", "L", "XL"],
-        "color": ["czarny", "szary", "niebieski"],
+        "color": ["black", "grey", "blue"],
         "material": "spandex",
         "stock": 80
       }
@@ -210,7 +210,7 @@
       "description": "Kurtka sportowa idealna do biegania w chłodniejsze dni. Lekka i oddychająca.",
       "attributes": {
         "sizes": ["M", "L", "XL"],
-        "color": ["czarny", "szary", "niebieski"],
+        "color": ["black", "grey", "blue"],
         "material": "nylon",
         "stock": 80
       }
@@ -230,7 +230,7 @@
       "description": "Kurtka windbreaker do ochrony przed wiatrem, świetna na lekkie treningi na świeżym powietrzu.",
       "attributes": {
         "sizes": ["M", "L", "XL"],
-        "color": ["czarny", "zielony", "granatowy"],
+        "color": ["black", "green", "navy"],
         "material": "poliamid",
         "stock": 50
       }
@@ -250,7 +250,7 @@
       "description": "Kurtka sportowa z funkcjonalnym kapturem, doskonała do aktywności na świeżym powietrzu w każdą pogodę.",
       "attributes": {
         "sizes": ["S", "M", "L", "XL"],
-        "color": ["czarny", "szary", "czerwony"],
+        "color": ["black", "grey", "red"],
         "material": "poliester",
         "stock": 100
       }
@@ -270,7 +270,7 @@
       "description": "Polarowa kurtka sportowa do biegania w zimne dni. Ciepła i wygodna.",
       "attributes": {
         "sizes": ["M", "L", "XL"],
-        "color": ["granatowy", "czarny", "zielony"],
+        "color": ["navy", "lime", "darkgreen"],
         "material": "polar",
         "stock": 70
       }
@@ -290,15 +290,10 @@
       "description": "Wysokiej jakości kurtka puchowa, idealna na zimowe treningi na świeżym powietrzu.",
       "attributes": {
         "sizes": ["M", "L", "XL"],
-        "color": ["czarny", "szary", "niebieski"],
+        "color": ["black", "grey", "darkcyan"],
         "material": "puch",
         "stock": 40
       }
     }
-
-
-
-
-
   ]
 }

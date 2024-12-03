@@ -14,19 +14,35 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('cart', JSON.stringify(cart));  // Zapisujemy tylko ID produktów
   }, [cart]);
 
-  const addToCart = (productId) => {
+  const addToCart = (productDetails) => {
     setCart((prevCart) => {
-      if (!prevCart.includes(productId)) {
-        return [...prevCart, productId];  // Dodajemy tylko ID, nie cały obiekt
+      const isExisting = prevCart.some(
+        (item) =>
+          item.productId === productDetails.productId &&
+          item.size === productDetails.size &&
+          item.image === productDetails.image &&
+          item.price === productDetails.price &&
+          item.color === productDetails.color
+      );
+      
+      if (!isExisting) {
+        return [...prevCart, productDetails]; // Dodaj nowy produkt do koszyka
       }
-      return prevCart;  // Unikamy duplikatów
+      return prevCart;// Unikamy duplikatów
     });
   };
 
-  const removeFromCart = (productId) => {
-    setCart((prevCart) => prevCart.filter((id) => id !== productId));  // Usuwamy produkt na podstawie ID
+  const removeFromCart = (productToRemove) => {
+    setCart((prevCart) =>
+      prevCart.filter(
+        (product) =>
+          product.productId !== productToRemove.productId ||
+          product.size !== productToRemove.size ||
+          product.color !== productToRemove.color
+      )
+    );
   };
-
+  
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
       {children}

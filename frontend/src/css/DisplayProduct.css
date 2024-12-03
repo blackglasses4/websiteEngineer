@@ -111,7 +111,6 @@
   width: 100%;
   max-width: 400px;
   border-radius: 10px;
-  cursor: pointer;
 }
 .product-display__image-gallery img::-moz-selection {
   color: var(--dominant-light);
@@ -120,25 +119,6 @@
 .product-display__image-gallery img::selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
-}
-.product-display__image-gallery .additional-images {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 0 1em 0 0.5em;
-}
-.product-display__image-gallery .additional-images img {
-  width: 100%;
-  max-width: 100px;
-  height: auto;
-  border-radius: 8px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-.product-display__image-gallery .additional-images img:hover {
-  transform: scale(1.1);
 }
 .product-display__details {
   flex: 2;
@@ -177,6 +157,46 @@
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
+.product-display__details .product-display__colors {
+  margin: 10px 0;
+}
+.product-display__details .product-display__colors h3 {
+  color: var(--color-grey);
+  margin-bottom: 0.5em;
+}
+.product-display__details .product-display__colors h3::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details .product-display__colors h3::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details .product-display__colors .color-options {
+  display: flex;
+  gap: 10px;
+}
+.product-display__details .color-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border 0.3s;
+}
+.product-display__details .product-display__sizes {
+  margin: 10px 0;
+}
+.product-display__details .product-display__sizes .size-options {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}
+.product-display__details .product-display__sizes .size-options li.selected {
+  background-color: var(--dominant-dark);
+  color: var(--dominant-light);
+  border-color: var(--dominant-dark);
+}
 .product-display__details .product-display__sizes h3 {
   color: var(--grey_dark);
   margin-bottom: 0.5em;
@@ -199,7 +219,7 @@
 .product-display__details .product-display__sizes ul li {
   font-size: 1rem;
   padding: 5px 10px;
-  border: 1px solid var(--dominant-dark);
+  border: 2px solid var(--dominant-dark);
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
