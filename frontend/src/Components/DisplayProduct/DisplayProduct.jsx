@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCart } from '../Cart/CartContext';
 import { toast } from 'react-toastify';
-import { useProducts } from '../ProductContext'; // Korzystamy z hooka do pobierania produktów
-import SimilarProducts from './SimilarProduct/SimilarProduct'; // Komponent podobnych produktów
+import { useProducts } from '../ProductContext';
+import SimilarProducts from './SimilarProduct/SimilarProduct';
 import './DisplayProduct.scss';
 
 const DisplayProduct = () => {

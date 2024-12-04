@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import SearchBar from './SearchBar';
 import EditProduct from './EditProduct';
@@ -127,14 +129,17 @@ const SearchProduct = () => {
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Kategoria</th>
-                                <th>Nazwa</th>
                                 <th>Zdjęcie</th>
+                                <th>Kategoria</th>
+                                <th>Płeć</th>
+                                <th>Nazwa</th>
                                 <th>Popularne</th>
                                 <th>Nowa cena</th>
                                 <th>Stara cena</th>
                                 <th>Opis</th>
                                 <th>Rozmiary</th>
+                                <th>Kolory</th>
+                                <th>Materiał</th>
                                 <th>Edytuj</th>
                                 <th>Usuń</th>
                             </tr>
@@ -144,14 +149,24 @@ const SearchProduct = () => {
                                 <React.Fragment key={product.id}>
                                 <tr key={product.id}>
                                     <td>{product.id}</td>
+                                    <td>
+                                        <LazyLoadImage
+                                            src={product.image.url}
+                                            alt={product.image.alt}
+                                            effect="blur"
+                                            className="cart-item-image"/>
+                                    </td>
                                     <td>{product.category || 'Brak'}</td>
-                                    <td>{product.name.length > 25 ? `${product.name.slice(0,25)}...` : product.name}</td>
-                                    <td><img src={product.image} alt={product.name} className="cart-item-image" /></td>
-                                    <td>{product.popular === "true" ? 'Tak' : 'Nie'}</td>
+                                    <td>{product.gender}</td>
+                                    <td>{product.name.length > 20 ? `${product.name.slice(0,20)}...` : product.name}</td>
+                                    <td>{product.popular === true ? 'Tak' : 'Nie'}</td>
                                     <td>{product.new_price} zł</td>
                                     <td>{product.old_price ? `${product.old_price} zł` : '—'}</td>
                                     <td>{product.description ? product.description.slice(0,25) + '...' : 'Brak opisu'}</td>
-                                    <td>{product.sizes && product.sizes.length > 0 ? product.sizes.join(', ') : 'Brak'}</td>
+                                    <td>{product.attributes.sizes && product.attributes.sizes.length > 0 ? product.attributes.sizes.join(', ') : 'Brak'}</td>
+                                    <td>{product.attributes.color && product.attributes.color.length > 0 ? product.attributes.color.join(', ') : 'Brak'}</td>
+                                    <td>{product.attributes.material || 'Brak'}</td>
+
                                     <td><button className='button-edit' onClick={() => setProductToEdit(product)}>Edytuj</button></td>
                                     <td><button className='button-delete' onClick={() => handleConfirmDelete(product.id)}>Usuń</button></td>
                                 </tr>
@@ -181,20 +196,24 @@ const SearchProduct = () => {
                     <div className="search-mobile">
                         {confirmedResults.map((product) => (
                             <div className="search-mobile_product" key={product.id}>
-                                <img
-                                    src={product.image}
-                                    alt={product.name}
-                                    className="product-image"
-                                />
+                                <LazyLoadImage
+                                    src={product.image.url}
+                                    alt={product.image.alt}
+                                    effect="blur"
+                                    className="product-image"/>
                                 <div className="product-details">
                                     <p><span>ID: </span>{product.id}</p>
-                                    <p><span>Nazwa: </span>{product.name.length > 25 ? `${product.name.slice(0, 25)}...` : product.name}</p>
+                                    <p><span>Kategoria: </span>{product.category}</p>
+                                    <p><span>Płeć: </span>{product.gender}</p>
+                                    <p><span>Nazwa: </span>{product.name.length > 20 ? `${product.name.slice(0, 20)}...` : product.name}</p>
                                     <p><span>Popularne: </span>{product.popular ? 'Tak' : 'Nie'}</p>
                                     <p><span>Nowa cena: </span>{product.new_price} zł</p>
                                     <p><span>Stara cena: </span>{product.old_price ? `${product.old_price} zł` : '—'}</p>
-                                    <p><span>Opis: </span>{product.description ? product.description.slice(0, 50) + '...' : 'Brak opisu'}</p>
-                                    <p>{product.sizes && product.sizes.length > 0 ? product.sizes.join(', ') : 'Brak'}</p>
-                                    
+                                    <p><span>Opis: </span>{product.description ? product.description.slice(0, 20) + '...' : 'Brak opisu'}</p>
+                                    <p><span>Rozmiary: </span>{product.attributes.sizes && product.attributes.sizes.length > 0 ? product.attributes.sizes.join(', ') : 'Brak'}</p>
+                                    <p><span>Kolory: </span>{product.attributes.color && product.attributes.color.length > 0 ? product.attributes.color.join(', ') : 'Brak'}</p>
+                                    <p><span>Materiał: </span>{product.attributes.material ? `${product.attributes.material}` : '—'}</p>
+
                                     <div className="mobile-button">
                                         <button className='button-edit' onClick={() => setProductToEdit(product)}>Edytuj</button>
                                         <button className='button-delete' onClick={() => handleConfirmDelete(product.id)}>Usuń</button>

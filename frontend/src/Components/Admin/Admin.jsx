@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 import CreateProduct from '../CreateProduct/CreateProduct';
 import SearchProduct from '../SearchProduct/SearchProduct';

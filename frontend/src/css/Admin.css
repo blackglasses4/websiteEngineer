@@ -87,7 +87,6 @@
   justify-content: center;
   height: 100%;
   text-align: center;
-  padding: 2rem;
 }
 .welcome-admin h2::-moz-selection, .welcome-admin p::-moz-selection {
   color: var(--dominant-light);
@@ -149,9 +148,9 @@ header.header-admin .nav-icons {
 
 .admin-container {
   display: flex;
+  flex-direction: column;
 }
 .admin-container .admin-main {
-  margin-left: 250px;
   padding: 2rem;
   flex-grow: 1;
   background-color: var(--color-light-gray);

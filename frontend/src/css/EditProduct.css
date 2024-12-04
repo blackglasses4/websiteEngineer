@@ -138,6 +138,7 @@
   background-color: var(--dominant-dark);
 }
 .edit-product-form #input-size label {
+  padding: 0 0.5em;
   text-align: center;
 }
 .edit-product-form select, .edit-product-form input {

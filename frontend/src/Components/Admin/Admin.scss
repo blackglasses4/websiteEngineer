@@ -8,7 +8,6 @@
     justify-content: center;
     height: 100%;
     text-align: center;
-    padding: 2rem;
 
     h2, p {
         @include selection-whitedark;
@@ -57,9 +56,9 @@ header.header-admin {
 
 .admin-container {
     display: flex;
+    flex-direction: column;
 
     .admin-main {
-        margin-left: 250px;
         padding: 2rem;
         flex-grow: 1;
         background-color: var(--color-light-gray);

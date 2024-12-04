@@ -8,38 +8,77 @@ const EditProduct = ({ product, onSave, onCancel }) => {
     const [editForm, setEditForm] = useState({
         id: product.id,
         category: product.category || '',
+        gender: product.gender || '',
         name: product.name || '',
         image: product.image || '',
         popular: product.popular || false,
         new_price: product.new_price || 0,
         old_price: product.old_price || 0,
         description: product.description || '',
-        sizes: product.sizes || [],
-    });
+        attributes: {
+            sizes: product.attributes.sizes || [],
+            color: product.attributes.color || [],
+            material: product.attributes.material || '',    
+        },
+    });    
 
     useEffect(() => {
         setEditForm({
             id: product.id,
             category: product.category || '',
+            gender: product.gender || '',
             name: product.name || '',
             image: product.image || '',
             popular: product.popular || false,
             new_price: product.new_price || 0,
             old_price: product.old_price || 0,
             description: product.description || '',
-            sizes: product.sizes || [],
+            attributes: {
+                sizes: product.attributes.sizes || [],
+                color: product.attributes.color || [],
+                material: product.attributes.material || '',    
+            },
         });
     }, [product]);
 
+
+    const validateForm = () => {
+        if (!editForm.name) return 'Nazwa produktu jest wymagana.';
+        if (!editForm.category) return 'Kategoria produktu jest wymagana.';
+        if (!editForm.gender) return 'Płeć produktu jest wymagana.';
+        if (!editForm.new_price) return 'Nowa cena produktu jest wymagana.';
+        return null;
+    };
+
     const handleSaveProduct = async (e) => {
         e.preventDefault();
+        const error = validateForm();
+        if (error) {
+            toast.error(error, { position: 'top-right', autoClose: 5000 });
+            return;
+        }
         try {
             const response = await fetch(`http://localhost:3001/products/${editForm.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(editForm),
+                body: JSON.stringify({
+                    id: editForm.id,
+                    category: editForm.category,
+                    gender: editForm.gender,
+                    name: editForm.name,
+                    image: editForm.image,
+                    popular: editForm.popular,
+                    new_price: editForm.new_price,
+                    old_price: editForm.old_price,
+                    description: editForm.description,
+                    attributes: {
+                        sizes: editForm.attributes.sizes,
+                        color: editForm.attributes.color,
+                        material: editForm.attributes.material,
+                    },
+                }),
             });
 
             if (!response.ok) {
@@ -58,29 +97,56 @@ const EditProduct = ({ product, onSave, onCancel }) => {
 
     const handleSizeChange = (size) => {
         setEditForm((prevForm) => {
-            const sizes = prevForm.sizes.includes(size)
-                ? prevForm.sizes.filter((s) => s !== size)
-                : [...prevForm.sizes, size];
-
+            const sizes = prevForm.attributes.sizes.includes(size)
+                ? prevForm.attributes.sizes.filter((s) => s !== size)
+                : [...prevForm.attributes.sizes, size];
+    
             return {
                 ...prevForm,
-                sizes,
+                attributes: {
+                    ...prevForm.attributes,
+                    sizes,
+                },
+            };
+        });
+    };
+
+    const handleMaterialChange = (material) => {
+        setEditForm((prevForm) => ({
+            ...prevForm,
+            attributes: {
+                ...prevForm.attributes,
+                material,
+            },
+        }));
+    };    
+
+    const handleColorChange = (color) => {
+        setEditForm((prevForm) => {
+            const updatedColors = prevForm.attributes.color.includes(color)
+                ? prevForm.attributes.color.filter((c) => c !== color)
+                : [...prevForm.attributes.color, color];
+    
+            return {
+                ...prevForm,
+                attributes: {
+                    ...prevForm.attributes,
+                    color: updatedColors,
+                },
             };
         });
     };
 
     const handlePopularChange = () => {
-        console.log("Popular przed zmianą:", editForm.popular); // Debugowanie
         setEditForm((prevForm) => {
             const updatedPopular = !prevForm.popular;
-            console.log("Popular po zmianie:", updatedPopular); // Debugowanie
             return {
                 ...prevForm,
-                popular: updatedPopular, // Zmieniamy tylko pole popular
+                popular: updatedPopular,
             };
         });
     };
-
+    
     return (
         <table className="edit-product-form">
             <tbody>
@@ -93,9 +159,31 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                                 value={editForm.category || ''}
                                 onChange={(e) => setEditForm({ ...editForm, category: e.target.value })}>
                                 <option value="">Wybierz kategorię</option>
+                                <option value="koszulka">Koszulka</option>
+                                <option value="kurtka">Kurtka</option>
+                                <option value="czapka">Czapka</option>
+                                <option value="bluza">Bluza</option>
+                                <option value="buty">Buty</option>
+                                <option value="skarpetki">Skarpetki</option>
+                                <option value="stanikSportowy">Stanik Sportowy</option>
+                            </select>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            Płeć:
+                            <select
+                                id="input-text"
+                                type="text"
+                                value={editForm.gender || ''}
+                                onChange={(e) => setEditForm({ ...editForm, gender: e.target.value })}>
+
+                                <option value="">Wybierz płeć</option>
                                 <option value="women">Kobieta</option>
                                 <option value="men">Mężczyzna</option>
-                                <option value="equipment">Sprzęt</option>
+                                <option value="unisex">Dla obu płci</option>
                             </select>
                         </label>
                     </td>
@@ -116,25 +204,14 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                 <tr>
                     <td>
                         <label>
-                            Zdjęcie:
-                            <input
-                                id="input-text"
-                                type="file"
-                                accept="image/*"
-                                onChange={(e) => setEditForm({ ...editForm, image: e.target.files[0] })}
-                            />
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>
                             Popularny:
                             <input
                                 id="input-popular"
                                 type="checkbox"
-                                checked={editForm.popular} // Zmieniamy na checked
-                                onChange={handlePopularChange} // Toggle popularności
+                                checked={editForm.popular}
+                                onChange={() =>
+                                    setEditForm((prevForm) => ({ ...prevForm, popular: !prevForm.popular }))
+                                }
                             />
                         </label>
                     </td>
@@ -147,7 +224,7 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                                 id="input-text"
                                 type="number"
                                 value={editForm.new_price || ''}
-                                onChange={(e) => setEditForm({ ...editForm, new_price: e.target.value })}
+                                onChange={(e) => setEditForm({ ...editForm, new_price: parseFloat(e.target.value ) })}
                             />
                         </label>
                     </td>
@@ -160,7 +237,7 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                                 id="input-text"
                                 type="number"
                                 value={editForm.old_price || ''}
-                                onChange={(e) => setEditForm({ ...editForm, old_price: e.target.value })}
+                                onChange={(e) => setEditForm({ ...editForm, old_price: parseFloat(e.target.value) })}
                             />
                         </label>
                     </td>
@@ -187,12 +264,55 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                                         id="input-size"
                                         type="checkbox"
                                         value={size}
-                                        checked={editForm.sizes.includes(size)} // Zmieniamy na checked
+                                        checked={editForm.attributes.sizes.includes(size)} // Zmieniamy na checked
                                         onChange={() => handleSizeChange(size)}
                                     />
                                 </label>
                             ))}
                         </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <fieldset id="input-size">
+                            <legend>Kolory:</legend>
+                            {['white', 'black', 'lime', 'grey', 'red', 'green', 'blue', 'pink',
+                            'navy', 'purple', 'yellow', 'turquoise', 'darkgreen', 'darkcyan'].map((color) => (
+                                <label key={color}>
+                                    {color}
+                                    <input
+                                        type="checkbox"
+                                        value={color}
+                                        checked={editForm.attributes.color.includes(color)}
+                                        disabled={!editForm.attributes.color.includes(color) && editForm.attributes.color.length >= 5}
+                                        onChange={() => handleColorChange(color)}
+                                    />
+                                </label>
+                            ))}
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            Materiał:
+                            <select
+                                id="input-text"
+                                type="text"
+                                value={editForm.attributes.material || ''}
+                                onChange={(e) => handleMaterialChange(e.target.value)}>
+
+                                <option value="">Wybierz materiał</option>
+                                <option value="poliester">Poliester</option>
+                                <option value="bawełna">Bawełna</option>
+                                <option value="elastan">Elastan</option>
+                                <option value="spandex">Spandex</option>
+                                <option value="nylon">Nylon</option>
+                                <option value="poliamid">Poliamid</option>
+                                <option value="polar">Polar</option>
+                                <option value="puch">Puch</option>
+                            </select>
+                        </label>
                     </td>
                 </tr>
                 <tr>
