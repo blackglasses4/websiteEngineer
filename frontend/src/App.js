@@ -17,6 +17,7 @@ import Registration from './Pages/Registration/Registration';
 import Home from './Pages/Home/Home';
 import CategoryProducts from './Components/CategoryProduct/CategoryProduct';
 import Admin from './Components/Admin/Admin';
+import DisplayProductPage from './Components/DisplayProduct/SimilarProduct/DisplayProductPage';
 
 // Główny układ z Navbar, Kategoriami i Footerem
 function AppLayout() {
@@ -42,7 +43,7 @@ function App() {
             <Route path="/" element={<AppLayout />}>
               <Route index element={<Home />} />
               <Route path=":category" element={<CategoryProducts />} />
-              <Route path='product/:id' element={<DisplayProduct/>} />
+              <Route path='product/:id' element={<DisplayProductPage/>} />
               <Route path="cart" element={<CartPage />} />
             </Route>
 

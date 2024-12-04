@@ -125,20 +125,25 @@
         }
 
         button {
-            background-color: var(--color-green);
-            color: $white;
-            border: none;
-            padding: 0.6em 1em;
-            border-radius: 10px;
+            background-color: var(--dominant-light);
+            color: var(--dominant-dark);
+            border: 1px solid var(--grey_dark);
+            padding: 0.4em 1em;
+            border-radius: 5px;
             cursor: pointer;
             margin-top: 15px;
             transition: background-color 0.3s ease;
             align-self: flex-start;
 
             &:hover {
-                background-color: var(--dominant-dark);
-                color: var(--dominant-light);
+                background-color: var(--table_border);
             }
+        }
+
+        span {
+            padding: 1em;
+            color: var(--grey_dark);
+            @include selection-whitedark;
         }
     }
 }
