@@ -17,7 +17,7 @@
   "products": [
     {
       "id": 1,
-      "category": "Koszulka",
+      "category": "koszulka",
       "gender": "women",
       "name": "Koszulka sportowa",
       "popular": false,
@@ -37,7 +37,7 @@
     },
     {
       "id": 2,
-      "category": "Koszulka",
+      "category": "koszulka",
       "gender": "women",
       "name": "Koszulka sportowa",
       "popular": true,
@@ -57,7 +57,7 @@
     },
     {
       "id": 3,
-      "category": "Koszulka",
+      "category": "koszulka",
       "gender": "women",
       "name": "Koszulka treningowa",
       "popular": false,
@@ -77,7 +77,7 @@
     },
     {
       "id": 4,
-      "category": "Koszulka",
+      "category": "koszulka",
       "gender": "women",
       "name": "Koszulka do tenisa",
       "popular": true,
@@ -97,7 +97,7 @@
     },
     {
       "id": 5,
-      "category": "Koszulka",
+      "category": "koszulka",
       "gender": "women",
       "name": "Koszulka fitness",
       "popular": true,
@@ -117,7 +117,7 @@
     },
     {
       "id": 6,
-      "category": "Koszulka",
+      "category": "koszulka",
       "gender": "women",
       "name": "Koszulka do jogi",
       "popular": false,
@@ -137,7 +137,7 @@
     },
     {
       "id": 7,
-      "category": "Koszulka",
+      "category": "koszulka",
       "gender": "women",
       "name": "Koszulka do biegania",
       "popular": true,
@@ -157,7 +157,7 @@
     },
     {
       "id": 8,
-      "category": "Koszulka",
+      "category": "koszulka",
       "gender": "women",
       "name": "Koszulka sportowa z długim rękawem",
       "popular": true,
@@ -177,7 +177,7 @@
     },
     {
       "id": 9,
-      "category": "Koszulka",
+      "category": "koszulka",
       "gender": "men",
       "name": "Koszula komercyjna",
       "popular": true,
@@ -197,7 +197,7 @@
     }, 
     {
       "id": 10,
-      "category": "Kurtki",
+      "category": "kurtka",
       "gender": "men",
       "name": "Kurtka treningowa",
       "popular": false,
@@ -217,7 +217,7 @@
     }, 
     {
       "id": 11,
-      "category": "Kurtki",
+      "category": "kurtka",
       "gender": "men",
       "name": "Kurtka",
       "popular": true,
@@ -237,7 +237,7 @@
     },
     {
       "id": 12,
-      "category": "Kurtki",
+      "category": "kurtka",
       "gender": "men",
       "name": "Kurtka sportowa z kapturem",
       "popular": true,
@@ -257,7 +257,7 @@
     },
     {
       "id": 13,
-      "category": "Kurtki",
+      "category": "kurtka",
       "gender": "men",
       "name": "Kurtka polarowa",
       "popular": true,
@@ -277,7 +277,7 @@
     },
     {
       "id": 14,
-      "category": "Kurtki",
+      "category": "kurtka",
       "gender": "men",
       "name": "Kurtka puchowa sportowa",
       "popular": true,

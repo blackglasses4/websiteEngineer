@@ -162,20 +162,23 @@
 .search-product .admin-search .input-response ul li {
   margin: 0.5rem 0;
 }
-.search-product .admin-search .input-response ul li a {
+.search-product .admin-search .input-response ul li button {
   color: var(--dominant-dark);
-  text-decoration: none;
+  background: none;
+  border: none;
   border-bottom: none;
+  text-decoration: none;
+  cursor: pointer;
 }
-.search-product .admin-search .input-response ul li a::-moz-selection {
+.search-product .admin-search .input-response ul li button::-moz-selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.search-product .admin-search .input-response ul li a::selection {
+.search-product .admin-search .input-response ul li button::selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.search-product .admin-search .input-response ul li a:hover {
+.search-product .admin-search .input-response ul li button:hover {
   text-decoration: underline;
 }
 .search-product .admin-search .input-response p {

@@ -114,9 +114,9 @@
   padding: 0 2em 2em 2em;
 }
 .popularProduct .numberOfPages button {
-  background-color: var(--color-green);
-  color: #ffffff;
-  border: none;
+  background-color: var(--dominant-light);
+  color: var(--dominant-dark);
+  border: 1px solid var(--table_border);
   padding: 0.4em 1em;
   border-radius: 5px;
   cursor: pointer;
@@ -125,8 +125,7 @@
   align-self: flex-start;
 }
 .popularProduct .numberOfPages button:hover {
-  background-color: var(--dominant-dark);
-  color: var(--dominant-light);
+  background-color: var(--table_td);
 }
 .popularProduct .numberOfPages span {
   padding: 1em;

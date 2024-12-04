@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -32,17 +32,6 @@ const Admin = () => {
             progress: undefined,
         });
     }, []);
-
-    // const renderContent = () => {
-    //     switch (activeView) {
-    //         case 'createProduct':
-    //             return <CreateProduct />;
-    //         case 'searchProducts':
-    //             return <SearchProduct />
-    //         default:
-    //             return <WelcomeAdmin />;
-    //     }
-    // };
 
     return (
         <>

@@ -1,22 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../CartContext';
 import colorTranslations from '../../../hooks/translations';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 import './CartPage.scss';
 
 const CartPage = () => {
   const { cart, removeFromCart } = useCart();
   const [products, setProducts] = useState([]);
-
-  const colorTranslations = {
-    red: "czerwony",
-    blue: "niebieski",
-    green: "zielony",
-    yellow: "żółty",
-    black: "czarny",
-    white: "biały",
-    purple: "fioletowy"
-    // Dodaj inne kolory według potrzeb
-  };
 
   useEffect(() => {
     // Ustawienie produktów w stanie po załadowaniu koszyka
@@ -66,7 +58,15 @@ const CartPage = () => {
               {products.map((product) => (
                 <tr key={product.productId}>
                   <td data-label="Produkt"> {product.image ? (
-                        <img src={product.image} alt={product.name} loading="lazy" className="cart-item-image" />
+                        <LazyLoadImage
+                        src={product.image}
+                        className='cart-item-image'
+                        effect="blur"
+                        alt={product.name}
+                        width="100%"
+                        height="auto"
+                        threshold={100}
+                      />
                       ) : (
                         <span>Brak zdjęcia</span>
                       )}</td>
@@ -101,7 +101,7 @@ const CartPage = () => {
       )}
     </section>
 
-    {/* <section className="cart-mobile">
+    <section className="cart-mobile">
         <h1>Twój koszyk</h1>
           {products.length === 0 ? (
             <p className='cart-empty'>Koszyk jest pusty &nbsp;&rarr; &nbsp;<a href="/">Przejdź do sklepu</a></p>
@@ -109,26 +109,32 @@ const CartPage = () => {
             <>
           <div className="cart-cards">
             {products.map((product) => (
-              <div className="cart-card" key={product.id}>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="cart-item-image"
-                />
+              <div className="cart-card" key={product.productId}>
+                  <LazyLoadImage
+                        src={product.image}
+                        className='cart-item-image'
+                        effect="blur"
+                        alt={product.name}
+                        height="auto"
+                        threshold={100}
+                  />
                 <div className="cart-card-details">
                   <p className='product-name'>{product.name.length > 25 ? `${product.name.slice(0,25)}...` : product.name}</p>
-                  <p><span>Cena:</span> {product.new_price} zł</p>
+                  
+                  <p><span>Rozmiar: </span>{product.size}</p>
+                  <p><span>Kolor: </span>{colorTranslations[product.color] || product.color}</p>
+                  <p><span>Cena:</span> {product.price} zł</p>
                   <div className="product-quantity">
                   <span>Ilość:</span>
                     <input
                       type="number"
-                      value={product.quantity}
+                      value={product.quantity || 1}
                       min="1"
-                      onChange={(e) => updateQuantity(product.id, parseInt(e.target.value, 10))}
+                      onChange={(e) => updateQuantity(product.productId, parseInt(e.target.value, 10))}
                     />
                   </div>
-                  <p><span>Całkowita cena: </span>{(product.new_price * product.quantity).toFixed(2)} zł</p>
-                  <button className="remove-button" onClick={() => removeFromCart(product.id)}>Usuń</button>
+                  <p><span>Całkowita cena: </span>{(product.price * product.quantity).toFixed(2)} zł</p>
+                  <button onClick={() => removeFromCart(product)} className="remove-button">Usuń</button>
                 </div>
             </div>))}
           </div>
@@ -139,7 +145,7 @@ const CartPage = () => {
           </div>
           </>
         )}
-    </section> */}
+    </section>
   </>
   );
 };

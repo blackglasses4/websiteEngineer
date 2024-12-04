@@ -80,6 +80,7 @@
     }
 
     .cart-item-image {
+      width: 0%;
       width: 60px;
       height: 60px;
       object-fit: cover;
@@ -178,8 +179,8 @@
 
   .cart-item-image {
     width: 100%;
-    max-width: 200px;
-    height: 200px;
+    max-width: 500px;
+    height: 300px;
     object-fit: cover;
     border-radius: 8px;
     @include selection-whitedark;
@@ -247,7 +248,7 @@
   }
 }
 
-@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet-table-wide')}) {
   .cart {
     display: none;
   }
@@ -285,14 +286,8 @@
     .cart-item-image {
       width: 100%;
       max-width: 300px;
-      height: auto;
-      object-fit: cover;
-    }
-
-    .cart-item-image {
-      width: 100%;
-      max-width: 200px;
-      height: auto;
+      height: 100%;
+      max-height: 300px;
       object-fit: cover;
     }
   

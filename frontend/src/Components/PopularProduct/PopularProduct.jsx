@@ -82,9 +82,9 @@ const PopularProduct = () => {
           <div className="item" key={item.id}>
             <Link to={`/product/${item.id}`}>
               <LazyLoadImage
-                alt={item.image.alt}
-                effect="blur"
                 src={item.image.url}
+                effect="blur"
+                alt={item.image.alt}
                 width="100%"
                 height="auto"
                 threshold={100}

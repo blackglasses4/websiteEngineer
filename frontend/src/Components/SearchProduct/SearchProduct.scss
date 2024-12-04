@@ -74,12 +74,15 @@
                 li {
                     margin: 0.5rem 0;
     
-                    a {
+                    button {
                         color: var(--dominant-dark);
-                        text-decoration: none;
+                        background: none;
+                        border: none;
                         border-bottom: none;
+                        text-decoration: none;
+                        cursor: pointer;
                         @include selection-whitedark;
-    
+
                         &:hover {
                             text-decoration: underline;
                         }

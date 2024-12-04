@@ -1,0 +1,50 @@
+.product-filter {
+  position: relative;
+  margin-bottom: 20px;
+}
+.product-filter .filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  background-color: var(--dominant-light);
+  border: 1px solid var(--table_border);
+  color: var(--dominant-dark);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+.product-filter .filter-toggle:hover {
+  background-color: var(--table_td);
+}
+.product-filter .filter-toggle svg {
+  font-size: 18px;
+}
+.product-filter .filter-panel {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: var(--dominant-light);
+  border: 1px solid var(--table_border);
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  width: 300px;
+  padding: 0.8em;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.product-filter .filter-panel .filter-group label {
+  color: var(--dominant-dark);
+  margin-bottom: 0.4em;
+}
+.product-filter .filter-panel .filter-group select {
+  width: 100%;
+  padding: 0.3em 0.3em;
+  background-color: var(--dominant-light);
+  color: var(--dominant-dark);
+  border: 1px solid var(--table_border);
+  border-radius: 5px;
+  font-size: 0.9em;
+}/*# sourceMappingURL=ProductFilter.css.map */

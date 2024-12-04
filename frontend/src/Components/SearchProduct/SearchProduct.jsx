@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
-import { ToastContainer, toast } from 'react-toastify';
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import SearchBar from './SearchBar';
@@ -12,8 +11,6 @@ const SearchProduct = () => {
     const [products, setProducts] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
     const [productToEdit, setProductToEdit] = useState(null);
-    const [productToDelete, setProductToDelete] = useState(null);
-    const inputWrapperRef = useRef(null);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -42,8 +39,6 @@ const SearchProduct = () => {
             console.error('Id is undefined or invalid');
             return;
         }
-
-        setProductToDelete(id);
         
         const toastId = toast.info((
             <div>
@@ -100,7 +95,6 @@ const SearchProduct = () => {
             });
             toast.dismiss(toastId);
         } finally {
-            setProductToDelete(null);
             toast.dismiss(toastId);
         }
     };

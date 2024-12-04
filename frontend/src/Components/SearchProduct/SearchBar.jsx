@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import './SearchProduct.scss';
 
 const SearchBar = ({ products, setConfirmedResults }) => {
@@ -77,20 +75,22 @@ const SearchBar = ({ products, setConfirmedResults }) => {
                     {input && searchResults.length === 0 && <p>Nie znaleziono żadnych wyników</p>}
                     {input && searchResults.length > 0 && (
                         <ul>
-                            {searchResults.map((product) => (
-                                <li key={product.id}>
-                                    <a href="#" onClick={(e) => {
-                                        e.preventDefault();
+                        {searchResults.map((product) => (
+                            <li key={product.id}>
+                                <button
+                                    onClick={(e) => {
                                         setConfirmedResults((prevResults) => {
                                             if (prevResults.some((item) => item.id === product.id)) {
                                                 return prevResults;
                                             }
                                             return [...prevResults, product];
                                         });
-                                    }}>{product.name.length > 50 ? `${product.name.slice(0, 50)}...` : product.name}</a>
-                                </li>
-                            ))}
-                        </ul>
+                                    }}>
+                                    {product.name.length > 50 ? `${product.name.slice(0, 50)}...` : product.name}
+                                </button>
+                            </li>
+                        ))}
+                    </ul>                    
                     )}
                 </div>
             </div>
