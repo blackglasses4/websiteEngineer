@@ -35,7 +35,6 @@
         "color": [
           "black",
           "white",
-          "blue",
           "red",
           "navy"
         ],
@@ -413,6 +412,35 @@
         ],
         "material": "puch",
         "stock": 40
+      }
+    },
+    {
+      "id": "15",
+      "category": "koszulka",
+      "gender": "women",
+      "name": "sssss",
+      "image": "DSC04474.JPG",
+      "popular": true,
+      "new_price": 99,
+      "old_price": 888,
+      "description": "fffffffffffffffffffffffffffffffffffffff",
+      "attributes": {
+        "sizes": [
+          "XL",
+          "L",
+          "XXL",
+          "M",
+          "S",
+          "XS"
+        ],
+        "color": [
+          "green",
+          "blue",
+          "pink",
+          "white",
+          "lime"
+        ],
+        "material": "bawełna"
       }
     }
   ]

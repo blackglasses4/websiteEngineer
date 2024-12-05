@@ -8,13 +8,18 @@ const CreateProduct = () => {
     const initialProductState = {
         id: '',
         category: '',
+        gender: '',
         name: '',
         image: null,
         popular: false,
         new_price: '',
         old_price: '',
         description: '',
-        sizes: []
+        attributes: {
+            sizes: [],
+            color: [],
+            material: '',
+        }
     };
 
     const [product, setProduct] = useState(initialProductState);
@@ -46,7 +51,33 @@ const CreateProduct = () => {
             const size = value;
             setProduct((prev) => ({
                 ...prev,
-                sizes: checked ? [...prev.sizes, size] : prev.sizes.filter((s) => s !== size),
+                attributes: {
+                    ...prev.attributes,
+                    sizes: checked 
+                        ? [...prev.attributes.sizes, size]
+                        : prev.attributes.sizes.filter((s) => s !== size),
+                }
+            }));
+        }
+        else if (type === 'checkbox' && name === 'color'){
+            const color = value;
+            setProduct((prev) => ({
+                ...prev,
+                attributes: {
+                    ...prev.attributes,
+                    color: checked
+                        ? [...prev.attributes.color, color]
+                        : prev.attributes.color.filter((c) => c !== color),
+                },
+            }));
+        }
+        else if (name === 'material') {
+            setProduct((prev) => ({
+                ...prev,
+                attributes: {
+                    ...prev.attributes,
+                    material: value,
+                },
             }));
         }
         else if (type === 'file') {
@@ -82,12 +113,17 @@ const CreateProduct = () => {
                 id: newId,
                 name: product.name,
                 category: product.category,
+                gender: product.gender,
                 image: product.image ? product.image.name : null, 
                 popular: product.popular,
                 new_price: product.new_price,
                 old_price: product.old_price,
                 description: product.description,
-                sizes: product.sizes,
+                attributes: {
+                    sizes: product.attributes.sizes,
+                    color: product.attributes.color,
+                    material: product.attributes.material,
+                },
             };
 
             const response = await fetch('http://localhost:3001/products', {
@@ -152,10 +188,23 @@ const CreateProduct = () => {
                     <label htmlFor="nazwa">Nazwa: <input type="text" name="name" id="name" maxLength="30" value={product.name} onChange={handleInputChange} required/></label>
                     <label htmlFor="category">Kategoria: 
                         <select name="category" id="category" value={product.category} onChange={handleInputChange} required>
-                            <option value="">Wybierz kategorię</option>
-                            <option value="women">Kobieta</option>
-                            <option value="men">Mężczyzna</option>
-                            <option value="equipment">Sprzęt</option>
+                                <option value="">Wybierz kategorię</option>
+                                <option value="koszulka">Koszulka</option>
+                                <option value="kurtka">Kurtka</option>
+                                <option value="czapka">Czapka</option>
+                                <option value="bluza">Bluza</option>
+                                <option value="buty">Buty</option>
+                                <option value="skarpetki">Skarpetki</option>
+                                <option value="stanikSportowy">Stanik Sportowy</option>
+                        </select>
+                    </label>
+
+                    <label htmlFor="gender">Płeć: 
+                        <select name="gender" id="gender" value={product.gender} onChange={handleInputChange} required>
+                        <option value="">Wybierz płeć</option>
+                                <option value="women">Kobieta</option>
+                                <option value="men">Mężczyzna</option>
+                                <option value="unisex">Dla obu płci</option>
                         </select>
                     </label>
 
@@ -171,10 +220,46 @@ const CreateProduct = () => {
                         <legend>Rozmiary:</legend>
                         {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map((size) => (
                             <label htmlFor="sizes" key={size}>{size}
-                                <input type="checkbox" name="size" id="size" value={size} checked={product.sizes.includes(size)} onChange={handleInputChange}/>
+                                <input
+                                    type="checkbox"
+                                    name="size"
+                                    id="size"
+                                    value={size}
+                                    checked={product.attributes.sizes.includes(size)}
+                                    onChange={handleInputChange}/>
                             </label>
                         ))}
                     </fieldset>
+                    <fieldset>
+                        <legend>Kolory:</legend>
+                        {['white', 'black', 'lime', 'grey', 'red', 'green', 'blue', 'pink',
+                        'navy', 'purple', 'yellow', 'turquoise', 'darkgreen', 'darkcyan'].map((color) => (
+                            <label htmlFor="color" key={color}>{color}
+                                <input 
+                                    type="checkbox"
+                                    name="color"
+                                    id="color"
+                                    value={color}
+                                    checked={product.attributes.color.includes(color)}
+                                    disabled={!product.attributes.color.includes(color) && product.attributes.color.length >= 5}
+                                    onChange={handleInputChange}/>
+                            </label>
+                        ))}
+                    </fieldset>
+
+                    <label htmlFor="material">Materiały: 
+                        <select name="material" id="material" value={product.attributes.material} onChange={handleInputChange} required>
+                                <option value="">Wybierz materiał</option>
+                                <option value="poliester">Poliester</option>
+                                <option value="bawełna">Bawełna</option>
+                                <option value="elastan">Elastan</option>
+                                <option value="spandex">Spandex</option>
+                                <option value="nylon">Nylon</option>
+                                <option value="poliamid">Poliamid</option>
+                                <option value="polar">Polar</option>
+                                <option value="puch">Puch</option>
+                        </select>
+                    </label>
 
                     <button type="submit" disabled={loading}>{loading ? 'Dodawanie...' : 'Dodaj produkt'}</button>
                 </form>
