@@ -5,9 +5,12 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import ProductFilter from '../ProductFilter/ProductFilter';
 import './CategoryProduct.scss';
+import LikeButton from '../LikeButton/LikeButton';
+import { useLikes } from '../LikeButton/LikeContext';
 
 const CategoryProducts = () => {
   const { category } = useParams();
+  const { likedProducts, toggleLike } = useLikes();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [error, setError] = useState(false);
@@ -118,6 +121,10 @@ const CategoryProducts = () => {
                 <div className="item-prices-old">{item.old_price}zł</div>
               </div>
             </Link>
+            <LikeButton
+              isLiked={likedProducts.includes(item.id)}
+              onToggle={() => toggleLike(item.id)} // Toggle like w kontekście
+            />
           </div>
         ))}
       </div>

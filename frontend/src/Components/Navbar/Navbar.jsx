@@ -1,40 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; // Dodajemy useEffect
 import { FaSearch, FaShoppingCart, FaUserCircle, FaBars, FaTimes } from 'react-icons/fa';
 import { useCart } from '../Cart/CartContext.jsx';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch.jsx';
+import { useLikes } from '../LikeButton/LikeContext.jsx';
+import LikeButton from '../LikeButton/LikeButton';
+import { Link } from 'react-router-dom';
+import { useProducts } from '../LikeButton/ProductContext.jsx'; // Importujemy useProducts
 import './Navbar.scss';
 
 const Navbar = () => {
   const [input, setInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [dataProducts, setDataProducts] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  const { dataProducts } = useProducts(); // Korzystamy z kontekstu Products
+  const { likedProducts, toggleLike } = useLikes(); // Z kontekstu Like
 
   const { cart } = useCart();
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('http://localhost:3001/products');
-        const data = await response.json();
-        setDataProducts(data);
-      } catch(error) {
-        console.error("Błąd podczas pobierania danych:", error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-  
-  useEffect(() => {
     if (input === "") {
       setSearchResults([]);
     } else {
-      const filterResults = dataProducts.filter(product =>
-        product.name.toLowerCase().includes(input.toLowerCase())
-      );
-      setSearchResults(filterResults);
-      console.log("Wyniki wyszukiwania:", filterResults);
+      // Sprawdzamy, czy dataProducts istnieje, zanim będziemy go używać
+      if (dataProducts && Array.isArray(dataProducts)) {
+        const filterResults = dataProducts.filter(product =>
+          product.name.toLowerCase().includes(input.toLowerCase())
+        );
+        setSearchResults(filterResults);
+      }
     }
   }, [input, dataProducts]);
 
@@ -49,6 +43,11 @@ const Navbar = () => {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
+
+  // Renderujemy tylko wtedy, gdy dataProducts istnieje
+  if (!dataProducts) {
+    return <div>Ładowanie...</div>; // lub cokolwiek, co wskazuje na ładowanie danych
+  }
 
   return (
     <header className='header-main'>
@@ -77,7 +76,7 @@ const Navbar = () => {
         )}
         </div>
       </div>
-      
+
       <div className={`nav-icons ${isMenuOpen ? 'menu-open' : ''}`}>
         <ThemeSwitch />
         <a href="/cart">
@@ -85,6 +84,16 @@ const Navbar = () => {
           <div className="nav-icons-cart">{cart.length}</div>
         </a>
         <a href="/"><FaUserCircle /></a>
+        <div className="nav-like">
+          <Link to="/liked" className="liked-products-link">
+            <LikeButton
+              style={{ color: 'white' }}
+              isLiked={likedProducts.length > 0} 
+              onToggle={() => toggleLike(dataProducts.map(p => p.id))}
+            />
+            <span>{likedProducts.length}</span>
+          </Link>
+        </div>
       </div>
 
       <div className="hamburger-menu" onClick={toggleMenu}>

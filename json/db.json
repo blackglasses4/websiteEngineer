@@ -40,7 +40,8 @@
           "navy"
         ],
         "material": "poliester"
-      }
+      },
+      "liked": false
     },
     {
       "id": "2",
@@ -70,7 +71,8 @@
         ],
         "material": "poliester",
         "stock": 100
-      }
+      },
+      "liked": false
     },
     {
       "id": "3",

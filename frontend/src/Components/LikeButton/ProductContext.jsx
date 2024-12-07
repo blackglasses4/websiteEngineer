@@ -1,0 +1,31 @@
+import React, { createContext, useState, useEffect, useContext } from 'react';
+
+const ProductsContext = createContext();
+
+export const useProducts = () => {
+  return useContext(ProductsContext);
+};
+
+export const ProductsProvider = ({ children }) => {
+  const [dataProducts, setDataProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/products');
+        const data = await response.json();
+        setDataProducts(data);
+      } catch (error) {
+        console.error("Błąd podczas pobierania danych:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  return (
+    <ProductsContext.Provider value={{ dataProducts }}>
+      {children}
+    </ProductsContext.Provider>
+  );
+};
