@@ -227,7 +227,7 @@
     margin: 2em;
   }
   .categoryProduct h1 {
-    padding: 0.5em 0;
+    padding: 0;
   }
   .categoryProduct .error-products {
     text-align: left;
@@ -235,15 +235,16 @@
   .categoryProduct .filter-and-pagination {
     flex-direction: column;
     align-items: flex-start;
+    margin-top: 0;
   }
-  .categoryProduct .numberOfPages {
-    padding: 0 1em 1em 0;
+  .categoryProduct .filter-and-pagination .numberOfPages {
+    padding: 1em 0;
   }
-  .categoryProduct .numberOfPages button {
+  .categoryProduct .filter-and-pagination .numberOfPages button {
     padding: 0.3em 0.5em;
     margin-top: 15px;
   }
-  .categoryProduct .numberOfPages span {
+  .categoryProduct .filter-and-pagination .numberOfPages span {
     padding: 0.5em;
   }
   .categoryProduct .category-item {

@@ -115,7 +115,7 @@
         margin: 2em;
 
         h1 {
-            padding: 0.5em 0;
+            padding: 0;
         }
 
         .error-products {
@@ -125,18 +125,19 @@
         .filter-and-pagination {
             flex-direction: column;
             align-items: flex-start;
-        }
+            margin-top: 0;
 
-        .numberOfPages {
-            padding: 0 1em 1em 0;
-    
-            button {
-                padding: 0.3em 0.5em;
-                margin-top: 15px;
-            }
-    
-            span {
-                padding: 0.5em;
+            .numberOfPages {
+                padding: 1em 0;
+        
+                button {
+                    padding: 0.3em 0.5em;
+                    margin-top: 15px;
+                }
+        
+                span {
+                    padding: 0.5em;
+                }
             }
         }
 
