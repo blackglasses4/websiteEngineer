@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CartProvider } from './Components/Cart/CartContext'; 
-import LikedProvider from './Components/LikeButton/LikeContext';
+import { LikeProvider } from './Components/LikeButton/LikeContext';
 import { ProductsProvider } from './Components/LikeButton/ProductContext';
 
 // Komponenty
@@ -28,7 +28,7 @@ function AppLayout() {
     <>
       <Ad />
       <Navbar />
-      <NavbarCategory />
+      <NavbarCategory className="nav-category"/>
       <div className="content">
         <Outlet />
       </div>
@@ -40,7 +40,7 @@ function AppLayout() {
 function App() {
   return (
     <ProductsProvider>
-      <LikedProvider>
+      <LikeProvider>
         <CartProvider>
           <Router>
             <div className="App">
@@ -61,7 +61,7 @@ function App() {
             </div>
           </Router>
         </CartProvider>
-      </LikedProvider>
+      </LikeProvider>
     </ProductsProvider>
   );
 }

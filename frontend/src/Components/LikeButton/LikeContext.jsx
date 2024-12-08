@@ -1,26 +1,25 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 
-// Tworzymy kontekst polubień
-const LikesContext = createContext();
+// Kontekst dla polubionych produktów
+const LikeContext = createContext();
 
-// Hook pomocniczy
-export const useLikes = () => useContext(LikesContext);
-
-// Provider, który będzie udostępniał dane o polubionych produktach
-const LikesProvider = ({ children }) => {
+export const LikeProvider = ({ children }) => {
   const [likedProducts, setLikedProducts] = useState([]);
 
-  const toggleLike = (id) => {
+  // Funkcja zmieniająca status "polubienia" produktu
+  const toggleLike = (productId) => {
     setLikedProducts((prev) =>
-      prev.includes(id) ? prev.filter((productId) => productId !== id) : [...prev, id]
+      prev.includes(productId)
+        ? prev.filter((id) => id !== productId) // Usuwanie z listy polubionych
+        : [...prev, productId] // Dodawanie do listy polubionych
     );
   };
 
   return (
-    <LikesContext.Provider value={{ likedProducts, toggleLike }}>
+    <LikeContext.Provider value={{ likedProducts, toggleLike }}>
       {children}
-    </LikesContext.Provider>
+    </LikeContext.Provider>
   );
 };
 
-export default LikesProvider;
+export const useLikes = () => useContext(LikeContext);

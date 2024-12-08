@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from 'react'; // Dodajemy useEffect
+import React, { useState, useEffect } from 'react';
 import { FaSearch, FaShoppingCart, FaUserCircle, FaBars, FaTimes } from 'react-icons/fa';
 import { useCart } from '../Cart/CartContext.jsx';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch.jsx';
+import NavbarCategory from './NavbarCategory.jsx'
+
 import { useLikes } from '../LikeButton/LikeContext.jsx';
 import LikeButton from '../LikeButton/LikeButton';
 import { Link } from 'react-router-dom';
-import { useProducts } from '../LikeButton/ProductContext.jsx'; // Importujemy useProducts
+import { useProducts } from '../LikeButton/ProductContext.jsx';
+import LikeProductModal from '../LikeButton/LikeProductModal';
 import './Navbar.scss';
 
 const Navbar = () => {
   const [input, setInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
   
-  const { dataProducts } = useProducts(); // Korzystamy z kontekstu Products
-  const { likedProducts, toggleLike } = useLikes(); // Z kontekstu Like
-
+  const { dataProducts } = useProducts();
+  const { likedProducts, toggleLike } = useLikes();
   const { cart } = useCart();
 
   useEffect(() => {
     if (input === "") {
       setSearchResults([]);
-    } else {
-      // Sprawdzamy, czy dataProducts istnieje, zanim będziemy go używać
-      if (dataProducts && Array.isArray(dataProducts)) {
-        const filterResults = dataProducts.filter(product =>
-          product.name.toLowerCase().includes(input.toLowerCase())
-        );
-        setSearchResults(filterResults);
-      }
+    } else if (dataProducts && Array.isArray(dataProducts)) {
+      const filterResults = dataProducts.filter(product =>
+        product.name.toLowerCase().includes(input.toLowerCase())
+      );
+      setSearchResults(filterResults);
     }
   }, [input, dataProducts]);
 
@@ -40,14 +40,9 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const closeMenu = () => {
-    setIsMenuOpen(false);
+  const toggleModal = () => {
+    setModalOpen(!isModalOpen);
   };
-
-  // Renderujemy tylko wtedy, gdy dataProducts istnieje
-  if (!dataProducts) {
-    return <div>Ładowanie...</div>; // lub cokolwiek, co wskazuje na ładowanie danych
-  }
 
   return (
     <header className='header-main'>
@@ -69,7 +64,7 @@ const Navbar = () => {
           <ul>
             {searchResults.map((product) => (
               <li key={product.id}>
-                <a href={`/product/${product.id}`} onClick={closeMenu}>{product.name}</a>
+                <a href={`/product/${product.id}`} onClick={toggleMenu}>{product.name}</a>
               </li>
             ))}
           </ul>
@@ -83,21 +78,30 @@ const Navbar = () => {
           <FaShoppingCart />
           <div className="nav-icons-cart">{cart.length}</div>
         </a>
-        <a href="/"><FaUserCircle /></a>
+
         <div className="nav-like">
-          <Link to="/liked" className="liked-products-link">
+          <div className="liked-products-link">
             <LikeButton
+              onClick={toggleModal}
               style={{ color: 'white' }}
-              isLiked={likedProducts.length > 0} 
-              onToggle={() => toggleLike(dataProducts.map(p => p.id))}
-            />
+              isLiked={likedProducts.length > 0}/>
             <span>{likedProducts.length}</span>
-          </Link>
+          </div>
         </div>
+        <a href="/"><FaUserCircle /></a>
+
+        {isModalOpen && (
+          <LikeProductModal
+            likedProducts={likedProducts}
+            dataProducts={dataProducts}
+            onClose={toggleModal}
+            toggleLike={toggleLike}
+          />
+        )}
       </div>
 
       <div className="hamburger-menu" onClick={toggleMenu}>
-        <FaBars />
+        <FaBars style={{color:"white"}}/>
       </div>
 
       <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
@@ -106,13 +110,31 @@ const Navbar = () => {
         </div>
         <div className="mobile-menu-icons">
           <ThemeSwitch />
-          <a href="/cart" onClick={closeMenu}>
+          <a href="/cart" onClick={toggleMenu}>
             <FaShoppingCart />
             <div className="nav-icons-cart">{cart.length}</div>
           </a>
-          <a href="/" onClick={closeMenu}>
+          <a href="/" onClick={toggleMenu}>
             <FaUserCircle />
           </a>
+          <div className="nav-like">
+            <div className="liked-products-link">
+              <LikeButton
+                onClick={toggleModal}
+                style={{ color: 'white' }}
+                isLiked={likedProducts.length > 0}/>
+              <span>{likedProducts.length}</span>
+            </div>
+          </div>
+          <p>Kategorie</p>
+          <div className='mobile-nav-category'>
+            <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
+            <Link to="/kurtka" className='a-name' rel='internal'>Kurtki</Link>
+            <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
+            <Link to="/kurtka" className='a-name' rel='internal'>Kurtki</Link>
+            <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
+            <Link to="/equipment" className='a-name' rel='internal'>Sprzęty</Link>
+          </div>
         </div>
       </div>
     </header>

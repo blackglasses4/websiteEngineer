@@ -1,7 +1,6 @@
 @use '../../scss/variables' as *;
 @use '../../scss/mixins' as *;
 
-// Style dla przycisku LikeButton
 .like-button {
   background: none;
   border: none;
@@ -12,14 +11,6 @@
   justify-content: center;
   margin-left: auto;
 
-  // Jeśli przycisk jest kliknięty, zmienia się kolor serduszka na czerwony
-  &.liked {
-    svg {
-      color: red; // Czerwony kolor dla polubionego serduszka
-    }
-  }
-
-  // Dla przycisku w Navbarze (biały kolor serduszka)
   #like-button-navbar svg {
     color: white;
   }
@@ -35,12 +26,7 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: inherit;
-
-    .like-button-container {
-      margin-right: 2px;
-    }
-
+    
     span {
       position: absolute;
       width: 1.4em;
@@ -49,20 +35,41 @@
       justify-content: center;
       align-items: center;
       margin-top: -1.5em;
-      margin-left: 1.3em;
+      margin-left: 1.2em;
       border-radius: 50%;
-      font-size: 0.6em;
       background-color: var(--color-ad);
-      z-index: 10;
       font-size: 0.6em;
       color: $white;
-      display: inline-block;
-      text-align: center;
     }
+  }
+}
 
-    &:hover {
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
+  .like-button {
+    margin: 1em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+    color: var(--dominant-dark);
+  }
+  
+  .nav-like {
+    display: flex;
+    align-items: center;
+    margin-left: 3.6em;
+  
+    .liked-products-link {
+      display: flex;
+      align-items: center;
+      
       span {
-        background-color: $blue_dark;
+        margin-top: 2em;
+        margin-left: 1.2em;
       }
     }
   }

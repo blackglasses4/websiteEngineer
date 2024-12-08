@@ -123,7 +123,7 @@ const CategoryProducts = () => {
             </Link>
             <LikeButton
               isLiked={likedProducts.includes(item.id)}
-              onToggle={() => toggleLike(item.id)} // Toggle like w kontekście
+              onToggle={() => toggleLike(item.id)}
             />
           </div>
         ))}

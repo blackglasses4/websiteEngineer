@@ -3,16 +3,14 @@ import { Link } from 'react-router-dom';
 import './LikeProduct.scss';
 
 const LikeProduct = ({ likedProducts, dataProducts }) => {
-  // Filtrujemy produkty, które zostały polubione
   const likedProductDetails = dataProducts.filter(product =>
-    likedProducts.includes(product.id) // Sprawdzamy, czy id produktu jest w likedProducts
+    likedProducts.includes(product.id)
   );
 
   return (
     <div className="liked-products">
-      <h2>Polubione Produkty</h2>
       {likedProductDetails.length === 0 ? (
-        <p>Brak polubionych produktów</p> // Jeśli nie ma polubionych produktów, wyświetlamy komunikat
+        <p>Brak polubionych produktów</p>
       ) : (
         <ul className="liked-products-list">
           {likedProductDetails.map((product) => (
@@ -21,7 +19,7 @@ const LikeProduct = ({ likedProducts, dataProducts }) => {
                 <img src={product.imageUrl} alt={product.name} className="liked-product-image" />
                 <div className="liked-product-info">
                   <h3>{product.name}</h3>
-                  <p>{product.price} PLN</p>
+                  <p>{product.price} zł</p>
                 </div>
               </Link>
             </li>

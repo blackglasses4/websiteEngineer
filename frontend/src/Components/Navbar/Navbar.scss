@@ -132,7 +132,7 @@ header.header-main {
     .hamburger-menu {
         display: none;
         cursor: pointer;
-        color: $white;
+        color: var(--dominant-dark);
         
         @media (max-width: #{map-get($breakpoints, 'tablet')}) {
             display: block;
@@ -144,8 +144,10 @@ header.header-main {
         top: 0;
         right: 0;
         width: 50%;
-        height: 60%;
-        background-color: rgba(0, 0, 0, 0.9);
+        height: auto;
+        background-color: var(--dominant-light);
+        box-shadow: 0 5px 6px rgba(0, 0, 0, 0.6);
+        border-radius: 4px;
         padding: 2rem;
         display: flex;
         flex-direction: column;
@@ -162,15 +164,13 @@ header.header-main {
         .mobile-menu-icons {
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 0rem;
       
           a {
-            color: $white;
-            font-size: 1.5rem;
             text-decoration: none;
             display: block;
             padding: 1rem;
-            padding-right: 2em;
+            padding-right: 1.5em;
             text-align: right;
             transition: color 0.3s ease;
       
@@ -178,14 +178,19 @@ header.header-main {
               color: $table_th-color;
             }
           }
+
+          p {
+            color: var(--dominant-dark);
+            margin-bottom: 0rem;
+            padding: 0.5em;
+            font-weight: 600;
+          }
       
           .nav-icons-cart {
             position: relative;
             top: -10px;
-            right: -15px;
-            background-color: $red_dark;
+            right: -60px;
             border-radius: 50%;
-            color: $white;
             padding: 0.3rem 0.6rem;
             font-size: 0.8rem;
           }
@@ -206,6 +211,18 @@ header.header-main {
         }
       }
       
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet-XLwide')}) {
+    header.header-main {
+        .mobile-menu {
+            .mobile-menu-icons {
+                a {
+                    color: var(--dominant-dark);
+                }
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: #{map-get($breakpoints, 'tablet-XLwide')}) {

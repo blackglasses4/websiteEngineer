@@ -41,7 +41,7 @@
         ],
         "material": "poliester"
       },
-      "liked": false
+      "isLiked": false
     },
     {
       "id": "2",
@@ -72,7 +72,7 @@
         "material": "poliester",
         "stock": 100
       },
-      "liked": false
+      "isLiked": false
     },
     {
       "id": "3",
@@ -100,7 +100,8 @@
         ],
         "material": "bawełna",
         "stock": 80
-      }
+      },
+      "isLiked": false
     },
     {
       "id": "4",
@@ -129,7 +130,8 @@
         ],
         "material": "poliester",
         "stock": 50
-      }
+      },
+      "isLiked": false
     },
     {
       "id": "5",
@@ -158,7 +160,8 @@
         ],
         "material": "poliester",
         "stock": 80
-      }
+      },
+      "isLiked": false
     },
     {
       "id": "6",
@@ -186,7 +189,8 @@
         ],
         "material": "bawełna",
         "stock": 100
-      }
+      },
+      "isLiked": false
     },
     {
       "id": "7",
@@ -217,7 +221,8 @@
         ],
         "material": "elastan",
         "stock": 60
-      }
+      },
+      "isLiked": false
     },
     {
       "id": "8",

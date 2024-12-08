@@ -1,38 +1,54 @@
-.liked-products {
-  padding: 20px;
+.liked-products .liked-products-list {
+  list-style: none;
+  padding: 0;
 }
-
-.liked-products-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.liked-product-item {
-  border: 1px solid #ddd;
+.liked-products .liked-products-list .liked-product-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
   padding: 10px;
+  border: 1px solid var(--table_border);
   border-radius: 8px;
-  background-color: #fff;
-  text-align: center;
+  background-color: var(--dominant-light);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-.liked-product-link {
-  text-decoration: none;
-  color: inherit;
-}
-
-.liked-product-image {
+.liked-products .liked-products-list .liked-product-item .liked-product-content {
+  display: flex;
+  align-items: center;
   width: 100%;
-  height: auto;
-  border-radius: 8px;
 }
-
-.liked-product-info h3 {
-  font-size: 1.2rem;
-  margin-top: 10px;
+.liked-products .liked-products-list .liked-product-item .liked-product-content .liked-product-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--dominant-dark);
+  flex-grow: 1;
 }
-
-.liked-product-info p {
-  font-size: 1rem;
-  color: #888;
+.liked-products .liked-products-list .liked-product-item .liked-product-content .liked-product-link .liked-product-image {
+  width: 50px;
+  height: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+.liked-products .liked-products-list .liked-product-item .liked-product-content .liked-product-link .liked-product-info h3 {
+  font-size: 1.2em;
+  margin: 0;
+}
+.liked-products .liked-products-list .liked-product-item .liked-product-content .liked-product-link .liked-product-info p {
+  margin: 0;
+  color: var(--subtext);
+}
+.liked-products .liked-products-list .liked-product-item .liked-product-content .remove-like-button {
+  background: none;
+  border: none;
+  color: var(--error);
+  font-size: 1.5em;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: transform 0.2s ease;
+}
+.liked-products .liked-products-list .liked-product-item .liked-product-content .remove-like-button:hover {
+  transform: scale(1.2);
 }/*# sourceMappingURL=LikeProduct.css.map */
