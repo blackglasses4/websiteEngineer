@@ -1,0 +1,40 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: $white;
+    padding: 20px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    text-align: center;
+  
+    .cookie-text {
+      color: $grey_dark;
+      font-size: 14px;
+      margin-bottom: 0.5em;
+      @include selection-cookie;
+    }
+  
+    .cookie-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+  
+      button {
+        padding: 6px 10px;
+        background-color: $white;
+        border: 1px solid $grey_dark; 
+        color: $grey_dark;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease; 
+  
+        &:hover {
+          background-color: $grey_light;
+        }
+      }
+    }
+}  

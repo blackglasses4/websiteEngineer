@@ -16,6 +16,10 @@ nav.nav-category {
         list-style-type: none;
         border: none;
         @include selection-light;
+
+        &:hover {
+            color: $table_border;
+        }
     }
 }
 

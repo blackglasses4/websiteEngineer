@@ -131,6 +131,25 @@ footer .f-top .f-subpages-name h2::selection, footer .f-top .f-subpages-name p::
   color: hsl(0, 61%, 34%);
   background-color: #ffffff;
 }
+footer .f-top .f-subpages-offer .f-link {
+  display: flex;
+  justify-content: end;
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: none;
+  padding-bottom: 0.1em;
+}
+footer .f-top .f-subpages-offer .f-link::-moz-selection {
+  color: hsl(0, 61%, 34%);
+  background-color: #ffffff;
+}
+footer .f-top .f-subpages-offer .f-link::selection {
+  color: hsl(0, 61%, 34%);
+  background-color: #ffffff;
+}
+footer .f-top .f-subpages-offer .f-link:hover {
+  font-weight: 500;
+}
 footer p.copyright {
   color: #ffffff;
   text-align: center;

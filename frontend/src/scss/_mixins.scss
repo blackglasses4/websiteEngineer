@@ -32,6 +32,13 @@
   }
 }
 
+@mixin selection-cookie {
+  &::selection {
+    color: $white;
+    background-color: $black;
+  }
+}
+
 @mixin selection-sidebar {
   &::selection {
     color: $bluegray_sidebar;

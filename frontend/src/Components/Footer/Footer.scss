@@ -51,6 +51,22 @@ footer {
                     @include selection-light;
                 }
             }
+
+            &-offer {
+                .f-link {
+                    display: flex;
+                    justify-content: end;
+                    color: $white;
+                    text-decoration: none;
+                    border-bottom: none;
+                    padding-bottom: 0.1em;
+                    @include selection-light;
+
+                    &:hover {
+                        font-weight: 500;
+                    }
+                }
+            }
         }
     }
 

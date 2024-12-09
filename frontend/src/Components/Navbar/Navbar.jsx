@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaSearch, FaShoppingCart, FaUserCircle, FaBars, FaTimes } from 'react-icons/fa';
 import { useCart } from '../Cart/CartContext.jsx';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch.jsx';
 import NavbarCategory from './NavbarCategory.jsx'
+import useClick from '../useClick.jsx';
 
 import { useLikes } from '../LikeButton/LikeContext.jsx';
 import LikeButton from '../LikeButton/LikeButton';
 import { Link } from 'react-router-dom';
 import { useProducts } from '../LikeButton/ProductContext.jsx';
 import LikeProductModal from '../LikeButton/LikeProductModal';
+
 import './Navbar.scss';
 
 const Navbar = () => {
@@ -16,10 +18,12 @@ const Navbar = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
+  const searchWrapperRef = useRef(null);
   
   const { dataProducts } = useProducts();
   const { likedProducts, toggleLike } = useLikes();
   const { cart } = useCart();
+  useClick(searchWrapperRef, () => setInput(""));
 
   useEffect(() => {
     if (input === "") {
@@ -48,7 +52,7 @@ const Navbar = () => {
     <header className='header-main'>
       <a href="/" className="a-name" rel="internal">NAZWAAAAA</a>
 
-      <div className="nav-search">
+      <div className="nav-search" ref={searchWrapperRef}>
         <div className="input-wrapper">
           <FaSearch id="search-icon" />
           <input

@@ -74,11 +74,10 @@ const CategoryProducts = () => {
     return (
       <section className="categoryProduct">
         {category === "koszulka" && <h1>Koszulki</h1>}
-        {category === "Kurtka" && <h1>Kurtka</h1>}
-        {/* {category === "equipment" && <h1>Sprzęt</h1>}
-        {category === "koszulka" && <h1>Koszulka</h1>}
         {category === "kurtka" && <h1>Kurtka</h1>}
-        {category === "equipment" && <h1>Sprzęt</h1>} */}
+        {category === "spodnie" && <h1>Spodnie</h1>}
+        {/* {category === "kurtka" && <h1>Kurtka</h1>}
+        {category === "equipment" && <h1>Sprzęt</h1>}  */}
 
         <p className="error-products">Błąd podczas pobierania produktów. Przepraszamy za utrudnienia</p>
       </section>
@@ -89,6 +88,7 @@ const CategoryProducts = () => {
     <section className="categoryProduct">
       {category === "koszulka" && <h1>Koszulka</h1>}
       {category === "kurtka" && <h1>Kurtka</h1>}
+      {category === "spodnie" && <h1>Spodnie</h1>}
       {/* {category === "equipment" && <h1>Sprzęt</h1>}
       {category === "koszulka" && <h1>Koszulka</h1>}
       {category === "kurtka" && <h1>Kurtka</h1>}

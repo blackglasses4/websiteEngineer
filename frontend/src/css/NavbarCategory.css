@@ -103,6 +103,9 @@ nav.nav-category a::selection {
   color: hsl(0, 61%, 34%);
   background-color: #ffffff;
 }
+nav.nav-category a:hover {
+  color: #ddd;
+}
 
 .mobile-nav-category {
   display: none;

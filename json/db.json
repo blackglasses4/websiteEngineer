@@ -257,10 +257,126 @@
       "id": "9",
       "category": "koszulka",
       "gender": "men",
-      "name": "Koszula komercyjna",
+      "name": "Koszulka treningowa męska",
       "popular": true,
       "image": {
         "url": "http://localhost:3001/shirt_men1.jpg",
+        "alt": "Koszulka treningowa dla mężczyzn"
+      },
+      "new_price": 55,
+      "old_price": 100,
+      "description": "Lekka i przewiewna koszulka sportowa idealna na intensywne treningi.",
+      "attributes": {
+        "sizes": [
+          "M",
+          "L",
+          "XL",
+          "XXL"
+        ],
+        "color": [
+          "navy blue",
+          "gray",
+          "white"
+        ],
+        "material": "poliester",
+        "stock": 120
+      }
+    },
+    {
+      "id": "10",
+      "category": "koszulka",
+      "gender": "men",
+      "name": "Koszulka casual z krótkim rękawem",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/shirt_men2.jpg",
+        "alt": "Koszulka casual z krótkim rękawem dla mężczyzn"
+      },
+      "new_price": 35,
+      "old_price": 60,
+      "description": "Uniwersalna koszulka bawełniana idealna na co dzień.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "green",
+          "red",
+          "blue"
+        ],
+        "material": "bawełna",
+        "stock": 75
+      }
+    },
+    {
+      "id": "11",
+      "category": "koszulka",
+      "gender": "men",
+      "name": "Koszulka termoaktywna męska",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/shirt_men3.jpg",
+        "alt": "Koszulka termoaktywna z długim rękawem dla mężczyzn"
+      },
+      "new_price": 70,
+      "old_price": 120,
+      "description": "Zaawansowana koszulka termoaktywna, idealna na chłodniejsze dni i aktywności outdoorowe.",
+      "attributes": {
+        "sizes": [
+          "M",
+          "L",
+          "XL",
+          "XXL"
+        ],
+        "color": [
+          "black",
+          "blue",
+          "orange"
+        ],
+        "material": "mieszanka bawełny i elastanu",
+        "stock": 60
+      }
+    },
+    {
+      "id": "12",
+      "category": "koszulka",
+      "gender": "men",
+      "name": "Koszulka sportowa na ramiączkach",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/shirt_men4.jpg",
+        "alt": "Koszulka sportowa na ramiączkach dla mężczyzn"
+      },
+      "new_price": 30,
+      "old_price": 50,
+      "description": "Koszulka bez rękawów idealna na siłownię lub w ciepłe dni.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L"
+        ],
+        "color": [
+          "gray",
+          "black",
+          "yellow"
+        ],
+        "material": "poliester",
+        "stock": 95
+      }
+    },    
+    {
+      "id": "13",
+      "category": "koszulka",
+      "gender": "men",
+      "name": "Koszula komercyjna",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/shirt_men5.jpg",
         "alt": "Kurtka treningowa, komercyjna dla mężczyzn"
       },
       "new_price": 150,
@@ -282,7 +398,7 @@
       }
     },
     {
-      "id": "10",
+      "id": "14",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka treningowa",
@@ -310,7 +426,7 @@
       }
     },
     {
-      "id": "11",
+      "id": "15",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka",
@@ -338,7 +454,7 @@
       }
     },
     {
-      "id": "12",
+      "id": "16",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka sportowa z kapturem",
@@ -367,7 +483,7 @@
       }
     },
     {
-      "id": "13",
+      "id": "17",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka polarowa",
@@ -395,7 +511,7 @@
       }
     },
     {
-      "id": "14",
+      "id": "18",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka puchowa sportowa",
@@ -421,6 +537,576 @@
         "material": "puch",
         "stock": 40
       }
-    }
+    },
+    {
+      "id": "19",
+      "category": "kurtka",
+      "gender": "women",
+      "name": "Kurtka puchowa z kapturem",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/jacket_women1.jpg",
+        "alt": "Kurtka puchowa z kapturem dla kobiet"
+      },
+      "new_price": 270,
+      "old_price": 540,
+      "description": "Ciepła i lekka kurtka puchowa z kapturem, doskonała na chłodne dni.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "darkcyan",
+          "blue"
+        ],
+        "material": "puch",
+        "stock": 50
+      }
+    },
+    {
+      "id": "20",
+      "category": "kurtka",
+      "gender": "women",
+      "name": "Kurtka narciarska damska",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/jacket_women2.jpg",
+        "alt": "Kurtka narciarska dla kobiet"
+      },
+      "new_price": 320,
+      "old_price": 640,
+      "description": "Wodoodporna kurtka narciarska z wieloma kieszeniami i regulowanym kapturem.",
+      "attributes": {
+        "sizes": [
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "red",
+          "purple",
+          "navy",
+          "grey"
+        ],
+        "material": "poliester",
+        "stock": 35
+      }
+    },
+    {
+      "id": "21",
+      "category": "kurtka",
+      "gender": "women",
+      "name": "Kurtka softshell damska",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/jacket_women3.jpg",
+        "alt": "Kurtka softshell dla kobiet"
+      },
+      "new_price": 180,
+      "old_price": 360,
+      "description": "Praktyczna kurtka softshell, idealna na aktywności outdoorowe w wietrzne dni.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L"
+        ],
+        "color": [
+          "pink",
+          "turquoise",
+          "gray",
+          "green"
+        ],
+        "material": "softshell",
+        "stock": 65
+      }
+    },
+    {
+      "id": "22",
+      "category": "kurtka",
+      "gender": "women",
+      "name": "Kurtka przejściowa damska",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/jacket_women4.jpg",
+        "alt": "Kurtka przejściowa dla kobiet"
+      },
+      "new_price": 150,
+      "old_price": 300,
+      "description": "Lekka kurtka przejściowa, idealna na wiosnę i jesień.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "green",
+          "darkcyan",
+          "salmon"
+        ],
+        "material": "bawełna z domieszką poliestru",
+        "stock": 45
+      }
+    },
+    {
+      "id": "23",
+      "category": "kurtka",
+      "gender": "women",
+      "name": "Kurtka zimowa z futrem",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/jacket_women5.jpg",
+        "alt": "Kurtka zimowa z futrem dla kobiet"
+      },
+      "new_price": 400,
+      "old_price": 800,
+      "description": "Elegancka i ciepła kurtka zimowa z odpinanym futrem przy kapturze.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L"
+        ],
+        "color": [
+          "black",
+          "salmon",
+          "darkgreen"
+        ],
+        "material": "poliester z dodatkiem puchu",
+        "stock": 30
+      }
+    },
+    {
+      "id": "24",
+      "category": "kurtka",
+      "gender": "women",
+      "name": "Kurtka przeciwdeszczowa damska",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/jacket_women6.jpg",
+        "alt": "Kurtka przeciwdeszczowa dla kobiet"
+      },
+      "new_price": 120,
+      "old_price": 240,
+      "description": "Lekka kurtka przeciwdeszczowa z regulowanym kapturem, idealna na deszczowe dni.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "yellow",
+          "blue",
+          "red",
+          "grey",
+          "lime"
+        ],
+        "material": "poliester wodoodporny",
+        "stock": 70
+      }
+    },
+    {
+      "id": "25",
+      "category": "kurtka",
+      "gender": "women",
+      "name": "Kurtka pikowana damska",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/jacket_women7.jpg",
+        "alt": "Kurtka pikowana dla kobiet"
+      },
+      "new_price": 200,
+      "old_price": 400,
+      "description": "Stylowa kurtka pikowana, odpowiednia na chłodne poranki i wieczory.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "darkgreen",
+          "gray",
+          "pink",
+          "black",
+          "blue"
+        ],
+        "material": "poliester",
+        "stock": 55
+      }
+    },
+    {
+      "id": "26",
+      "category": "spodnie",
+      "gender": "men",
+      "name": "Legginsy sportowe kompresyjne",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/pants_men1.jpg",
+        "alt": "Sportowe legginsy kompresyjne dla mężczyzn"
+      },
+      "new_price": 120,
+      "old_price": 200,
+      "description": "Zaawansowane legginsy kompresyjne wspomagające regenerację mięśni, idealne na siłownię i treningi biegowe.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "XXL"
+        ],
+        "color": [
+          "black",
+          "lime",
+          "red",
+          "yellow"
+        ],
+        "material": "poliester z elastanem",
+        "stock": 50
+      }
+    },
+    {
+      "id": "27",
+      "category": "spodnie",
+      "gender": "men",
+      "name": "Strój do surfowania",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/pants_men2.jpg",
+        "alt": "Strój do surfowania dla mężczyzn"
+      },
+      "new_price": 150,
+      "old_price": 300,
+      "description": "Idealny strój męski do surfowania, idealny do wody",
+      "attributes": {
+        "sizes": [
+          "M",
+          "L",
+          "XL",
+          "XXL"
+        ],
+        "color": [
+          "navy",
+          "darkcyan",
+          "yellow",
+          "black"
+        ],
+        "material": "Poliester wodoodporny",
+        "stock": 35
+      }
+    },
+    {
+      "id": "28",
+      "category": "spodnie",
+      "gender": "men",
+      "name": "Spodnie do biegania",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/pants_men3.jpg",
+        "alt": "Spodnie do biegania dla mężczyzn"
+      },
+      "new_price": 110,
+      "old_price": 220,
+      "description": "Elastyczne i lekkie spodnie, zaprojektowane z myślą o biegaczach, zapewniają swobodę ruchów i komfort.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "grey",
+          "lime",
+          "turquoise",
+          "black"
+        ],
+        "material": "poliester z dodatkiem elastanu",
+        "stock": 60
+      }
+    },
+    {
+      "id": "29",
+      "category": "spodnie",
+      "gender": "men",
+      "name": "Spodnie sportowe z kieszeniami",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/pants_men4.jpg",
+        "alt": "Spodnie sportowe z kieszeniami dla mężczyzn"
+      },
+      "new_price": 140,
+      "old_price": 280,
+      "description": "Funkcjonalne spodnie z kieszeniami na drobiazgi, idealne do treningów na świeżym powietrzu.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "XXL"
+        ],
+        "color": [
+          "purple",
+          "blue",
+          "darkgreen",
+          "grey",
+          "navy"
+        ],
+        "material": "poliester",
+        "stock": 40
+      }
+    },
+    {
+      "id": "30",
+      "category": "spodnie",
+      "gender": "men",
+      "name": "Spodnie do boksu",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/pants_men5.jpg",
+        "alt": "Legginsy do boksu dla mężczyzn"
+      },
+      "new_price": 130,
+      "old_price": 260,
+      "description": "Stylowe spodnie do boksu, idealne do aktywności na siłowni lub na ringu.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "red",
+          "black",
+          "yellow",
+          "blue",
+          "grey"
+        ],
+        "material": "poliester",
+        "stock": 55
+      }
+    },
+    {
+      "id": "31",
+      "category": "spodnie",
+      "gender": "men",
+      "name": "Spodnie do pływania",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/pants_men6.jpg",
+        "alt": "Spodnie do pływania dla mężczyzn"
+      },
+      "new_price": 130,
+      "old_price": 260,
+      "description": "Funkcjonalne i wygodne spodnie do pływania dla mężczyzn, zaprojektowane z myślą o komforcie i wydajności w wodzie.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "red",
+          "black",
+          "white",
+          "purple",
+          "grey"
+        ],
+        "material": "poliester",
+        "stock": 55
+      }
+    },
+    {
+      "id": "32",
+      "category": "spodnie",
+      "gender": "women",
+      "name": "Spodnie sportowe z wysokim stanem",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/pants_women1.jpg",
+        "alt": "Spodnie sportowe z wysokim stanem dla kobiet"
+      },
+      "new_price": 110,
+      "old_price": 220,
+      "description": "Stylowe i wygodne spodnie sportowe z wysokim stanem, doskonałe do treningów fitness i jogi. Wykonane z elastycznego materiału, zapewniają swobodę ruchów i idealne dopasowanie.",
+      "attributes": {
+        "sizes": [
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "lime",
+          "pink",
+          "darkcyan",
+          "coral"
+        ],
+        "material": "elastan z dodatkiem bawełny",
+        "stock": 50
+      }
+    },
+    {
+      "id": "33",
+      "category": "spodnie",
+      "gender": "women",
+      "name": "Spodnie treningowe z kieszeniami",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/pants_women2.jpg",
+        "alt": "Spodnie treningowe z kieszeniami dla kobiet"
+      },
+      "new_price": 130,
+      "old_price": 260,
+      "description": "Funkcjonalne spodnie treningowe z kieszeniami, idealne do biegania i aktywności na świeżym powietrzu. Materiał oddychający i szybkoschnący.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "grey",
+          "blue",
+          "purple"
+        ],
+        "material": "poliester z elastanem",
+        "stock": 45
+      }
+    },
+    {
+      "id": "34",
+      "category": "spodnie",
+      "gender": "women",
+      "name": "Spodnie sportowe termiczne",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/pants_women3.jpg",
+        "alt": "Spodnie sportowe termiczne dla kobiet"
+      },
+      "new_price": 150,
+      "old_price": 300,
+      "description": "Ciepłe i wygodne spodnie termiczne, idealne na treningi w chłodniejsze dni. Wykonane z materiału utrzymującego ciepło i odprowadzającego wilgoć.",
+      "attributes": {
+        "sizes": [
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "darkgreen",
+          "navy",
+          "red",
+          "grey",
+          "black"
+        ],
+        "material": "mieszanka poliestru i wełny",
+        "stock": 40
+      }
+    },
+    {
+      "id": "35",
+      "category": "spodnie",
+      "gender": "women",
+      "name": "Spodnie sportowe wielokolorowe",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/pants_women4.jpg",
+        "alt": "Spodnie sportowe wielokolorowe dla kobiet"
+      },
+      "new_price": 120,
+      "old_price": 240,
+      "description": "Wyraziste spodnie sportowe w wielokolorowym wzorze, które dodadzą energii każdemu treningowi. Materiał elastyczny i oddychający.",
+      "attributes": {
+        "sizes": [
+          "XS",
+          "S",
+          "M",
+          "L"
+        ],
+        "color": [
+          "yellow",
+          "turquoise",
+          "pink"
+        ],
+        "material": "poliester z elastanem",
+        "stock": 60
+      }
+    },
+    {
+      "id": "36",
+      "category": "spodnie",
+      "gender": "women",
+      "name": "Spodnie dresowe slim fit",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/pants_women5.jpg",
+        "alt": "Spodnie dresowe slim fit dla kobiet"
+      },
+      "new_price": 140,
+      "old_price": 280,
+      "description": "Nowoczesne spodnie dresowe o kroju slim fit, idealne do codziennych aktywności i lekkich treningów. Wyposażone w elastyczny pas i zwężane nogawki.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "white",
+          "darkcyan",
+          "black"
+        ],
+        "material": "bawełna z dodatkiem elastanu",
+        "stock": 55
+      }
+    },
+    {
+      "id": "37",
+      "category": "spodnie",
+      "gender": "women",
+      "name": "Spodnie sportowe na jogę",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/pants_women6.jpg",
+        "alt": "Spodnie sportowe na jogę dla kobiet"
+      },
+      "new_price": 100,
+      "old_price": 200,
+      "description": "Miękkie i elastyczne spodnie stworzone z myślą o jodze i pilatesie. Doskonale dopasowują się do sylwetki i zapewniają pełną swobodę ruchów.",
+      "attributes": {
+        "sizes": [
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "lime",
+          "purple",
+          "navy"
+        ],
+        "material": "bawełna z elastanem",
+        "stock": 70
+      }
+    }      
   ]
 }

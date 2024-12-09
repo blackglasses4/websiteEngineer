@@ -277,7 +277,7 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                         <fieldset id="input-size">
                             <legend>Kolory:</legend>
                             {['white', 'black', 'lime', 'grey', 'red', 'green', 'blue', 'pink',
-                            'navy', 'purple', 'yellow', 'turquoise', 'darkgreen', 'darkcyan'].map((color) => (
+                            'navy', 'purple', 'yellow', 'turquoise', 'darkgreen', 'darkcyan', "coral"].map((color) => (
                                 <label key={color}>
                                     {color}
                                     <input
