@@ -59,7 +59,7 @@
     display: flex;
     position: relative;
     align-items: center;
-    justify-content: flex-end;  // Ustawiamy, by zawartość była wypozycjonowana po prawej stronie
+    justify-content: flex-end;
     padding: 3em;
     height: 81dvh;
     background: url('../../../public/images/offer_baner.jpg') no-repeat center center;
@@ -67,8 +67,8 @@
     animation: fade-up 0.5s;
 
     &-content {
-        text-align: right;  // Ustawiamy wyrównanie tekstu do prawej strony
-        width: 40%;  // Możesz dostosować szerokość, aby lepiej pasowało do zawartości
+        text-align: right;
+        width: 40%;
 
         p, h2 {
             padding: 0.5em;
@@ -83,14 +83,14 @@
             margin-top: 1em;
         }
 
-        button {
+        .button {
             background-color: rgba(255, 255, 255, 0.2);
             color: $black;
             border: 2px solid rgba(255, 255, 255, 0.6);
             padding: 0.4em 1em;
             border-radius: 10px;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 2em;
             position: relative;
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
             backdrop-filter: blur(10px);
@@ -109,7 +109,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    padding: 2rem;
+    padding: 3em;
 
     @media (max-width: 1200px) {
         grid-template-columns: repeat(2, 1fr);
@@ -117,25 +117,26 @@
 
     @media (max-width: 768px) {
         grid-template-columns: 1fr;
+        padding: 1rem;
     }
 
     &-card {
         position: relative;
         overflow: hidden;
-        border-radius: 4px;
-        background-color: rgba(0, 0, 0, 0.3); // Tło z ciemnym odcieniem
+        border-radius: 8px;
+        background-color: rgba(0, 0, 0, 0.3);
+        box-shadow: 0 6px 13px rgba(0, 0, 0, 0.4);
 
-        // Ustawienie zdjęcia tła dla każdego div'a
         &:nth-child(1) .category-image {
             background-image: url('../../../public/images/category_jacket.jpg');
         }
 
         &:nth-child(2) .category-image {
-            background-image: url('../../../public/images/category_pants.jpg');
+            background-image: url('../../../public/images/category_pants2.jpg');
         }
 
         &:nth-child(3) .category-image {
-            background-image: url('../../../public/images/category_shirt.jpeg');
+            background-image: url('../../../public/images/category_shirt2.jpg');
         }
 
         &:nth-child(4) .category-image {
@@ -143,68 +144,68 @@
         }
 
         .category-image {
-            height: 200px;
+            height: 400px;
             background-size: cover;
             background-position: center;
         }
 
         .category-content {
-            padding: 1rem;
+            padding: 2rem;
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.7); // Przezroczyste tło
-            color: $black;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
             text-align: center;
             transition: background-color 0.3s ease;
 
-            h3 {
-                margin-bottom: 1rem;
-                font-size: 1.5rem;
-                color: #333;
+            h2 {
+                color: $black;
                 @include selection-whitedark;
-            }
-
-            p {
-                font-size: 1rem;
-                color: #666;
-                margin-bottom: 1.5rem;
-                @include selection-whitedark;
-            }
-
-            .btn {
-                padding: 0.6em 1.2em;
-                background-color: rgba(255, 255, 255, 0.8);
-                color: #333;
-                border-radius: 25px;
-                text-decoration: none;
-                transition: background-color 0.3s ease;
-
-                &:hover {
-                    background-color: #ff5733;
-                    color: #fff;
-                }
             }
         }
 
         &:hover .category-content {
-            background-color: rgba(255, 255, 255, 0.9); // Zmiana koloru tła przy hover
+            background-color: rgba(255, 255, 255, 0.6);
         }
     }
 }
 
 @media only screen and (max-width: #{map-get($breakpoints, 'desktop-wide')}) {
-    .section__welcome {
+    .section__welcome, .section__offer {
+        &-card {
+            .category-image {
+                height: 100px;
+                background-size: cover;
+                background-position: center;
+            }
+        }
+        
         &-content {
             text-align: left;
             width: 50%;
         }
-    }    
-}
+    }
 
+    .section__offer {
+        &-content {
+            text-align: right;
+        }
+    }
+
+    .section__category {    
+        &-card {
+            .category-image {
+                height: 500px;
+                background-size: cover;
+                background-position: center;
+            }
+        }
+    }
+}
 @media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
-    .section__welcome {
+    .section__welcome, .section__offer {
         height: 73svh;
         padding: 1em;
 
@@ -220,18 +221,34 @@
                 font-size: 1.3em;
             }
         }
-    }    
+    }
+    
+    .section__offer {
+        &-content {
+            text-align: right;
+        }
+    }
 }
 
 @media only screen and (max-width: #{map-get($breakpoints, 'phone-wide')}) {
     .section__welcome {
         height: 86svh;
-        display: flex;
         padding: 1em;
 
         &-content {
             text-align: left;
             width: 90%;
         }
-    }    
+    }
+    
+    .section__offer {
+        justify-content: flex-start;
+        height: 86svh;
+        padding: 1em;
+
+        &-content {
+            text-align: left;
+            width: 90%;
+        }
+    } 
 }

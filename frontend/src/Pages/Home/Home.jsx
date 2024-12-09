@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PopularProduct from '../../Components/PopularProduct/PopularProduct';
 import CookieBanner from '../../Components/CookieBanner/CookieBanner';
 import './Home.scss';
@@ -22,46 +23,38 @@ const Home = () => {
           <div className="section__offer-content">
               <h2>Nie daj się ograniczeniom</h2>
               <p>W naszych koszulkach sportowych i kurtkach poczujesz się komfortowo i gotowy na każdy trening – bez względu na warunki. Wybierz odzież, która wspiera Twoją aktywność przez cały rok.</p>
-              <button>Zobacz produkty</button>
+              <Link to="/kurtka" className="button">Zobacz produkty</Link>
           </div>
         </section>
 
         <section className="section__category">
-          <div className="section__category-card">
-            <div className="category-image"></div>
-            <div className="category-content">
-              <h3>Kategoria 1</h3>
-              <p>Opis kategorii 1</p>
-              <a href="/kategoria-1" className="btn">Zobacz więcej</a>
-            </div>
-          </div>
+          <Link to="/kurtka" className="section__category-card">
+              <div className="category-image"></div>
+              <div className="category-content">
+                  <h2>Kurtki</h2>
+              </div>
+          </Link>
 
-          <div className="section__category-card">
-            <div className="category-image"></div>
-            <div className="category-content">
-              <h3>Kategoria 2</h3>
-              <p>Opis kategorii 2</p>
-              <a href="/kategoria-2" className="btn">Zobacz więcej</a>
-            </div>
-          </div>
+          <Link to="/bielizna" className="section__category-card">
+              <div className="category-image"></div>
+              <div className="category-content">
+                  <h2>Bielizna</h2>
+              </div>
+          </Link>
 
-          <div className="section__category-card">
-            <div className="category-image"></div>
-            <div className="category-content">
-              <h3>Kategoria 3</h3>
-              <p>Opis kategorii 3</p>
-              <a href="/kategoria-3" className="btn">Zobacz więcej</a>
-            </div>
-          </div>
+          <Link to="/koszulka" className="section__category-card">
+              <div className="category-image"></div>
+              <div className="category-content">
+                  <h2>Koszulki</h2>
+              </div>
+          </Link>
 
-          <div className="section__category-card">
-            <div className="category-image"></div>
-            <div className="category-content">
-              <h3>Kategoria 4</h3>
-              <p>Opis kategorii 4</p>
-              <a href="/kategoria-4" className="btn">Zobacz więcej</a>
-            </div>
-          </div>
+          <Link to="/czapka" className="section__category-card">
+              <div className="category-image"></div>
+              <div className="category-content">
+                  <h2>Czapki</h2>
+              </div>
+          </Link>
         </section>
     </div>
   );
