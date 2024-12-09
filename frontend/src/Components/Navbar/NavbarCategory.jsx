@@ -8,8 +8,8 @@ const NavbarCategory = () => {
           <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
           <Link to="/kurtka" className='a-name' rel='internal'>Kurtki</Link>
           <Link to="/spodnie" className='a-name' rel='internal'>Spodnie</Link>
-          <Link to="/kurtka" className='a-name' rel='internal'>Kurtki</Link>
-          <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
+          <Link to="/czapka" className='a-name' rel='internal'>Czapki</Link>
+          <Link to="/bielizna" className='a-name' rel='internal'>Bielizna</Link>
           <Link to="/equipment" className='a-name' rel='internal'>Sprzęty</Link>
         </nav>
     );

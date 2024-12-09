@@ -228,15 +228,15 @@
       "id": "8",
       "category": "koszulka",
       "gender": "women",
-      "name": "Koszulka sportowa z długim rękawem",
+      "name": "Strój do sztuk walki",
       "popular": true,
       "image": {
         "url": "http://localhost:3001/shirt_women8.jpg",
-        "alt": "Koszulka sportowa z krótkim rękawem dla kobiet"
+        "alt": "Strój do sztuk walki dla kobiet"
       },
       "new_price": 42,
       "old_price": 85,
-      "description": "Wygodna koszulka sportowa z krótkim rękawem, odpowiednia do aktywności fizycznej w cieplejsze dni.",
+      "description": "Wygodny strój z długim rękawem, odpowiednia do aktywności fizycznej do sportów sztuk walki.",
       "attributes": {
         "sizes": [
           "S",
@@ -399,6 +399,34 @@
     },
     {
       "id": "14",
+      "category": "koszulka",
+      "gender": "men",
+      "name": "Strój do sztuk walki",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/shirt_men6.jpg",
+        "alt": "Strój do sztuk walki dla mężczyzn"
+      },
+      "new_price": 150,
+      "old_price": 300,
+      "description": "Wygodny strój z długim rękawem, odpowiednia do aktywności fizycznej do sportów sztuk walki.",
+      "attributes": {
+        "sizes": [
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "grey",
+          "blue"
+        ],
+        "material": "spandex",
+        "stock": 80
+      }
+    },
+    {
+      "id": "15",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka treningowa",
@@ -426,7 +454,7 @@
       }
     },
     {
-      "id": "15",
+      "id": "16",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka",
@@ -454,7 +482,7 @@
       }
     },
     {
-      "id": "16",
+      "id": "17",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka sportowa z kapturem",
@@ -483,7 +511,7 @@
       }
     },
     {
-      "id": "17",
+      "id": "18",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka polarowa",
@@ -511,7 +539,7 @@
       }
     },
     {
-      "id": "18",
+      "id": "19",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka puchowa sportowa",
@@ -539,7 +567,7 @@
       }
     },
     {
-      "id": "19",
+      "id": "20",
       "category": "kurtka",
       "gender": "women",
       "name": "Kurtka puchowa z kapturem",
@@ -568,7 +596,7 @@
       }
     },
     {
-      "id": "20",
+      "id": "21",
       "category": "kurtka",
       "gender": "women",
       "name": "Kurtka narciarska damska",
@@ -597,7 +625,7 @@
       }
     },
     {
-      "id": "21",
+      "id": "22",
       "category": "kurtka",
       "gender": "women",
       "name": "Kurtka softshell damska",
@@ -626,7 +654,7 @@
       }
     },
     {
-      "id": "22",
+      "id": "23",
       "category": "kurtka",
       "gender": "women",
       "name": "Kurtka przejściowa damska",
@@ -655,7 +683,7 @@
       }
     },
     {
-      "id": "23",
+      "id": "24",
       "category": "kurtka",
       "gender": "women",
       "name": "Kurtka zimowa z futrem",
@@ -683,7 +711,7 @@
       }
     },
     {
-      "id": "24",
+      "id": "25",
       "category": "kurtka",
       "gender": "women",
       "name": "Kurtka przeciwdeszczowa damska",
@@ -714,7 +742,7 @@
       }
     },
     {
-      "id": "25",
+      "id": "26",
       "category": "kurtka",
       "gender": "women",
       "name": "Kurtka pikowana damska",
@@ -745,7 +773,7 @@
       }
     },
     {
-      "id": "26",
+      "id": "27",
       "category": "spodnie",
       "gender": "men",
       "name": "Legginsy sportowe kompresyjne",
@@ -776,7 +804,7 @@
       }
     },
     {
-      "id": "27",
+      "id": "28",
       "category": "spodnie",
       "gender": "men",
       "name": "Strój do surfowania",
@@ -806,7 +834,7 @@
       }
     },
     {
-      "id": "28",
+      "id": "29",
       "category": "spodnie",
       "gender": "men",
       "name": "Spodnie do biegania",
@@ -836,7 +864,7 @@
       }
     },
     {
-      "id": "29",
+      "id": "30",
       "category": "spodnie",
       "gender": "men",
       "name": "Spodnie sportowe z kieszeniami",
@@ -868,7 +896,7 @@
       }
     },
     {
-      "id": "30",
+      "id": "31",
       "category": "spodnie",
       "gender": "men",
       "name": "Spodnie do boksu",
@@ -899,7 +927,7 @@
       }
     },
     {
-      "id": "31",
+      "id": "32",
       "category": "spodnie",
       "gender": "men",
       "name": "Spodnie do pływania",
@@ -930,7 +958,7 @@
       }
     },
     {
-      "id": "32",
+      "id": "33",
       "category": "spodnie",
       "gender": "women",
       "name": "Spodnie sportowe z wysokim stanem",
@@ -962,7 +990,7 @@
       }
     },
     {
-      "id": "33",
+      "id": "34",
       "category": "spodnie",
       "gender": "women",
       "name": "Spodnie treningowe z kieszeniami",
@@ -991,7 +1019,7 @@
       }
     },
     {
-      "id": "34",
+      "id": "35",
       "category": "spodnie",
       "gender": "women",
       "name": "Spodnie sportowe termiczne",
@@ -1021,7 +1049,7 @@
       }
     },
     {
-      "id": "35",
+      "id": "36",
       "category": "spodnie",
       "gender": "women",
       "name": "Spodnie sportowe wielokolorowe",
@@ -1050,7 +1078,7 @@
       }
     },
     {
-      "id": "36",
+      "id": "37",
       "category": "spodnie",
       "gender": "women",
       "name": "Spodnie dresowe slim fit",
@@ -1079,7 +1107,7 @@
       }
     },
     {
-      "id": "37",
+      "id": "38",
       "category": "spodnie",
       "gender": "women",
       "name": "Spodnie sportowe na jogę",
@@ -1107,6 +1135,503 @@
         "material": "bawełna z elastanem",
         "stock": 70
       }
-    }      
+    },
+    {
+      "id": "39",
+      "category": "czapka",
+      "gender": "women",
+      "name": "Czapka sportowa na zimę",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/hat_women1.jpg",
+        "alt": "Czapka sportowa na zimę dla kobiet"
+      },
+      "new_price": 50,
+      "old_price": 100,
+      "description": "Ciepła i wygodna czapka sportowa, idealna na treningi w zimowych warunkach. Wykonana z materiałów zapewniających izolację i komfort.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L"
+        ],
+        "color": [
+          "black",
+          "white",
+          "navy",
+          "grey"
+        ],
+        "material": "polar z dodatkiem elastanu",
+        "stock": 50
+      }
+    },
+    {
+      "id": "40",
+      "category": "czapka",
+      "gender": "women",
+      "name": "Czapka sportowa do biegania",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/hat_women2.jpg",
+        "alt": "Czapka sportowa do biegania dla kobiet"
+      },
+      "new_price": 45,
+      "old_price": 90,
+      "description": "Lekka i oddychająca czapka sportowa, doskonała na biegi i treningi w chłodne dni. Zapewnia wygodę i swobodę ruchów.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L"
+        ],
+        "color": [
+          "grey",
+          "red",
+          "darkgreen",
+          "pink",
+          "white"
+        ],
+        "material": "mikropolar",
+        "stock": 40
+      }
+    },
+    {
+      "id": "41",
+      "category": "czapka",
+      "gender": "women",
+      "name": "Czapka sportowa z daszkiem",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/hat_women3.jpg",
+        "alt": "Czapka sportowa z daszkiem dla kobiet"
+      },
+      "new_price": 40,
+      "old_price": 80,
+      "description": "Sportowa czapka z daszkiem, idealna na treningi w słoneczne dni. Chroni oczy przed słońcem, a materiał zapewnia dobrą wentylację.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L"
+        ],
+        "color": [
+          "white",
+          "blue",
+          "lime",
+          "grey",
+          "turquoise"
+        ],
+        "material": "poliester",
+        "stock": 60
+      }
+    },
+    {
+      "id": "42",
+      "category": "czapka",
+      "gender": "women",
+      "name": "Czapka treningowa termiczna",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/hat_women4.jpg",
+        "alt": "Czapka treningowa termiczna dla kobiet"
+      },
+      "new_price": 60,
+      "old_price": 120,
+      "description": "Cienka, termiczna czapka treningowa. Odpowiednia na intensywne ćwiczenia na świeżym powietrzu w chłodniejsze dni.",
+      "attributes": {
+        "sizes": [
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "turquoise",
+          "purple",
+          "yellow",
+          "grey"
+        ],
+        "material": "poliester z membraną",
+        "stock": 30
+      }
+    },
+    {
+      "id": "43",
+      "category": "czapka",
+      "gender": "women",
+      "name": "Opaska sportowa",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/hat_women5.jpg",
+        "alt": "Opaska sportowa dla kobiet"
+      },
+      "new_price": 55,
+      "old_price": 110,
+      "description": "Uniwersalna opaska sportowa, nadająca się do różnych aktywności, takich jak bieganie, fitness czy trekking. Lekka i funkcjonalna.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L"
+        ],
+        "color": [
+          "pink",
+          "navy",
+          "black",
+          "white"
+        ],
+        "material": "bawełna z dodatkiem elastanu",
+        "stock": 50
+      }
+    },
+    {
+      "id": "44",
+      "category": "czapka",
+      "gender": "men",
+      "name": "Czapka sportowa zimowa",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/hat_men1.jpg",
+        "alt": "Czapka sportowa zimowa dla mężczyzn"
+      },
+      "new_price": 60,
+      "old_price": 120,
+      "description": "Ciepła czapka sportowa idealna na treningi w zimowe dni. Zapewnia komfort i ochronę przed zimnem.",
+      "attributes": {
+        "sizes": [
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "grey",
+          "darkcyan",
+          "salmon"
+        ],
+        "material": "polar z elastanem",
+        "stock": 45
+      }
+    },
+    {
+      "id": "45",
+      "category": "czapka",
+      "gender": "men",
+      "name": "Czapka sportowa termiczna",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/hat_men2.jpg",
+        "alt": "Czapka sportowa termiczna dla mężczyzn"
+      },
+      "new_price": 50,
+      "old_price": 100,
+      "description": "Czapka termiczna zaprojektowana z myślą o treningach w chłodne dni. Lekka i oddychająca, zapewnia ciepło i odprowadzenie wilgoci.",
+      "attributes": {
+        "sizes": [
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "navy",
+          "grey"
+        ],
+        "material": "poliester z membraną",
+        "stock": 30
+      }
+    },
+    {
+      "id": "46",
+      "category": "czapka",
+      "gender": "men",
+      "name": "Czapka sportowa z daszkiem",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/hat_men3.jpg",
+        "alt": "Czapka sportowa z daszkiem dla mężczyzn"
+      },
+      "new_price": 40,
+      "old_price": 80,
+      "description": "Sportowa czapka z daszkiem idealna na treningi na świeżym powietrzu. Chroni oczy przed słońcem i zapewnia wentylację.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L"
+        ],
+        "color": [
+          "white",
+          "red",
+          "lime",
+          "turquoise",
+          "darkcyan"
+        ],
+        "material": "bawełna",
+        "stock": 60
+      }
+    },
+    {
+      "id": "47",
+      "category": "czapka",
+      "gender": "men",
+      "name": "Czapka sportowa lekka",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/hat_men4.jpg",
+        "alt": "Czapka sportowa lekka dla mężczyzn"
+      },
+      "new_price": 35,
+      "old_price": 70,
+      "description": "Lekka czapka sportowa wykonana z przewiewnych materiałów. Idealna na cieplejsze dni i treningi w słońcu.",
+      "attributes": {
+        "sizes": [
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "yellow",
+          "purple",
+          "black"
+        ],
+        "material": "poliester",
+        "stock": 50
+      }
+    },
+    {
+      "id": "48",
+      "category": "czapka",
+      "gender": "men",
+      "name": "Opaska sportowa",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/hat_men5.jpg",
+        "alt": "Opaska sportowa dla mężczyzn"
+      },
+      "new_price": 30,
+      "old_price": 60,
+      "description": "Elastyczna opaska sportowa idealna na treningi biegowe i fitness. Zapewnia wygodę i dobrze odprowadza pot.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L"
+        ],
+        "color": [
+          "grey",
+          "navy",
+          "turquoise",
+          "black"
+        ],
+        "material": "bawełna z dodatkiem elastanu",
+        "stock": 70
+      }
+    },
+    {
+      "id": "49",
+      "category": "bielizna",
+      "gender": "women",
+      "name": "Biustonosz sportowy",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/sports_bra1.jpg",
+        "alt": "Biustonosz sportowy dla kobiet"
+      },
+      "new_price": 75,
+      "old_price": 150,
+      "description": "Biustonosz sportowy zapewniający wsparcie podczas intensywnych treningów. Wykonany z materiału oddychającego i elastycznego, idealny do biegania, fitnessu czy jogi.",
+      "attributes": {
+        "sizes": [
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "white",
+          "pink",
+          "blue"
+        ],
+        "material": "elastan, bawełna",
+        "stock": 100
+      }
+    },
+    {
+      "id": "50",
+      "category": "bielizna",
+      "gender": "women",
+      "name": "Bokserki sportowe",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/sports_briefs1.jpg",
+        "alt": "Bokserki sportowe dla kobiet"
+      },
+      "new_price": 45,
+      "old_price": 90,
+      "description": "Sportowe bokserki wykonane z oddychającego materiału, zapewniające komfort i pełną swobodę ruchów podczas ćwiczeń.",
+      "attributes": {
+        "sizes": [
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "white",
+          "turquoise",
+          "pink"
+        ],
+        "material": "bawełna, elastan",
+        "stock": 120
+      }
+    },
+    {
+      "id": "51",
+      "category": "bielizna",
+      "gender": "women",
+      "name": "Biustonosz sportowy z wkładkami",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/sports_bra2.jpg",
+        "alt": "Biustonosz sportowy z wkładkami dla kobiet"
+      },
+      "new_price": 95,
+      "old_price": 190,
+      "description": "Biustonosz sportowy z wkładkami, zapewniający pełne wsparcie i komfort. Doskonały do intensywnych treningów i aktywności sportowych.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "navy",
+          "red"
+        ],
+        "material": "poliester, elastan",
+        "stock": 90
+      }
+    },
+    {
+      "id": "52",
+      "category": "bielizna",
+      "gender": "women",
+      "name": "Biustonosz z jednym ramiączkiem",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/sports_bra3.jpg",
+        "alt": "Biustonosz z jednym ramiączkiem dla kobiet"
+      },
+      "new_price": 80,
+      "old_price": 160,
+      "description": "Biustonosz z jednym ramiączkiem, doskonały do intensywnych ćwiczeń w cieplejsze dni. Zapewnia odpowiednią wentylację.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "pink",
+          "grey"
+        ],
+        "material": "poliester, elastan",
+        "stock": 100
+      }
+    },
+    {
+      "id": "53",
+      "category": "bielizna",
+      "gender": "women",
+      "name": "Biustonosz ze wzorkami",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/sports_bra4.jpg",
+        "alt": "Biustonosz ze wzorkami dla kobiet"
+      },
+      "new_price": 80,
+      "old_price": 160,
+      "description": "Biustonosz sportowy ze wzorkami, zapewniający pełne wsparcie i komfort. Doskonały do intensywnych treningów i aktywności sportowych.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "pink",
+          "grey"
+        ],
+        "material": "poliester, elastan",
+        "stock": 100
+      }
+    },
+    {
+      "id": "54",
+      "category": "bielizna",
+      "gender": "women",
+      "name": "Bokserki sportowe",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/sports_briefs2.jpg",
+        "alt": "Bokserki sportowe dla kobiet"
+      },
+      "new_price": 80,
+      "old_price": 160,
+      "description": "Sportowe bokserki dla kobiet, przypominające krótkie spodenki, idealne do ćwiczeń.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "pink",
+          "grey"
+        ],
+        "material": "poliester, elastan",
+        "stock": 100
+      }
+    },
+    {
+      "id": "55",
+      "category": "bielizna",
+      "gender": "women",
+      "name": "Spódniczka sportowa",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/skirt_women1.jpg",
+        "alt": "Spódniczka sportowa dla kobiet"
+      },
+      "new_price": 80,
+      "old_price": 160,
+      "description": "Spódniczka sportowa dla kobiet, przypominające krótkie spodenki, idealne do ćwiczeń.",
+      "attributes": {
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "pink",
+          "grey"
+        ],
+        "material": "poliester, elastan",
+        "stock": 100
+      }
+    }   
   ]
 }

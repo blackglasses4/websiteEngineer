@@ -33,8 +33,8 @@ const Footer = () => {
                     <Link to="/koszulka" className='f-link' rel='internal'>Koszulki</Link>
                     <Link to="/kurtka" className='f-link' rel='internal'>Kurtki</Link>
                     <Link to="/spodnie" className='f-link' rel='internal'>Spodnie</Link>
-                    <Link to="/kurtka" className='f-link' rel='internal'>Kurtki</Link>
-                    <Link to="/koszulka" className='f-link' rel='internal'>Koszulki</Link>
+                    <Link to="/czapka" className='f-link' rel='internal'>Czapki</Link>
+                    <Link to="/bielizna" className='f-link' rel='internal'>Bielizna</Link>
                     <Link to="/equipment" className='f-link' rel='internal'>Sprzęty</Link>
                 </div>
             </div>
