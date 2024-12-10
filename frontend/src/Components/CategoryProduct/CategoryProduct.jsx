@@ -77,7 +77,7 @@ const CategoryProducts = () => {
         {category === "kurtka" && <h1>Kurtki</h1>}
         {category === "spodnie" && <h1>Spodnie</h1>}
         {category === "czapka" && <h1>Czapki</h1>}
-        {category === "bielizna" && <h1>Bielizna</h1>}
+        {category === "stroje" && <h1>Stroje</h1>}
         {/* {category === "kurtka" && <h1>Kurtka</h1>}
         {category === "equipment" && <h1>Sprzęt</h1>}  */}
 
@@ -92,7 +92,7 @@ const CategoryProducts = () => {
       {category === "kurtka" && <h1>Kurtki</h1>}
       {category === "spodnie" && <h1>Spodnie</h1>}
       {category === "czapka" && <h1>Czapki</h1>}
-      {category === "bielizna" && <h1>Bielizna</h1>}
+      {category === "stroje" && <h1>Stroje</h1>}
       {/* {category === "equipment" && <h1>Sprzęt</h1>}
       {category === "koszulka" && <h1>Koszulka</h1>}
       {category === "kurtka" && <h1>Kurtka</h1>}

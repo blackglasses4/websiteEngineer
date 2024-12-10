@@ -227,35 +227,6 @@
     {
       "id": "8",
       "category": "koszulka",
-      "gender": "women",
-      "name": "Strój do sztuk walki",
-      "popular": true,
-      "image": {
-        "url": "http://localhost:3001/shirt_women8.jpg",
-        "alt": "Strój do sztuk walki dla kobiet"
-      },
-      "new_price": 42,
-      "old_price": 85,
-      "description": "Wygodny strój z długim rękawem, odpowiednia do aktywności fizycznej do sportów sztuk walki.",
-      "attributes": {
-        "sizes": [
-          "S",
-          "M",
-          "L",
-          "XL"
-        ],
-        "color": [
-          "black",
-          "turquoise",
-          "red"
-        ],
-        "material": "bawełna",
-        "stock": 90
-      }
-    },
-    {
-      "id": "9",
-      "category": "koszulka",
       "gender": "men",
       "name": "Koszulka treningowa męska",
       "popular": true,
@@ -283,7 +254,7 @@
       }
     },
     {
-      "id": "10",
+      "id": "9",
       "category": "koszulka",
       "gender": "men",
       "name": "Koszulka casual z krótkim rękawem",
@@ -313,7 +284,7 @@
       }
     },
     {
-      "id": "11",
+      "id": "10",
       "category": "koszulka",
       "gender": "men",
       "name": "Koszulka termoaktywna męska",
@@ -342,7 +313,7 @@
       }
     },
     {
-      "id": "12",
+      "id": "11",
       "category": "koszulka",
       "gender": "men",
       "name": "Koszulka sportowa na ramiączkach",
@@ -370,7 +341,7 @@
       }
     },    
     {
-      "id": "13",
+      "id": "12",
       "category": "koszulka",
       "gender": "men",
       "name": "Koszula komercyjna",
@@ -398,35 +369,7 @@
       }
     },
     {
-      "id": "14",
-      "category": "koszulka",
-      "gender": "men",
-      "name": "Strój do sztuk walki",
-      "popular": true,
-      "image": {
-        "url": "http://localhost:3001/shirt_men6.jpg",
-        "alt": "Strój do sztuk walki dla mężczyzn"
-      },
-      "new_price": 150,
-      "old_price": 300,
-      "description": "Wygodny strój z długim rękawem, odpowiednia do aktywności fizycznej do sportów sztuk walki.",
-      "attributes": {
-        "sizes": [
-          "M",
-          "L",
-          "XL"
-        ],
-        "color": [
-          "black",
-          "grey",
-          "blue"
-        ],
-        "material": "spandex",
-        "stock": 80
-      }
-    },
-    {
-      "id": "15",
+      "id": "13",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka treningowa",
@@ -454,7 +397,7 @@
       }
     },
     {
-      "id": "16",
+      "id": "14",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka",
@@ -482,7 +425,7 @@
       }
     },
     {
-      "id": "17",
+      "id": "15",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka sportowa z kapturem",
@@ -511,7 +454,7 @@
       }
     },
     {
-      "id": "18",
+      "id": "16",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka polarowa",
@@ -539,7 +482,7 @@
       }
     },
     {
-      "id": "19",
+      "id": "17",
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka puchowa sportowa",
@@ -567,7 +510,7 @@
       }
     },
     {
-      "id": "20",
+      "id": "18",
       "category": "kurtka",
       "gender": "women",
       "name": "Kurtka puchowa z kapturem",
@@ -596,7 +539,7 @@
       }
     },
     {
-      "id": "21",
+      "id": "19",
       "category": "kurtka",
       "gender": "women",
       "name": "Kurtka narciarska damska",
@@ -625,7 +568,7 @@
       }
     },
     {
-      "id": "22",
+      "id": "20",
       "category": "kurtka",
       "gender": "women",
       "name": "Kurtka softshell damska",
@@ -654,7 +597,7 @@
       }
     },
     {
-      "id": "23",
+      "id": "21",
       "category": "kurtka",
       "gender": "women",
       "name": "Kurtka przejściowa damska",
@@ -683,7 +626,7 @@
       }
     },
     {
-      "id": "24",
+      "id": "22",
       "category": "kurtka",
       "gender": "women",
       "name": "Kurtka zimowa z futrem",
@@ -711,7 +654,7 @@
       }
     },
     {
-      "id": "25",
+      "id": "23",
       "category": "kurtka",
       "gender": "women",
       "name": "Kurtka przeciwdeszczowa damska",
@@ -742,7 +685,7 @@
       }
     },
     {
-      "id": "26",
+      "id": "24",
       "category": "kurtka",
       "gender": "women",
       "name": "Kurtka pikowana damska",
@@ -773,7 +716,7 @@
       }
     },
     {
-      "id": "27",
+      "id": "25",
       "category": "spodnie",
       "gender": "men",
       "name": "Legginsy sportowe kompresyjne",
@@ -804,7 +747,7 @@
       }
     },
     {
-      "id": "28",
+      "id": "26",
       "category": "spodnie",
       "gender": "men",
       "name": "Strój do surfowania",
@@ -834,7 +777,7 @@
       }
     },
     {
-      "id": "29",
+      "id": "27",
       "category": "spodnie",
       "gender": "men",
       "name": "Spodnie do biegania",
@@ -864,7 +807,7 @@
       }
     },
     {
-      "id": "30",
+      "id": "28",
       "category": "spodnie",
       "gender": "men",
       "name": "Spodnie sportowe z kieszeniami",
@@ -896,7 +839,7 @@
       }
     },
     {
-      "id": "31",
+      "id": "29",
       "category": "spodnie",
       "gender": "men",
       "name": "Spodnie do boksu",
@@ -927,7 +870,7 @@
       }
     },
     {
-      "id": "32",
+      "id": "30",
       "category": "spodnie",
       "gender": "men",
       "name": "Spodnie do pływania",
@@ -958,7 +901,7 @@
       }
     },
     {
-      "id": "33",
+      "id": "31",
       "category": "spodnie",
       "gender": "women",
       "name": "Spodnie sportowe z wysokim stanem",
@@ -990,7 +933,7 @@
       }
     },
     {
-      "id": "34",
+      "id": "32",
       "category": "spodnie",
       "gender": "women",
       "name": "Spodnie treningowe z kieszeniami",
@@ -1019,7 +962,7 @@
       }
     },
     {
-      "id": "35",
+      "id": "33",
       "category": "spodnie",
       "gender": "women",
       "name": "Spodnie sportowe termiczne",
@@ -1049,7 +992,7 @@
       }
     },
     {
-      "id": "36",
+      "id": "34",
       "category": "spodnie",
       "gender": "women",
       "name": "Spodnie sportowe wielokolorowe",
@@ -1078,7 +1021,7 @@
       }
     },
     {
-      "id": "37",
+      "id": "35",
       "category": "spodnie",
       "gender": "women",
       "name": "Spodnie dresowe slim fit",
@@ -1107,7 +1050,7 @@
       }
     },
     {
-      "id": "38",
+      "id": "36",
       "category": "spodnie",
       "gender": "women",
       "name": "Spodnie sportowe na jogę",
@@ -1137,7 +1080,7 @@
       }
     },
     {
-      "id": "39",
+      "id": "37",
       "category": "czapka",
       "gender": "women",
       "name": "Czapka sportowa na zimę",
@@ -1166,7 +1109,7 @@
       }
     },
     {
-      "id": "40",
+      "id": "38",
       "category": "czapka",
       "gender": "women",
       "name": "Czapka sportowa do biegania",
@@ -1196,7 +1139,7 @@
       }
     },
     {
-      "id": "41",
+      "id": "39",
       "category": "czapka",
       "gender": "women",
       "name": "Czapka sportowa z daszkiem",
@@ -1226,7 +1169,7 @@
       }
     },
     {
-      "id": "42",
+      "id": "40",
       "category": "czapka",
       "gender": "women",
       "name": "Czapka treningowa termiczna",
@@ -1255,7 +1198,7 @@
       }
     },
     {
-      "id": "43",
+      "id": "41",
       "category": "czapka",
       "gender": "women",
       "name": "Opaska sportowa",
@@ -1284,7 +1227,7 @@
       }
     },
     {
-      "id": "44",
+      "id": "42",
       "category": "czapka",
       "gender": "men",
       "name": "Czapka sportowa zimowa",
@@ -1313,7 +1256,7 @@
       }
     },
     {
-      "id": "45",
+      "id": "43",
       "category": "czapka",
       "gender": "men",
       "name": "Czapka sportowa termiczna",
@@ -1340,7 +1283,7 @@
       }
     },
     {
-      "id": "46",
+      "id": "44",
       "category": "czapka",
       "gender": "men",
       "name": "Czapka sportowa z daszkiem",
@@ -1370,7 +1313,7 @@
       }
     },
     {
-      "id": "47",
+      "id": "45",
       "category": "czapka",
       "gender": "men",
       "name": "Czapka sportowa lekka",
@@ -1398,7 +1341,7 @@
       }
     },
     {
-      "id": "48",
+      "id": "46",
       "category": "czapka",
       "gender": "men",
       "name": "Opaska sportowa",
@@ -1427,167 +1370,158 @@
       }
     },
     {
-      "id": "49",
-      "category": "bielizna",
+      "id": "47",
+      "category": "stroje",
       "gender": "women",
-      "name": "Biustonosz sportowy",
+      "name": "Strój bokserski",
       "popular": true,
       "image": {
-        "url": "http://localhost:3001/sports_bra1.jpg",
-        "alt": "Biustonosz sportowy dla kobiet"
+        "url": "http://localhost:3001/outfit_women1.jpg",
+        "alt": "Strój bokserski dla kobiet"
       },
-      "new_price": 75,
-      "old_price": 150,
-      "description": "Biustonosz sportowy zapewniający wsparcie podczas intensywnych treningów. Wykonany z materiału oddychającego i elastycznego, idealny do biegania, fitnessu czy jogi.",
+      "new_price": 150,
+      "old_price": 300,
+      "description": "Profesjonalny strój bokserski wykonany z elastycznego materiału, zapewniający pełną swobodę ruchów i komfort podczas treningów bokserskich.",
       "attributes": {
-        "sizes": [
-          "XS",
-          "S",
-          "M",
-          "L",
-          "XL"
-        ],
-        "color": [
-          "black",
-          "white",
-          "pink",
-          "blue"
-        ],
-        "material": "elastan, bawełna",
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["black", "red", "blue"],
+        "material": "poliester, elastan",
+        "stock": 50
+      }
+    },
+    {
+      "id": "48",
+      "category": "stroje",
+      "gender": "women",
+      "name": "Strój narciarski",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/outfit_women2.jpg",
+        "alt": "Strój narciarski dla kobiet"
+      },
+      "new_price": 400,
+      "old_price": 800,
+      "description": "Wodoodporny i ciepły strój narciarski z technologią oddychającą, zaprojektowany do jazdy na nartach w zimowych warunkach.",
+      "attributes": {
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["red", "black", "white"],
+        "material": "nylon, poliester",
+        "stock": 30
+      }
+    },
+    {
+      "id": "49",
+      "category": "stroje",
+      "gender": "women",
+      "name": "Strój do jogi",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/outfit_women3.jpg",
+        "alt": "Strój do jogi dla kobiet"
+      },
+      "new_price": 120,
+      "old_price": 240,
+      "description": "Strój do jogi wykonany z oddychającego materiału, elastyczny i wygodny, zapewnia komfort i pełną swobodę podczas ćwiczeń.",
+      "attributes": {
+        "sizes": ["XS", "S", "M", "L"],
+        "color": ["green", "grey", "black"],
+        "material": "bawełna, elastan",
         "stock": 100
       }
     },
     {
       "id": "50",
-      "category": "bielizna",
+      "category": "stroje",
       "gender": "women",
-      "name": "Bokserki sportowe",
+      "name": "Strój do jogi z kosmicznym wzorkiem",
       "popular": true,
       "image": {
-        "url": "http://localhost:3001/sports_briefs1.jpg",
-        "alt": "Bokserki sportowe dla kobiet"
+        "url": "http://localhost:3001/outfit_women4.jpg",
+        "alt": "Strój do jogi z kosmicznym wzorkiem dla kobiet"
       },
-      "new_price": 45,
-      "old_price": 90,
-      "description": "Sportowe bokserki wykonane z oddychającego materiału, zapewniające komfort i pełną swobodę ruchów podczas ćwiczeń.",
+      "new_price": 120,
+      "old_price": 240,
+      "description": "Kolorowy strój do jogi wykonany z oddychającego materiału, elastyczny i wygodny, zapewnia komfort i pełną swobodę podczas ćwiczeń.",
       "attributes": {
-        "sizes": [
-          "XS",
-          "S",
-          "M",
-          "L",
-          "XL"
-        ],
-        "color": [
-          "black",
-          "white",
-          "turquoise",
-          "pink"
-        ],
+        "sizes": ["XS", "S", "M", "L"],
+        "color": ["green", "grey", "black"],
         "material": "bawełna, elastan",
-        "stock": 120
+        "stock": 100
       }
     },
     {
       "id": "51",
-      "category": "bielizna",
+      "category": "stroje",
       "gender": "women",
-      "name": "Biustonosz sportowy z wkładkami",
+      "name": "Strój do pilatesu",
       "popular": false,
       "image": {
-        "url": "http://localhost:3001/sports_bra2.jpg",
-        "alt": "Biustonosz sportowy z wkładkami dla kobiet"
+        "url": "http://localhost:3001/outfit_women5.jpg",
+        "alt": "Strój do pilatesu dla kobiet"
       },
-      "new_price": 95,
-      "old_price": 190,
-      "description": "Biustonosz sportowy z wkładkami, zapewniający pełne wsparcie i komfort. Doskonały do intensywnych treningów i aktywności sportowych.",
+      "new_price": 110,
+      "old_price": 220,
+      "description": "Strój do pilatesu zaprojektowany z myślą o elastyczności i wygodzie. Wykonany z materiałów, które umożliwiają swobodne wykonywanie ćwiczeń.",
       "attributes": {
-        "sizes": [
-          "S",
-          "M",
-          "L",
-          "XL"
-        ],
-        "color": [
-          "black",
-          "navy",
-          "red"
-        ],
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["purple", "black", "white"],
         "material": "poliester, elastan",
-        "stock": 90
+        "stock": 60
       }
     },
     {
       "id": "52",
-      "category": "bielizna",
+      "category": "stroje",
       "gender": "women",
-      "name": "Biustonosz z jednym ramiączkiem",
+      "name": "Strój gimnastyczny",
       "popular": true,
       "image": {
-        "url": "http://localhost:3001/sports_bra3.jpg",
-        "alt": "Biustonosz z jednym ramiączkiem dla kobiet"
+        "url": "http://localhost:3001/outfit_women6.jpg",
+        "alt": "Strój gimnastyczny dla kobiet"
       },
-      "new_price": 80,
-      "old_price": 160,
-      "description": "Biustonosz z jednym ramiączkiem, doskonały do intensywnych ćwiczeń w cieplejsze dni. Zapewnia odpowiednią wentylację.",
+      "new_price": 130,
+      "old_price": 260,
+      "description": "Strój gimnastyczny, który zapewnia elastyczność i wygodę, idealny do ćwiczeń gimnastycznych, oparte na technologiach odprowadzania wilgoci.",
       "attributes": {
-        "sizes": [
-          "S",
-          "M",
-          "L",
-          "XL"
-        ],
-        "color": [
-          "black",
-          "pink",
-          "grey"
-        ],
-        "material": "poliester, elastan",
-        "stock": 100
+        "sizes": ["S", "M", "L"],
+        "color": ["blue", "black", "pink"],
+        "material": "bawełna, elastan",
+        "stock": 80
       }
     },
     {
       "id": "53",
-      "category": "bielizna",
+      "category": "stroje",
       "gender": "women",
-      "name": "Biustonosz ze wzorkami",
+      "name": "Strój baletowy",
       "popular": true,
       "image": {
-        "url": "http://localhost:3001/sports_bra4.jpg",
-        "alt": "Biustonosz ze wzorkami dla kobiet"
+        "url": "http://localhost:3001/outfit_women7.jpg",
+        "alt": "Strój baletowy dla kobiet"
       },
-      "new_price": 80,
-      "old_price": 160,
-      "description": "Biustonosz sportowy ze wzorkami, zapewniający pełne wsparcie i komfort. Doskonały do intensywnych treningów i aktywności sportowych.",
+      "new_price": 90,
+      "old_price": 180,
+      "description": "Elegancki strój baletowy, wykonany z elastycznego materiału, zaprojektowany z myślą o baletnikach i miłośniczkach tańca.",
       "attributes": {
-        "sizes": [
-          "S",
-          "M",
-          "L",
-          "XL"
-        ],
-        "color": [
-          "black",
-          "pink",
-          "grey"
-        ],
-        "material": "poliester, elastan",
-        "stock": 100
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["pink", "black", "white"],
+        "material": "bawełna, elastan",
+        "stock": 70
       }
     },
     {
       "id": "54",
-      "category": "bielizna",
+      "category": "stroje",
       "gender": "women",
-      "name": "Bokserki sportowe",
+      "name": "Strój do sztuk walki",
       "popular": true,
       "image": {
-        "url": "http://localhost:3001/sports_briefs2.jpg",
-        "alt": "Bokserki sportowe dla kobiet"
+        "url": "http://localhost:3001/shirt_women8.jpg",
+        "alt": "Strój do sztuk walki dla kobiet"
       },
-      "new_price": 80,
-      "old_price": 160,
-      "description": "Sportowe bokserki dla kobiet, przypominające krótkie spodenki, idealne do ćwiczeń.",
+      "new_price": 42,
+      "old_price": 85,
+      "description": "Wygodny strój z długim rękawem, odpowiednia do aktywności fizycznej do sportów sztuk walki.",
       "attributes": {
         "sizes": [
           "S",
@@ -1597,41 +1531,269 @@
         ],
         "color": [
           "black",
-          "pink",
-          "grey"
+          "turquoise",
+          "red"
         ],
-        "material": "poliester, elastan",
-        "stock": 100
+        "material": "bawełna",
+        "stock": 90
       }
     },
     {
       "id": "55",
-      "category": "bielizna",
-      "gender": "women",
-      "name": "Spódniczka sportowa",
+      "category": "stroje",
+      "gender": "men",
+      "name": "Strój do sztuk walki",
       "popular": true,
       "image": {
-        "url": "http://localhost:3001/skirt_women1.jpg",
-        "alt": "Spódniczka sportowa dla kobiet"
+        "url": "http://localhost:3001/shirt_men6.jpg",
+        "alt": "Strój do sztuk walki dla mężczyzn"
       },
-      "new_price": 80,
-      "old_price": 160,
-      "description": "Spódniczka sportowa dla kobiet, przypominające krótkie spodenki, idealne do ćwiczeń.",
+      "new_price": 150,
+      "old_price": 300,
+      "description": "Wygodny strój z długim rękawem, odpowiednia do aktywności fizycznej do sportów sztuk walki.",
       "attributes": {
         "sizes": [
-          "S",
           "M",
           "L",
           "XL"
         ],
         "color": [
           "black",
-          "pink",
-          "grey"
+          "grey",
+          "blue"
         ],
+        "material": "spandex",
+        "stock": 80
+      }
+    },
+    {
+      "id": "56",
+      "category": "stroje",
+      "gender": "women",
+      "name": "Strój do snowboard",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/outfit_women8.jpg",
+        "alt": "Strój do snowboard dla kobiet"
+      },
+      "new_price": 150,
+      "old_price": 300,
+      "description": "Wysokiej jakości strój snowboardowy, zapewniający komfort i ciepło podczas jazdy na stoku. Wykonany z wodoodpornego materiału, idealny do zimowych warunków. Dzięki swojej elastyczności, umożliwia pełną swobodę ruchów, zapewniając wygodę podczas wykonywania trików i manewrów na snowboardzie.",
+      "attributes": {
+        "sizes": [
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "grey",
+          "blue"
+        ],
+        "material": "bawełna",
+        "stock": 80
+      }
+    },
+    {
+      "id": "57",
+      "category": "stroje",
+      "gender": "women",
+      "name": "Strój baletowy ze spódniczką",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/outfit_women9.jpg",
+        "alt": "Strój baletowy ze spódniczką dla kobiet"
+      },
+      "new_price": 90,
+      "old_price": 180,
+      "description": "Elegancki strój baletowy ze spódniczką, wykonany z elastycznego materiału, zaprojektowany z myślą o baletnikach i miłośniczkach tańca.",
+      "attributes": {
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["pink", "black", "white"],
+        "material": "bawełna, elastan",
+        "stock": 70
+      }
+    },
+    {
+      "id": "58",
+      "category": "stroje",
+      "gender": "men",
+      "name": "Strój bokserski",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/outfit_men1.jpg",
+        "alt": "Strój bokserski dla mężczyzn"
+      },
+      "new_price": 150,
+      "old_price": 300,
+      "description": "Profesjonalny strój bokserski wykonany z elastycznego materiału, zapewniający pełną swobodę ruchów i komfort podczas treningów bokserskich.",
+      "attributes": {
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["black", "red", "blue"],
         "material": "poliester, elastan",
+        "stock": 50
+      }
+    },
+    {
+      "id": "59",
+      "category": "stroje",
+      "gender": "men",
+      "name": "Strój narciarski",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/outfit_men2.jpg",
+        "alt": "Strój narciarski dla mężczyzn"
+      },
+      "new_price": 400,
+      "old_price": 800,
+      "description": "Wodoodporny i ciepły strój narciarski z technologią oddychającą, zaprojektowany do jazdy na nartach w zimowych warunkach.",
+      "attributes": {
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["red", "black", "white"],
+        "material": "nylon, poliester",
+        "stock": 30
+      }
+    },
+    {
+      "id": "60",
+      "category": "stroje",
+      "gender": "men",
+      "name": "Strój do jogi",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/outfit_men3.jpg",
+        "alt": "Strój do jogi dla mężczyzn"
+      },
+      "new_price": 120,
+      "old_price": 240,
+      "description": "Strój do jogi wykonany z oddychającego materiału, elastyczny i wygodny, zapewnia komfort i pełną swobodę podczas ćwiczeń.",
+      "attributes": {
+        "sizes": ["S", "M", "L"],
+        "color": ["green", "grey", "black"],
+        "material": "bawełna, elastan",
         "stock": 100
       }
-    }   
+    },
+    {
+      "id": "61",
+      "category": "stroje",
+      "gender": "men",
+      "name": "Strój do snowboard",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/outfit_men4.jpg",
+        "alt": "Strój do snowboard dla mężczyzn"
+      },
+      "new_price": 150,
+      "old_price": 300,
+      "description": "Wysokiej jakości strój snowboardowy, zapewniający komfort i ciepło podczas jazdy na stoku. Wykonany z wodoodpornego materiału, idealny do zimowych warunków. Dzięki swojej elastyczności, umożliwia pełną swobodę ruchów, zapewniając wygodę podczas wykonywania trików i manewrów na snowboardzie.",
+      "attributes": {
+        "sizes": ["M", "L", "XL"],
+        "color": ["black", "grey", "blue"],
+        "material": "bawełna",
+        "stock": 80
+      }
+    },
+    {
+      "id": "62",
+      "category": "stroje",
+      "gender": "men",
+      "name": "Strój do pływania",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/outfit_men5.jpg",
+        "alt": "Strój do pływania dla mężczyzn"
+      },
+      "new_price": 150,
+      "old_price": 300,
+      "description": "Wysokiej jakości strój do pływania, zaprojektowany z myślą o intensywnych treningach i rekreacyjnym pływaniu. Strój zapewnia doskonałą elastyczność i wygodę, umożliwiając swobodny ruch w wodzie.",
+      "attributes": {
+        "sizes": ["M", "L", "XL"],
+        "color": ["black", "grey", "blue"],
+        "material": "poliester",
+        "stock": 80
+      }
+    },
+    {
+      "id": "63",
+      "category": "stroje",
+      "gender": "men",
+      "name": "Strój do piłki nożnej",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/outfit_men6.jpg",
+        "alt": "Strój do piłki nożnej dla mężczyzn"
+      },
+      "new_price": 180,
+      "old_price": 360,
+      "description": "Profesjonalny strój piłkarski zapewniający komfort i swobodę ruchów podczas gry. Wykonany z lekkiego, oddychającego materiału, idealny do intensywnych meczów oraz treningów. Strój wyposażony w elastyczne panele, które poprawiają dopasowanie.",
+      "attributes": {
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["green", "red", "blue"],
+        "material": "poliamid, elastan",
+        "stock": 50
+      }
+    },
+    {
+      "id": "64",
+      "category": "stroje",
+      "gender": "men",
+      "name": "Strój do hokeja",
+      "popular": false,
+      "image": {
+        "url": "http://localhost:3001/outfit_men7.jpg",
+        "alt": "Strój do hokeja dla mężczyzn"
+      },
+      "new_price": 250,
+      "old_price": 500,
+      "description": "Strój hokejowy wykonany z wytrzymałych materiałów, które zapewniają ochronę, komfort i elastyczność podczas gry. Zawiera specjalne wzmocnienia w newralgicznych miejscach, takich jak ramiona i kolana, oraz elastyczne panele, które umożliwiają pełną swobodę ruchów.",
+      "attributes": {
+        "sizes": ["M", "L", "XL"],
+        "color": ["black", "white", "red"],
+        "material": "poliester, nylon, elastan",
+        "stock": 30
+      }
+    },
+    {
+      "id": "65",
+      "category": "stroje",
+      "gender": "men",
+      "name": "Strój do szermierki",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/outfit_men8.jpg",
+        "alt": "Strój do szermierki dla mężczyzn"
+      },
+      "new_price": 350,
+      "old_price": 700,
+      "description": "Profesjonalny strój do szermierki dla mężczyzn, zaprojektowany z myślą o pełnej ochronie i komforcie podczas rywalizacji. Wykonany z wytrzymałych materiałów, takich jak kevlar i poliester, gwarantuje doskonałą elastyczność i bezpieczeństwo.",
+      "attributes": {
+        "sizes": ["M", "L", "XL"],
+        "color": ["white", "blue", "black"],
+        "material": "poliester, kevlar",
+        "stock": 50
+      }
+    },    
+    {
+      "id": "66",
+      "category": "stroje",
+      "gender": "women",
+      "name": "Strój do szermierki",
+      "popular": true,
+      "image": {
+        "url": "http://localhost:3001/outfit_women10.jpg",
+        "alt": "Strój do szermierki dla kobiet"
+      },
+      "new_price": 350,
+      "old_price": 700,
+      "description": "Profesjonalny strój do szermierki dla kobiet, zapewniający pełną swobodę ruchów oraz maksymalną ochronę. Wykonany z lekkich, odpornych na uszkodzenia materiałów, zapewniających komfort i bezpieczeństwo podczas walki.",
+      "attributes": {
+        "sizes": ["S", "M", "L", "XL"],
+        "color": ["white", "silver", "black"],
+        "material": "poliester, kevlar",
+        "stock": 40
+      }
+    }
+       
   ]
 }

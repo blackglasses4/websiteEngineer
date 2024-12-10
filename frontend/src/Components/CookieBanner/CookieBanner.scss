@@ -5,36 +5,74 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    max-width: 100%; // Wymusza maksymalną szerokość
     background-color: $white;
-    padding: 20px;
+    padding: 1em;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    box-sizing: border-box;
+    overflow: hidden; // Ukrywa wszystko wykraczające poza baner
+}
+
+.cookie-text {
+    color: $grey_dark;
+    font-size: 14px;
     text-align: center;
-  
-    .cookie-text {
-      color: $grey_dark;
-      font-size: 14px;
-      margin-bottom: 0.5em;
-      @include selection-cookie;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    flex: 1 1 auto; // Dostosowuje szerokość do dostępnej przestrzeni
+    margin-bottom: 10px;
+    @include selection-cookie;
+
+    @media (max-width: #{map-get($breakpoints, 'tablet')}) {
+        font-size: 12px;
     }
-  
-    .cookie-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-  
-      button {
+
+    @media (max-width: #{map-get($breakpoints, 'mobile')}) {
+        font-size: 10px;
+    }
+}
+
+.cookie-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+
+    button {
         padding: 6px 10px;
         background-color: $white;
-        border: 1px solid $grey_dark; 
+        border: 1px solid $grey_dark;
         color: $grey_dark;
         cursor: pointer;
         border-radius: 4px;
-        transition: background-color 0.3s ease; 
-  
+        transition: background-color 0.3s ease;
+
         &:hover {
-          background-color: $grey_light;
+            background-color: $grey_light;
         }
-      }
     }
-}  
+}
+
+@media (max-width: #{map-get($breakpoints, 'tablet')}) {
+    .cookie-banner {
+        padding: 15px;
+    }
+}
+
+@media (max-width: #{map-get($breakpoints, 'mobile')}) {
+    .cookie-banner {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .cookie-buttons {
+        gap: 5px;
+    }
+}
