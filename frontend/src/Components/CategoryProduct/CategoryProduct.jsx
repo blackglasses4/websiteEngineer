@@ -5,9 +5,12 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import ProductFilter from '../ProductFilter/ProductFilter';
 import './CategoryProduct.scss';
+import LikeButton from '../LikeButton/LikeButton';
+import { useLikes } from '../LikeButton/LikeContext';
 
 const CategoryProducts = () => {
   const { category } = useParams();
+  const { likedProducts, toggleLike } = useLikes();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [error, setError] = useState(false);
@@ -71,11 +74,12 @@ const CategoryProducts = () => {
     return (
       <section className="categoryProduct">
         {category === "koszulka" && <h1>Koszulki</h1>}
-        {category === "Kurtka" && <h1>Kurtka</h1>}
-        {/* {category === "equipment" && <h1>Sprzęt</h1>}
-        {category === "koszulka" && <h1>Koszulka</h1>}
-        {category === "kurtka" && <h1>Kurtka</h1>}
-        {category === "equipment" && <h1>Sprzęt</h1>} */}
+        {category === "kurtka" && <h1>Kurtki</h1>}
+        {category === "spodnie" && <h1>Spodnie</h1>}
+        {category === "czapka" && <h1>Czapki</h1>}
+        {category === "stroje" && <h1>Stroje</h1>}
+        {/* {category === "kurtka" && <h1>Kurtka</h1>}
+        {category === "equipment" && <h1>Sprzęt</h1>}  */}
 
         <p className="error-products">Błąd podczas pobierania produktów. Przepraszamy za utrudnienia</p>
       </section>
@@ -85,7 +89,10 @@ const CategoryProducts = () => {
   return (
     <section className="categoryProduct">
       {category === "koszulka" && <h1>Koszulka</h1>}
-      {category === "kurtka" && <h1>Kurtka</h1>}
+      {category === "kurtka" && <h1>Kurtki</h1>}
+      {category === "spodnie" && <h1>Spodnie</h1>}
+      {category === "czapka" && <h1>Czapki</h1>}
+      {category === "stroje" && <h1>Stroje</h1>}
       {/* {category === "equipment" && <h1>Sprzęt</h1>}
       {category === "koszulka" && <h1>Koszulka</h1>}
       {category === "kurtka" && <h1>Kurtka</h1>}
@@ -118,6 +125,10 @@ const CategoryProducts = () => {
                 <div className="item-prices-old">{item.old_price}zł</div>
               </div>
             </Link>
+            <LikeButton
+              isLiked={likedProducts.includes(item.id)}
+              onToggle={() => toggleLike(item.id)}
+            />
           </div>
         ))}
       </div>

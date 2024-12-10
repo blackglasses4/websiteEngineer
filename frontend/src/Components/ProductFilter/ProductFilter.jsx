@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
-import { FaSlidersH } from 'react-icons/fa'; 
+import React, { useState, useEffect, useRef } from 'react';
+import { FaSlidersH } from 'react-icons/fa';
+import useClick from '../useClick';
 import './ProductFilter.scss';
 
 const ProductFilter = ({ products, onFilterChange }) => {
     const [isFilterOpen, setIsFilterOpen] = useState(false); 
     const [selectedGender, setSelectedGender] = useState('all'); 
-    const [sortOrder, setSortOrder] = useState('none'); 
+    const [sortOrder, setSortOrder] = useState('none');
+    const filterPanelRef = useRef(null);
+
+    useClick(filterPanelRef, () => setIsFilterOpen(false));
 
     const handleGenderChange = (e) => {
         const gender = e.target.value;
@@ -18,7 +22,7 @@ const ProductFilter = ({ products, onFilterChange }) => {
         setSortOrder(order);
         onFilterChange({ gender: selectedGender, sortOrder: order });
     };
-
+    
     return (
         <div className="product-filter">
             <button
@@ -27,7 +31,7 @@ const ProductFilter = ({ products, onFilterChange }) => {
                 <FaSlidersH />Wszystkie filtry</button>
 
             {isFilterOpen && (
-                <div className="filter-panel">
+                <div className="filter-panel" ref={filterPanelRef}>
                     <div className="filter-group">
                         <label htmlFor="gender-filter">Filtruj według płci:</label>
                         <select

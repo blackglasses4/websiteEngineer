@@ -55,7 +55,7 @@ const PopularProduct = () => {
   if (error) {
     return (
       <section className='popularProduct'>
-        <h1>Popular Product</h1>
+        <h1>Popularne Produkty</h1>
         <div className="error-products">
           <p>Błąd podczas pobierania produktów. Przepraszamy za utrudnienia</p>
         </div>
@@ -65,7 +65,7 @@ const PopularProduct = () => {
 
   return (
     <section className='popularProduct'>
-      <h1>Popular Product</h1>
+      <h1>Popularne Produkty</h1>
 
       <div className="numberOfPages">
         <button

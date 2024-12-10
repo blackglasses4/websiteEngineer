@@ -1,3 +1,6 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
 .product-filter {
     position: relative;
     margin-bottom: 20px;
@@ -54,6 +57,39 @@
                 border-radius: 5px;
                 font-size: 0.9em;
             }
+        }
+    }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet-Lwide')}) {
+    .product-filter {    
+        .filter-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background-color: var(--dominant-light);
+            border: 1px solid var(--table_border);
+            color: var(--dominant-dark);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+    
+            &:hover {
+                background-color: var(--table_td);
+            }
+    
+            svg {
+                font-size: 18px;
+            }
+        }
+    
+        .filter-panel {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            z-index: 1;
         }
     }
 }

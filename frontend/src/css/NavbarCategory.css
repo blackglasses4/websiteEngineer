@@ -103,10 +103,23 @@ nav.nav-category a::selection {
   color: hsl(0, 61%, 34%);
   background-color: #ffffff;
 }
+nav.nav-category a:hover {
+  color: #ddd;
+}
 
-@media only screen and (max-width: 480px) {
-  nav {
-    width: 100%;
-    padding: 0.5rem 1rem;
+.mobile-nav-category {
+  display: none;
+}
+
+@media only screen and (max-width: 795px) {
+  .mobile-nav-category {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    z-index: 1;
+    color: var(--dominant-dark);
+  }
+  nav.nav-category {
+    display: none;
   }
 }/*# sourceMappingURL=NavbarCategory.css.map */

@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import useClick from '../useClick';
 import './SearchProduct.scss';
 
 const SearchBar = ({ products, setConfirmedResults }) => {
     const [input, setInput] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const inputWrapperRef = useRef(null);
+
+    useClick(inputWrapperRef, () => setInput("")); 
 
     // Handle input change
     const handleInputChange = (e) => {
@@ -20,20 +23,6 @@ const SearchBar = ({ products, setConfirmedResults }) => {
         }
     };
 
-    // Clear input on Esc key
-    const handleEscKey = (e) => {
-        if (e.key === 'Escape') {
-            setInput("");
-        }
-    };
-
-    // Handle click outside input to reset input
-    const handleClickOutside = (event) => {
-        if (inputWrapperRef.current && !inputWrapperRef.current.contains(event.target)) {
-            setInput("");
-        }
-    };
-
     useEffect(() => {
         if (input === "") {
             setSearchResults([]);
@@ -44,17 +33,6 @@ const SearchBar = ({ products, setConfirmedResults }) => {
             setSearchResults(filterResults);
         }
     }, [input, products]);
-
-    // Adding event listeners for click outside and Esc key
-    useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
-        document.addEventListener("keydown", handleEscKey);
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-            document.removeEventListener("keydown", handleEscKey);
-        };
-    }, []);
 
     return (
         <>

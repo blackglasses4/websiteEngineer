@@ -50,7 +50,7 @@
         grid-template-columns: repeat(4, 1fr);
         justify-content: center;
         gap: 1.1em;
-        margin: 0 2em;
+        margin: 0 2em 2em 2em;
     
         .item {
             img {
@@ -102,6 +102,10 @@
 @media only screen and (max-width: #{map-get($breakpoints, 'tablet-Lwide')}) {
     .popularProduct {
         margin: 2.5em;
+
+        h1 {
+            padding: 0;
+        }
 
         .numberOfPages {
             padding: 0 1em 1em 0;

@@ -9,7 +9,7 @@ import './DisplayProduct.scss';
 
 const DisplayProduct = () => {
   const { id } = useParams();
-  const { products, error, loading } = useProducts(); // Korzystamy z kontekstu, który dostarcza dane produktów
+  const { products, error, loading } = useProducts();
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [product, setProduct] = useState(null);

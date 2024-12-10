@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --white: #ffffff;
   --black: #000000;
@@ -81,32 +82,121 @@
 }
 
 .registration {
+  display: flex;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
   align-items: center;
   background-color: #232933;
 }
-.registration h1 {
-  color: #ffffff;
+.registration .register-image {
+  flex: 1;
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.registration .register-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.registration .registration-form {
+  flex: 1;
+  max-width: 50%;
+  padding: 2em;
+  border-radius: 8px;
+}
+.registration .registration-form .input-with-icon {
+  position: relative;
+}
+.registration .registration-form .input-with-icon .input-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8c8c8c;
+}
+.registration .registration-form .input-with-icon input {
+  padding-left: 50px;
+}
+.registration .registration-form h1 {
+  color: var(--dominant-light);
   text-align: center;
   padding-bottom: 1em;
 }
-.registration p {
-  color: #ffffff;
+.registration .registration-form h1::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form h1::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form p {
+  color: var(--dominant-light);
   text-align: center;
   padding-top: 0.6em;
 }
-.registration p.p-min {
+.registration .registration-form p::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form p::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form p.p-min {
   padding: 0em 0em 0.5em 0em;
   font-size: 0.8em;
   text-align: left;
 }
-.registration p a {
+.registration .registration-form p.p-min::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form p.p-min::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form p a {
   text-decoration: none;
   list-style-type: none;
   border: none;
   color: #225E8B;
 }
-.registration p a:hover {
+.registration .registration-form p a::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form p a::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form p a:hover {
   color: #184261;
+}
+.registration .registration-form .d-grid {
+  margin-top: 20px;
+}
+.registration .registration-form .d-grid Button {
+  width: auto; /* Ustawia szerokość przycisku na auto, żeby był dopasowany do zawartości */
+  padding: 10px 20px; /* Ustawienie odpowiednich marginesów wewnętrznych dla przycisku */
+  font-size: 1rem; /* Opcjonalnie ustawiamy rozmiar czcionki, żeby był estetyczny */
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .registration {
+    flex-direction: column;
+  }
+  .register-image, .registration-form {
+    max-width: 100%;
+    flex: 1;
+  }
+  .registration-form {
+    box-shadow: none;
+  }
 }/*# sourceMappingURL=Registration.css.map */
