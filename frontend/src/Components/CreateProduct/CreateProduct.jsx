@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {BACKEND_URL} from '../config';
 
 import './CreateProduct.scss';
 
@@ -25,7 +26,7 @@ const CreateProduct = () => {
     // Ładowanie produktów z serwera, aby uzyskać ostatnie id
     useEffect(() => {
         const fetchProducts = async () => {
-            const response = await fetch('http://localhost:3001/products');
+            const response = await fetch(`${BACKEND_URL}/products`);
             const data = await response.json();
             setProducts(data);
         };
@@ -90,7 +91,7 @@ const CreateProduct = () => {
                 sizes: product.sizes,
             };
 
-            const response = await fetch('http://localhost:3001/products', {
+            const response = await fetch(`${BACKEND_URL}/products`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import {BACKEND_URL} from '../config';
 
 import SearchBar from './SearchBar';
 import EditProduct from './EditProduct';
@@ -17,7 +18,7 @@ const SearchProduct = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:3001/products');
+                const response = await fetch(`${BACKEND_URL}/products`);
                 const data = await response.json();
                 setProducts(data);
             } catch (error) {

@@ -1,4 +1,18 @@
 {
+  "users": [
+    {
+      "id": "1",
+      "name": "Adam",
+      "password": 123
+    }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "userId": "1",
+      "productId": "1"
+    }
+  ],
   "images": [
     {
       "id": "1",

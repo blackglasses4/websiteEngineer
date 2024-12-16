@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import {BACKEND_URL} from '../config';
 import './PopularProduct.scss';
 
 const PopularProduct = () => {
@@ -14,7 +15,8 @@ const PopularProduct = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3001/products');
+        console.log(`${BACKEND_URL}/products`);
+        const response = await fetch(`${BACKEND_URL}/products`);
 
         const data = await response.json();
         const popularProducts = data.filter(product => product.popular === true);

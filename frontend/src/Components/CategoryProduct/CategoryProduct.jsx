@@ -7,6 +7,7 @@ import ProductFilter from '../ProductFilter/ProductFilter';
 import './CategoryProduct.scss';
 import LikeButton from '../LikeButton/LikeButton';
 import { useLikes } from '../LikeButton/LikeContext';
+import {BACKEND_URL} from '../config';
 
 const CategoryProducts = () => {
   const { category } = useParams();
@@ -20,7 +21,7 @@ const CategoryProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3001/products');
+        const response = await fetch(`${BACKEND_URL}/products`);
         const data = await response.json();
 
         const filteredProducts = data.filter(product => product.category === category);
@@ -38,19 +39,21 @@ const CategoryProducts = () => {
   const handleFilterChange = ({ gender, sortOrder }) => {
     let updatedProducts = [...products];
 
-    if (gender !== 'all') {
-      updatedProducts = updatedProducts.filter(product => product.gender === gender);
-  }
+    if (gender !== "all") {
+      updatedProducts = updatedProducts.filter(
+        (product) => product.gender === gender
+      );
+    }
 
-  if (sortOrder === 'asc') {
-    updatedProducts.sort((a, b) => a.new_price - b.new_price);
-  } else if (sortOrder === 'desc') {
-    updatedProducts.sort((a, b) => b.new_price - a.new_price);
-  }
+    if (sortOrder === "asc") {
+      updatedProducts.sort((a, b) => a.new_price - b.new_price);
+    } else if (sortOrder === "desc") {
+      updatedProducts.sort((a, b) => b.new_price - a.new_price);
+    }
 
-  setFilteredProducts(updatedProducts);
-  setCurrentPage(1);
-};
+    setFilteredProducts(updatedProducts);
+    setCurrentPage(1);
+  };
 
   const totalPages = Math.ceil(filteredProducts.length / maxProduct);
   const currentProducts = filteredProducts.slice(
