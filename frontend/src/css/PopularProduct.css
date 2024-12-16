@@ -144,7 +144,7 @@
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
   gap: 1.1em;
-  margin: 0 2em;
+  margin: 0 2em 2em 2em;
 }
 .popularProduct .popular-item .item img {
   background-color: #f0f0f0;
@@ -216,6 +216,9 @@
 @media only screen and (max-width: 1024px) {
   .popularProduct {
     margin: 2.5em;
+  }
+  .popularProduct h1 {
+    padding: 0;
   }
   .popularProduct .numberOfPages {
     padding: 0 1em 1em 0;
