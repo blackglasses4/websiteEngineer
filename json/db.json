@@ -7,117 +7,160 @@
     }
   ],
   "orders": [
-    {},
     {
-      "id": "ed30",
+      "id": "e444",
       "customerDetails": {
-        "firstName": "gfgd",
-        "lastName": "fdgfgdfg",
-        "phone": "890889066",
-        "street": "ytyhfgh",
-        "postalCode": "12-456",
-        "city": "fgdgdg",
-        "houseNumber": "8",
-        "apartmentNumber": "8",
+        "phone": "999999999",
+        "street": "fggdfdfg",
+        "postalCode": "67-999",
+        "city": "hfghghghg",
+        "houseNumber": "5",
+        "apartmentNumber": "",
         "comments": ""
-      },
-      "products": [],
-      "totalAmount": 0,
-      "date": "2024-12-17T11:36:52.918Z"
-    },
-    {
-      "id": "33b4",
-      "customerDetails": {
-        "firstName": "Dominik",
-        "lastName": "gkgdfkg",
-        "phone": "000000000",
-        "street": "fdgdfhgflh",
-        "postalCode": "22-222",
-        "city": "fdsfdfk",
-        "houseNumber": "44",
-        "apartmentNumber": "5554",
-        "comments": "dfgdfgfghfdghghghf"
       },
       "products": [
         {
-          "productId": "26",
-          "quantity": 3,
-          "price": 150
-        },
-        {
           "productId": "38",
-          "quantity": 4,
+          "quantity": 1,
           "price": 45
         },
         {
-          "productId": "13",
-          "quantity": 11,
+          "productId": "39",
+          "quantity": 3,
+          "price": 40
+        },
+        {
+          "productId": "48",
+          "quantity": 1,
+          "price": 400
+        }
+      ],
+      "totalAmount": 565,
+      "date": "2024-12-17T11:58:53.225Z"
+    },
+    {
+      "id": "5cb9",
+      "customerDetails": {
+        "phone": "555555555",
+        "street": "gffg",
+        "postalCode": "66-666",
+        "city": "gfdgdfgdg",
+        "houseNumber": "6",
+        "apartmentNumber": "",
+        "comments": ""
+      },
+      "products": [
+        {
+          "productId": "48",
+          "quantity": 1,
+          "price": 400
+        },
+        {
+          "productId": "25",
+          "quantity": 1,
+          "price": 120
+        },
+        {
+          "productId": "26",
+          "quantity": 1,
           "price": 150
         }
       ],
-      "totalAmount": 2280,
-      "date": "2024-12-17T11:42:22.128Z"
+      "totalAmount": 670,
+      "date": "2024-12-17T12:09:29.803Z"
     },
     {
-      "id": "4f2a",
+      "id": "34be",
       "customerDetails": {
-        "firstName": "gfggf",
-        "lastName": "gfgfgf",
-        "phone": "999999999",
-        "street": "gfggfd",
-        "postalCode": "00-999",
-        "city": "gffdggfd",
-        "houseNumber": "9",
-        "apartmentNumber": "",
-        "comments": "fdggfdgf"
+        "phone": "777777777",
+        "street": "fhgfh",
+        "postalCode": "00-000",
+        "city": "dsfsdf",
+        "houseNumber": "",
+        "apartmentNumber": "5",
+        "comments": ""
       },
       "products": [
         {
-          "productId": "27",
-          "quantity": 3,
-          "price": 110
-        },
-        {
-          "productId": "38",
-          "quantity": 2,
-          "price": 45
+          "productId": "49",
+          "quantity": 1,
+          "price": 120
         },
         {
           "productId": "14",
-          "quantity": 2,
+          "quantity": 1,
+          "price": 120
+        },
+        {
+          "productId": "50",
+          "quantity": 1,
           "price": 120
         }
       ],
-      "totalAmount": 660,
-      "date": "2024-12-17T11:50:15.851Z"
+      "totalAmount": 360,
+      "date": "2024-12-17T12:28:45.232Z"
     },
     {
-      "id": "8056",
+      "id": "9be5",
       "customerDetails": {
-        "firstName": "fgfg",
-        "lastName": "fdgfg",
-        "phone": "888888888",
-        "street": "gfhghgfh",
-        "postalCode": "00-000",
-        "city": "dsffsdf",
-        "houseNumber": "9",
-        "apartmentNumber": "",
+        "phone": "777777777",
+        "street": "hghfghf",
+        "postalCode": "67-000",
+        "city": "fhghfgh",
+        "houseNumber": "",
+        "apartmentNumber": "6",
         "comments": ""
       },
       "products": [
         {
-          "productId": "13",
+          "productId": "38",
+          "quantity": 1,
+          "price": 45
+        },
+        {
+          "productId": "1",
+          "quantity": 1,
+          "price": 40
+        },
+        {
+          "productId": "26",
           "quantity": 1,
           "price": 150
         },
         {
-          "productId": "14",
-          "quantity": 11,
+          "productId": "38",
+          "quantity": 1,
+          "price": 45
+        },
+        {
+          "productId": "49",
+          "quantity": 1,
           "price": 120
         }
       ],
-      "totalAmount": 1470,
-      "date": "2024-12-17T11:51:35.208Z"
+      "totalAmount": 400,
+      "date": "2024-12-17T12:35:04.703Z"
+    },
+    {
+      "id": "e936",
+      "customerDetails": {
+        "phone": "555555555",
+        "street": "hh",
+        "postalCode": "67-000",
+        "city": "gfgdgdf",
+        "houseNumber": "5",
+        "apartmentNumber": "",
+        "comments": "gdfgdfgf"
+      },
+      "products": [
+        {
+          "productId": "39",
+          "quantity": 1,
+          "price": 40
+        }
+      ],
+      "totalAmount": 40,
+      "date": "2024-12-17T12:35:30.655Z"
     }
   ],
   "images": [

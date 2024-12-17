@@ -6,13 +6,15 @@ const OrderItem = ({ setOrderItems }) => {
   useEffect(() => {
     // Pobieranie danych zamówienia z localStorage
     const storedOrderData = JSON.parse(localStorage.getItem('order'));
-
-    // Jeśli dane istnieją w localStorage, ustawiamy je w stanie
-    if (storedOrderData) {
+  
+    if (storedOrderData && storedOrderData.length > 0) {
       setOrderData(storedOrderData);
       setOrderItems(storedOrderData); // Przekazujemy dane do rodzica
+    } else {
+      setOrderData([]);  // Ustawienie pustej tablicy, jeśli nie ma danych w localStorage
+      setOrderItems([]);  // Przekazanie pustych danych do rodzica
     }
-  }, [setOrderItems]);
+  }, [setOrderItems]);  
 
   const calculateTotal = () => {
     return orderData.reduce((total, item) => total + item.price * item.quantity, 0);

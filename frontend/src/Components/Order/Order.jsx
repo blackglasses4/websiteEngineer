@@ -9,8 +9,6 @@ import "./Order.scss";
 const Order = () => {
   const [orderItems, setOrderItems] = useState([]);
   const [orderDetails, setOrderDetails] = useState({
-    firstName: "",
-    lastName: "",
     phone: "",
     street: "",
     postalCode: "",
@@ -43,44 +41,41 @@ const Order = () => {
 
   const validateRequiredFields = () => {
     const requiredFields = [
-      "firstName",
-      "lastName",
       "phone",
-      "houseNumber",
       "street",
       "postalCode",
       "city",
     ];
     let isValid = true;
     const newErrors = {};
-
+  
     requiredFields.forEach((field) => {
       if (!orderDetails[field]) {
         newErrors[field] = "To pole jest wymagane.";
         isValid = false;
       }
     });
-
+  
     // Niestandardowa walidacja
     if (orderDetails.phone && !validatePhone(orderDetails.phone)) {
       newErrors.phone = "Podaj prawidłowy numer telefonu (9 cyfr).";
       isValid = false;
     }
-
+  
     if (orderDetails.postalCode && !validatePostalCode(orderDetails.postalCode)) {
       newErrors.postalCode = "Podaj prawidłowy kod pocztowy (np. 00-000).";
       isValid = false;
     }
-
-    // Logika walidacji - jeżeli jedno pole (dom lub mieszkanie) jest wypełnione,
-    // drugie pole staje się niewymagane.
+  
+    // Logika walidacji - jedno z pól (dom lub mieszkanie) musi być wypełnione
     if (!orderDetails.houseNumber && !orderDetails.apartmentNumber) {
       newErrors.houseNumber = "Musisz podać numer domu lub mieszkania!";
+      isValid = false;
     }
-
+  
     setErrors(newErrors);
     return isValid;
-  };
+  };  
 
   const calculateTotal = () => {
     return orderItems.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -117,8 +112,6 @@ const Order = () => {
 
       toast.success("Zamówienie zostało pomyślnie złożone!");
       setOrderDetails({
-        firstName: "",
-        lastName: "",
         phone: "",
         street: "",
         postalCode: "",
@@ -144,34 +137,6 @@ const Order = () => {
           <div className="form-container">
             <h1>Twoje dane</h1>
             <form onSubmit={sendDataOrder}>
-              <label htmlFor="firstName" className={errors.firstName ? "error" : ""}>
-                Imię:
-                <input
-                  type="text"
-                  name="firstName"
-                  id="firstName"
-                  value={orderDetails.firstName}
-                  onChange={changeDataOrder}
-                  placeholder="Np. Ada"
-                  required
-                />
-                {errors.firstName && <span className="error-message">{errors.firstName}</span>}
-              </label>
-
-              <label htmlFor="lastName" className={errors.lastName ? "error" : ""}>
-                Nazwisko:
-                <input
-                  type="text"
-                  name="lastName"
-                  id="lastName"
-                  value={orderDetails.lastName}
-                  onChange={changeDataOrder}
-                  placeholder="Np. Kowalska"
-                  required
-                />
-                {errors.lastName && <span className="error-message">{errors.lastName}</span>}
-              </label>
-
               <label htmlFor="phone" className={errors.phone ? "error" : ""}>
                 Telefon:
                 <input
@@ -185,7 +150,7 @@ const Order = () => {
                   maxLength={9}
                   required
                 />
-                {errors.phone && <span className="error-message">{errors.phone}</span>}
+                {errors && errors.phone && <span className="error-message">{errors.phone}</span>}
               </label>
 
               <label htmlFor="street" className={errors.street ? "error" : ""}>
@@ -199,7 +164,7 @@ const Order = () => {
                   placeholder="Np. Przemysłowa"
                   required
                 />
-                {errors.street && <span className="error-message">{errors.street}</span>}
+                {errors && errors.street && <span className="error-message">{errors.street}</span>}
               </label>
 
               <label htmlFor="postalCode" className={errors.postalCode ? "error" : ""}>
@@ -211,9 +176,11 @@ const Order = () => {
                   value={orderDetails.postalCode}
                   onChange={changeDataOrder}
                   placeholder="Np. 00-000"
+                  inputMode="numeric"
+                  maxLength={6}
                   required
                 />
-                {errors.postalCode && <span className="error-message">{errors.postalCode}</span>}
+                {errors && errors.postalCode && <span className="error-message">{errors.postalCode}</span>}
               </label>
 
               <label htmlFor="city" className={errors.city ? "error" : ""}>
@@ -227,7 +194,7 @@ const Order = () => {
                   placeholder="Np. Poznań"
                   required
                 />
-                {errors.city && <span className="error-message">{errors.city}</span>}
+                {errors && errors.city && <span className="error-message">{errors.city}</span>}
               </label>
 
               <label htmlFor="houseNumber" className={errors.houseNumber ? "error" : ""}>
@@ -241,7 +208,7 @@ const Order = () => {
                   placeholder="Np. 4"
                   min={1}
                 />
-                {errors.houseNumber && <span className="error-message">{errors.houseNumber}</span>}
+                {errors && errors.houseNumber && <span className="error-message">{errors.houseNumber}</span>}
               </label>
 
               <label htmlFor="apartmentNumber">
@@ -255,6 +222,7 @@ const Order = () => {
                   placeholder="Np. 15"
                   min={1}
                 />
+                {errors && errors.apartmentNumber && <span className="error-message">{errors.apartmentNumber}</span>}
               </label>
 
               <label htmlFor="comments">
