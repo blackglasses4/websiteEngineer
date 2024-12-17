@@ -9,9 +9,8 @@ export const CartProvider = ({ children }) => {
     return savedCart ? JSON.parse(savedCart) : [];  // Sprawdzamy, czy są zapisane ID w koszyku
   });
 
-  // Zapisujemy ID produktów do localStorage
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));  // Zapisujemy tylko ID produktów
+    localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
   const addToCart = (productDetails) => {
@@ -32,6 +31,16 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const updateCart = (productId, updatedFields) => {
+    setCart((prevCart) =>
+      prevCart.map((product) =>
+        product.productId === productId
+          ? { ...product, ...updatedFields }
+          : product
+      )
+    );
+  };
+
   const removeFromCart = (productToRemove) => {
     setCart((prevCart) =>
       prevCart.filter(
@@ -44,7 +53,7 @@ export const CartProvider = ({ children }) => {
   };
   
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateCart }}>
       {children}
     </CartContext.Provider>
   );

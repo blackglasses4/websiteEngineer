@@ -84,31 +84,56 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  max-width: 100%;
   background-color: #ffffff;
-  padding: 20px;
+  padding: 1em;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  text-align: center;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
-.cookie-banner .cookie-text {
+
+.cookie-text {
   color: #232933;
   font-size: 14px;
-  margin-bottom: 0.5em;
+  text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  flex: 1 1 auto;
+  margin-bottom: 10px;
 }
-.cookie-banner .cookie-text::-moz-selection {
+.cookie-text::-moz-selection {
   color: #ffffff;
   background-color: #000000;
 }
-.cookie-banner .cookie-text::selection {
+.cookie-text::selection {
   color: #ffffff;
   background-color: #000000;
 }
-.cookie-banner .cookie-buttons {
+@media (max-width: 795px) {
+  .cookie-text {
+    font-size: 12px;
+  }
+}
+@media (max-width: ) {
+  .cookie-text {
+    font-size: 10px;
+  }
+}
+
+.cookie-buttons {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
 }
-.cookie-banner .cookie-buttons button {
+.cookie-buttons button {
   padding: 6px 10px;
   background-color: #ffffff;
   border: 1px solid #232933;
@@ -117,6 +142,21 @@
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
-.cookie-banner .cookie-buttons button:hover {
+.cookie-buttons button:hover {
   background-color: #8c8c8c;
+}
+
+@media (max-width: 795px) {
+  .cookie-banner {
+    padding: 15px;
+  }
+}
+@media (max-width: ) {
+  .cookie-banner {
+    padding: 10px;
+    gap: 10px;
+  }
+  .cookie-buttons {
+    gap: 5px;
+  }
 }/*# sourceMappingURL=CookieBanner.css.map */
