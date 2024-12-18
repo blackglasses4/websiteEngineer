@@ -6,7 +6,7 @@
     position: relative;
     align-items: center;
     padding: 3em;
-    height: 81dvh;
+    height: 90dvh;
     background: url('../../../public/images/welcome_baner.jpg') no-repeat center center;
     background-size: cover;
     animation: fade-up 0.5s;
@@ -233,7 +233,7 @@
 
 @media only screen and (max-width: #{map-get($breakpoints, 'phone-wide')}) {
     .section__welcome {
-        height: 86svh;
+        height: 91svh;
         padding: 1em;
 
         &-content {

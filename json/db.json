@@ -1,9 +1,28 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "Adam",
-      "password": 123
+      "id": "440a",
+      "firstName": "fsdfd",
+      "lastName": "fdsfsdf",
+      "username": "dffsdf",
+      "email": "fds@gmail.com",
+      "password": "asdasd"
+    },
+    {
+      "id": "4034",
+      "firstName": "dsd",
+      "lastName": "sdsd",
+      "username": "fgf",
+      "email": "dfgdfgd@gmail.com",
+      "password": "123123"
+    },
+    {
+      "id": "3c7c",
+      "firstName": "Adrianna",
+      "lastName": "Pawłowska",
+      "username": "ada",
+      "email": "adriannapx@gmail.com",
+      "password": "123456"
     }
   ],
   "orders": [
@@ -161,6 +180,32 @@
       ],
       "totalAmount": 40,
       "date": "2024-12-17T12:35:30.655Z"
+    },
+    {
+      "id": "0d82",
+      "customerDetails": {
+        "phone": "000000000",
+        "street": "vvcxcvxvv",
+        "postalCode": "90-000",
+        "city": "hfhfghgfhghf",
+        "houseNumber": "4",
+        "apartmentNumber": "",
+        "comments": "dffdgg ggfdfdggfdfgdgdffgdfgd"
+      },
+      "products": [
+        {
+          "productId": "15",
+          "quantity": 3,
+          "price": 180
+        },
+        {
+          "productId": "26",
+          "quantity": 10,
+          "price": 150
+        }
+      ],
+      "totalAmount": 2040,
+      "date": "2024-12-17T14:24:22.273Z"
     }
   ],
   "images": [

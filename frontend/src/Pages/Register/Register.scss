@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.login-header {
+.register-header {
   width: 100%;
   background-color: var(--dominant-light);
   display: flex;
@@ -35,13 +35,13 @@
   }
 }
 
-.login {
+.register {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 
-  .login-form-wrapper {
+  .register-form-wrapper {
     margin: 1em;
     background: var(--dominant-light);
     border-radius: 8px;
@@ -122,14 +122,14 @@
       }
     }
 
-    .register-redirect, .register-link {
+    .login-redirect, .login-link {
       padding: 0.1em 0;
       text-align: center;
       font-weight: 600;
       color: var(--grey_dark);
       @include selection-whitedark;
       
-      .register-link {
+      .login-link {
         text-decoration: none;
         border-bottom: none;
         color: $blue_brighter;
@@ -145,10 +145,10 @@
 }
 
 @media only screen and (max-width: #{map-get($breakpoints, 'phone-wide')}) {
-  .login {
+  .register {
     width: 100%;
   
-    .login-form-wrapper {
+    .register-form-wrapper {
       margin: 0em;
       padding: 1.5em;
       box-shadow: none;

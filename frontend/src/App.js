@@ -15,7 +15,7 @@ import LikedProduct from './Components/LikeButton/LikedProduct';
 
 // Strony
 import Login from './Pages/Login/Login';
-import Registration from './Pages/Registration/Registration';
+import Register from './Pages/Register/Register';
 import Home from './Pages/Home/Home';
 import CategoryProducts from './Components/CategoryProduct/CategoryProduct';
 import Admin from './Components/Admin/Admin';
@@ -55,7 +55,7 @@ function App() {
                 </Route>
 
                 <Route path="/login" element={<Login />} />
-                <Route path="/registration" element={<Registration />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/admin/*" element={<Admin />} />
               </Routes>
               <ToastContainer />
