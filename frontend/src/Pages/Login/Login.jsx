@@ -100,10 +100,18 @@ const Login = () => {
       localStorage.setItem("user", JSON.stringify({ username: user.username }));
       toast.success("Zalogowałeś się!");
 
-      setTimeout(() => {
-        navigate("/");
-        window.location.reload();
-      }, 1000);
+      if(user.username.toLowerCase().includes('admin')) {
+        setTimeout(() => {
+          navigate("/admin");
+        }, 1000);
+      }
+      else {
+        setTimeout(() => {
+          navigate("/");
+          window.location.reload();
+        }, 1000);
+      }
+
     } catch (error) {
       toast.error(error.message || "Wystąpił problem podczas logowania.");
     }

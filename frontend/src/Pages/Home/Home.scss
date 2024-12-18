@@ -7,7 +7,7 @@
     align-items: center;
     padding: 3em;
     height: 90dvh;
-    background: url('../../../public/images/welcome_baner.jpg') no-repeat center center;
+    background: url('../../../public/images/welcome_baner.avif') no-repeat center center;
     background-size: cover;
     animation: fade-up 0.5s;
 
@@ -62,7 +62,7 @@
     justify-content: flex-end;
     padding: 3em;
     height: 81dvh;
-    background: url('../../../public/images/offer_baner.jpg') no-repeat center center;
+    background: url('../../../public/images/offer_baner.avif') no-repeat center center;
     background-size: cover;
     animation: fade-up 0.5s;
 
@@ -129,19 +129,19 @@
         box-shadow: 0 6px 13px rgba(0, 0, 0, 0.4);
 
         &:nth-child(1) .category-image {
-            background-image: url('../../../public/images/category_jacket.jpg');
+            background-image: url('../../../public/images/category_jacket.avif');
         }
 
         &:nth-child(2) .category-image {
-            background-image: url('../../../public/images/category_pants2.jpg');
+            background-image: url('../../../public/images/category_pants2.avif');
         }
 
         &:nth-child(3) .category-image {
-            background-image: url('../../../public/images/category_shirt2.jpg');
+            background-image: url('../../../public/images/category_shirt2.avif');
         }
 
         &:nth-child(4) .category-image {
-            background-image: url('../../../public/images/category_hat.jpg');
+            background-image: url('../../../public/images/category_hat.avif');
         }
 
         .category-image {

@@ -70,7 +70,7 @@ const Navbar = () => {
 
   return (
     <header className='header-main'>
-      <a href="/" className="a-name" rel="internal">NAZWAAAAA</a>
+      <a href="/" className="a-name" rel="internal" aria-label="Logo sklepu internetowego">NAZWAAAAA</a>
 
       <div className="nav-search" ref={searchWrapperRef}>
         <div className="input-wrapper">
@@ -98,7 +98,7 @@ const Navbar = () => {
 
       <div className={`nav-icons ${isMenuOpen ? 'menu-open' : ''}`}>
         <ThemeSwitch />
-        <a href="/cart">
+        <a href="/cart" aria-label="Przycisk do przejścia na stronę z koszykiem">
           <FaShoppingCart />
           <div className="nav-icons-cart">{cart.length}</div>
         </a>
@@ -118,7 +118,7 @@ const Navbar = () => {
               <button onClick={buttonLogout}>Wyloguj się</button>
           </div>
         ) : (
-          <a href="/login"><FaUserCircle /></a>
+          <a href="/login" aria-label="Przycisk do przejścia na stronę logowania"><FaUserCircle /></a>
         )}
 
         {isModalOpen && (
@@ -141,7 +141,7 @@ const Navbar = () => {
         </div>
         <div className="mobile-menu-icons">
           <ThemeSwitch />
-          <a href="/cart" onClick={toggleMenu}>
+          <a href="/cart" onClick={toggleMenu} aria-label="Przycisk do przejścia na stronę z koszykiem">
             <FaShoppingCart />
             <div className="nav-icons-cart">{cart.length}</div>
           </a>
@@ -150,7 +150,7 @@ const Navbar = () => {
                 <button onClick={buttonLogout}>Wyloguj się</button>
             </div>
           ) : (
-            <a href="/login"><FaUserCircle /></a>
+            <a href="/login" aria-label="Przycisk do przejścia na stronę logowania"><FaUserCircle /></a>
           )}
           <div className="nav-like">
             <div className="liked-products-link">

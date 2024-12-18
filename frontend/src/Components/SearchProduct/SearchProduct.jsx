@@ -7,6 +7,7 @@ import {BACKEND_URL} from '../config';
 
 import SearchBar from './SearchBar';
 import EditProduct from './EditProduct';
+import Filter from './../Filter/Filter';
 
 import './SearchProduct.scss';
 
@@ -34,7 +35,7 @@ const SearchProduct = () => {
             }
         };
 
-        fetchProducts();
+        fetchProducts('');
     }, []);
 
     const handleConfirmDelete = (id) => {
@@ -65,7 +66,7 @@ const SearchProduct = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3001/products/${id}`, {
+            const response = await fetch(`${BACKEND_URL}/products/${id}`, {
                 method: 'DELETE',
             });
     
@@ -121,6 +122,7 @@ const SearchProduct = () => {
         <div className="search-product">
             <SearchBar products={products} setConfirmedResults={setConfirmedResults} />
 
+            <Filter fetchProducts={fetchProducts} />
             <section className="admin-search_products">
                 <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                 {confirmedResults.length === 0 ? (

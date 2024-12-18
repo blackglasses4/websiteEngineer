@@ -42,7 +42,7 @@ const Admin = () => {
                 <h3>Admin Panel</h3>
                 <div className='nav-icons'>
                     <ThemeSwitch />
-                    <a href="/"><FaUserCircle /></a>
+                    <a href="/login"><FaUserCircle /></a>
                 </div>
             </header>
 
