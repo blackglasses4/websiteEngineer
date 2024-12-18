@@ -86,7 +86,7 @@
   align-items: center;
 }
 
-.login-header {
+.register-header {
   width: 100%;
   background-color: var(--dominant-light);
   display: flex;
@@ -96,28 +96,28 @@
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid var(--table_border);
 }
-.login-header .theme-switch-container {
+.register-header .theme-switch-container {
   display: flex;
   align-items: center;
 }
-.login-header .theme-switch-container .header__theme-switch {
+.register-header .theme-switch-container .header__theme-switch {
   text-decoration: none;
   border-bottom: none;
   color: #399be6;
   padding: 0 0.3em;
   transition: color 0.3s;
 }
-.login-header .theme-switch-container .header__theme-switch:hover {
+.register-header .theme-switch-container .header__theme-switch:hover {
   color: #225E8B;
 }
 
-.login {
+.register {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
-.login .login-form-wrapper {
+.register .register-form-wrapper {
   margin: 1em;
   background: var(--dominant-light);
   border-radius: 8px;
@@ -126,43 +126,43 @@
   width: 100%;
   max-width: 600px;
 }
-.login .login-form-wrapper h1 {
+.register .register-form-wrapper h1 {
   color: var(--grey_dark);
   margin-bottom: 1.5rem;
   text-align: center;
 }
-.login .login-form-wrapper h1::-moz-selection {
+.register .register-form-wrapper h1::-moz-selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.login .login-form-wrapper h1::selection {
+.register .register-form-wrapper h1::selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.login .login-form-wrapper form {
+.register .register-form-wrapper form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-.login .login-form-wrapper form label {
+.register .register-form-wrapper form label {
   display: flex;
   flex-direction: column;
   font-weight: 600;
   font-size: 0.9rem;
   color: var(--grey_dark);
 }
-.login .login-form-wrapper form label::-moz-selection {
+.register .register-form-wrapper form label::-moz-selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.login .login-form-wrapper form label::selection {
+.register .register-form-wrapper form label::selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.login .login-form-wrapper form label.error span {
+.register .register-form-wrapper form label.error span {
   color: #e74c3c;
 }
-.login .login-form-wrapper form label input {
+.register .register-form-wrapper form label input {
   margin-top: 0.5rem;
   padding: 0.75rem;
   border: 1px solid var(--table_border);
@@ -171,25 +171,25 @@
   font-size: 1rem;
   transition: border 0.3s;
 }
-.login .login-form-wrapper form label input:focus {
+.register .register-form-wrapper form label input:focus {
   outline: none;
   border: 1px solid #399be6;
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.7);
 }
-.login .login-form-wrapper form label input::-moz-placeholder {
+.register .register-form-wrapper form label input::-moz-placeholder {
   font-size: 0.9rem;
   color: #aaa;
 }
-.login .login-form-wrapper form label input::placeholder {
+.register .register-form-wrapper form label input::placeholder {
   font-size: 0.9rem;
   color: #aaa;
 }
-.login .login-form-wrapper form label .error-message {
+.register .register-form-wrapper form label .error-message {
   margin-top: 0.3rem;
   font-size: 0.8rem;
   color: #e74c3c;
 }
-.login .login-form-wrapper form button {
+.register .register-form-wrapper form button {
   margin: 1em;
   align-self: center;
   padding: 0.75rem 1.5rem;
@@ -201,41 +201,41 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.login .login-form-wrapper form button:hover {
+.register .register-form-wrapper form button:hover {
   background-color: #225E8B;
 }
-.login .login-form-wrapper .register-redirect, .login .login-form-wrapper .register-link {
+.register .register-form-wrapper .login-redirect, .register .register-form-wrapper .login-link {
   padding: 0.1em 0;
   text-align: center;
   font-weight: 600;
   color: var(--grey_dark);
 }
-.login .login-form-wrapper .register-redirect::-moz-selection, .login .login-form-wrapper .register-link::-moz-selection {
+.register .register-form-wrapper .login-redirect::-moz-selection, .register .register-form-wrapper .login-link::-moz-selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.login .login-form-wrapper .register-redirect::selection, .login .login-form-wrapper .register-link::selection {
+.register .register-form-wrapper .login-redirect::selection, .register .register-form-wrapper .login-link::selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.login .login-form-wrapper .register-redirect .register-link, .login .login-form-wrapper .register-link .register-link {
+.register .register-form-wrapper .login-redirect .login-link, .register .register-form-wrapper .login-link .login-link {
   text-decoration: none;
   border-bottom: none;
   color: #399be6;
   padding: 0 0.3em;
   transition: color 0.3s;
 }
-.login .login-form-wrapper .register-redirect .register-link:hover, .login .login-form-wrapper .register-link .register-link:hover {
+.register .register-form-wrapper .login-redirect .login-link:hover, .register .register-form-wrapper .login-link .login-link:hover {
   color: #225E8B;
 }
 
 @media only screen and (max-width: 480px) {
-  .login {
+  .register {
     width: 100%;
   }
-  .login .login-form-wrapper {
+  .register .register-form-wrapper {
     margin: 0em;
     padding: 1.5em;
     box-shadow: none;
   }
-}/*# sourceMappingURL=Login.css.map */
+}/*# sourceMappingURL=Register.css.map */

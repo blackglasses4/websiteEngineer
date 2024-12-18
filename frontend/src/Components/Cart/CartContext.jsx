@@ -1,17 +1,46 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { useUser } from '../../Pages/UserContext';
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+  const { usernameUser } = useUser();
+  
   const [cart, setCart] = useState(() => {
-    // Wczytaj tylko ID produktów z localStorage
-    const savedCart = localStorage.getItem('cart');
-    return savedCart ? JSON.parse(savedCart) : [];  // Sprawdzamy, czy są zapisane ID w koszyku
+    if (usernameUser) {
+      const savedCart = localStorage.getItem('cart');
+      return savedCart ? JSON.parse(savedCart) : [];
+    }
+    return [];
   });
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
+    if (usernameUser) {
+      const savedCart = localStorage.getItem('cart');
+      setCart(savedCart ? JSON.parse(savedCart) : []);
+    }
+  }, [usernameUser]);
+
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key === 'cart') {
+        const updatedCart = JSON.parse(event.newValue || '[]');
+        setCart(updatedCart);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (usernameUser && cart.length > 0) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+  }, [cart, usernameUser]);
 
   const addToCart = (productDetails) => {
     setCart((prevCart) => {
@@ -25,9 +54,9 @@ export const CartProvider = ({ children }) => {
       );
       
       if (!isExisting) {
-        return [...prevCart, productDetails]; // Dodaj nowy produkt do koszyka
+        return [...prevCart, productDetails];
       }
-      return prevCart;// Unikamy duplikatów
+      return prevCart;
     });
   };
 
@@ -51,7 +80,7 @@ export const CartProvider = ({ children }) => {
       )
     );
   };
-  
+
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateCart }}>
       {children}

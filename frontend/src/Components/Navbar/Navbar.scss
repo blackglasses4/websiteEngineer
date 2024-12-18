@@ -8,6 +8,8 @@ header.header-main {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+    flex-wrap: wrap;
 
     a {
         color: $white;
@@ -20,10 +22,14 @@ header.header-main {
     .nav-search {
         flex: 1;
         display: flex;
+        justify-content: center;
         position: relative;
+
+        max-width: 500px;
+        width: 100%; 
         flex-direction: column;
         align-items: center;
-
+         
         .input-wrapper {
             background-color: $white;
             width: 100%;
@@ -92,6 +98,8 @@ header.header-main {
     .nav-icons {
         display: flex;
         gap: 1rem;
+        align-items: center;
+        justify-content: flex-end;
         z-index: 0;
 
         &-cart {
@@ -108,6 +116,27 @@ header.header-main {
             background-color: var(--color-ad);
             color: var(--white);
             z-index: 10;
+        }
+
+        .nav-user {
+            button {
+                background-color: rgba(255, 255, 255, 0.2);
+                font-size: 0.8em;
+                color: $white;
+                border: 2px solid rgba(255, 255, 255, 0.6);
+                padding: 0.3em 0.4em;
+                border-radius: 10px;
+                cursor: pointer;
+                position: relative;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+            
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.3);
+                    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+                }
+            }
         }
 
         @media (max-width: #{map-get($breakpoints, 'tablet')}) {

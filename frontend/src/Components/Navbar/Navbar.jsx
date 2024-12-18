@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaSearch, FaShoppingCart, FaUserCircle, FaBars, FaTimes } from 'react-icons/fa';
-import { useCart } from '../Cart/CartContext.jsx';
+import { Link, useNavigate } from 'react-router-dom';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch.jsx';
-import NavbarCategory from './NavbarCategory.jsx'
-import useClick from '../useClick.jsx';
+import { toast } from "react-toastify";
 
 import { useLikes } from '../LikeButton/LikeContext.jsx';
 import LikeButton from '../LikeButton/LikeButton';
-import { Link } from 'react-router-dom';
+import useClick from '../useClick.jsx';
 import { useProducts } from '../LikeButton/ProductContext.jsx';
 import LikeProductModal from '../LikeButton/LikeProductModal';
+import { useUser } from '../../Pages/UserContext.jsx';
+import { useCart } from '../Cart/CartContext.jsx';
 
 import './Navbar.scss';
 
@@ -18,12 +19,17 @@ const Navbar = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isUserMenuOpen, setUserMenuOpen] = useState(false);
   const searchWrapperRef = useRef(null);
   
   const { dataProducts } = useProducts();
   const { likedProducts, toggleLike } = useLikes();
   const { cart } = useCart();
+  const { usernameUser } = useUser();
+  
+  const navigate = useNavigate();
   useClick(searchWrapperRef, () => setInput(""));
+  console.log(cart);
 
   useEffect(() => {
     if (input === "") {
@@ -46,6 +52,20 @@ const Navbar = () => {
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
+  };
+
+  const toggleUserMenu = () => {
+    setUserMenuOpen(!isUserMenuOpen);
+  };
+
+  const logout = () => {
+    localStorage.removeItem("user");
+
+    toast.success("Wylogowałeś się!");
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
   };
 
   return (
@@ -92,7 +112,14 @@ const Navbar = () => {
             <span>{likedProducts.length}</span>
           </div>
         </div>
-        <a href="/"><FaUserCircle /></a>
+
+        {usernameUser ? (
+          <div className="nav-user" onClick={toggleUserMenu}>
+              <button onClick={logout}>Wyloguj się</button>
+          </div>
+        ) : (
+          <a href="/login"><FaUserCircle /></a>
+        )}
 
         {isModalOpen && (
           <LikeProductModal
@@ -118,9 +145,13 @@ const Navbar = () => {
             <FaShoppingCart />
             <div className="nav-icons-cart">{cart.length}</div>
           </a>
-          <a href="/" onClick={toggleMenu}>
-            <FaUserCircle />
-          </a>
+            {usernameUser ? (
+            <div className="nav-user" onClick={toggleUserMenu}>
+                <button onClick={logout}>Wyloguj się</button>
+            </div>
+          ) : (
+            <a href="/login"><FaUserCircle /></a>
+          )}
           <div className="nav-like">
             <div className="liked-products-link">
               <LikeButton

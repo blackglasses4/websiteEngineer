@@ -11,6 +11,7 @@ const CartPage = () => {
   const { cart, removeFromCart, updateCart } = useCart();
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  console.log(cart);
 
   useEffect(() => {
     setProducts(cart.map(product => ({

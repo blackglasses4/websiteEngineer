@@ -59,28 +59,51 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch(`${BACKEND_URL}/users`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginDetails),
-      });
+    //   // Zaktualizuj ten URL, aby wskazywał na prawdziwe API backendu (np. FastAPI)
+    // const response = await fetch(`http://`${BACKEND_URL}/login`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     usernameOrEmail: loginDetails.usernameOrEmail,
+    //     password: loginDetails.password,
+    //   }),
+    // });
 
-      if (!response.ok) {
+    // const data = await response.json();
+
+    // if (!response.ok) {
+    //   throw new Error(data.message || "Błędna nazwa użytkownika, email lub hasło.");
+    // }
+
+    // // Zakładając, że odpowiedź zawiera dane użytkownika, zapisujemy je w localStorage
+    // localStorage.setItem("user", JSON.stringify({ username: data.username }));
+    // toast.success("Zalogowano pomyślnie!");
+
+      //chwilowy do server-json.
+      const response = await fetch(`${BACKEND_URL}/users`);
+      const users = await response.json();
+      console.log(users);
+
+      // Sprawdzanie, czy użytkownik istnieje i hasło jest poprawne
+      const user = users.find(
+        (user) =>
+          (user.username === loginDetails.usernameOrEmail ||
+            user.email === loginDetails.usernameOrEmail) &&
+          user.password === loginDetails.password
+      );
+
+      if (!user) {
         throw new Error("Błędna nazwa użytkownika, email lub hasło.");
       }
 
-      const data = await response.json();
+      localStorage.setItem("user", JSON.stringify({ username: user.username }));
+      toast.success("Zalogowałeś się!");
 
-      if (!response.ok) {
-        throw new Error(data.message || "Wystąpił błąd podczas logowania.");
-      }
-
-      toast.success("Zalogowano pomyślnie!");
       setTimeout(() => {
-        navigate("/Home");
-      }, 2000);
+        navigate("/");
+      }, 1000);
     } catch (error) {
       toast.error(error.message || "Wystąpił problem podczas logowania.");
     }
@@ -102,14 +125,14 @@ const Login = () => {
               Email lub Nazwa użytkownika:
               <input
                 type="text"
-                name="emailOrUsername"
-                id="emailOrUsername"
-                value={loginDetails.emailOrUsername}
+                name="usernameOrEmail"
+                id="usernameOrEmail"
+                value={loginDetails.usernameOrEmail}
                 onChange={changeLoginDetails}
                 placeholder="Wpisz swój email"
                 required
               />
-              {errors.emailOrUsername && <span className="error-message">{errors.emailOrUsername}</span>}
+              {errors.usernameOrEmail && <span className="error-message">{errors.usernameOrEmail}</span>}
             </label>
 
             <label htmlFor="password" className={errors.password ? "error" : ""}>

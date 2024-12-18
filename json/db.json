@@ -22,6 +22,37 @@
       "lastName": "Pawłowska",
       "username": "ada",
       "email": "adriannapx@gmail.com",
+      "password": "123456",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    },
+    {
+      "id": "3e02",
+      "usernameOrEmail": "adriannapx@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "4a03",
+      "usernameOrEmail": "adriannapx@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "7fe1",
+      "usernameOrEmail": "ada",
+      "password": "123456"
+    },
+    {
+      "id": "b093",
+      "usernameOrEmail": "ada",
+      "password": "123456"
+    },
+    {
+      "id": "66d4",
+      "usernameOrEmail": "ada",
+      "password": "123456"
+    },
+    {
+      "id": "42cc",
+      "usernameOrEmail": "ada",
       "password": "123456"
     }
   ],
