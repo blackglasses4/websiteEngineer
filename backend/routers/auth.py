@@ -51,7 +51,7 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
     Funkcja obsługująca logowanie użytkownika.
     """
     # Pobieramy użytkownika z bazy danych
-    user = db.query(User).filter(User.username == form_data.username).first()
+    user = db.query(User).filter(User.username == form_data.username) | (User.email == form_data.username).first()
     
     # Jeśli użytkownik nie istnieje lub hasło jest nieprawidłowe
     if not user or not verify_password(form_data.password, user.hashed_password):
