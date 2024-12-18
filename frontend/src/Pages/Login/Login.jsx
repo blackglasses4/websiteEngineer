@@ -84,7 +84,6 @@ const Login = () => {
       //chwilowy do server-json.
       const response = await fetch(`${BACKEND_URL}/users`);
       const users = await response.json();
-      console.log(users);
 
       // Sprawdzanie, czy użytkownik istnieje i hasło jest poprawne
       const user = users.find(
@@ -103,6 +102,7 @@ const Login = () => {
 
       setTimeout(() => {
         navigate("/");
+        window.location.reload();
       }, 1000);
     } catch (error) {
       toast.error(error.message || "Wystąpił problem podczas logowania.");

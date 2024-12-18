@@ -8,10 +8,9 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import './CartPage.scss';
 
 const CartPage = () => {
-  const { cart, removeFromCart, updateCart } = useCart();
+  const { cart, removeFromCart, updateCart, clearCart } = useCart();
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-  console.log(cart);
 
   useEffect(() => {
     setProducts(cart.map(product => ({
@@ -114,6 +113,7 @@ const CartPage = () => {
             <h2>Podsumowanie</h2>
             <p>Łączna kwota: {calculateTotal().toFixed(2)} zł</p>
             <button className="checkout-button" onClick={handleCheckout}>Złóż zamówienie</button>
+            <button className="clear-cart-button" onClick={clearCart}>Wyczyść koszyk</button>
           </div>
         </>
       )}

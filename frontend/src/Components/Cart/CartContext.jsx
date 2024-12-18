@@ -1,44 +1,28 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { useUser } from '../../Pages/UserContext';
+import { useUser } from '../../Pages/UserContext'; 
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const { usernameUser } = useUser();
-  
-  const [cart, setCart] = useState(() => {
-    if (usernameUser) {
-      const savedCart = localStorage.getItem('cart');
-      return savedCart ? JSON.parse(savedCart) : [];
-    }
-    return [];
-  });
+  const [cart, setCart] = useState([]);
+
+  const getCartKey = () => (usernameUser ? `cart_${usernameUser}` : null);
 
   useEffect(() => {
-    if (usernameUser) {
-      const savedCart = localStorage.getItem('cart');
+    const cartKey = getCartKey();
+    if (cartKey) {
+      const savedCart = localStorage.getItem(cartKey);
       setCart(savedCart ? JSON.parse(savedCart) : []);
+    } else {
+      setCart([]);
     }
   }, [usernameUser]);
 
   useEffect(() => {
-    const handleStorageChange = (event) => {
-      if (event.key === 'cart') {
-        const updatedCart = JSON.parse(event.newValue || '[]');
-        setCart(updatedCart);
-      }
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (usernameUser && cart.length > 0) {
-      localStorage.setItem('cart', JSON.stringify(cart));
+    const cartKey = getCartKey();
+    if (cartKey) {
+      localStorage.setItem(cartKey, JSON.stringify(cart));
     }
   }, [cart, usernameUser]);
 
@@ -48,11 +32,9 @@ export const CartProvider = ({ children }) => {
         (item) =>
           item.productId === productDetails.productId &&
           item.size === productDetails.size &&
-          item.image === productDetails.image &&
-          item.price === productDetails.price &&
           item.color === productDetails.color
       );
-      
+
       if (!isExisting) {
         return [...prevCart, productDetails];
       }
@@ -81,8 +63,12 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateCart }}>
+    <CartContext.Provider value={{ cart, addToCart, updateCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );

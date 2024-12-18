@@ -25,11 +25,10 @@ const Navbar = () => {
   const { dataProducts } = useProducts();
   const { likedProducts, toggleLike } = useLikes();
   const { cart } = useCart();
-  const { usernameUser } = useUser();
+  const { usernameUser, logout } = useUser();
   
   const navigate = useNavigate();
   useClick(searchWrapperRef, () => setInput(""));
-  console.log(cart);
 
   useEffect(() => {
     if (input === "") {
@@ -55,11 +54,12 @@ const Navbar = () => {
   };
 
   const toggleUserMenu = () => {
+    if (!usernameUser) return;
     setUserMenuOpen(!isUserMenuOpen);
   };
 
-  const logout = () => {
-    localStorage.removeItem("user");
+  const buttonLogout = () => {
+    logout();
 
     toast.success("Wylogowałeś się!");
 
@@ -115,7 +115,7 @@ const Navbar = () => {
 
         {usernameUser ? (
           <div className="nav-user" onClick={toggleUserMenu}>
-              <button onClick={logout}>Wyloguj się</button>
+              <button onClick={buttonLogout}>Wyloguj się</button>
           </div>
         ) : (
           <a href="/login"><FaUserCircle /></a>
@@ -147,7 +147,7 @@ const Navbar = () => {
           </a>
             {usernameUser ? (
             <div className="nav-user" onClick={toggleUserMenu}>
-                <button onClick={logout}>Wyloguj się</button>
+                <button onClick={buttonLogout}>Wyloguj się</button>
             </div>
           ) : (
             <a href="/login"><FaUserCircle /></a>

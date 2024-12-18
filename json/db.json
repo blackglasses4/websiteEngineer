@@ -54,6 +54,14 @@
       "id": "42cc",
       "usernameOrEmail": "ada",
       "password": "123456"
+    },
+    {
+      "id": "89bc",
+      "firstName": "Dominik",
+      "lastName": "Kowalski",
+      "username": "domino",
+      "email": "domino@gmail.com",
+      "password": "domino"
     }
   ],
   "orders": [

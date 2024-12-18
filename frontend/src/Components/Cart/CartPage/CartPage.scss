@@ -132,7 +132,7 @@
       margin-bottom: 1em;
     }
 
-    .checkout-button {
+    .checkout-button, .clear-cart-button {
       background-color: $green_brighter;
       color: $white;
       border: none;
@@ -145,6 +145,15 @@
 
       &:hover {
         background-color: $green_hover;
+      }
+    }
+
+    .clear-cart-button {
+      margin: 0 1em;
+      background-color: $red_brighter;
+
+      &:hover {
+        background-color: $red_light;
       }
     }
   }
