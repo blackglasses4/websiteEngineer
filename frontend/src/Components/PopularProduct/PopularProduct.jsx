@@ -15,7 +15,6 @@ const PopularProduct = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        console.log(`${BACKEND_URL}/products`);
         const response = await fetch(`${BACKEND_URL}/products`);
 
         const data = await response.json();

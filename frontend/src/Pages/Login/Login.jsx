@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { StatusCodes } from 'http-status-codes';
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -85,12 +86,16 @@ const Login = () => {
       const response = await fetch(`${BACKEND_URL}/users`);
       const users = await response.json();
 
+      if (response.status === StatusCodes.UNAUTHORIZED) { //401
+        throw new Error("Błędna nazwa użytkownika, email lub hasło.");
+      }
+
       // Sprawdzanie, czy użytkownik istnieje i hasło jest poprawne
       const user = users.find(
         (user) =>
           (user.username === loginDetails.usernameOrEmail ||
             user.email === loginDetails.usernameOrEmail) &&
-          user.password === loginDetails.password
+            user.password === loginDetails.password
       );
 
       if (!user) {

@@ -24,6 +24,10 @@ const DisplayProduct = () => {
         if (foundProduct) {
             setProduct(foundProduct);
         }
+        else 
+        {
+        setProduct(null);
+      }
     }
 }, [id, products]);
 
@@ -52,6 +56,8 @@ const DisplayProduct = () => {
       price: product.new_price,
       size: selectedSize,
       color: selectedColor,
+      uniqueId: `${product.id}-${selectedSize}-${selectedColor}`,
+      quantity: 1,
     });
 
     toast.success(`Dodano do koszyka: ${product.name}`, {
@@ -83,9 +89,9 @@ const DisplayProduct = () => {
             <div className="product-display__colors">
               <h3>Wybierz kolor</h3>
               <div className="color-options">
-                {product.attributes.color.map((color) => (
+                {product.attributes.color.map((color, index) => (
                   <div
-                    key={color}
+                    key={`${color}-${index}`}
                     className={`color-circle ${
                       selectedColor === color ? 'selected' : ''
                     }`}
@@ -105,9 +111,9 @@ const DisplayProduct = () => {
               <h3>Wybierz rozmiar</h3>
               <ul className="size-options">
                 {product.attributes.sizes.length > 0 ? (
-                  product.attributes.sizes.map((size) => (
+                  product.attributes.sizes.map((size, index) => (
                     <li
-                      key={size}
+                      key={`${size}-${index}`}
                       className={selectedSize === size ? 'selected' : ''}
                       onClick={() => setSelectedSize(size)}
                     >
@@ -124,7 +130,6 @@ const DisplayProduct = () => {
         </div>
       </section>
 
-      {/* Dodajemy komponent podobnych produktów */}
       <SimilarProducts products={products} category={product.category} selectedProductId={product.id}/>
     </>
   );

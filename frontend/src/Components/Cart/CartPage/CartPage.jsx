@@ -19,18 +19,18 @@ const CartPage = () => {
     })));
   }, [cart]);
 
-  const updateQuantity = (productId, newQuantity) => {
+  const updateQuantity = (uniqueId, newQuantity) => {
     const validQuantity = Math.max(1, newQuantity);
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
-        product.productId === productId
+        product.uniqueId === uniqueId
           ? { ...product, quantity: validQuantity }
           : product
       )
     );
   
-    updateCart(productId, { quantity: validQuantity });
-  };  
+    updateCart(uniqueId, { quantity: validQuantity });
+  };
 
   const calculateTotal = () => {
     return products.reduce((total, product) => {
@@ -73,7 +73,7 @@ const CartPage = () => {
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr key={product.productId}>
+                <tr key={product.uniqueId}>
                   <td data-label="Produkt"> {product.image ? (
                         <LazyLoadImage
                         src={product.image}
@@ -96,7 +96,7 @@ const CartPage = () => {
                       type="number"
                       value={product.quantity || 1}
                       min="1"
-                      onChange={(e) => updateQuantity(product.productId, parseInt(e.target.value, 10))}
+                      onChange={(e) => updateQuantity(product.uniqueId, parseInt(e.target.value, 10))}
                     />
                   </td>
                   <td data-label="Całkowita cena">{(product.price * product.quantity).toFixed(2)} zł</td>
@@ -127,7 +127,7 @@ const CartPage = () => {
             <>
           <div className="cart-cards">
             {products.map((product) => (
-              <div className="cart-card" key={product.productId}>
+              <div className="cart-card" key={product.uniqueId}>
                   <LazyLoadImage
                         src={product.image}
                         className='cart-item-image'
