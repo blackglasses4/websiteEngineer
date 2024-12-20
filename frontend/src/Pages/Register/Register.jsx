@@ -83,6 +83,21 @@ const Register = () => {
     };
 
     try {
+      //1, Sprawdzanie 
+      const checkResponse = await fetch(`${BACKEND_URL}/users/check`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: userDetails.username,
+        email: userDetails.email,
+      }),
+    });
+
+
+
+      //2. Rejestracja użytkownika, jeśli wszystko jest w porządku.
       const response = await fetch(`${BACKEND_URL}/users`, {
         method: "POST",
         headers: {
@@ -97,7 +112,6 @@ const Register = () => {
 
       toast.success("Rejestracja zakończona sukcesem!");
 
-      // Resetujemy pola formularza
       setUserDetails({
         firstName: "",
         lastName: "",
@@ -107,10 +121,9 @@ const Register = () => {
         confirmPassword: "",
       });
 
-      // Nawigujemy do strony logowania
       setTimeout(() => {
         navigate("/login");
-      }, 2000); // 2 sekundy na pokazanie komunikatu sukcesu
+      }, 2000);
     } catch (error) {
       toast.error("Wystąpił błąd podczas rejestracji. Spróbuj ponownie.");
     }

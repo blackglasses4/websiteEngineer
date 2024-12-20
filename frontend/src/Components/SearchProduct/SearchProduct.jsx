@@ -11,34 +11,78 @@ import EditProduct from './EditProduct';
 // import Filter from '../Filter/Filter';
 
 import './Search.scss';
+import { getProducts } from '../../backend';
 
 const SearchProduct = () => {
+   
     const [products, setProducts] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
     const [productToEdit, setProductToEdit] = useState(null);
 
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch(`${BACKEND_URL}/products`);
-                const data = await response.json();
-                setProducts(data);
-                setConfirmedResults(data); 
-            } catch (error) {
-                toast.error('Nie udało się załadować produktów.', {
-                    position: 'top-right',
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
-            }
-        };
+    // stronicowanie
+    const [page, setPage] = useState(1);
+    const [firstPage, setFirstPage] = useState();
+    const [prevPage, setPrevPage] = useState();
+    const [nextPage, setNextPage] = useState();
+    const [lastPage, setLastPage] = useState();
 
-        useEffect(() => {
-            fetchProducts('');
-    }, []);
+    const [numberOfPages, setNumberOfPages] = useState();
+    const [numberOfItems, setNumberOfItems] = useState();
+
+    //filtrowanie
+    const [gender, setGender] = useState();
+
+    //sortortowanie
+    // TODO
+
+
+    const fetchProducts = async () => {
+        try {
+            const params = {
+                '_page': page,
+                '_per_page': 8
+            }
+            
+            if (gender) {
+                params['gender'] = gender;
+            }
+
+            params['_sort'] = '-new_price';  //TODO
+            
+            const response = await getProducts(params);
+            //const response = await fetch(`${BACKEND_URL}/products?_page=${page}&_per_page=5`);
+            const result = await response.json();
+            
+            console.log(result);
+
+            
+            setFirstPage(result['first']);
+            setPrevPage(result['prev']);
+            setNextPage(result['next']);
+            setLastPage(result['last']);
+            setNumberOfPages(result['pages']);
+            setNumberOfItems(result['items']);
+
+            const productList = result['data'];
+
+            setProducts(productList);
+            setConfirmedResults(productList); 
+        } catch (error) {
+            toast.error('Nie udało się załadować produktów.', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    };
+    
+    useEffect(() => {
+        fetchProducts();
+    }, [page, gender]);
 
     const handleConfirmDelete = (id) => {
         if(!id) {
@@ -129,7 +173,7 @@ const SearchProduct = () => {
     return (
         <div className="search-product">
             <h1 className='admin-h1'>Dodaj nowy produkt</h1>
-            <CreateProduct/>
+            {/* <CreateProduct/> */}
             <h1 className='admin-h1'>Wyszukaj produkty</h1>
 
             <SearchBar data={products} setConfirmedResults={setConfirmedResults} type="products" />
@@ -137,8 +181,25 @@ const SearchProduct = () => {
             {/* <Filter fetchProducts={fetchProducts} /> */}
             
             <section className="admin-search_products">
-                <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
-                {confirmedResults.length === 0 ? (
+            <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
+
+
+            <input type="button" value="Pierwsza" disabled={firstPage == null} onClick={() => {setPage(firstPage)}}></input>
+            <input type="button" value="Poprzednia" disabled={prevPage == null} onClick={() => {setPage(prevPage)}}></input>
+            <input type="button" value="Następna" disabled={nextPage == null} onClick={() => {setPage(nextPage)}}></input>
+            <input type="button" value="Ostatnia" disabled={lastPage == null} onClick={() => {setPage(lastPage)}}></input>
+            <span>{page}/{numberOfPages}</span>
+            <input type="button" value="Women" onClick={() => {setGender('women'); setPage(1); }}></input>
+            <input type="button" value="Men" onClick={() => {setGender('men'); setPage(1); }}></input>
+            <input type="button" value="All" onClick={() => {setGender(null); setPage(1); }}></input>
+
+            <span>Liczba sztuk: {numberOfItems}</span>
+
+            {/* <button disabled={!true} onClick={() => {setPage(nextPage)}}>Następna</button> */}
+
+
+
+            {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
                 ) : (
                     <table className="admin-search_table">
@@ -204,7 +265,7 @@ const SearchProduct = () => {
                 )}
             </section>
 
-            <section className="admin-search_products-mobile">
+            {/* <section className="admin-search_products-mobile">
                 <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                 {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
@@ -248,7 +309,7 @@ const SearchProduct = () => {
                         ))}
                     </div>
                 )}
-            </section>
+            </section> */}
         </div>
     );
 };
