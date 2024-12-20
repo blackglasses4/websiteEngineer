@@ -8,7 +8,7 @@ import {BACKEND_URL} from '../config';
 import CreateProduct from '../CreateProduct/CreateProduct';
 import SearchBar from './SearchBar';
 import EditProduct from './EditProduct';
-import Filter from './../Filter/Filter';
+// import Filter from '../Filter/Filter';
 
 import './Search.scss';
 
@@ -134,7 +134,7 @@ const SearchProduct = () => {
 
             <SearchBar data={products} setConfirmedResults={setConfirmedResults} type="products" />
 
-            <Filter fetchProducts={fetchProducts} />
+            {/* <Filter fetchProducts={fetchProducts} /> */}
             
             <section className="admin-search_products">
                 <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>

@@ -3,7 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {BACKEND_URL} from '../config';
 
-import './CreateProduct.scss';
+import './Create.scss';
 
 const CreateProduct = () => {
     const initialProductState = {

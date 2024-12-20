@@ -77,6 +77,7 @@ const EditUser = ({ user, onSave, onCancel }) => {
     };
     
     return (
+        <>
         <table className="edit-user-form">
             <tbody>
                 <tr>
@@ -165,6 +166,79 @@ const EditUser = ({ user, onSave, onCancel }) => {
                 </tr>
             </tbody>
         </table>
+        <div className="edit-user-form-mobile">
+            <p>
+                <span>Imię:</span>
+                <label>
+                    <input
+                        id="input-first-name"
+                        type="text"
+                        value={editForm.firstName || ''}
+                        onChange={(e) => setEditForm({ ...editForm, firstName: e.target.value })}
+                    />
+                </label>
+            </p>
+            <p>
+                <span>Nazwisko:</span>
+                <label>
+                    <input
+                        id="input-last-name"
+                        type="text"
+                        value={editForm.lastName || ''}
+                        onChange={(e) => setEditForm({ ...editForm, lastName: e.target.value })}
+                    />
+                </label>
+            </p>
+            <p>
+                <span>Nazwa użytkownika:</span>
+                <label>
+                    <input
+                        id="input-username"
+                        type="text"
+                        value={editForm.username || ''}
+                        onChange={(e) => setEditForm({ ...editForm, username: e.target.value })}
+                    />
+                </label>
+            </p>
+            <p>
+                <span>Email:</span>
+                <label>
+                    <input
+                        id="input-email"
+                        type="email"
+                        value={editForm.email || ''}
+                        onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
+                    />
+                </label>
+            </p>
+            <p>
+                <span>Hasło:</span>
+                <label>
+                    <input
+                        id="input-password"
+                        type="password"
+                        value={editForm.password || ''}
+                        onChange={(e) => setEditForm({ ...editForm, password: e.target.value })}
+                    />
+                </label>
+            </p>
+            <p>
+                <span>Administrator:</span>
+                <label>
+                    <input
+                        id="input-admin"
+                        type="checkbox"
+                        checked={editForm.isAdmin || false}
+                        onChange={() => setEditForm((prevForm) => ({ ...prevForm, isAdmin: !prevForm.isAdmin }))}
+                    />
+                </label>
+            </p>
+            <div className="button-container">
+                <button type="button" className="button-save" onClick={handleSaveUser}>Zapisz</button>
+                <button type="button" className="button-cancel" onClick={onCancel}>Anuluj</button>
+            </div>
+        </div>
+        </>
     );
 };
 

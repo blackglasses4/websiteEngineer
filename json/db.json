@@ -5,7 +5,7 @@
       "firstName": "Adrianna",
       "lastName": "Pawłowska",
       "username": "ada",
-      "email": "56@gmail.com",
+      "email": "100@gmail.com",
       "password": "123456",
       "isAdmin": false
     },
@@ -24,6 +24,15 @@
       "username": "admin",
       "email": "admin@gmail.com",
       "password": "admin1",
+      "isAdmin": true
+    },
+    {
+      "id": null,
+      "firstName": "hfghfg",
+      "lastName": "hfghfgh",
+      "username": "ghfghfgh",
+      "email": "aa@gmail.com",
+      "password": "344343",
       "isAdmin": true
     }
   ],
@@ -509,11 +518,11 @@
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka",
-      "popular": true,
       "image": {
         "url": "http://localhost:3001/jacket_men2.png",
         "alt": "Kurtka windbreaker dla mężczyzn"
       },
+      "popular": true,
       "new_price": 120,
       "old_price": 240,
       "description": "Kurtka windbreaker do ochrony przed wiatrem, świetna na lekkie treningi na świeżym powietrzu.",
@@ -528,8 +537,7 @@
           "green",
           "navy"
         ],
-        "material": "poliamid",
-        "stock": 50
+        "material": "poliamid"
       }
     },
     {

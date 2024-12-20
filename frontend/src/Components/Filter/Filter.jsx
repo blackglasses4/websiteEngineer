@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 
-const FilterPagination = ({ fetch }) => {
+const Filter = ({ setFilters }) => {
     const [genderFilter, setGenderFilter] = useState('');
     const [sortBy, setSortBy] = useState('asc');
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage] = useState(5);
 
     const handleFilterChange = () => {
-        const filters = `gender=${genderFilter}&_sort=${sortBy}&_page=${currentPage}&_per_page=${perPage}`;
-        fetch(filters);
+        const filters = {
+            gender: genderFilter,
+            sortBy,
+            currentPage,
+            perPage,
+        };
+        setFilters(filters);
     };
 
     const handlePageChange = (pageNumber) => {
@@ -38,7 +43,9 @@ const FilterPagination = ({ fetch }) => {
             </div>
 
             <div className="pagination">
-                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage <= 1}>Poprzednia</button>
+                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage <= 1}>
+                    Poprzednia
+                </button>
                 <span>Strona {currentPage}</span>
                 <button onClick={() => handlePageChange(currentPage + 1)}>Następna</button>
             </div>
@@ -46,4 +53,4 @@ const FilterPagination = ({ fetch }) => {
     );
 };
 
-export default FilterPagination;
+export default Filter;

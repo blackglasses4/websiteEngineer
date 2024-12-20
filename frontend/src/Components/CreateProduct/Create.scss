@@ -1,7 +1,8 @@
 @use '../../scss/variables' as *;
 @use '../../scss/mixins' as *;
 
-.create-product {
+.create-product,
+.create-user {
     width: 100%;
     max-width: auto;
     padding: 2rem;
@@ -69,13 +70,14 @@
                 }
             }
 
-            label[for="popular"] {
+            label[for="popular"],
+            label[for="isAdmin"] {
                 flex-direction: row; 
                 align-items: flex-start;
                 gap: 0.5rem;
                 font-size: 1rem;
             }
-
+            
             textarea {
                 resize: vertical;
                 min-height: 80px;

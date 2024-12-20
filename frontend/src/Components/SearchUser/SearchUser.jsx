@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {BACKEND_URL} from '../config';
 
+import CreateUser from '../CreateUser/CreateUser';
 import SearchBar from '../SearchProduct/SearchBar';
 import EditUser from './EditUser';
 // import Filter from './../Filter/Filter';
@@ -125,7 +126,9 @@ const SearchUser = () => {
 
     return (
         <div className="search-user">
-            <h1 className='admin-h1'>Wyszukaj produkty</h1>
+            <h1 className='admin-h1'>Dodaj nowego użytkownika</h1>
+            <CreateUser/>
+            <h1 className='admin-h1'>Wyszukaj użytkownika</h1>
 
             <SearchBar data={users} setConfirmedResults={setConfirmedResults} type="users" />
 
@@ -205,6 +208,15 @@ const SearchUser = () => {
                                         <button className='button-delete' onClick={() => handleConfirmDelete(user.id)}>Usuń</button>
                                     </div>
                                 </div>
+                                {userToEdit && userToEdit.id === user.id && (
+                                    <div className="edit-product-mobile open">
+                                        <EditUser
+                                            user={userToEdit}
+                                            onSave={handleSaveUsers}
+                                            onCancel={handleCancelEdit}
+                                        />
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </div>
