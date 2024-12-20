@@ -5,23 +5,24 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {BACKEND_URL} from '../config';
 
+import CreateProduct from '../CreateProduct/CreateProduct';
 import SearchBar from './SearchBar';
 import EditProduct from './EditProduct';
 import Filter from './../Filter/Filter';
 
-import './SearchProduct.scss';
+import './Search.scss';
 
 const SearchProduct = () => {
     const [products, setProducts] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
     const [productToEdit, setProductToEdit] = useState(null);
 
-    useEffect(() => {
         const fetchProducts = async () => {
             try {
                 const response = await fetch(`${BACKEND_URL}/products`);
                 const data = await response.json();
                 setProducts(data);
+                setConfirmedResults(data); 
             } catch (error) {
                 toast.error('Nie udało się załadować produktów.', {
                     position: 'top-right',
@@ -35,12 +36,13 @@ const SearchProduct = () => {
             }
         };
 
-        fetchProducts('');
+        useEffect(() => {
+            fetchProducts('');
     }, []);
 
     const handleConfirmDelete = (id) => {
         if(!id) {
-            console.error('Id is undefined or invalid');
+            console.error('Id jest undefined');
             return;
         }
         
@@ -61,7 +63,7 @@ const SearchProduct = () => {
 
     const handleDeleteProdukt = async (id, toastId) => {
         if (!id) {
-            console.error('ID is undefined or invalid');
+            console.error('Id jest undefined');
             return;
         }
 
@@ -107,12 +109,18 @@ const SearchProduct = () => {
         setProducts((prevProducts) => prevProducts.map((product) => 
             product.id === updatedProduct.id ? updatedProduct : product
         ));
-        setProductToEdit(null); 
+    
+        setConfirmedResults((prevConfirmedResults) => prevConfirmedResults.map((product) => 
+            product.id === updatedProduct.id ? updatedProduct : product
+        ));
+    
+        setProductToEdit(null); // Zamykamy tryb edycji po zapisaniu zmian
+    
         toast.success('Produkt został zaktualizowany!', {
             position: 'top-right',
             autoClose: 5000,
         });
-    };
+    };    
 
     const handleCancelEdit = () => {
         setProductToEdit(null);
@@ -120,9 +128,14 @@ const SearchProduct = () => {
 
     return (
         <div className="search-product">
-            <SearchBar products={products} setConfirmedResults={setConfirmedResults} />
+            <h1 className='admin-h1'>Dodaj nowy produkt</h1>
+            <CreateProduct/>
+            <h1 className='admin-h1'>Wyszukaj produkty</h1>
+
+            <SearchBar data={products} setConfirmedResults={setConfirmedResults} type="products" />
 
             <Filter fetchProducts={fetchProducts} />
+            
             <section className="admin-search_products">
                 <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                 {confirmedResults.length === 0 ? (
@@ -222,6 +235,15 @@ const SearchProduct = () => {
                                         <button className='button-delete' onClick={() => handleConfirmDelete(product.id)}>Usuń</button>
                                     </div>
                                 </div>
+                                {productToEdit && productToEdit.id === product.id && (
+                                    <div className="edit-product-mobile open">
+                                        <EditProduct
+                                            product={productToEdit}
+                                            onSave={handleSaveProduct}
+                                            onCancel={handleCancelEdit}
+                                        />
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </div>

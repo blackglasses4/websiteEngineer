@@ -1,7 +1,7 @@
 @use '../../scss/variables' as *;
 @use '../../scss/mixins' as *;
 
-.search-product {
+.search-product, .search-order, .search-user {
     width: 100%;
     max-width: auto;
     background-color: var(--dominant-light);
@@ -73,6 +73,7 @@
     
                     button {
                         color: var(--dominant-dark);
+                        font-size: 0.8em;
                         background: none;
                         border: none;
                         border-bottom: none;
@@ -96,7 +97,7 @@
     }
     
     
-    .admin-search_products {
+    .admin-search_products, .admin-search_orders, .admin-search_users {
         .search-empty {
             width: 100%;
             display: flex;
@@ -129,13 +130,55 @@
             font-size: 0.8em;
             background-color: var(--dominant-light);
             box-shadow: 0 4px 6px var(--table_shadow);
+
+            td {
+                select {
+                    width: 100%;
+                    padding: 6px 4px;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    color: var(--dominant-dark);
+                    background-color: var(--table_td);
+                    border: 1px solid var(--table_border);
+                    border-radius: 4px;
+                    appearance: none;
+                    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+                
+                    &:hover {
+                      border-color: #888;
+                    }
+                
+                    &:focus {
+                      outline: none;
+                      border-color: $blue_brighter;
+                      box-shadow: 0 0 4px rgba(91, 157, 217, 0.8);
+                    }
+                
+                    &:disabled {
+                      background-color: var(--table_td);
+                      color: var(--table_s);
+                      border-color: $white;
+                      cursor: not-allowed;
+                    }
+                  }
+
+                  &::after {
+                    position: absolute;
+                    top: 50%;
+                    right: 12px;
+                    transform: translateY(-50%);
+                    pointer-events: none;
+                    font-size: 14px;
+                    color: #555;
+                }
+            }
         
             th, td {
                 padding: 15px;
                 text-align: center;
                 border-bottom: 1px solid var(--table_border);
         
-            &, p {
+            &, p, span {
                 text-align: left;
                 @include selection-whitedark;
             }
@@ -225,7 +268,9 @@
         }
     }
     
-    .admin-search_products-mobile {
+    .admin-search_products-mobile,
+    .admin-search_orders-mobile,
+    .admin-search_users-mobile {
         display: none;
     
         button {
@@ -253,9 +298,10 @@
             flex-direction: column;
             gap: 2rem;
     
-            .search-mobile_product {
+            .search-mobile_product,
+            .search-mobile_user {
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 padding: 1em;
                 background-color: var(--dominant-light);
                 border: 1px solid var(--table_border);
@@ -267,6 +313,17 @@
     
                 &:hover {
                     box-shadow: 0 1px 3px var(--table_s);
+                }
+
+                .edit-product-mobile {
+                    display: none;
+                    margin-top: 1em;
+                    border-radius: 8px;
+                    transition: box-shadow 0.3s ease;
+            
+                    &.open {
+                        display: block;
+                    }
                 }
             }
         }
@@ -280,7 +337,8 @@
             @include selection-whitedark;
         }
     
-        .product-details {
+        .product-details,
+        .user-details {
             display: flex;
             padding-left: 1em;
             flex-direction: column;
@@ -292,6 +350,46 @@
                 color: var(--dominant-dark);
                 margin-bottom: 0;
                 @include selection-whitedark;
+
+                select {
+                    width: 20%;
+                    padding: 6px 4px;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    color: var(--dominant-dark);
+                    background-color: var(--table_td);
+                    border: 1px solid var(--table_border);
+                    border-radius: 4px;
+                    appearance: none;
+                    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+                
+                    &:hover {
+                      border-color: #888;
+                    }
+                
+                    &:focus {
+                      outline: none;
+                      border-color: $blue_brighter;
+                      box-shadow: 0 0 4px rgba(91, 157, 217, 0.8);
+                    }
+                
+                    &:disabled {
+                      background-color: var(--table_td);
+                      color: var(--table_s);
+                      border-color: $white;
+                      cursor: not-allowed;
+                    }
+                  }
+
+                  &::after {
+                    position: absolute;
+                    top: 50%;
+                    right: 12px;
+                    transform: translateY(-50%);
+                    pointer-events: none;
+                    font-size: 14px;
+                    color: #555;
+                }
     
                 span {
                     font-weight: 500;
@@ -376,12 +474,16 @@
 }
 
 @media only screen and (max-width: #{map-get($breakpoints, 'desktop-wide')}) {
-    .search-product {  
-        .admin-search_products {
+    .search-product, .search-order, .search-user {  
+        .admin-search_products,
+        .admin-search_orders,
+        .admin-search_users {
             display: none;
         }
         
-        .admin-search_products-mobile {
+        .admin-search_products-mobile,
+        .admin-search_orders-mobile,
+        .admin-search_users-mobile {
             display: block;
         }
     }
@@ -389,19 +491,28 @@
 }
 
 @media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
-    .search-product {  
+    .search-product,
+    .search-order,
+    .search-user {  
         padding: 0rem;
         box-shadow: 0 0 0 rgba(0, 0, 0, 0); 
     }
 }
 
 @media only screen and (max-width: #{map-get($breakpoints, 'phablet')}) {
-    .search-product { 
-        .admin-search_products {
+    .search-product,
+    .search-order,
+    .search-user { 
+        .admin-search_products,
+        .admin-search_orders,
+        .admin-search_users
+        {
             display: none;
         }
         
-        .admin-search_products-mobile {
+        .admin-search_products-mobile,
+        .admin-search_orders-mobile,
+        .admin-search_users-mobile {
             display: block;
       
             .search-mobile {
@@ -420,7 +531,8 @@
                 height: auto;
             }
     
-            .product-details {
+            .product-details,
+            .user-details {
                 display: flex;
                 padding: 1em 0 0 0;
                 flex-direction: column;

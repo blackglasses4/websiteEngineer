@@ -28,7 +28,6 @@ const Order = () => {
       [name]: value,
     }));
 
-    // Reset błędów dla danego pola
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: false,
@@ -90,11 +89,15 @@ const Order = () => {
       return;
     }
 
+    const usernameUser = localStorage.getItem('usernameUser');
+
     const orderData = {
       customerDetails: orderDetails,
-      products: orderItems,
+      items: orderItems,
       totalAmount: calculateTotal(),
       date: new Date().toISOString(),
+      status: "W trakcie realizacji",
+      customer: usernameUser || "Anonimowy użytkownik",
     };
 
     try {

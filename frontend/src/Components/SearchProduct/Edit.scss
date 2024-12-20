@@ -1,7 +1,9 @@
 @use '../../scss/variables' as *;
 @use '../../scss/mixins' as *;
 
-.edit-product-form {
+.edit-product-form,
+.edit-user-form {
+    display: block;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
@@ -128,4 +130,46 @@
         text-align: center;
     }
 }
+
+.edit-product-form-mobile {
+    display: none;
+    padding: 1em;
+    background-color: var(--dominant-light);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+    .form-group {
+        margin-bottom: 1em;
+    }
+
+    label {
+        font-weight: 600;
+    }
+
+    input, select, textarea {
+        background-color: var(--table_td);
+        width: 60%;
+        padding: 10px;
+        margin-left: 0.5em;
+        border-radius: 5px;
+        margin-top: 0.5em;
+        color: var(--dominant-dark)
+    }
+
+    button {
+        padding: 1em 1.1em;
+        font-size: 1em;
+        border-radius: 5px;
+        margin-top: 1em;
+    }
+}
   
+@media only screen and (max-width: #{map-get($breakpoints, 'desktop-wide')}) {
+    .edit-product-form {  
+            display: none;
+        }
+        
+    .edit-product-form-mobile {
+        display: block;
+    }
+}

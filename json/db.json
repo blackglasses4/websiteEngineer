@@ -5,9 +5,9 @@
       "firstName": "Adrianna",
       "lastName": "Pawłowska",
       "username": "ada",
-      "email": "adriannapx@gmail.com",
+      "email": "56@gmail.com",
       "password": "123456",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+      "isAdmin": false
     },
     {
       "id": "89bc",
@@ -23,190 +23,91 @@
       "lastName": "admin",
       "username": "admin",
       "email": "admin@gmail.com",
-      "password": "admin1"
+      "password": "admin1",
+      "isAdmin": true
     }
   ],
   "orders": [
     {
-      "id": "e444",
+      "id": "7038",
       "customerDetails": {
-        "phone": "999999999",
-        "street": "fggdfdfg",
-        "postalCode": "67-999",
-        "city": "hfghghghg",
+        "phone": "505718024",
+        "street": "orła białego",
+        "postalCode": "61-251",
+        "city": "Poznań",
+        "houseNumber": "76",
+        "apartmentNumber": "110",
+        "comments": "Kocham Adę Dzień dobry"
+      },
+      "items": [
+        {
+          "productId": "7",
+          "quantity": 8,
+          "price": 50
+        },
+        {
+          "productId": "43",
+          "quantity": 6,
+          "price": 50
+        }
+      ],
+      "totalAmount": 700,
+      "date": "2024-12-19T18:48:14.500Z",
+      "status": "Dostarczone",
+      "customer": "Anonimowy użytkownik"
+    },
+    {
+      "id": "d573",
+      "customerDetails": {
+        "phone": "555555555",
+        "street": "coś",
+        "postalCode": "23-234",
+        "city": "Warszawa",
         "houseNumber": "5",
         "apartmentNumber": "",
-        "comments": ""
+        "comments": "..............................................................................................."
       },
-      "products": [
+      "items": [
         {
           "productId": "38",
           "quantity": 1,
           "price": 45
         },
         {
-          "productId": "39",
-          "quantity": 3,
-          "price": 40
-        },
-        {
-          "productId": "48",
+          "productId": "26",
           "quantity": 1,
-          "price": 400
-        }
-      ],
-      "totalAmount": 565,
-      "date": "2024-12-17T11:58:53.225Z"
-    },
-    {
-      "id": "5cb9",
-      "customerDetails": {
-        "phone": "555555555",
-        "street": "gffg",
-        "postalCode": "66-666",
-        "city": "gfdgdfgdg",
-        "houseNumber": "6",
-        "apartmentNumber": "",
-        "comments": ""
-      },
-      "products": [
-        {
-          "productId": "48",
-          "quantity": 1,
-          "price": 400
-        },
-        {
-          "productId": "25",
-          "quantity": 1,
-          "price": 120
+          "price": 150
         },
         {
           "productId": "26",
           "quantity": 1,
           "price": 150
-        }
-      ],
-      "totalAmount": 670,
-      "date": "2024-12-17T12:09:29.803Z"
-    },
-    {
-      "id": "34be",
-      "customerDetails": {
-        "phone": "777777777",
-        "street": "fhgfh",
-        "postalCode": "00-000",
-        "city": "dsfsdf",
-        "houseNumber": "",
-        "apartmentNumber": "5",
-        "comments": ""
-      },
-      "products": [
+        },
         {
-          "productId": "49",
-          "quantity": 1,
+          "productId": "14",
+          "quantity": 6,
+          "price": 120
+        },
+        {
+          "productId": "16",
+          "quantity": 2,
+          "price": 130
+        },
+        {
+          "productId": "14",
+          "quantity": 6,
           "price": 120
         },
         {
           "productId": "14",
-          "quantity": 1,
-          "price": 120
-        },
-        {
-          "productId": "50",
-          "quantity": 1,
+          "quantity": 6,
           "price": 120
         }
       ],
-      "totalAmount": 360,
-      "date": "2024-12-17T12:28:45.232Z"
-    },
-    {
-      "id": "9be5",
-      "customerDetails": {
-        "phone": "777777777",
-        "street": "hghfghf",
-        "postalCode": "67-000",
-        "city": "fhghfgh",
-        "houseNumber": "",
-        "apartmentNumber": "6",
-        "comments": ""
-      },
-      "products": [
-        {
-          "productId": "38",
-          "quantity": 1,
-          "price": 45
-        },
-        {
-          "productId": "1",
-          "quantity": 1,
-          "price": 40
-        },
-        {
-          "productId": "26",
-          "quantity": 1,
-          "price": 150
-        },
-        {
-          "productId": "38",
-          "quantity": 1,
-          "price": 45
-        },
-        {
-          "productId": "49",
-          "quantity": 1,
-          "price": 120
-        }
-      ],
-      "totalAmount": 400,
-      "date": "2024-12-17T12:35:04.703Z"
-    },
-    {
-      "id": "e936",
-      "customerDetails": {
-        "phone": "555555555",
-        "street": "hh",
-        "postalCode": "67-000",
-        "city": "gfgdgdf",
-        "houseNumber": "5",
-        "apartmentNumber": "",
-        "comments": "gdfgdfgf"
-      },
-      "products": [
-        {
-          "productId": "39",
-          "quantity": 1,
-          "price": 40
-        }
-      ],
-      "totalAmount": 40,
-      "date": "2024-12-17T12:35:30.655Z"
-    },
-    {
-      "id": "0d82",
-      "customerDetails": {
-        "phone": "000000000",
-        "street": "vvcxcvxvv",
-        "postalCode": "90-000",
-        "city": "hfhfghgfhghf",
-        "houseNumber": "4",
-        "apartmentNumber": "",
-        "comments": "dffdgg ggfdfdggfdfgdgdffgdfgd"
-      },
-      "products": [
-        {
-          "productId": "15",
-          "quantity": 3,
-          "price": 180
-        },
-        {
-          "productId": "26",
-          "quantity": 10,
-          "price": 150
-        }
-      ],
-      "totalAmount": 2040,
-      "date": "2024-12-17T14:24:22.273Z"
+      "totalAmount": 2765,
+      "date": "2024-12-19T21:50:21.666Z",
+      "status": "Reklamacja",
+      "customer": "Anonimowy użytkownik"
     }
   ],
   "images": [
@@ -231,16 +132,16 @@
         "url": "http://localhost:3001/shirt_women1.jpg",
         "alt": "Koszulka sportowa dla kobiet"
       },
-      "popular": false,
-      "new_price": 40,
+      "popular": true,
+      "new_price": 50,
       "old_price": 80,
       "description": "Lekka koszulka sportowa, idealna na treningi.",
       "attributes": {
         "sizes": [
-          "S",
           "M",
           "L",
-          "XL"
+          "XL",
+          "XS"
         ],
         "color": [
           "black",
@@ -250,8 +151,7 @@
           "navy"
         ],
         "material": "poliester"
-      },
-      "isLiked": false
+      }
     },
     {
       "id": "2",
@@ -407,11 +307,11 @@
       "category": "koszulka",
       "gender": "women",
       "name": "Koszulka do biegania",
-      "popular": true,
       "image": {
         "url": "http://localhost:3001/shirt_women7.jpg",
         "alt": "Koszulka do biegania dla kobiet"
       },
+      "popular": true,
       "new_price": 50,
       "old_price": 100,
       "description": "Lekka koszulka do biegania, z materiału odprowadzającego wilgoć, zapewnia komfort podczas treningu.",
@@ -423,16 +323,14 @@
           "XL"
         ],
         "color": [
-          "black",
           "purple",
           "blue",
           "yellow",
-          "salmon"
+          "salmon",
+          "lime"
         ],
-        "material": "elastan",
-        "stock": 60
-      },
-      "isLiked": false
+        "material": "elastan"
+      }
     },
     {
       "id": "8",

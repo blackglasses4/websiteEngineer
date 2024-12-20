@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
-const FilterPagination = ({ fetchProducts }) => {
+const FilterPagination = ({ fetch }) => {
     const [genderFilter, setGenderFilter] = useState('');
-    const [sortBy, setSortBy] = useState('new_price');
+    const [sortBy, setSortBy] = useState('asc');
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage] = useState(5);
 
     const handleFilterChange = () => {
         const filters = `gender=${genderFilter}&_sort=${sortBy}&_page=${currentPage}&_per_page=${perPage}`;
-        fetchProducts(filters);
+        fetch(filters);
     };
 
     const handlePageChange = (pageNumber) => {
@@ -30,8 +30,9 @@ const FilterPagination = ({ fetchProducts }) => {
                 <label>
                     Sortowanie:
                     <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                        <option value="new_price">Nowa cena</option>
-                        <option value="old_price">Stara cena</option>
+                        <option value="none">Brak sortowania</option>
+                        <option value="asc">Od najniższej do najwyższej</option>
+                        <option value="desc">Od najwyższej do najniższej</option>
                     </select>
                 </label>
             </div>

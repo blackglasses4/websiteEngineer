@@ -4,15 +4,14 @@ const OrderItem = ({ setOrderItems }) => {
   const [orderData, setOrderData] = useState([]);
 
   useEffect(() => {
-    // Pobieranie danych zamówienia z localStorage
     const storedOrderData = JSON.parse(localStorage.getItem('order'));
   
     if (storedOrderData && storedOrderData.length > 0) {
       setOrderData(storedOrderData);
-      setOrderItems(storedOrderData); // Przekazujemy dane do rodzica
+      setOrderItems(storedOrderData);
     } else {
-      setOrderData([]);  // Ustawienie pustej tablicy, jeśli nie ma danych w localStorage
-      setOrderItems([]);  // Przekazanie pustych danych do rodzica
+      setOrderData([]);
+      setOrderItems([]);
     }
   }, [setOrderItems]);  
 
