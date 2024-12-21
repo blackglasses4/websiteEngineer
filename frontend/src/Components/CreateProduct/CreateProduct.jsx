@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {BACKEND_URL} from '../config';
 
-import './CreateProduct.scss';
+import './Create.scss';
 
 const CreateProduct = () => {
     const initialProductState = {
@@ -30,7 +31,7 @@ const CreateProduct = () => {
     // Ładowanie produktów z serwera, aby uzyskać ostatnie id
     useEffect(() => {
         const fetchProducts = async () => {
-            const response = await fetch('http://localhost:3001/products');
+            const response = await fetch(`${BACKEND_URL}/products`);
             const data = await response.json();
             setProducts(data);
         };
@@ -126,7 +127,7 @@ const CreateProduct = () => {
                 },
             };
 
-            const response = await fetch('http://localhost:3001/products', {
+            const response = await fetch(`${BACKEND_URL}/products`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -182,7 +183,6 @@ const CreateProduct = () => {
 
     return (
         <div className="create-product">
-            <h1>Dodaj nowy Product</h1>
             <div className='form-container expand'>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="nazwa">Nazwa: <input type="text" name="name" id="name" maxLength="30" value={product.name} onChange={handleInputChange} required/></label>

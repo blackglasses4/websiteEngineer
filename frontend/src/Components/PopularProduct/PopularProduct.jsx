@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import {BACKEND_URL} from '../config';
 import './PopularProduct.scss';
+import { getProducts } from '../../backend';
 
 const PopularProduct = () => {
   const [dataProduct, setDataProduct] = useState([]);
@@ -14,10 +16,20 @@ const PopularProduct = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3001/products');
+        // const response = await fetch(`${BACKEND_URL}/products`);
+        // const response = await fetch(`https://httpbin.org/basic-auth/uuu/hhhg`);
+        // if (response.status === 401) {
+        //   alert('Twoja sesja wygasła. Zaloguj się ponownie.');
+        //   window.location = '/login';
+        // }
 
+        // const data = await response.json();
+
+        const response = await getProducts();
         const data = await response.json();
+
         const popularProducts = data.filter(product => product.popular === true);
+
 
         setDataProduct(popularProducts);
         setIsFetched(true);

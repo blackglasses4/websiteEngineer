@@ -7,7 +7,7 @@ import './Home.scss';
 const Home = () => {
   return (
     <div>
-        <CookieBanner />
+        {/* <CookieBanner /> */}
 
         <section id="welcome" className="section__welcome">
           <div className="section__welcome-content">

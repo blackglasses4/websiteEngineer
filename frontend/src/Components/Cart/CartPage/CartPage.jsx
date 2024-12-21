@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../CartContext';
+import { useNavigate } from 'react-router-dom'; 
 import colorTranslations from '../../../hooks/translations';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -7,23 +8,28 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import './CartPage.scss';
 
 const CartPage = () => {
-  const { cart, removeFromCart } = useCart();
+  const { cart, removeFromCart, updateCart, clearCart } = useCart();
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Ustawienie produktów w stanie po załadowaniu koszyka
     setProducts(cart.map(product => ({
       ...product,
-      quantity: product.quantity || 1,  // Ustawienie domyślnej ilości na 1, jeśli jest pusta
+      quantity: product.quantity || 1,
     })));
   }, [cart]);
 
-  const updateQuantity = (productId, newQuantity) => {
+  const updateQuantity = (uniqueId, newQuantity) => {
+    const validQuantity = Math.max(1, newQuantity);
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
-        product.productId === productId ? { ...product, quantity: Math.max(1, newQuantity) } : product
+        product.uniqueId === uniqueId
+          ? { ...product, quantity: validQuantity }
+          : product
       )
     );
+  
+    updateCart(uniqueId, { quantity: validQuantity });
   };
 
   const calculateTotal = () => {
@@ -31,6 +37,17 @@ const CartPage = () => {
       const price = product.price || 0;
       return total + price * (product.quantity || 1);
     }, 0);
+  };
+
+  const handleCheckout = () => {
+    const orderData = cart.map((product) => ({
+      productId: product.productId,
+      quantity: product.quantity || 1,
+      price: product.price || 0,
+    }));
+
+    localStorage.setItem('order', JSON.stringify(orderData));
+    navigate('/order');
   };
 
   return (
@@ -56,7 +73,7 @@ const CartPage = () => {
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr key={product.productId}>
+                <tr key={product.uniqueId}>
                   <td data-label="Produkt"> {product.image ? (
                         <LazyLoadImage
                         src={product.image}
@@ -79,7 +96,7 @@ const CartPage = () => {
                       type="number"
                       value={product.quantity || 1}
                       min="1"
-                      onChange={(e) => updateQuantity(product.productId, parseInt(e.target.value, 10))}
+                      onChange={(e) => updateQuantity(product.uniqueId, parseInt(e.target.value, 10))}
                     />
                   </td>
                   <td data-label="Całkowita cena">{(product.price * product.quantity).toFixed(2)} zł</td>
@@ -95,7 +112,8 @@ const CartPage = () => {
           <div className="cart-summary">
             <h2>Podsumowanie</h2>
             <p>Łączna kwota: {calculateTotal().toFixed(2)} zł</p>
-            <button className="checkout-button">Przejdź do płatności</button>
+            <button className="checkout-button" onClick={handleCheckout}>Złóż zamówienie</button>
+            <button className="clear-cart-button" onClick={clearCart}>Wyczyść koszyk</button>
           </div>
         </>
       )}
@@ -109,7 +127,7 @@ const CartPage = () => {
             <>
           <div className="cart-cards">
             {products.map((product) => (
-              <div className="cart-card" key={product.productId}>
+              <div className="cart-card" key={product.uniqueId}>
                   <LazyLoadImage
                         src={product.image}
                         className='cart-item-image'
@@ -141,7 +159,7 @@ const CartPage = () => {
           <div className="cart-summary">
             <h2>Podsumowanie</h2>
             <p>Łączna kwota: {calculateTotal().toFixed(2)} zł</p>
-            <button className="checkout-button">Przejdź do płatności</button>
+            <button className="checkout-button" onClick={handleCheckout}>Złóż zamówienie</button>
           </div>
           </>
         )}

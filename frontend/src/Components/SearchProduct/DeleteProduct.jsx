@@ -6,12 +6,11 @@ const DeleteProduct = ({ productId, setProducts, setProductToDelete }) => {
 
     const handleDeleteProduct = async (id, toastId) => {
         if (!id) {
-            console.error('ID is undefined or invalid');
+            console.error('Id jest undefined');
             return;
         }
 
         try {
-            // Wysyłamy zapytanie o usunięcie produktu
             const response = await fetch(`http://localhost:3001/products/${id}`, {
                 method: 'DELETE',
             });
@@ -20,10 +19,8 @@ const DeleteProduct = ({ productId, setProducts, setProductToDelete }) => {
                 throw new Error('Wystąpił błąd podczas usuwania produktu.');
             }
 
-            // Aktualizujemy stan produktów po usunięciu
             setProducts((prev) => prev.filter((product) => product.id !== id));
 
-            // Wyświetlamy toast o sukcesie
             toast.success('Produkt został usunięty!', {
                 position: 'top-right',
                 autoClose: 5000,
@@ -39,7 +36,6 @@ const DeleteProduct = ({ productId, setProducts, setProductToDelete }) => {
             }
 
         } catch (error) {
-            // Wyświetlamy toast o błędzie
             toast.error(error.message || 'Nie udało się usunąć produktu.', {
                 position: 'top-right',
                 autoClose: 5000,
@@ -49,7 +45,6 @@ const DeleteProduct = ({ productId, setProducts, setProductToDelete }) => {
                 draggable: true,
             });
 
-            // Zamykamy toast po błędzie
             if (toastId) {
                 toast.dismiss(toastId);
             }
@@ -62,11 +57,10 @@ const DeleteProduct = ({ productId, setProducts, setProductToDelete }) => {
 
     useEffect(() => {
         if (!productId) {
-            console.error('Product ID is undefined or invalid');
+            console.error('Id produktu jest undefined');
             return;
         }
 
-        // Tworzymy toast
         const id = toast.info(
             <div>
                 <p>Czy na pewno chcesz usunąć ten produkt?</p>
@@ -87,11 +81,11 @@ const DeleteProduct = ({ productId, setProducts, setProductToDelete }) => {
                 toast.dismiss(id);
             }
         };
-    }, [productId, handleDeleteProduct]);  // Dodajemy handleDeleteProduct jako zależność
+    }, [productId, handleDeleteProduct]);
 
     const handleCancel = (id) => {
         if (id) {
-            toast.dismiss(id);  // Zamykamy toast po anulowaniu
+            toast.dismiss(id);
         }
     };
 
