@@ -35,10 +35,10 @@ const Home = () => {
               </div>
           </Link>
 
-          <Link to="/bielizna" className="section__category-card">
+          <Link to="/stroje" className="section__category-card">
               <div className="category-image"></div>
               <div className="category-content">
-                  <h2>Bielizna</h2>
+                  <h2>Stroje</h2>
               </div>
           </Link>
 
