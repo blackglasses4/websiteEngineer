@@ -1,4 +1,124 @@
 {
+  "users": [
+    {
+      "id": "3c7c",
+      "firstName": "Adrianna",
+      "lastName": "Pawłowska",
+      "username": "ada",
+      "email": "100@gmail.com",
+      "password": "123456",
+      "isAdmin": false
+    },
+    {
+      "id": "89bc",
+      "firstName": "Dominik",
+      "lastName": "Kowalski",
+      "username": "domino",
+      "email": "domino@gmail.com",
+      "password": "domino"
+    },
+    {
+      "id": "c732",
+      "firstName": "admin",
+      "lastName": "admin",
+      "username": "admin",
+      "email": "admin@gmail.com",
+      "password": "admin1",
+      "isAdmin": true
+    },
+    {
+      "id": null,
+      "firstName": "hfghfg",
+      "lastName": "hfghfgh",
+      "username": "ghfghfgh",
+      "email": "aa@gmail.com",
+      "password": "344343",
+      "isAdmin": true
+    }
+  ],
+  "orders": [
+    {
+      "id": "7038",
+      "customerDetails": {
+        "phone": "505718024",
+        "street": "orła białego",
+        "postalCode": "61-251",
+        "city": "Poznań",
+        "houseNumber": "76",
+        "apartmentNumber": "110",
+        "comments": "Kocham Adę Dzień dobry"
+      },
+      "items": [
+        {
+          "productId": "7",
+          "quantity": 8,
+          "price": 50
+        },
+        {
+          "productId": "43",
+          "quantity": 6,
+          "price": 50
+        }
+      ],
+      "totalAmount": 700,
+      "date": "2024-12-19T18:48:14.500Z",
+      "status": "Dostarczone",
+      "customer": "Anonimowy użytkownik"
+    },
+    {
+      "id": "d573",
+      "customerDetails": {
+        "phone": "555555555",
+        "street": "coś",
+        "postalCode": "23-234",
+        "city": "Warszawa",
+        "houseNumber": "5",
+        "apartmentNumber": "",
+        "comments": "..............................................................................................."
+      },
+      "items": [
+        {
+          "productId": "38",
+          "quantity": 1,
+          "price": 45
+        },
+        {
+          "productId": "26",
+          "quantity": 1,
+          "price": 150
+        },
+        {
+          "productId": "26",
+          "quantity": 1,
+          "price": 150
+        },
+        {
+          "productId": "14",
+          "quantity": 6,
+          "price": 120
+        },
+        {
+          "productId": "16",
+          "quantity": 2,
+          "price": 130
+        },
+        {
+          "productId": "14",
+          "quantity": 6,
+          "price": 120
+        },
+        {
+          "productId": "14",
+          "quantity": 6,
+          "price": 120
+        }
+      ],
+      "totalAmount": 2765,
+      "date": "2024-12-19T21:50:21.666Z",
+      "status": "Reklamacja",
+      "customer": "Anonimowy użytkownik"
+    }
+  ],
   "images": [
     {
       "id": "1",
@@ -21,16 +141,16 @@
         "url": "http://localhost:3001/shirt_women1.jpg",
         "alt": "Koszulka sportowa dla kobiet"
       },
-      "popular": false,
-      "new_price": 40,
+      "popular": true,
+      "new_price": 50,
       "old_price": 80,
       "description": "Lekka koszulka sportowa, idealna na treningi.",
       "attributes": {
         "sizes": [
-          "S",
           "M",
           "L",
-          "XL"
+          "XL",
+          "XS"
         ],
         "color": [
           "black",
@@ -40,8 +160,7 @@
           "navy"
         ],
         "material": "poliester"
-      },
-      "isLiked": false
+      }
     },
     {
       "id": "2",
@@ -197,11 +316,11 @@
       "category": "koszulka",
       "gender": "women",
       "name": "Koszulka do biegania",
-      "popular": true,
       "image": {
         "url": "http://localhost:3001/shirt_women7.jpg",
         "alt": "Koszulka do biegania dla kobiet"
       },
+      "popular": true,
       "new_price": 50,
       "old_price": 100,
       "description": "Lekka koszulka do biegania, z materiału odprowadzającego wilgoć, zapewnia komfort podczas treningu.",
@@ -213,16 +332,14 @@
           "XL"
         ],
         "color": [
-          "black",
           "purple",
           "blue",
           "yellow",
-          "salmon"
+          "salmon",
+          "lime"
         ],
-        "material": "elastan",
-        "stock": 60
-      },
-      "isLiked": false
+        "material": "elastan"
+      }
     },
     {
       "id": "8",
@@ -339,7 +456,7 @@
         "material": "poliester",
         "stock": 95
       }
-    },    
+    },
     {
       "id": "12",
       "category": "koszulka",
@@ -401,11 +518,11 @@
       "category": "kurtka",
       "gender": "men",
       "name": "Kurtka",
-      "popular": true,
       "image": {
         "url": "http://localhost:3001/jacket_men2.png",
         "alt": "Kurtka windbreaker dla mężczyzn"
       },
+      "popular": true,
       "new_price": 120,
       "old_price": 240,
       "description": "Kurtka windbreaker do ochrony przed wiatrem, świetna na lekkie treningi na świeżym powietrzu.",
@@ -420,8 +537,7 @@
           "green",
           "navy"
         ],
-        "material": "poliamid",
-        "stock": 50
+        "material": "poliamid"
       }
     },
     {
@@ -1383,8 +1499,17 @@
       "old_price": 300,
       "description": "Profesjonalny strój bokserski wykonany z elastycznego materiału, zapewniający pełną swobodę ruchów i komfort podczas treningów bokserskich.",
       "attributes": {
-        "sizes": ["S", "M", "L", "XL"],
-        "color": ["black", "red", "blue"],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "red",
+          "blue"
+        ],
         "material": "poliester, elastan",
         "stock": 50
       }
@@ -1403,8 +1528,17 @@
       "old_price": 800,
       "description": "Wodoodporny i ciepły strój narciarski z technologią oddychającą, zaprojektowany do jazdy na nartach w zimowych warunkach.",
       "attributes": {
-        "sizes": ["S", "M", "L", "XL"],
-        "color": ["red", "black", "white"],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "red",
+          "black",
+          "white"
+        ],
         "material": "nylon, poliester",
         "stock": 30
       }
@@ -1423,8 +1557,17 @@
       "old_price": 240,
       "description": "Strój do jogi wykonany z oddychającego materiału, elastyczny i wygodny, zapewnia komfort i pełną swobodę podczas ćwiczeń.",
       "attributes": {
-        "sizes": ["XS", "S", "M", "L"],
-        "color": ["green", "grey", "black"],
+        "sizes": [
+          "XS",
+          "S",
+          "M",
+          "L"
+        ],
+        "color": [
+          "green",
+          "grey",
+          "black"
+        ],
         "material": "bawełna, elastan",
         "stock": 100
       }
@@ -1443,8 +1586,17 @@
       "old_price": 240,
       "description": "Kolorowy strój do jogi wykonany z oddychającego materiału, elastyczny i wygodny, zapewnia komfort i pełną swobodę podczas ćwiczeń.",
       "attributes": {
-        "sizes": ["XS", "S", "M", "L"],
-        "color": ["green", "grey", "black"],
+        "sizes": [
+          "XS",
+          "S",
+          "M",
+          "L"
+        ],
+        "color": [
+          "green",
+          "grey",
+          "black"
+        ],
         "material": "bawełna, elastan",
         "stock": 100
       }
@@ -1463,8 +1615,17 @@
       "old_price": 220,
       "description": "Strój do pilatesu zaprojektowany z myślą o elastyczności i wygodzie. Wykonany z materiałów, które umożliwiają swobodne wykonywanie ćwiczeń.",
       "attributes": {
-        "sizes": ["S", "M", "L", "XL"],
-        "color": ["purple", "black", "white"],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "purple",
+          "black",
+          "white"
+        ],
         "material": "poliester, elastan",
         "stock": 60
       }
@@ -1483,8 +1644,16 @@
       "old_price": 260,
       "description": "Strój gimnastyczny, który zapewnia elastyczność i wygodę, idealny do ćwiczeń gimnastycznych, oparte na technologiach odprowadzania wilgoci.",
       "attributes": {
-        "sizes": ["S", "M", "L"],
-        "color": ["blue", "black", "pink"],
+        "sizes": [
+          "S",
+          "M",
+          "L"
+        ],
+        "color": [
+          "blue",
+          "black",
+          "pink"
+        ],
         "material": "bawełna, elastan",
         "stock": 80
       }
@@ -1503,8 +1672,17 @@
       "old_price": 180,
       "description": "Elegancki strój baletowy, wykonany z elastycznego materiału, zaprojektowany z myślą o baletnikach i miłośniczkach tańca.",
       "attributes": {
-        "sizes": ["S", "M", "L", "XL"],
-        "color": ["pink", "black", "white"],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "pink",
+          "black",
+          "white"
+        ],
         "material": "bawełna, elastan",
         "stock": 70
       }
@@ -1608,8 +1786,17 @@
       "old_price": 180,
       "description": "Elegancki strój baletowy ze spódniczką, wykonany z elastycznego materiału, zaprojektowany z myślą o baletnikach i miłośniczkach tańca.",
       "attributes": {
-        "sizes": ["S", "M", "L", "XL"],
-        "color": ["pink", "black", "white"],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "pink",
+          "black",
+          "white"
+        ],
         "material": "bawełna, elastan",
         "stock": 70
       }
@@ -1628,8 +1815,17 @@
       "old_price": 300,
       "description": "Profesjonalny strój bokserski wykonany z elastycznego materiału, zapewniający pełną swobodę ruchów i komfort podczas treningów bokserskich.",
       "attributes": {
-        "sizes": ["S", "M", "L", "XL"],
-        "color": ["black", "red", "blue"],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "red",
+          "blue"
+        ],
         "material": "poliester, elastan",
         "stock": 50
       }
@@ -1648,8 +1844,17 @@
       "old_price": 800,
       "description": "Wodoodporny i ciepły strój narciarski z technologią oddychającą, zaprojektowany do jazdy na nartach w zimowych warunkach.",
       "attributes": {
-        "sizes": ["S", "M", "L", "XL"],
-        "color": ["red", "black", "white"],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "red",
+          "black",
+          "white"
+        ],
         "material": "nylon, poliester",
         "stock": 30
       }
@@ -1668,8 +1873,16 @@
       "old_price": 240,
       "description": "Strój do jogi wykonany z oddychającego materiału, elastyczny i wygodny, zapewnia komfort i pełną swobodę podczas ćwiczeń.",
       "attributes": {
-        "sizes": ["S", "M", "L"],
-        "color": ["green", "grey", "black"],
+        "sizes": [
+          "S",
+          "M",
+          "L"
+        ],
+        "color": [
+          "green",
+          "grey",
+          "black"
+        ],
         "material": "bawełna, elastan",
         "stock": 100
       }
@@ -1688,8 +1901,16 @@
       "old_price": 300,
       "description": "Wysokiej jakości strój snowboardowy, zapewniający komfort i ciepło podczas jazdy na stoku. Wykonany z wodoodpornego materiału, idealny do zimowych warunków. Dzięki swojej elastyczności, umożliwia pełną swobodę ruchów, zapewniając wygodę podczas wykonywania trików i manewrów na snowboardzie.",
       "attributes": {
-        "sizes": ["M", "L", "XL"],
-        "color": ["black", "grey", "blue"],
+        "sizes": [
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "grey",
+          "blue"
+        ],
         "material": "bawełna",
         "stock": 80
       }
@@ -1708,8 +1929,16 @@
       "old_price": 300,
       "description": "Wysokiej jakości strój do pływania, zaprojektowany z myślą o intensywnych treningach i rekreacyjnym pływaniu. Strój zapewnia doskonałą elastyczność i wygodę, umożliwiając swobodny ruch w wodzie.",
       "attributes": {
-        "sizes": ["M", "L", "XL"],
-        "color": ["black", "grey", "blue"],
+        "sizes": [
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "grey",
+          "blue"
+        ],
         "material": "poliester",
         "stock": 80
       }
@@ -1728,8 +1957,17 @@
       "old_price": 360,
       "description": "Profesjonalny strój piłkarski zapewniający komfort i swobodę ruchów podczas gry. Wykonany z lekkiego, oddychającego materiału, idealny do intensywnych meczów oraz treningów. Strój wyposażony w elastyczne panele, które poprawiają dopasowanie.",
       "attributes": {
-        "sizes": ["S", "M", "L", "XL"],
-        "color": ["green", "red", "blue"],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "green",
+          "red",
+          "blue"
+        ],
         "material": "poliamid, elastan",
         "stock": 50
       }
@@ -1748,8 +1986,16 @@
       "old_price": 500,
       "description": "Strój hokejowy wykonany z wytrzymałych materiałów, które zapewniają ochronę, komfort i elastyczność podczas gry. Zawiera specjalne wzmocnienia w newralgicznych miejscach, takich jak ramiona i kolana, oraz elastyczne panele, które umożliwiają pełną swobodę ruchów.",
       "attributes": {
-        "sizes": ["M", "L", "XL"],
-        "color": ["black", "white", "red"],
+        "sizes": [
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "black",
+          "white",
+          "red"
+        ],
         "material": "poliester, nylon, elastan",
         "stock": 30
       }
@@ -1768,12 +2014,20 @@
       "old_price": 700,
       "description": "Profesjonalny strój do szermierki dla mężczyzn, zaprojektowany z myślą o pełnej ochronie i komforcie podczas rywalizacji. Wykonany z wytrzymałych materiałów, takich jak kevlar i poliester, gwarantuje doskonałą elastyczność i bezpieczeństwo.",
       "attributes": {
-        "sizes": ["M", "L", "XL"],
-        "color": ["white", "blue", "black"],
+        "sizes": [
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "white",
+          "blue",
+          "black"
+        ],
         "material": "poliester, kevlar",
         "stock": 50
       }
-    },    
+    },
     {
       "id": "66",
       "category": "stroje",
@@ -1788,12 +2042,20 @@
       "old_price": 700,
       "description": "Profesjonalny strój do szermierki dla kobiet, zapewniający pełną swobodę ruchów oraz maksymalną ochronę. Wykonany z lekkich, odpornych na uszkodzenia materiałów, zapewniających komfort i bezpieczeństwo podczas walki.",
       "attributes": {
-        "sizes": ["S", "M", "L", "XL"],
-        "color": ["white", "silver", "black"],
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "color": [
+          "white",
+          "silver",
+          "black"
+        ],
         "material": "poliester, kevlar",
         "stock": 40
       }
     }
-       
   ]
 }

@@ -34,13 +34,17 @@ const Sidebar = ({ onSelect }) => {
                 top: isDynamic ? `${topOffset}rem` : '4.3rem',
             }}
         >
-            <button onClick={() => onSelect('createProduct')}>
-                <FaPlusCircle className="icon" />
-                <span>Dodaj Produkt</span>
-            </button>
-            <button onClick={() => onSelect('searchProducts')}>
+            <button onClick={() => onSelect('products')}>
                 <TbShoppingBagSearch className="icon" />
-                <span>Wyszukaj Produkt</span>
+                <span>Produkty</span>
+            </button>
+            <button onClick={() => onSelect('orders')}>
+                <TbShoppingBagSearch className="icon" />
+                <span>Zamówienia</span>
+            </button>
+            <button onClick={() => onSelect('users')}>
+                <TbShoppingBagSearch className="icon" />
+                <span>Użytkownicy</span>
             </button>
         </aside>
     );

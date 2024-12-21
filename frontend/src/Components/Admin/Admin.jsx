@@ -6,8 +6,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
-import CreateProduct from '../CreateProduct/CreateProduct';
 import SearchProduct from '../SearchProduct/SearchProduct';
+import SearchOrder from '../SearchOrder/SearchOrder';
+import SearchUser from '../SearchUser/SearchUser';
+
 import Sidebar from '../Sidebar/Sidebar';
 import './Admin.scss';
 
@@ -42,7 +44,7 @@ const Admin = () => {
                 <h3>Admin Panel</h3>
                 <div className='nav-icons'>
                     <ThemeSwitch />
-                    <a href="/"><FaUserCircle /></a>
+                    <a href="/login"><FaUserCircle /></a>
                 </div>
             </header>
 
@@ -54,8 +56,9 @@ const Admin = () => {
                 <main className="admin-main">
                     <Routes>
                         <Route path="/" element={<WelcomeAdmin />}></Route>
-                        <Route path="createProduct" element={<CreateProduct />}></Route>
-                        <Route path="searchProducts" element={<SearchProduct />}></Route>
+                        <Route path="products" element={<SearchProduct />}></Route>
+                        <Route path="orders" element={<SearchOrder />}></Route>
+                        <Route path="users" element={<SearchUser />}></Route>
                     </Routes>
                 </main>
             </div>

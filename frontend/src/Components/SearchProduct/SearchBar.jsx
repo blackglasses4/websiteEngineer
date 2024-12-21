@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import useClick from '../useClick';
-import './SearchProduct.scss';
+import './Search.scss';
 
-const SearchBar = ({ products, setConfirmedResults }) => {
+const SearchBar = ({ data, setConfirmedResults, type }) => {
     const [input, setInput] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const inputWrapperRef = useRef(null);
@@ -27,53 +27,58 @@ const SearchBar = ({ products, setConfirmedResults }) => {
         if (input === "") {
             setSearchResults([]);
         } else {
-            const filterResults = products.filter(product =>
-                product.name.toLowerCase().includes(input.toLowerCase())
-            );
+            const filterResults = data.filter(item => {
+                const searchField =
+                    type === 'products'
+                        ? item.name
+                        : `${item.firstName} ${item.lastName} ${item.username}`;
+                return searchField.toLowerCase().includes(input.toLowerCase());
+            });
             setSearchResults(filterResults);
         }
-    }, [input, products]);
+    }, [input, data, type]);
 
     return (
-        <>
-            <h1 className='admin-h1'>Wyszukane produkty</h1>
+        <div className="admin-search" ref={inputWrapperRef}>
+            <div className="input-wrapper">
+                <FaSearch id="search-icon" />
+                <input
+                    placeholder={`Szukaj ${type === 'products' ? 'produktów' : 'użytkowników'}...`}
+                    value={input}
+                    onChange={handleInputChange}
+                    onKeyDown={handleKey}
+                />
+            </div>
 
-            <div className="admin-search" ref={inputWrapperRef}>
-                <div className="input-wrapper">
-                    <FaSearch id="search-icon" />
-                    <input
-                        placeholder="Szukaj..."
-                        value={input}
-                        onChange={handleInputChange}
-                        onKeyDown={handleKey}
-                    />
-                </div>
-
-                <div className='input-response'>
-                    {input && searchResults.length === 0 && <p>Nie znaleziono żadnych wyników</p>}
-                    {input && searchResults.length > 0 && (
-                        <ul>
-                        {searchResults.map((product) => (
-                            <li key={product.id}>
+            <div className="input-response">
+                {input && searchResults.length === 0 && <p>Nie znaleziono żadnych wyników</p>}
+                {input && searchResults.length > 0 && (
+                    <ul>
+                        {searchResults.map((item) => (
+                            <li key={item.id}>
                                 <button
-                                    onClick={(e) => {
+                                    onClick={() =>
                                         setConfirmedResults((prevResults) => {
-                                            if (prevResults.some((item) => item.id === product.id)) {
+                                            if (prevResults.some((result) => result.id === item.id)) {
                                                 return prevResults;
                                             }
-                                            return [...prevResults, product];
-                                        });
-                                    }}>
-                                    {product.name.length > 50 ? `${product.name.slice(0, 50)}...` : product.name}
+                                            return [...prevResults, item];
+                                        })
+                                    }
+                                >
+                                    {type === 'products'
+                                        ? item.name.length > 50
+                                            ? `${item.name.slice(0, 50)}...`
+                                            : item.name
+                                        : `${item.firstName} ${item.lastName} (${item.username})`}
                                 </button>
                             </li>
                         ))}
-                    </ul>                    
-                    )}
-                </div>
+                    </ul>
+                )}
             </div>
-        </>
+        </div>
     );
-}
+};
 
 export default SearchBar;

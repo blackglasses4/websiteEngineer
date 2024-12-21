@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaSearch, FaShoppingCart, FaUserCircle, FaBars, FaTimes } from 'react-icons/fa';
-import { useCart } from '../Cart/CartContext.jsx';
+import { Link, useNavigate } from 'react-router-dom';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch.jsx';
-import NavbarCategory from './NavbarCategory.jsx'
-import useClick from '../useClick.jsx';
-
-import { useLikes } from '../LikeButton/LikeContext.jsx';
-import LikeButton from '../LikeButton/LikeButton';
-import { Link } from 'react-router-dom';
+import { toast } from "react-toastify";
 import { useProducts } from '../LikeButton/ProductContext.jsx';
-import LikeProductModal from '../LikeButton/LikeProductModal';
+
+import useClick from '../useClick.jsx';
+import { useUser } from '../../Pages/UserContext.jsx';
+import { useCart } from '../Cart/CartContext.jsx';
 
 import './Navbar.scss';
 
@@ -18,13 +16,14 @@ const Navbar = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isUserMenuOpen, setUserMenuOpen] = useState(false);
   const searchWrapperRef = useRef(null);
-  
   const { dataProducts } = useProducts();
-  const { likedProducts, toggleLike } = useLikes();
   const { cart } = useCart();
+  const { usernameUser, logout } = useUser();
+  
+  const navigate = useNavigate();
   useClick(searchWrapperRef, () => setInput(""));
-
   useEffect(() => {
     if (input === "") {
       setSearchResults([]);
@@ -48,9 +47,24 @@ const Navbar = () => {
     setModalOpen(!isModalOpen);
   };
 
+  const toggleUserMenu = () => {
+    if (!usernameUser) return;
+    setUserMenuOpen(!isUserMenuOpen);
+  };
+
+  const buttonLogout = () => {
+    logout();
+
+    toast.success("Wylogowałeś się!");
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
+  };
+
   return (
     <header className='header-main'>
-      <a href="/" className="a-name" rel="internal">NAZWAAAAA</a>
+      <a href="/" className="a-name" rel="internal" aria-label="Logo sklepu internetowego">NAZWAAAAA</a>
 
       <div className="nav-search" ref={searchWrapperRef}>
         <div className="input-wrapper">
@@ -78,29 +92,17 @@ const Navbar = () => {
 
       <div className={`nav-icons ${isMenuOpen ? 'menu-open' : ''}`}>
         <ThemeSwitch />
-        <a href="/cart">
+        <a href="/cart" aria-label="Przycisk do przejścia na stronę z koszykiem">
           <FaShoppingCart />
           <div className="nav-icons-cart">{cart.length}</div>
         </a>
 
-        <div className="nav-like">
-          <div className="liked-products-link">
-            <LikeButton
-              onClick={toggleModal}
-              style={{ color: 'white' }}
-              isLiked={likedProducts.length > 0}/>
-            <span>{likedProducts.length}</span>
+        {usernameUser ? (
+          <div className="nav-user" onClick={toggleUserMenu}>
+              <button onClick={buttonLogout}>Wyloguj się</button>
           </div>
-        </div>
-        <a href="/"><FaUserCircle /></a>
-
-        {isModalOpen && (
-          <LikeProductModal
-            likedProducts={likedProducts}
-            dataProducts={dataProducts}
-            onClose={toggleModal}
-            toggleLike={toggleLike}
-          />
+        ) : (
+          <a href="/login" aria-label="Przycisk do przejścia na stronę logowania"><FaUserCircle /></a>
         )}
       </div>
 
@@ -114,22 +116,17 @@ const Navbar = () => {
         </div>
         <div className="mobile-menu-icons">
           <ThemeSwitch />
-          <a href="/cart" onClick={toggleMenu}>
+          <a href="/cart" onClick={toggleMenu} aria-label="Przycisk do przejścia na stronę z koszykiem">
             <FaShoppingCart />
             <div className="nav-icons-cart">{cart.length}</div>
           </a>
-          <a href="/" onClick={toggleMenu}>
-            <FaUserCircle />
-          </a>
-          <div className="nav-like">
-            <div className="liked-products-link">
-              <LikeButton
-                onClick={toggleModal}
-                style={{ color: 'white' }}
-                isLiked={likedProducts.length > 0}/>
-              <span>{likedProducts.length}</span>
+            {usernameUser ? (
+            <div className="nav-user" onClick={toggleUserMenu}>
+                <button onClick={buttonLogout}>Wyloguj się</button>
             </div>
-          </div>
+          ) : (
+            <a href="/login" aria-label="Przycisk do przejścia na stronę logowania"><FaUserCircle /></a>
+          )}
           <p>Kategorie</p>
           <div className='mobile-nav-category'>
             <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>

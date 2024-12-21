@@ -24,10 +24,6 @@ const Footer = () => {
             </div>
             
             <div className='f-subpages'>
-                <div className="f-subpages-name">
-                    <h2>Nazwa</h2>
-                    <p>O sklepie</p>
-                </div>
                 <div className="f-subpages-offer">
                     <h2>Oferta</h2>
                     <Link to="/koszulka" className='f-link' rel='internal'>Koszulki</Link>

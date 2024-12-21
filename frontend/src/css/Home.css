@@ -316,7 +316,7 @@
 }
 @media only screen and (max-width: 480px) {
   .section__welcome {
-    height: 86svh;
+    height: 91svh;
     padding: 1em;
   }
   .section__welcome-content {
