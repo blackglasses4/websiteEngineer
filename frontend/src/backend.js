@@ -11,6 +11,7 @@ async function get(endpoint, params) {
         window.location = '/login';
         return;
     }
+    
     return response;
 }
 
@@ -40,6 +41,17 @@ async function getProducts(params) {
     return x;
 }
 
+async function getOrders(params) {
+    const x = await get('/orders', params);
+    console.log(x);
+    return x;
+}
+
+async function getUsers(params) {
+    const x = await get('/users', params);
+    console.log(x);
+    return x;
+}
 
 async function addProduct(product) {
     return post('/products', product);
@@ -47,5 +59,7 @@ async function addProduct(product) {
 
 export {
     getProducts,
-    addProduct
+    addProduct,
+    getOrders,
+    getUsers,
 };

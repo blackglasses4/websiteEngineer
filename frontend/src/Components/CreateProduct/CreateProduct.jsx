@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {BACKEND_URL} from '../config';
+import { getProducts } from '../../backend';
 
 import './Create.scss';
 
@@ -27,11 +28,12 @@ const CreateProduct = () => {
     const [loading, setLoading] = useState(false);
     const [imagePreview, setImagePreview] = useState(null);
     const [products, setProducts] = useState([]);
+    const [isFormOpen, setIsFormOpen] = useState(false);
 
     // Ładowanie produktów z serwera, aby uzyskać ostatnie id
     useEffect(() => {
         const fetchProducts = async () => {
-            const response = await fetch(`${BACKEND_URL}/products`);
+            const response = await getProducts();
             const data = await response.json();
             setProducts(data);
         };
@@ -181,9 +183,17 @@ const CreateProduct = () => {
         }
     }
 
+    const toggleForm = () => {
+        setIsFormOpen(!isFormOpen);
+    };
+
     return (
         <div className="create-product">
-            <div className='form-container expand'>
+            <button className="toggle-form-btn" onClick={toggleForm}>
+                {isFormOpen ? 'Zwiń formularz' : 'Rozwiń formularz'}
+            </button>
+
+            <div className={`form-container ${isFormOpen ? 'open' : ''}`}>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="nazwa">Nazwa: <input type="text" name="name" id="name" maxLength="30" value={product.name} onChange={handleInputChange} required/></label>
                     <label htmlFor="category">Kategoria: 

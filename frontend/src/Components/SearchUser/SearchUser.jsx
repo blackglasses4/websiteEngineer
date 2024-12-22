@@ -1,42 +1,83 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {BACKEND_URL} from '../config';
+import { FaSlidersH } from 'react-icons/fa';
+import { getUsers } from '../../backend';
+import useClick from '../useClick';
 
 import CreateUser from '../CreateUser/CreateUser';
 import SearchBar from '../SearchProduct/SearchBar';
 import EditUser from './EditUser';
-// import Filter from './../Filter/Filter';
 
+import '../Filter/Filter.scss';
 import '../SearchProduct/Search.scss';
 
 const SearchUser = () => {
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const filterPanelRef = useRef(null);
+    useClick(filterPanelRef, () => setIsFilterOpen(false));
+
     const [users, setUsers] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
     const [userToEdit, setUserToEdit] = useState(null);
 
-        const fetchUsers = async () => {
-            try {
-                const response = await fetch(`${BACKEND_URL}/users`);
-                const data = await response.json();
-                setUsers(data);
-                setConfirmedResults(data); 
-            } catch (error) {
-                toast.error('Nie udało się załadować produktów.', {
-                    position: 'top-right',
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
-            }
-        };
+    // stronicowanie
+    const [page, setPage] = useState(1);
+    const [firstPage, setFirstPage] = useState();
+    const [prevPage, setPrevPage] = useState();
+    const [nextPage, setNextPage] = useState();
+    const [lastPage, setLastPage] = useState();
 
-        useEffect(() => {
-            fetchUsers('');
-    }, []);
+    const [numberOfPages, setNumberOfPages] = useState();
+    const [numberOfItems, setNumberOfItems] = useState();
+
+    //filtrowanie
+    // const [gender, setGender] = useState();
+    //sortortowanie
+    const [role, setRole] = useState();
+
+    const fetchUsers = async () => {
+        try {
+            const params = {
+                '_page': page,
+                '_per_page': 8
+            }
+            
+            if (role) {
+                params['role'] = role;
+            }
+            
+            //get Users
+            const response = await getUsers(params);
+            const result = await response.json();
+
+            setFirstPage(result['first']);
+            setPrevPage(result['prev']);
+            setNextPage(result['next']);
+            setLastPage(result['last']);
+            setNumberOfPages(result['pages']);
+            setNumberOfItems(result['items']);
+
+            const productList = result['data'];
+            setUsers(productList);
+            setConfirmedResults(productList);
+        } catch (error) {
+            toast.error('Nie udało się załadować produktów.', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    };
+
+    useEffect(() => {
+        fetchUsers();
+    }, [page, role]);
 
     const handleConfirmDelete = (id) => {
         if(!id) {
@@ -132,8 +173,41 @@ const SearchUser = () => {
 
             <SearchBar data={users} setConfirmedResults={setConfirmedResults} type="users" />
 
-            {/* <Filter fetchUsers={fetchProducts} /> */}
-            
+            <div className="filter">
+                <input type="button" value="Pierwsza" disabled={firstPage == null} onClick={() => {setPage(firstPage)}}></input>
+                <input type="button" value="Poprzednia" disabled={prevPage == null} onClick={() => {setPage(prevPage)}}></input>
+                <span>{page} z {numberOfPages}</span>
+                <input type="button" value="Następna" disabled={nextPage == null} onClick={() => {setPage(nextPage)}}></input>
+                <input type="button" value="Ostatnia" disabled={lastPage == null} onClick={() => {setPage(lastPage)}}></input>
+                <span>Liczba sztuk: {numberOfItems}</span>
+
+                <div className="product-filter">
+                    <button className="filter-toggle" onClick={() => setIsFilterOpen(!isFilterOpen)}>
+                        <FaSlidersH />Wszystkie filtr
+                    </button>
+
+                    {isFilterOpen && (
+                        <div className="filter-panel" ref={filterPanelRef}>
+                            <div className="filter-group">
+                                <label>Filtruj według płci:</label>
+                                {/* <select
+                                    id="role-filter"
+                                    value={role || 'all'}
+                                    onChange={(e) => {
+                                        const selectedRole = e.target.value === 'all' ? null : e.target.value;
+                                        setRole(selectedRole);
+                                        setPage(1);
+                                    }}>
+                                    <option value="all">Wszyscy</option>
+                                    <option value="user">Uzytkownicy</option>
+                                    <option value="admin">Administrator</option>
+                                </select> */}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+
             <section className="admin-search_users">
                 <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                 {confirmedResults.length === 0 ? (
