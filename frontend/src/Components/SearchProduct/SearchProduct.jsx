@@ -9,7 +9,6 @@ import { FaSlidersH } from 'react-icons/fa';
 import CreateProduct from '../CreateProduct/CreateProduct';
 import SearchBar from './SearchBar';
 import EditProduct from './EditProduct';
-import Filter from '../Filter/Filter';
 import useClick from '../useClick';
 
 import '../Filter/Filter.scss';
@@ -37,8 +36,8 @@ const SearchProduct = () => {
 
     //filtrowanie
     const [gender, setGender] = useState();
-    const [sort, setSort] = useState("none");
     //sortortowanie
+    const [sort, setSort] = useState("none");
     // TODO
 
     const fetchProducts = async () => {

@@ -11,9 +11,6 @@ async function get(endpoint, params) {
         window.location = '/login';
         return;
     }
-
-    // console.debug(response);
-
     return response;
 }
 
