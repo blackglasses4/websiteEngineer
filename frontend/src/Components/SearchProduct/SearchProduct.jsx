@@ -1,20 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {BACKEND_URL} from '../config';
+import { FaSlidersH } from 'react-icons/fa';
 
 import CreateProduct from '../CreateProduct/CreateProduct';
 import SearchBar from './SearchBar';
 import EditProduct from './EditProduct';
-// import Filter from '../Filter/Filter';
+import Filter from '../Filter/Filter';
+import useClick from '../useClick';
 
+import '../Filter/Filter.scss';
 import './Search.scss';
 import { getProducts } from '../../backend';
 
 const SearchProduct = () => {
-   
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const filterPanelRef = useRef(null);
+    useClick(filterPanelRef, () => setIsFilterOpen(false));
+
     const [products, setProducts] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
     const [productToEdit, setProductToEdit] = useState(null);
@@ -31,10 +37,9 @@ const SearchProduct = () => {
 
     //filtrowanie
     const [gender, setGender] = useState();
-
+    const [sort, setSort] = useState("none");
     //sortortowanie
     // TODO
-
 
     const fetchProducts = async () => {
         try {
@@ -47,15 +52,16 @@ const SearchProduct = () => {
                 params['gender'] = gender;
             }
 
-            params['_sort'] = '-new_price';  //TODO
-            
+            if (sort && sort !== 'none') {
+                params['_sort'] = sort;
+            }
+
             const response = await getProducts(params);
             //const response = await fetch(`${BACKEND_URL}/products?_page=${page}&_per_page=5`);
             const result = await response.json();
             
             console.log(result);
 
-            
             setFirstPage(result['first']);
             setPrevPage(result['prev']);
             setNextPage(result['next']);
@@ -82,7 +88,7 @@ const SearchProduct = () => {
     
     useEffect(() => {
         fetchProducts();
-    }, [page, gender]);
+    }, [page, gender, sort]);
 
     const handleConfirmDelete = (id) => {
         if(!id) {
@@ -177,27 +183,58 @@ const SearchProduct = () => {
             <h1 className='admin-h1'>Wyszukaj produkty</h1>
 
             <SearchBar data={products} setConfirmedResults={setConfirmedResults} type="products" />
-
-            {/* <Filter fetchProducts={fetchProducts} /> */}
             
             <section className="admin-search_products">
-            <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
+                <div className="filter">
+                    <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
+                    <input type="button" value="Pierwsza" disabled={firstPage == null} onClick={() => {setPage(firstPage)}}></input>
+                    <input type="button" value="Poprzednia" disabled={prevPage == null} onClick={() => {setPage(prevPage)}}></input>
+                    <span>{page} z {numberOfPages}</span>
+                    <input type="button" value="Następna" disabled={nextPage == null} onClick={() => {setPage(nextPage)}}></input>
+                    <input type="button" value="Ostatnia" disabled={lastPage == null} onClick={() => {setPage(lastPage)}}></input>
+                    <span>Liczba sztuk: {numberOfItems}</span>
 
+                    <div className="product-filter">
+                        <button className="filter-toggle" onClick={() => setIsFilterOpen(!isFilterOpen)}>
+                            <FaSlidersH />Wszystkie filtr
+                        </button>
 
-            <input type="button" value="Pierwsza" disabled={firstPage == null} onClick={() => {setPage(firstPage)}}></input>
-            <input type="button" value="Poprzednia" disabled={prevPage == null} onClick={() => {setPage(prevPage)}}></input>
-            <input type="button" value="Następna" disabled={nextPage == null} onClick={() => {setPage(nextPage)}}></input>
-            <input type="button" value="Ostatnia" disabled={lastPage == null} onClick={() => {setPage(lastPage)}}></input>
-            <span>{page}/{numberOfPages}</span>
-            <input type="button" value="Women" onClick={() => {setGender('women'); setPage(1); }}></input>
-            <input type="button" value="Men" onClick={() => {setGender('men'); setPage(1); }}></input>
-            <input type="button" value="All" onClick={() => {setGender(null); setPage(1); }}></input>
-
-            <span>Liczba sztuk: {numberOfItems}</span>
-
-            {/* <button disabled={!true} onClick={() => {setPage(nextPage)}}>Następna</button> */}
-
-
+                        {isFilterOpen && (
+                            <div className="filter-panel" ref={filterPanelRef}>
+                                <div className="filter-group">
+                                    <label>Filtruj według płci:</label>
+                                    <select
+                                        id="gender-filter"
+                                        value={gender || 'all'}
+                                        onChange={(e) => {
+                                            const selectedGender = e.target.value === 'all' ? null : e.target.value;
+                                            setGender(selectedGender);
+                                            setPage(1);
+                                        }}>
+                                        <option value="all">Wszystko</option>
+                                        <option value="women">Kobiety</option>
+                                        <option value="men">Mężczyźni</option>
+                                    </select>
+                                </div>
+                                <div className="filter-group">
+                                    <label htmlFor="sort-filter">Sortuj według ceny:</label>
+                                    <select
+                                        id="sort-filter"
+                                        value={sort || 'none'}
+                                        onChange={(e) => {
+                                            const selectedSort = e.target.value === 'none' ? null : e.target.value;
+                                            setSort(selectedSort);
+                                            setPage(1);
+                                        }}>
+                                        <option value="none">Brak sortowania</option>
+                                        <option value="new_price">Od najniższej do najwyższej</option>
+                                        <option value="-new_price">Od najwyższej do najniższej</option>
+                                    </select>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
 
             {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
