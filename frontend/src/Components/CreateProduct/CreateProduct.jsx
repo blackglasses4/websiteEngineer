@@ -191,11 +191,9 @@ const CreateProduct = () => {
                                 <option value="">Wybierz kategorię</option>
                                 <option value="koszulka">Koszulka</option>
                                 <option value="kurtka">Kurtka</option>
+                                <option value="spodnie">Spodnie</option>
                                 <option value="czapka">Czapka</option>
-                                <option value="bluza">Bluza</option>
-                                <option value="buty">Buty</option>
-                                <option value="skarpetki">Skarpetki</option>
-                                <option value="stanikSportowy">Stanik Sportowy</option>
+                                <option value="stroje">Stroje</option>
                         </select>
                     </label>
 
