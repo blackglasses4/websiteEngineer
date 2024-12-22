@@ -173,7 +173,7 @@ const SearchProduct = () => {
     return (
         <div className="search-product">
             <h1 className='admin-h1'>Dodaj nowy produkt</h1>
-            {/* <CreateProduct/> */}
+            <CreateProduct/>
             <h1 className='admin-h1'>Wyszukaj produkty</h1>
 
             <SearchBar data={products} setConfirmedResults={setConfirmedResults} type="products" />
