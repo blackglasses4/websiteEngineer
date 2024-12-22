@@ -10,10 +10,10 @@ import CreateProduct from '../CreateProduct/CreateProduct';
 import SearchBar from './SearchBar';
 import EditProduct from './EditProduct';
 import useClick from '../useClick';
+import { getProducts } from '../../backend';
 
 import '../Filter/Filter.scss';
 import './Search.scss';
-import { getProducts } from '../../backend';
 
 const SearchProduct = () => {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -38,7 +38,6 @@ const SearchProduct = () => {
     const [gender, setGender] = useState();
     //sortortowanie
     const [sort, setSort] = useState("none");
-    // TODO
 
     const fetchProducts = async () => {
         try {
@@ -55,11 +54,9 @@ const SearchProduct = () => {
                 params['_sort'] = sort;
             }
 
+            //get Products
             const response = await getProducts(params);
-            //const response = await fetch(`${BACKEND_URL}/products?_page=${page}&_per_page=5`);
             const result = await response.json();
-            
-            console.log(result);
 
             setFirstPage(result['first']);
             setPrevPage(result['prev']);
@@ -186,11 +183,11 @@ const SearchProduct = () => {
             <section className="admin-search_products">
                 <div className="filter">
                     <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
-                    <input type="button" value="Pierwsza" disabled={firstPage == null} onClick={() => {setPage(firstPage)}}></input>
+                    <input type="button" value="Pierwsza" disabled={page == 1} onClick={() => {setPage(firstPage)}}></input>
                     <input type="button" value="Poprzednia" disabled={prevPage == null} onClick={() => {setPage(prevPage)}}></input>
                     <span>{page} z {numberOfPages}</span>
                     <input type="button" value="Następna" disabled={nextPage == null} onClick={() => {setPage(nextPage)}}></input>
-                    <input type="button" value="Ostatnia" disabled={lastPage == null} onClick={() => {setPage(lastPage)}}></input>
+                    <input type="button" value="Ostatnia" disabled={page == numberOfPages} onClick={() => {setPage(lastPage)}}></input>
                     <span>Liczba sztuk: {numberOfItems}</span>
 
                     <div className="product-filter">

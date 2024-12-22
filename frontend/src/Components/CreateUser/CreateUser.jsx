@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {BACKEND_URL} from '../config';
+import { getUsers } from '../../backend';
 
 import '../CreateProduct/Create.scss';
 
@@ -20,10 +21,11 @@ const CreateUser = () => {
     const [loading, setLoading] = useState(false);
     const [imagePreview, setImagePreview] = useState(null);
     const [users, setUsers] = useState([]);
+    const [isFormOpen, setIsFormOpen] = useState(false);
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const response = await fetch(`${BACKEND_URL}/users`);
+            const response = await getUsers();
             const data = await response.json();
             setUsers(data);
         };
@@ -121,9 +123,17 @@ const CreateUser = () => {
         }
     }
 
+    const toggleForm = () => {
+        setIsFormOpen(!isFormOpen);
+    };
+
     return (
         <div className="create-user">
-            <div className='form-container expand'>
+            <button className="toggle-form-btn" onClick={toggleForm}>
+                {isFormOpen ? 'Zwiń formularz' : 'Rozwiń formularz'}
+            </button>
+
+            <div className={`form-container ${isFormOpen ? 'open' : ''}`}>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="firstName">
                         Imię:

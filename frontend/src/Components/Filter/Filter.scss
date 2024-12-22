@@ -1,7 +1,9 @@
 @use '../../scss/variables' as *;
 @use '../../scss/mixins' as *;
 
-.admin-search_products {
+.admin-search_products,
+.search-order,
+.search-user {
     display: block;
 
     .filter {
@@ -15,6 +17,7 @@
             border: 1px solid var(--table_border);
             border-radius: 8px;
             transition: background-color 0.3s ease;
+            background-color: var(--dominant-light);
 
             &:hover {
                 background-color: var(--table_td);
