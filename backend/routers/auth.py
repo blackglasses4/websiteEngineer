@@ -7,6 +7,7 @@ from datetime import timedelta
 from backend.utils.hashing import hash_password
 from backend.utils.hashing import verify_password
 from backend.utils.token import create_access_token
+from sqlalchemy.sql import or_
 
 
 # Tworzenie instancji routera
@@ -33,9 +34,12 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
 
     # Tworzymy użytkownika w bazie danych
     db_user = User(
+        first_name = user.first_name,
+        last_name= user.last_name,
         username=user.username,
         email=user.email,
-        hashed_password=hashed_password
+        hashed_password=hashed_password,
+        is_admin = user.is_admin
     )
     
     # Dodanie użytkownika do sesji i zapisanie do bazy danych
@@ -50,8 +54,14 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
     """
     Funkcja obsługująca logowanie użytkownika.
     """
+    print("Received data:", form_data.username, form_data.password)  # Loguj dane
     # Pobieramy użytkownika z bazy danych
-    user = db.query(User).filter(User.username == form_data.username) | (User.email == form_data.username).first()
+    user = db.query(User).filter(
+        or_(
+            User.username == form_data.username,
+            User.email == form_data.username
+        )
+    ).first()
     
     # Jeśli użytkownik nie istnieje lub hasło jest nieprawidłowe
     if not user or not verify_password(form_data.password, user.hashed_password):
@@ -65,6 +75,8 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
 
     return {
         "access_token": access_token,
-        "token_type": "bearer"
+        "token_type": "bearer",
+        "username": user.username,
+        "is_admin": user.is_admin
     }
 
