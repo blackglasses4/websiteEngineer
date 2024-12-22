@@ -1,16 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {BACKEND_URL} from '../config';
+import { FaSlidersH } from 'react-icons/fa';
+import useClick from '../useClick';
 
-// import EditProduct from './EditProduct';
-// import Filter from './../Filter/Filter';
-
+import '../Filter/Filter.scss';
 import '../SearchProduct/Search.scss';
 
 const SearchProduct = () => {
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const filterPanelRef = useRef(null);
+    useClick(filterPanelRef, () => setIsFilterOpen(false));
+
+    // stronicowanie
+    const [page, setPage] = useState(1);
+    const [firstPage, setFirstPage] = useState();
+    const [prevPage, setPrevPage] = useState();
+    const [nextPage, setNextPage] = useState();
+    const [lastPage, setLastPage] = useState();
+
+    const [numberOfPages, setNumberOfPages] = useState();
+    const [numberOfItems, setNumberOfItems] = useState();
+
+    //filtrowanie
+    const [gender, setGender] = useState();
+    //sortortowanie
+    const [sort, setSort] = useState("none");
+
     const [orders, setOrders] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
 
@@ -33,9 +52,9 @@ const SearchProduct = () => {
             }
         };
 
-        useEffect(() => {
-            fetchOrders('');
-    }, []);
+    useEffect(() => {
+        fetchOrders();
+    }, [page, gender, sort]);
 
     const statusOrderChange = async (id, newStatus) => {
         try {
