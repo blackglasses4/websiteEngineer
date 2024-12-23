@@ -1,6 +1,10 @@
 @use '../../scss/variables' as *;
 @use '../../scss/mixins' as *;
 
+.theme-dependent-logo {
+    @include selection-light;
+}
+
 footer {
     background-color: var(--color-red);
     width: 100%;
