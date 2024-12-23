@@ -16,7 +16,7 @@ const Footer = () => {
                     src="/images/logo.png"
                     effect="blur"
                     alt="Logo sklepu"
-                    className="theme-dependent-logo"
+                    className="logo"
                     width="150px"
                     height="auto"
                 />
