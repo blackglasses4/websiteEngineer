@@ -5,7 +5,7 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    max-width: 100%; // Wymusza maksymalną szerokość
+    max-width: 100%;
     background-color: $white;
     padding: 1em;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
@@ -16,7 +16,7 @@
     align-items: center;
     gap: 15px;
     box-sizing: border-box;
-    overflow: hidden; // Ukrywa wszystko wykraczające poza baner
+    overflow: hidden;
 }
 
 .cookie-text {
@@ -26,7 +26,7 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
-    flex: 1 1 auto; // Dostosowuje szerokość do dostępnej przestrzeni
+    flex: 1 1 auto;
     margin-bottom: 10px;
     @include selection-cookie;
 

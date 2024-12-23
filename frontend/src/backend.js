@@ -24,8 +24,6 @@ async function post(endpoint, indata) {
         body: indata ? JSON.stringify(indata) : '',
     });
 
-    // console.debug(response);
-
     if (response.status === 401) {
         alert('Twoja sesja wygasła. Zaloguj się ponownie.');
         window.location = '/login';
@@ -37,19 +35,16 @@ async function post(endpoint, indata) {
 
 async function getProducts(params) {
     const x = await get('/products', params);
-    console.log(x);
     return x;
 }
 
 async function getOrders(params) {
     const x = await get('/orders', params);
-    console.log(x);
     return x;
 }
 
 async function getUsers(params) {
     const x = await get('/users', params);
-    console.log(x);
     return x;
 }
 

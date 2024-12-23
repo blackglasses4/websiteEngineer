@@ -18,7 +18,6 @@ const Navbar = () => {
   const [input, setInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isModalOpen, setModalOpen] = useState(false);
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
   const searchWrapperRef = useRef(null);
   const { dataProducts } = useProducts();
@@ -44,10 +43,6 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  };
-
-  const toggleModal = () => {
-    setModalOpen(!isModalOpen);
   };
 
   const toggleUserMenu = () => {

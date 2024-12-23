@@ -7,13 +7,13 @@ import './Home.scss';
 const Home = () => {
   return (
     <div>
-        {/* <CookieBanner /> */}
+        <CookieBanner />
 
         <section id="welcome" className="section__welcome">
           <div className="section__welcome-content">
               <h2>„Z nami osiągniesz więcej – w stylu i komforcie.”</h2>
               <p>„Oferujemy odzież sportową, która łączy wygodę, funkcjonalność i nowoczesny design. Dzięki naszym produktom osiągniesz więcej – zarówno na treningu, jak i na co dzień. Wybierz jakość, która wspiera Twoje pasje i cele.”</p>
-              <button>Dowiedz się więcej</button>
+              <Link to="/koszulka" className="button">Zobacz produkty</Link>
           </div>
         </section>
 

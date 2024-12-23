@@ -137,16 +137,6 @@ const EditProduct = ({ product, onSave, onCancel }) => {
     });
   };
 
-  const handlePopularChange = () => {
-    setEditForm((prevForm) => {
-      const updatedPopular = !prevForm.popular;
-      return {
-        ...prevForm,
-        popular: updatedPopular,
-      };
-    });
-  };
-
   return (
     <>
       <table className="edit-product-form">
