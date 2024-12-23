@@ -4,10 +4,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch.jsx';
 import { toast } from "react-toastify";
 import { useProducts } from '../LikeButton/ProductContext.jsx';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import useClick from '../useClick.jsx';
 import { useUser } from '../../Pages/UserContext.jsx';
 import { useCart } from '../Cart/CartContext.jsx';
+
 
 import './Navbar.scss';
 
@@ -64,7 +67,17 @@ const Navbar = () => {
 
   return (
     <header className='header-main'>
-      <a href="/" className="a-name" rel="internal" aria-label="Logo sklepu internetowego">NAZWAAAAA</a>
+      <a href="/" className="a-name" rel="internal" aria-label="Logo sklepu internetowego">
+        <LazyLoadImage
+          src="/images/logo.png"
+          effect="blur"
+          className="logo"
+          alt="Logo sklepu"
+          width="100px"
+          height="auto"
+        />
+      </a>
+      {/* „zaopatrz się” lub „przygotuj się” na sportowe wyzwania to oznacza gearUp */}
 
       <div className="nav-search" ref={searchWrapperRef}>
         <div className="input-wrapper">

@@ -4,6 +4,8 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 import SearchProduct from '../SearchProduct/SearchProduct';
@@ -40,8 +42,16 @@ const Admin = () => {
     return (
         <>
             <header className='header-admin'>
-                <a href="/admin" className='a-name' rel='internal'>NAZWA</a>
-                <h3>Admin Panel</h3>
+                <a href="/admin" className='a-name' rel='internal'>
+                    <LazyLoadImage
+                        src="/images/logo.png"
+                        effect="blur"
+                        className="logo"
+                        alt="Logo sklepu"
+                        width="100px"
+                        height="auto"
+                    />
+                </a>
                 <div className='nav-icons'>
                     <ThemeSwitch />
                     <a href="/login"><FaUserCircle /></a>
