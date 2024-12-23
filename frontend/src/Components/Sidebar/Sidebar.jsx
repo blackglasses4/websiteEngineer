@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './Sidebar.scss';
-import { FaPlusCircle } from 'react-icons/fa';
 import { TbShoppingBagSearch } from "react-icons/tb";
 
 const Sidebar = ({ onSelect }) => {

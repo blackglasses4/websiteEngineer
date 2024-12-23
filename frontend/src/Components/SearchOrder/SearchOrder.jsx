@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {BACKEND_URL} from '../config';
@@ -21,7 +21,7 @@ const SearchProduct = () => {
     const [orders, setOrders] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
 
-    const fetchOrders = async () => {
+    const fetchOrders = useCallback(async () => {
         try {
             const params = {
                 '_page': page,
@@ -53,11 +53,11 @@ const SearchProduct = () => {
                 progress: undefined,
             });
         }
-    };
+    }, [page]);
 
     useEffect(() => {
         fetchOrders();
-    }, [page]);
+    }, [fetchOrders]);
 
     const statusOrderChange = async (id, newStatus) => {
         try {

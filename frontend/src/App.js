@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom';
-import React, { useState, useEffect } from "react";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CartProvider } from './Components/Cart/CartContext'; 
@@ -11,7 +10,6 @@ import { UserProvider } from './Pages/UserContext';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import NavbarCategory from './Components/Navbar/NavbarCategory';
-import DisplayProduct from './Components/DisplayProduct/DisplayProduct';
 import CartPage from './Components/Cart/CartPage/CartPage';
 import LikedProduct from './Components/LikeButton/LikedProduct';
 

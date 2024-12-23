@@ -19,7 +19,7 @@ const CreateUser = () => {
 
     const [user, setUser] = useState(initialUserState);
     const [loading, setLoading] = useState(false);
-    const [imagePreview, setImagePreview] = useState(null);
+    // const [imagePreview, setImagePreview] = useState(null);
     const [users, setUsers] = useState([]);
     const [isFormOpen, setIsFormOpen] = useState(false);
 
