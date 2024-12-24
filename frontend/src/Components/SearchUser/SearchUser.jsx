@@ -174,11 +174,11 @@ const SearchUser = () => {
             <SearchBar data={users} setConfirmedResults={setConfirmedResults} type="users" />
 
             <div className="filter">
-                <input type="button" value="Pierwsza" disabled={firstPage == null} onClick={() => {setPage(firstPage)}}></input>
-                <input type="button" value="Poprzednia" disabled={prevPage == null} onClick={() => {setPage(prevPage)}}></input>
+                <input type="button" value="Pierwsza" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
+                <input type="button" value="Poprzednia" disabled={prevPage === null} onClick={() => {setPage(prevPage)}}></input>
                 <span>{page} z {numberOfPages}</span>
-                <input type="button" value="Następna" disabled={nextPage == null} onClick={() => {setPage(nextPage)}}></input>
-                <input type="button" value="Ostatnia" disabled={lastPage == null} onClick={() => {setPage(lastPage)}}></input>
+                <input type="button" value="Następna" disabled={nextPage === null} onClick={() => {setPage(nextPage)}}></input>
+                <input type="button" value="Ostatnia" disabled={page === numberOfPages} onClick={() => {setPage(lastPage)}}></input>
                 <span>Liczba sztuk: {numberOfItems}</span>
 
                 <div className="product-filter">
