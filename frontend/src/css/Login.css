@@ -80,6 +80,14 @@
   --darkgreen: hsl(144, 96%, 10%);
 }
 
+.theme-dependent-logo {
+  filter: invert(0%);
+}
+
+[data-theme=dark] .theme-dependent-logo {
+  filter: invert(100%);
+}
+
 .page-container {
   display: flex;
   flex-direction: column;
@@ -90,7 +98,7 @@
   width: 100%;
   background-color: var(--dominant-light);
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
@@ -170,6 +178,7 @@
   border-radius: 4px;
   font-size: 1rem;
   transition: border 0.3s;
+  color: var(--dominant-dark);
 }
 .login .login-form-wrapper form label input:focus {
   outline: none;

@@ -80,6 +80,16 @@
   --darkgreen: hsl(144, 96%, 10%);
 }
 
+.logo::-moz-selection {
+  color: hsl(0, 61%, 34%);
+  background-color: #ffffff;
+}
+
+.logo::selection {
+  color: hsl(0, 61%, 34%);
+  background-color: #ffffff;
+}
+
 header.header-main {
   background-color: var(--color-red);
   width: 100%;

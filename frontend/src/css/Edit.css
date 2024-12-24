@@ -1,0 +1,362 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --grey_light: #8c8c8c;
+  --grey_dark: #232933;
+  --green_light: #228B22;
+  --red_light: hsl(0, 61%, 34%);
+  --grey_dark: #232933;
+  --blue_light: #225E8B;
+  --blue_dark: #184261;
+  --table_td: #f8f8f8;
+  --table_border: #ddd;
+  --table_th-color: #555;
+  --table_shadow: rgba(0, 0, 0, 0.1);
+  --table_s: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme=light],
+:root:not([data-theme=dark]) {
+  --dominant-light: hsl(0, 0%, 100%);
+  --dominant-dark: hsl(0, 0%, 5%);
+  --table_td: hsl(0, 0%, 94%);
+  --table_border: hsl(0, 0%, 87%);
+  --table_th-color: hsl(0, 0%, 19%);
+  --table_shadow: rgba(0, 0, 0, 0.1);
+  --table_s: rgba(0, 0, 0, 0.3);
+  --color-ad: hsl(206, 100%, 32%);
+  --color-red: hsl(0, 100%, 33%);
+  --color-green: hsl(120, 61%, 34%);
+  --grey_light: hsl(0, 0%, 55%);
+  --grey_dark: hsl(218, 19%, 17%);
+  --color-bg-selection: hsl(0, 0%, 15%);
+  --color-selection: hsl(0, 0%, 98%);
+  --color-font-grey: hsl(0, 0%, 21%);
+  --darkgrey: hsl(0, 0%, 13%);
+  --lightgreen: hsl(146, 97%, 23%);
+  --darkgreen: hsl(144, 96%, 10%);
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --dominant-light: hsl(0, 0%, 5%);
+    --dominant-dark: hsl(0, 0%, 100%);
+    --table_td: hsl(0, 0%, 12%);
+    --table_border: hsl(0, 0%, 26%);
+    --table_th-color: rgb(160, 157, 157);
+    --table_shadow: rgba(136, 136, 136, 0.1);
+    --table_s: rgba(0, 0, 0, 0.3);
+    --color-ad: hsl(205, 100%, 22%);
+    --color-red: hsl(0, 98%, 21%);
+    --color-green: hsl(144, 96%, 10%);
+    --grey_light: hsl(0, 0%, 100%);
+    --grey_dark: hsl(0, 0%, 100%);
+    --color-bg-selection: hsl(0, 0%, 15%);
+    --color-selection: hsl(0, 0%, 98%);
+    --color-font-grey: hsl(0, 0%, 21%);
+    --darkgrey: hsl(0, 0%, 13%);
+    --lightgreen: hsl(146, 97%, 23%);
+    --darkgreen: hsl(144, 96%, 10%);
+  }
+}
+[data-theme=dark] {
+  --dominant-light: hsl(0, 0%, 5%);
+  --dominant-dark: hsl(0, 0%, 100%);
+  --table_td: hsl(0, 0%, 12%);
+  --table_border: hsl(0, 0%, 26%);
+  --table_th-color: rgb(160, 157, 157);
+  --table_shadow: rgba(136, 136, 136, 0.1);
+  --table_s: rgba(0, 0, 0, 0.6);
+  --color-ad: hsl(205, 100%, 22%);
+  --color-red: hsl(0, 98%, 21%);
+  --color-green: hsl(144, 96%, 10%);
+  --grey_light: hsl(0, 0%, 100%);
+  --grey_dark: hsl(0, 0%, 100%);
+  --color-bg-selection: hsl(0, 0%, 15%);
+  --color-selection: hsl(0, 0%, 98%);
+  --color-font-grey: hsl(0, 0%, 21%);
+  --darkgrey: hsl(0, 0%, 13%);
+  --lightgreen: hsl(146, 97%, 23%);
+  --darkgreen: hsl(144, 96%, 10%);
+}
+
+.edit-product-form,
+.edit-user-form {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: var(--dominant-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.edit-product-form tr,
+.edit-user-form tr {
+  width: 100%;
+  border-spacing: 0;
+}
+.edit-product-form tr:hover,
+.edit-user-form tr:hover {
+  background-color: none;
+}
+.edit-product-form tr td,
+.edit-user-form tr td {
+  padding: 1em;
+  text-align: left;
+}
+.edit-product-form label,
+.edit-user-form label {
+  display: block;
+  font-size: 1em;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.edit-product-form label::-moz-selection, .edit-user-form label::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.edit-product-form label::selection,
+.edit-user-form label::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.edit-product-form #input-text,
+.edit-user-form #input-text {
+  width: 50%;
+  margin: 0 1em;
+  text-align: left;
+}
+.edit-product-form #input-text:focus,
+.edit-user-form #input-text:focus {
+  border-color: #399be6;
+  outline: none;
+}
+.edit-product-form #input-size,
+.edit-user-form #input-size {
+  display: flex;
+  align-self: start;
+  font-size: 1em;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.edit-product-form #input-size::-moz-selection, .edit-user-form #input-size::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.edit-product-form #input-size::selection,
+.edit-user-form #input-size::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.edit-product-form #input-size label,
+.edit-user-form #input-size label {
+  padding: 0 0.5em;
+  text-align: center;
+}
+.edit-product-form select, .edit-product-form input,
+.edit-user-form select,
+.edit-user-form input {
+  background-color: var(--table_td);
+  color: var(--dominant-dark);
+  padding: 5px;
+  text-align: center;
+  border: 1px solid var(--table_th-color);
+  border-radius: 5px;
+}
+.edit-product-form select::-moz-selection, .edit-product-form input::-moz-selection, .edit-user-form select::-moz-selection, .edit-user-form input::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.edit-product-form select::selection, .edit-product-form input::selection,
+.edit-user-form select::selection,
+.edit-user-form input::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.edit-product-form textarea,
+.edit-user-form textarea {
+  width: calc(100% - 2em);
+  padding: 12px 16px;
+  margin-top: 6px;
+  border: 1px solid var(--table_border);
+  border-radius: 5px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+.edit-product-form textarea::-moz-selection, .edit-user-form textarea::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.edit-product-form textarea::selection,
+.edit-user-form textarea::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.edit-product-form textarea:focus,
+.edit-user-form textarea:focus {
+  border-color: #399be6;
+  outline: none;
+}
+.edit-product-form textarea,
+.edit-user-form textarea {
+  height: 120px;
+  resize: vertical;
+}
+.edit-product-form button,
+.edit-user-form button {
+  padding: 1em 1.1em;
+  font-size: 1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+.edit-product-form button.button-save,
+.edit-user-form button.button-save {
+  background-color: #27ae60;
+  color: #ffffff;
+}
+.edit-product-form button.button-save:hover,
+.edit-user-form button.button-save:hover {
+  background-color: #19703d;
+}
+.edit-product-form button.button-cancel,
+.edit-user-form button.button-cancel {
+  background-color: #e74c3c;
+  color: #ffffff;
+  margin-left: 10px;
+}
+.edit-product-form button.button-cancel:hover,
+.edit-user-form button.button-cancel:hover {
+  background-color: hsl(0, 61%, 34%);
+}
+.edit-product-form button.button-save, .edit-product-form button.button-cancel,
+.edit-user-form button.button-save,
+.edit-user-form button.button-cancel {
+  width: auto;
+}
+.edit-product-form h3,
+.edit-user-form h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: var(--table_border);
+  text-align: center;
+}
+
+.edit-product-form-mobile,
+.edit-user-form-mobile {
+  display: none;
+  padding: 1em;
+  background-color: var(--dominant-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.edit-product-form-mobile p span,
+.edit-user-form-mobile p span {
+  color: var(--dominant-dark);
+  font-size: 0.9em;
+  font-weight: 600;
+}
+.edit-product-form-mobile p span::-moz-selection, .edit-user-form-mobile p span::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.edit-product-form-mobile p span::selection,
+.edit-user-form-mobile p span::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.edit-product-form-mobile p #input-popular,
+.edit-user-form-mobile p #input-popular {
+  text-align: left;
+  padding-left: 0;
+}
+.edit-product-form-mobile .sizes, .edit-product-form-mobile .colors,
+.edit-user-form-mobile .sizes,
+.edit-user-form-mobile .colors {
+  margin: 1em 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.edit-product-form-mobile .sizes p, .edit-product-form-mobile .colors p,
+.edit-user-form-mobile .sizes p,
+.edit-user-form-mobile .colors p {
+  display: flex;
+  align-items: center;
+  color: var(--dominant-dark);
+}
+.edit-product-form-mobile .sizes p span, .edit-product-form-mobile .colors p span,
+.edit-user-form-mobile .sizes p span,
+.edit-user-form-mobile .colors p span {
+  font-weight: 500;
+  margin-right: 10px;
+  color: var(--dominant-dark);
+}
+.edit-product-form-mobile .sizes p label, .edit-product-form-mobile .colors p label,
+.edit-user-form-mobile .sizes p label,
+.edit-user-form-mobile .colors p label {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  font-size: 0.9rem;
+}
+.edit-product-form-mobile input, .edit-product-form-mobile select, .edit-product-form-mobile textarea,
+.edit-user-form-mobile input,
+.edit-user-form-mobile select,
+.edit-user-form-mobile textarea {
+  background-color: var(--table_td);
+  width: 60%;
+  padding: 7px;
+  font-size: 0.8em;
+  margin-left: 0.5em;
+  border-radius: 5px;
+  margin-top: 0.5em;
+  color: var(--dominant-dark);
+}
+.edit-product-form-mobile button,
+.edit-user-form-mobile button {
+  padding: 1em 1.1em;
+  font-size: 0.9em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+.edit-product-form-mobile button.button-save,
+.edit-user-form-mobile button.button-save {
+  background-color: #27ae60;
+  color: #ffffff;
+}
+.edit-product-form-mobile button.button-save:hover,
+.edit-user-form-mobile button.button-save:hover {
+  background-color: #19703d;
+}
+.edit-product-form-mobile button.button-cancel,
+.edit-user-form-mobile button.button-cancel {
+  background-color: #e74c3c;
+  color: #ffffff;
+  margin-left: 10px;
+}
+.edit-product-form-mobile button.button-cancel:hover,
+.edit-user-form-mobile button.button-cancel:hover {
+  background-color: hsl(0, 61%, 34%);
+}
+.edit-product-form-mobile button.button-save, .edit-product-form-mobile button.button-cancel,
+.edit-user-form-mobile button.button-save,
+.edit-user-form-mobile button.button-cancel {
+  width: auto;
+}
+
+@media only screen and (max-width: 1440px) {
+  .edit-product-form,
+  .edit-user-form {
+    display: none;
+  }
+  .edit-product-form-mobile,
+  .edit-user-form-mobile {
+    display: block;
+  }
+}/*# sourceMappingURL=Edit.css.map */
