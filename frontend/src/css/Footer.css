@@ -80,6 +80,16 @@
   --darkgreen: hsl(144, 96%, 10%);
 }
 
+.theme-dependent-logo::-moz-selection {
+  color: hsl(0, 61%, 34%);
+  background-color: #ffffff;
+}
+
+.theme-dependent-logo::selection {
+  color: hsl(0, 61%, 34%);
+  background-color: #ffffff;
+}
+
 footer {
   background-color: var(--color-red);
   width: 100%;
