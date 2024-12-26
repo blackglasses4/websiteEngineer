@@ -36,7 +36,6 @@ const CookieBanner = () => {
       </p>
       <div className="cookie-buttons">
         <button onClick={handleAccept}>Akceptuj wszystko</button>
-        <button onClick={handleReject}>Odrzuć wszystkie</button>
       </div>
     </div>
   );

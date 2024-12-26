@@ -162,6 +162,163 @@
       "date": "2024-12-19T21:50:21.666Z",
       "status": "Reklamacja",
       "customer": "Anonimowy użytkownik"
+    },
+    {
+      "id": "2999",
+      "customerDetails": {
+        "phone": "111111111",
+        "street": "ul leśna",
+        "postalCode": "22-222",
+        "city": "poznan",
+        "houseNumber": "",
+        "apartmentNumber": "2",
+        "comments": "fdfdffsdfsdf"
+      },
+      "items": [
+        {
+          "productId": "13",
+          "quantity": 2,
+          "price": 150
+        },
+        {
+          "productId": "25",
+          "quantity": 1,
+          "price": 120
+        }
+      ],
+      "totalAmount": 420,
+      "date": "2024-12-26T06:42:00.529Z",
+      "status": "W trakcie realizacji",
+      "customer": "Anonimowy użytkownik"
+    },
+    {
+      "id": "5d25",
+      "customerDetails": {
+        "phone": "222222222",
+        "street": "sd",
+        "postalCode": "23-555",
+        "city": "dddd",
+        "houseNumber": "",
+        "apartmentNumber": "3",
+        "comments": "ddddddddddddddd"
+      },
+      "items": [
+        {
+          "productId": "13",
+          "quantity": 2,
+          "price": 150
+        },
+        {
+          "productId": "25",
+          "quantity": 1,
+          "price": 120
+        }
+      ],
+      "totalAmount": 420,
+      "date": "2024-12-26T06:59:42.976Z",
+      "status": "W trakcie realizacji",
+      "customer": "Anonimowy użytkownik"
+    },
+    {
+      "id": "92f3",
+      "customerDetails": {
+        "phone": "222222222",
+        "street": "dddd",
+        "postalCode": "23-000",
+        "city": "asddd",
+        "houseNumber": "1",
+        "apartmentNumber": "",
+        "comments": ""
+      },
+      "items": [
+        {
+          "productId": "13",
+          "quantity": 2,
+          "price": 150
+        },
+        {
+          "productId": "25",
+          "quantity": 2,
+          "price": 120
+        }
+      ],
+      "totalAmount": 540,
+      "date": "2024-12-26T07:01:53.499Z",
+      "status": "W trakcie realizacji",
+      "customer": "Anonimowy użytkownik"
+    },
+    {
+      "id": "84a7",
+      "customerDetails": {
+        "phone": "333333333",
+        "street": "fffff",
+        "postalCode": "34-000",
+        "city": "fffsd",
+        "houseNumber": "",
+        "apartmentNumber": "4",
+        "comments": "fdddddddddddddd"
+      },
+      "items": [
+        {
+          "productId": "2",
+          "quantity": 1,
+          "price": 35
+        },
+        {
+          "productId": "3",
+          "quantity": 2,
+          "price": 45
+        }
+      ],
+      "totalAmount": 125,
+      "date": "2024-12-26T07:02:56.461Z",
+      "status": "W trakcie realizacji",
+      "customer": "Anonimowy użytkownik"
+    },
+    {
+      "id": "226d",
+      "customerDetails": {
+        "phone": "000000000",
+        "street": "fdfd",
+        "postalCode": "34-000",
+        "city": "dddddddddd",
+        "houseNumber": "",
+        "apartmentNumber": "3",
+        "comments": ""
+      },
+      "items": [],
+      "totalAmount": 0,
+      "date": "2024-12-26T07:03:25.542Z",
+      "status": "W trakcie realizacji",
+      "customer": "Anonimowy użytkownik"
+    },
+    {
+      "id": "39a5",
+      "customerDetails": {
+        "phone": "333333333",
+        "street": "dddddddddddddd",
+        "postalCode": "23-555",
+        "city": "ddd",
+        "houseNumber": "3",
+        "apartmentNumber": "",
+        "comments": "dasdsdasd"
+      },
+      "items": [
+        {
+          "productId": "2",
+          "quantity": 1,
+          "price": 35
+        },
+        {
+          "productId": "3",
+          "quantity": 2,
+          "price": 45
+        }
+      ],
+      "totalAmount": 125,
+      "date": "2024-12-26T07:06:53.236Z",
+      "status": "W trakcie realizacji",
+      "customer": "Anonimowy użytkownik"
     }
   ],
   "images": [

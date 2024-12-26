@@ -176,7 +176,7 @@ header.header-main {
         position: absolute;
         top: 0;
         right: 0;
-        width: 50%;
+        width: 70%;
         height: auto;
         background-color: var(--dominant-light);
         box-shadow: 0 5px 6px rgba(0, 0, 0, 0.6);
@@ -227,6 +227,27 @@ header.header-main {
             padding: 0.3rem 0.6rem;
             font-size: 0.8rem;
           }
+
+            .nav-user {
+                button {
+                    background-color: var(--table_td);
+                    font-size: 0.8em;
+                    color: var(--dominant-dark);
+                    border: 2px solid var(--table_border);
+                    padding: 0.3em 0.4em;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    position: relative;
+                    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                    backdrop-filter: blur(10px);
+                    box-shadow: 0 4px 6px var(--table_shadow);
+                
+                    &:hover {
+                        background-color: var(--table_s);
+                        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+                    }
+                }
+            }
         }
       
         .close-menu {
