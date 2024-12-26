@@ -1,7 +1,7 @@
 @use '../../scss/variables' as *;
 @use '../../scss/mixins' as *;
 
-nav {
+nav.nav-admin {
     background-color: $red_light;
     width: 100%;
     padding: 1rem 2rem;

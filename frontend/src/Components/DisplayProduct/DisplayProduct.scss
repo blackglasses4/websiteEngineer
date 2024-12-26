@@ -27,29 +27,7 @@
             width: 100%;
             max-width: 400px;
             border-radius: 10px;
-            cursor: pointer;
             @include selection-whitedark;
-        }
-
-        .additional-images {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin: 0 1em 0 0.5em;
-
-            img {
-                width: 100%;
-                max-width: 100px;
-                height: auto;
-                border-radius: 8px;
-                object-fit: cover;
-                cursor: pointer;
-                transition: transform 0.3s ease;
-
-                &:hover {
-                    transform: scale(1.1);
-                }
-            }
         }
     }
 
@@ -73,7 +51,49 @@
             }
         }
 
+        .product-display__colors {
+            margin: 10px 0;
+
+            h3 {
+                color: var(--color-grey);
+                margin-bottom: 0.5em;
+                @include selection-whitedark;
+            }
+
+            .color-options {
+                display: flex;
+                gap: 10px;
+            }
+
+        }
+
+        .color-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: border 0.3s;
+        }     
+
         .product-display__sizes {
+            margin: 10px 0;
+
+            .size-options {
+                display: flex;
+                gap: 10px;
+                list-style: none;
+                padding: 0;
+
+                li {
+
+                    &.selected {
+                        background-color: var(--dominant-dark);
+                        color: var(--dominant-light);
+                        border-color: var(--dominant-dark);
+                    }
+                }
+            }
+
             h3 {
                 color: var(--grey_dark);
                 margin-bottom: 0.5em;
@@ -90,7 +110,7 @@
                 li {
                     font-size: 1rem;
                     padding: 5px 10px;
-                    border: 1px solid var(--dominant-dark);
+                    border: 2px solid var(--dominant-dark);
                     border-radius: 4px;
                     cursor: pointer;
                     transition: background-color 0.3s ease;
@@ -105,20 +125,25 @@
         }
 
         button {
-            background-color: var(--color-green);
-            color: $white;
-            border: none;
-            padding: 0.6em 1em;
-            border-radius: 10px;
+            background-color: var(--dominant-light);
+            color: var(--dominant-dark);
+            border: 1px solid var(--grey_dark);
+            padding: 0.4em 1em;
+            border-radius: 5px;
             cursor: pointer;
             margin-top: 15px;
             transition: background-color 0.3s ease;
             align-self: flex-start;
 
             &:hover {
-                background-color: var(--dominant-dark);
-                color: var(--dominant-light);
+                background-color: var(--table_border);
             }
+        }
+
+        span {
+            padding: 1em;
+            color: var(--grey_dark);
+            @include selection-whitedark;
         }
     }
 }

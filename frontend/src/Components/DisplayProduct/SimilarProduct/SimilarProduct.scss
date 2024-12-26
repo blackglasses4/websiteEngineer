@@ -1,0 +1,162 @@
+@use '../../../scss//mixins' as *;
+@use '../../../scss/variables' as *;
+
+.similar-products {
+    padding: 4rem;
+
+    h1 {
+      padding-bottom: 1em;
+      color: var(--dominant-dark);
+      @include selection-whitedark;
+    }
+  
+    &__carousel {
+      position: relative;
+      display: flex;
+      align-items: center;
+  
+      .arrow {
+        position: absolute;
+        top: 40%;
+        transform: translateY(-50%);
+        background: var(--dominant-light);
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+        color: var(--dominant-dark);
+        box-shadow: 0 2px 5px var(--table_shadow);
+        cursor: pointer;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+  
+        &.disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+  
+        &.left {
+          left: 0;
+        }
+  
+        &.right {
+          right: 0;
+        }
+      }
+    }
+  
+    &__list {
+      overflow: hidden;
+      width: 100%;
+    }
+  
+    &__track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: auto;
+      gap: 0;
+    }
+  
+    &__item {
+      flex: 0 0 25%;
+      max-width: 25%;
+      text-align: center;
+  
+      .similar-products__image {
+        width: 100%;
+        max-width: 180px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 8px;
+        @include selection-whitedark;
+      }
+  
+      .similar-products__name {
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin: 0.5rem 0;
+        color: var(--grey_dark);
+        @include selection-whitedark;
+      }
+  
+      .similar-products__prices {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+  
+        .new-price {
+          font-weight: 500;
+          color: var(--grey_dark);
+          @include selection-whitedark;
+        }
+  
+        .old-price {
+          font-size: 0.8rem;
+          text-decoration: line-through;
+          color: $red_brighter;
+          @include selection-whitedark;
+        }
+      }
+    }
+  
+    &__dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+  
+      .dot {
+        width: 12px;
+        height: 12px;
+        background-color: #ccc;
+        border-radius: 50%;
+        cursor: pointer;
+  
+        &.active {
+          background-color: #333;
+        }
+      }
+    }
+
+    @media only screen and (max-width: #{map-get($breakpoints, 'desktop')}) {
+        &__item {
+            flex: 0 0 50%;
+            max-width: 50%;
+            text-align: center;
+        }
+    }
+
+  
+    @media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
+        padding: 1rem;
+      
+        &__list {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        &__item {
+        flex: 0 0 100%;
+        max-width: 50%;
+      }
+    }
+
+    @media only screen and (max-width: #{map-get($breakpoints, 'tablet-small')}) {
+        padding: 1rem;
+      
+        &__list {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        &__item {
+        flex: 0 0 100%;
+        max-width: 600px;
+      }
+    }
+}
+  

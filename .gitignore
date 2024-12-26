@@ -1,5 +1,8 @@
+# Ignoruj foldery __pycache__
+__pycache__/
 
+# Ignoruj pliki .pyc
+*.pyc
 
 .venv*
-**/__pycache__
-**/*.pyc
+

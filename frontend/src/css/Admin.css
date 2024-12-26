@@ -1,1 +1,189 @@
-/*# sourceMappingURL=Admin.css.map */
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --grey_light: #8c8c8c;
+  --grey_dark: #232933;
+  --green_light: #228B22;
+  --red_light: hsl(0, 61%, 34%);
+  --grey_dark: #232933;
+  --blue_light: #225E8B;
+  --blue_dark: #184261;
+  --table_td: #f8f8f8;
+  --table_border: #ddd;
+  --table_th-color: #555;
+  --table_shadow: rgba(0, 0, 0, 0.1);
+  --table_s: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme=light],
+:root:not([data-theme=dark]) {
+  --dominant-light: hsl(0, 0%, 100%);
+  --dominant-dark: hsl(0, 0%, 5%);
+  --table_td: hsl(0, 0%, 94%);
+  --table_border: hsl(0, 0%, 87%);
+  --table_th-color: hsl(0, 0%, 19%);
+  --table_shadow: rgba(0, 0, 0, 0.1);
+  --table_s: rgba(0, 0, 0, 0.3);
+  --color-ad: hsl(206, 100%, 32%);
+  --color-red: hsl(0, 100%, 33%);
+  --color-green: hsl(120, 61%, 34%);
+  --grey_light: hsl(0, 0%, 55%);
+  --grey_dark: hsl(218, 19%, 17%);
+  --color-bg-selection: hsl(0, 0%, 15%);
+  --color-selection: hsl(0, 0%, 98%);
+  --color-font-grey: hsl(0, 0%, 21%);
+  --darkgrey: hsl(0, 0%, 13%);
+  --lightgreen: hsl(146, 97%, 23%);
+  --darkgreen: hsl(144, 96%, 10%);
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --dominant-light: hsl(0, 0%, 5%);
+    --dominant-dark: hsl(0, 0%, 100%);
+    --table_td: hsl(0, 0%, 12%);
+    --table_border: hsl(0, 0%, 26%);
+    --table_th-color: rgb(160, 157, 157);
+    --table_shadow: rgba(136, 136, 136, 0.1);
+    --table_s: rgba(0, 0, 0, 0.3);
+    --color-ad: hsl(205, 100%, 22%);
+    --color-red: hsl(0, 98%, 21%);
+    --color-green: hsl(144, 96%, 10%);
+    --grey_light: hsl(0, 0%, 100%);
+    --grey_dark: hsl(0, 0%, 100%);
+    --color-bg-selection: hsl(0, 0%, 15%);
+    --color-selection: hsl(0, 0%, 98%);
+    --color-font-grey: hsl(0, 0%, 21%);
+    --darkgrey: hsl(0, 0%, 13%);
+    --lightgreen: hsl(146, 97%, 23%);
+    --darkgreen: hsl(144, 96%, 10%);
+  }
+}
+[data-theme=dark] {
+  --dominant-light: hsl(0, 0%, 5%);
+  --dominant-dark: hsl(0, 0%, 100%);
+  --table_td: hsl(0, 0%, 12%);
+  --table_border: hsl(0, 0%, 26%);
+  --table_th-color: rgb(160, 157, 157);
+  --table_shadow: rgba(136, 136, 136, 0.1);
+  --table_s: rgba(0, 0, 0, 0.6);
+  --color-ad: hsl(205, 100%, 22%);
+  --color-red: hsl(0, 98%, 21%);
+  --color-green: hsl(144, 96%, 10%);
+  --grey_light: hsl(0, 0%, 100%);
+  --grey_dark: hsl(0, 0%, 100%);
+  --color-bg-selection: hsl(0, 0%, 15%);
+  --color-selection: hsl(0, 0%, 98%);
+  --color-font-grey: hsl(0, 0%, 21%);
+  --darkgrey: hsl(0, 0%, 13%);
+  --lightgreen: hsl(146, 97%, 23%);
+  --darkgreen: hsl(144, 96%, 10%);
+}
+
+.welcome-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+}
+.welcome-admin h2::-moz-selection, .welcome-admin p::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.welcome-admin h2::selection, .welcome-admin p::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.welcome-admin h2 {
+  color: var(--dominant-dark);
+  margin-bottom: 1rem;
+}
+.welcome-admin p {
+  color: var(--grey_dark);
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+header.header-admin {
+  background-color: var(--color-red);
+  width: 100%;
+  padding: 1em 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+header.header-admin a {
+  color: #ffffff;
+  text-decoration: none;
+  list-style-type: none;
+  border: none;
+}
+header.header-admin a::-moz-selection {
+  color: hsl(0, 61%, 34%);
+  background-color: #ffffff;
+}
+header.header-admin a::selection {
+  color: hsl(0, 61%, 34%);
+  background-color: #ffffff;
+}
+header.header-admin h3 {
+  color: #ffffff;
+  margin-bottom: 0;
+}
+header.header-admin h3::-moz-selection {
+  color: hsl(0, 61%, 34%);
+  background-color: #ffffff;
+}
+header.header-admin h3::selection {
+  color: hsl(0, 61%, 34%);
+  background-color: #ffffff;
+}
+header.header-admin .nav-icons {
+  display: flex;
+  gap: 1em;
+}
+
+.admin-container {
+  display: flex;
+  flex-direction: column;
+}
+.admin-container .admin-main {
+  padding: 2rem;
+  flex-grow: 1;
+  background-color: var(--color-light-gray);
+  height: auto;
+}
+
+@media only screen and (max-width: 795px) {
+  .admin-container {
+    flex-direction: column;
+  }
+  .admin-container .admin-main {
+    margin-left: 0;
+    flex-grow: 0;
+    background-color: var(--color-light-gray);
+    min-height: auto;
+  }
+}
+@media only screen and (max-width: 554px) {
+  .admin-container .admin-main {
+    padding: 1rem;
+  }
+  header.header-admin {
+    padding: 1em;
+  }
+  header.header-admin {
+    display: flex;
+    align-items: baseline;
+  }
+  header.header-admin h3 {
+    margin-bottom: 0;
+  }
+  header.header-admin .nav-icons {
+    display: flex;
+    gap: 0.5em;
+  }
+}/*# sourceMappingURL=Admin.css.map */

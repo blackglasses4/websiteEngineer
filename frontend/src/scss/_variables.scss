@@ -7,6 +7,7 @@ $table_td: #f8f8f8;
 $table_border: #ddd;
 $table_th-color: #555; 
 $table_shadow: rgba(0, 0, 0, 0.1);
+$table_s: rgba(0, 0, 0, 0.1);
 
 $grey_light: #8c8c8c;
 $grey_dark: #232933;
@@ -20,6 +21,7 @@ $red_dark: hsl(0, 60%, 24%);
 $blue_brighter: #399be6;
 $blue_light: #225E8B;
 $blue_dark: #184261;
+$bluegray_sidebar: #2c3e50;
 
 :root {
     --white: #{$white};
@@ -36,6 +38,7 @@ $blue_dark: #184261;
     --table_border: #{$table_border};
     --table_th-color: #{$table_th-color};
     --table_shadow: #{$table_shadow};
+    --table_s: #{$table_s};
 }
 
 [data-theme="light"],
@@ -47,6 +50,7 @@ $blue_dark: #184261;
   --table_border: hsl(0, 0%, 87%);
   --table_th-color: hsl(0, 0%, 19%);
   --table_shadow: rgba(0, 0, 0, 0.1);
+  --table_s: rgba(0, 0, 0, 0.3);
 
   --color-ad: hsl(206, 100%, 32%);
   --color-red: hsl(0, 100%, 33%);
@@ -72,6 +76,7 @@ $blue_dark: #184261;
     --table_border: hsl(0, 0%, 26%);
     --table_th-color: rgb(160, 157, 157);
     --table_shadow: rgba(136, 136, 136, 0.1);
+    --table_s: rgba(0, 0, 0, 0.3);
 
     --color-ad: hsl(205, 100%, 22%);
     --color-red: hsl(0, 98%, 21%);
@@ -97,6 +102,7 @@ $blue_dark: #184261;
     --table_border: hsl(0, 0%, 26%);
     --table_th-color: rgb(160, 157, 157);
     --table_shadow: rgba(136, 136, 136, 0.1);
+    --table_s: rgba(0, 0, 0, 0.6);
 
     --color-ad: hsl(205, 100%, 22%);
     --color-red: hsl(0, 98%, 21%);
@@ -122,6 +128,7 @@ $breakpoints: (
     "tablet":       795px,
     "tablet-wide":  860px,
     "tablet-XLwide": 888px,
+    "tablet-table-wide": 940px,
     "tablet-Lwide":  1024px,
     "desktop":      1248px,
     "desktop-wide": 1440px,
