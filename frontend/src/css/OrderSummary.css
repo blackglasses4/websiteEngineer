@@ -111,6 +111,18 @@
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
+.order-summary .summary-p span {
+  font-weight: 500;
+  color: var(--dominant-dark);
+}
+.order-summary .summary-p span::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.order-summary .summary-p span::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
 .order-summary h2 {
   margin-top: 0.5em;
   color: var(--dominant-dark);
@@ -202,18 +214,6 @@
   font-weight: 300;
   color: var(--red_light);
   margin: 1rem 0;
-}
-.order-summary .total-amount p {
-  color: var(--dominant-dark);
-  margin-top: 0.5em;
-}
-.order-summary .total-amount p::-moz-selection {
-  color: var(--dominant-light);
-  background-color: var(--dominant-dark);
-}
-.order-summary .total-amount p::selection {
-  color: var(--dominant-light);
-  background-color: var(--dominant-dark);
 }
 
 @media only screen and (max-width: 795px) {

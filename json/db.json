@@ -352,7 +352,9 @@
           "M",
           "L",
           "XL",
-          "XS"
+          "XS",
+          "S",
+          "XXL"
         ],
         "color": [
           "black",
@@ -361,7 +363,7 @@
           "red",
           "navy"
         ],
-        "material": "poliester"
+        "material": "poliamid"
       }
     },
     {

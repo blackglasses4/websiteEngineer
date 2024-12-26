@@ -22,7 +22,7 @@ const Footer = () => {
                 />
                 <div className='f-contact-form'>
                     <h2>Skontaktuj się z nami</h2>
-                    <p>Formularz kontaktowy</p>
+                    <p>+48 730 464 333</p>
                 </div>
                 <div className='f-contact-community'>
                     <h2>Dołącz do społeczności</h2>

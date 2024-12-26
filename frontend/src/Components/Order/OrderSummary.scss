@@ -19,6 +19,12 @@
         color: var(--red_light);
         text-align: center;
         @include selection-whitedark;
+
+        span {
+            font-weight: 500;
+            color: var(--dominant-dark);
+            @include selection-whitedark;
+        }
     }
 
     h2 {
@@ -80,14 +86,6 @@
           font-weight: 300;
           color: var(--red_light);
           margin: 1rem 0;
-        }
-    }
-
-    .total-amount {
-        p {
-            color: var(--dominant-dark);
-            margin-top: 0.5em;
-            @include selection-whitedark;
         }
     }
 }

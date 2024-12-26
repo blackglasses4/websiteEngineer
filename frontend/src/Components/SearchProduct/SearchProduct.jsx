@@ -298,7 +298,7 @@ const SearchProduct = () => {
                 )}
             </section>
 
-            {/* <section className="admin-search_products-mobile">
+            <section className="admin-search_products-mobile">
                 <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                 {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
@@ -342,7 +342,7 @@ const SearchProduct = () => {
                         ))}
                     </div>
                 )}
-            </section> */}
+            </section>
         </div>
     );
 };
