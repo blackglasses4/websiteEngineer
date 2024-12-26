@@ -4,4 +4,7 @@ __pycache__/
 # Ignoruj pliki .pyc
 *.pyc
 
+# Ignoruj pliki .pyc
+*.pyc
 .venv*
+

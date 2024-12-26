@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BACKEND_URL } from "../../Components/config";
+import { BACKEND_URL2, BACKEND_URL} from "../../Components/config";
 import ThemeSwitch from '../../Components/ThemeSwitch/ThemeSwitch';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -77,8 +77,8 @@ const Register = () => {
     }
 
     const userData = {
-      firstName: userDetails.firstName,
-      lastName: userDetails.lastName,
+      first_name: userDetails.firstName,
+      last_name: userDetails.lastName,
       username: userDetails.username,
       email: userDetails.email,
       password: userDetails.password,
@@ -86,7 +86,7 @@ const Register = () => {
 
     try {
       //1, Sprawdzanie 
-      const checkResponse = await fetch(`${BACKEND_URL}/users/check`, {
+      const checkResponse = await fetch(`${BACKEND_URL2}/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -100,7 +100,7 @@ const Register = () => {
 
 
       //2. Rejestracja użytkownika, jeśli wszystko jest w porządku.
-      const response = await fetch(`${BACKEND_URL}/users`, {
+      const response = await fetch(`${BACKEND_URL2}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

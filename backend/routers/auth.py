@@ -7,6 +7,7 @@ from datetime import timedelta
 from backend.utils.hashing import hash_password
 from backend.utils.hashing import verify_password
 from backend.utils.token import create_access_token
+from sqlalchemy.sql import or_
 
 
 # Tworzenie instancji routera
@@ -33,9 +34,12 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
 
     # Tworzymy użytkownika w bazie danych
     db_user = User(
+        first_name = user.first_name,
+        last_name= user.last_name,
         username=user.username,
         email=user.email,
-        hashed_password=hashed_password
+        hashed_password=hashed_password,
+        is_admin = user.is_admin
     )
     
     # Dodanie użytkownika do sesji i zapisanie do bazy danych
@@ -45,13 +49,78 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
 
     return db_user  # Zwracamy stworzonego użytkownika
 
+@router.post("/add_user", response_model=UserOut)
+def add_user(user: UserCreate, db: Session = Depends(get_db)):
+    # Sprawdzamy, czy użytkownik już istnieje
+    existing_user = db.query(User).filter(User.username == user.username).first()
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Username already registered")
+
+    # Hashowanie hasła
+    hashed_password = hash_password(user.password)
+
+    # Tworzymy użytkownika w bazie danych
+    db_user = User(
+        first_name = user.first_name,
+        last_name= user.last_name,
+        username=user.username,
+        email=user.email,
+        hashed_password=hashed_password,
+        is_admin = user.is_admin
+    )
+    
+    # Dodanie użytkownika do sesji i zapisanie do bazy danych
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+
+    return db_user  # Zwracamy stworzonego użytkownika
+
+@router.put("/edit_user/{id}", response_model=UserOut)
+def edit_user(id: int, user: UserCreate, db: Session = Depends(get_db)):
+    # Find the user in the database by ID
+    db_user = db.query(User).filter(User.id == id).first()
+    
+    # If the user does not exist, raise an error
+    if not db_user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # If a new username is provided, check if it is already taken
+    if user.username != db_user.username:
+        existing_user = db.query(User).filter(User.username == user.username).first()
+        if existing_user:
+            raise HTTPException(status_code=400, detail="Username already registered")
+    
+    # Update the user fields, only change those that are provided in the request
+    db_user.first_name = user.first_name
+    db_user.last_name = user.last_name
+    db_user.email = user.email
+    db_user.is_admin = user.is_admin
+    
+    # Update the password if it was provided
+    if user.password:
+        db_user.hashed_password = hash_password(user.password)
+    
+    # Commit the changes to the database
+    db.commit()
+    db.refresh(db_user)
+    
+    # Return the updated user object
+    return db_user
+
 @router.post("/login",)
 def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     """
     Funkcja obsługująca logowanie użytkownika.
     """
+    print("Received data:", form_data.username, form_data.password)  # Loguj dane
     # Pobieramy użytkownika z bazy danych
-    user = db.query(User).filter(User.username == form_data.username) | (User.email == form_data.username).first()
+    user = db.query(User).filter(
+        or_(
+            User.username == form_data.username,
+            User.email == form_data.username
+        )
+    ).first()
     
     # Jeśli użytkownik nie istnieje lub hasło jest nieprawidłowe
     if not user or not verify_password(form_data.password, user.hashed_password):
@@ -65,6 +134,30 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
 
     return {
         "access_token": access_token,
-        "token_type": "bearer"
+        "token_type": "bearer",
+        "username": user.username,
+        "is_admin": user.is_admin
     }
+    
+@router.get("/users")
+def get_users(db: Session = Depends(get_db)):
+    users = db.query(User).all()  # Query all products from the database
+    if not users:
+        raise HTTPException(status_code=404, detail="No users found")
+    return users
 
+@router.delete("/users/{id}")
+def delete_user(id: int, db: Session = Depends(get_db)):
+    # Query the user by ID
+    user = db.query(User).filter(User.id == id).first()
+    
+    # If the user does not exist, raise a 404 error
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # Delete the user from the database
+    db.delete(user)
+    db.commit()
+
+    # Return a success message
+    return {"message": f"User with ID {id} has been deleted successfully."}
