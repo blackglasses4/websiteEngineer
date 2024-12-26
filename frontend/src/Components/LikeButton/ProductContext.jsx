@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import {BACKEND_URL} from '../config';
+import {BACKEND_URL, BACKEND_URL2} from '../config';
 
 // Kontekst dla produktów
 const ProductsContext = createContext();
@@ -15,7 +15,7 @@ export const ProductsProvider = ({ children }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`${BACKEND_URL}/products`);
+        const response = await fetch(`${BACKEND_URL2}/products/products_list`);
         const data = await response.json();
         setDataProducts(data); // Przechowujemy wszystkie produkty
       } catch (error) {

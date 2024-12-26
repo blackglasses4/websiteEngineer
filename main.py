@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from backend.routers.auth import router  # Ensure correct import
+from backend.routers.auth import router
+from backend.routers.products import product_router
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -12,6 +13,7 @@ origins = [
 
 # Include the router
 app.include_router(router, prefix="/auth", tags=["Auth"])
+app.include_router(product_router, prefix="/products", tags=["Products"])
 
 # Add CORSMiddleware to the app to allow cross-origin requests
 app.add_middleware(

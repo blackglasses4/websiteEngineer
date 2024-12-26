@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {BACKEND_URL} from '../config';
+import {BACKEND_URL, BACKEND_URL2} from '../config';
 
 import '../SearchProduct/Edit.scss';
 
 const EditUser = ({ user, onSave, onCancel }) => {
     const [editForm, setEditForm] = useState({
         id: user.id,
-        firstName: user.firstName || '',
-        lastName: user.lastName || '',
+        first_name: user.firstName || '',
+        last_name: user.lastName || '',
         username: user.username || '',
         email: user.email || '',
         password: user.password || '',
-        isAdmin: user.isAdmin || false,
+        is_admin: user.isAdmin || false,
     });    
 
     useEffect(() => {
         setEditForm({
             id: user.id,
-            firstName: user.firstName || '',
-            lastName: user.lastName || '',
+            first_name: user.firstName || '',
+            last_name: user.lastName || '',
             username: user.username || '',
             email: user.email || '',
             password: user.password || '',
-            isAdmin: user.isAdmin || false,
+            is_admin: user.isAdmin || false,
         });
     }, [user]);
 
@@ -34,7 +34,6 @@ const EditUser = ({ user, onSave, onCancel }) => {
         if (!editForm.lastName) return 'Nazwisko jest wymagane.';
         if (!editForm.username) return 'Nazwa użytkownika jest wymagana.';
         if (!editForm.email) return 'Email jest wymagany.';
-        if (!editForm.password) return 'Hasło jest wymagane.';
         return null;
     };
 
@@ -46,19 +45,19 @@ const EditUser = ({ user, onSave, onCancel }) => {
             return;
         }
         try {
-            const response = await fetch(`${BACKEND_URL}/users/${editForm.id}`, {
+            const response = await fetch(`${BACKEND_URL2}/auth/edit_user/${editForm.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     id: editForm.id,
-                    firstName: editForm.firstName,
-                    lastName: editForm.lastName,
+                    first_name: editForm.firstName,
+                    last_name: editForm.lastName,
                     username: editForm.username,
                     email: editForm.email,
                     password: editForm.password,
-                    isAdmin: editForm.isAdmin,
+                    is_admin: editForm.isAdmin,
                 }),
             });
 
