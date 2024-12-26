@@ -111,6 +111,7 @@
 .search-order .filter span,
 .search-user .filter span {
   margin: 0 0.3em;
+  color: var(--dominant-dark);
 }
 .admin-search_products .filter .product-filter,
 .search-order .filter .product-filter,

@@ -128,22 +128,21 @@ const Navbar = () => {
             <FaShoppingCart />
             <div className="nav-icons-cart">{cart.length}</div>
           </a>
-            {usernameUser ? (
+          <p>Kategorie</p>
+          <div className='mobile-nav-category'>
+            <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
+            <Link to="/kurtka" className='a-name' rel='internal'>Kurtki</Link>
+            <Link to="/spodnie" className='a-name' rel='internal'>Spodnie</Link>
+            <Link to="/czapka" className='a-name' rel='internal'>Czapki</Link>
+            <Link to="/stroje" className='a-name' rel='internal'>Stroje</Link>
+          </div>
+          {usernameUser ? (
             <div className="nav-user" onClick={toggleUserMenu}>
                 <button onClick={buttonLogout}>Wyloguj się</button>
             </div>
           ) : (
             <a href="/login" aria-label="Przycisk do przejścia na stronę logowania"><FaUserCircle /></a>
           )}
-          <p>Kategorie</p>
-          <div className='mobile-nav-category'>
-            <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
-            <Link to="/kurtka" className='a-name' rel='internal'>Kurtki</Link>
-            <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
-            <Link to="/kurtka" className='a-name' rel='internal'>Kurtki</Link>
-            <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
-            <Link to="/equipment" className='a-name' rel='internal'>Sprzęty</Link>
-          </div>
         </div>
       </div>
     </header>

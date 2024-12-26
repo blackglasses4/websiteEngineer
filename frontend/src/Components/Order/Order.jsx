@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OrderItem from './OrderItem';
@@ -7,6 +8,7 @@ import { BACKEND_URL } from '../config';
 import "./Order.scss";
 
 const Order = () => {
+  const navigate = useNavigate();
   const [orderItems, setOrderItems] = useState([]);
   const [orderDetails, setOrderDetails] = useState({
     phone: "",
@@ -83,6 +85,11 @@ const Order = () => {
   const sendDataOrder = async (e) => {
     e.preventDefault();
 
+    if(orderItems.length === 0) {
+      toast.error("Nie można złożyć zamówienia bez produktów!");
+      return;
+    }
+
     const isValid = validateRequiredFields();
     if (!isValid) {
       toast.error("Proszę poprawnie uzupełnić formularz!");
@@ -126,6 +133,15 @@ const Order = () => {
       setOrderItems([]);
       localStorage.removeItem("order");
       localStorage.removeItem("cart");
+
+      navigate("/order_summary", {
+        state: {
+          orderDetails,
+          orderItems,
+          totalAmount: calculateTotal(),
+        }
+      });
+
     } catch (error) {
       toast.error("Wystąpił błąd podczas składania zamówienia.");
     }

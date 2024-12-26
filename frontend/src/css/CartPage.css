@@ -491,4 +491,7 @@
     display: flex;
     flex-wrap: wrap;
   }
+  .cart-summary .clear-cart-button {
+    margin: 10px 0;
+  }
 }/*# sourceMappingURL=CartPage.css.map */

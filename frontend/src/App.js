@@ -21,6 +21,7 @@ import CategoryProducts from './Components/CategoryProduct/CategoryProduct';
 import Admin from './Components/Admin/Admin';
 import DisplayProductPage from './Components/DisplayProduct/SimilarProduct/DisplayProductPage';
 import Order from './Components/Order/Order';
+import OrderSummary from './Components/Order/OrderSummary';
 
 
 // Główny układ z Navbar, Kategoriami i Footerem
@@ -53,6 +54,7 @@ function App() {
                     <Route path="cart" element={<CartPage />} />
                     <Route path="/liked" element={<LikedProduct />} />
                     <Route path="order" element={<Order />} />
+                    <Route path="order_summary" element={<OrderSummary />} />
                   </Route>
 
                   <Route path="/login" element={<Login />} />
