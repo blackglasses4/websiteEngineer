@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {BACKEND_URL} from '../config';
+import {BACKEND_URL, BACKEND_URL2} from '../config';
 
 import CreateUser from '../CreateUser/CreateUser';
 import SearchBar from '../SearchProduct/SearchBar';
@@ -17,12 +17,12 @@ const SearchUser = () => {
 
         const fetchUsers = async () => {
             try {
-                const response = await fetch(`${BACKEND_URL}/users`);
+                const response = await fetch(`${BACKEND_URL2}/auth/users`);
                 const data = await response.json();
                 setUsers(data);
                 setConfirmedResults(data); 
             } catch (error) {
-                toast.error('Nie udało się załadować produktów.', {
+                toast.error('Nie udało się załadować użytkowników.', {
                     position: 'top-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -66,12 +66,12 @@ const SearchUser = () => {
         }
 
         try {
-            const response = await fetch(`${BACKEND_URL}/users/${id}`, {
+            const response = await fetch(`${BACKEND_URL2}/auth/users/${id}`, {
                 method: 'DELETE',
             });
     
             if (!response.ok) {
-                throw new Error('Wystąpił błąd podczas usuwania produktu.');
+                throw new Error('Wystąpił błąd podczas usuwania użytkownika.');
             }
     
             setUsers((prev) => prev.filter((product) => product.id !== id));
@@ -88,7 +88,7 @@ const SearchUser = () => {
 
             toast.dismiss(toastId);
         } catch (err) {
-            toast.error(err.message || 'Nie udało się usunąć produktu.', {
+            toast.error(err.message || 'Nie udało się usunąć użytkownika.', {
                 position: 'top-right',
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -158,12 +158,12 @@ const SearchUser = () => {
                                 <React.Fragment key={user.id}>
                                 <tr key={user.id}>
                                     <td>{user.id}</td>
-                                    <td>{user.firstName || 'Brak'}</td>
-                                    <td>{user.lastName}</td>
+                                    <td>{user.first_name || 'Brak'}</td>
+                                    <td>{user.last_name}</td>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
                                     <td>{user.password}</td>
-                                    <td>{user.isAdmin === true ? 'Admin' : 'Użytkownik'}</td>
+                                    <td>{user.is_admin ? 'Admin' : 'Użytkownik'}</td>
 
                                     <td><button className='button-edit' onClick={() => setUserToEdit(user)}>Edytuj</button></td>
                                     <td><button className='button-delete' onClick={() => handleConfirmDelete(user.id)}>Usuń</button></td>
@@ -196,12 +196,12 @@ const SearchUser = () => {
                             <div className="search-mobile_user" key={user.id}>
                                 <div className="user-details">
                                     <p><span>ID: </span>{user.id}</p>
-                                    <p><span>Imię: </span>{user.firstName}</p>
-                                    <p><span>Nazwisko: </span>{user.lastName}</p>
+                                    <p><span>Imię: </span>{user.first_name}</p>
+                                    <p><span>Nazwisko: </span>{user.last_name}</p>
                                     <p><span>Nazwa użytkownika: </span>{user.username}</p>
                                     <p><span>Email: </span>{user.email}</p>
                                     <p><span>Hasło: </span>{user.password}</p>
-                                    <p><span>Rola: </span>{user.isAdmin ? 'Admin' : 'Użytkownik'}</p>
+                                    <p><span>Rola: </span>{user.is_admin ? 'Admin' : 'Użytkownik'}</p>
 
                                     <div className="mobile-button">
                                         <button className='button-edit' onClick={() => setUserToEdit(user)}>Edytuj</button>
