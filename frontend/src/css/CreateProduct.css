@@ -1,0 +1,209 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --grey_light: #8c8c8c;
+  --grey_dark: #232933;
+  --green_light: #228B22;
+  --red_light: hsl(0, 61%, 34%);
+  --grey_dark: #232933;
+  --blue_light: #225E8B;
+  --blue_dark: #184261;
+  --table_td: #f8f8f8;
+  --table_border: #ddd;
+  --table_th-color: #555;
+  --table_shadow: rgba(0, 0, 0, 0.1);
+  --table_s: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme=light],
+:root:not([data-theme=dark]) {
+  --dominant-light: hsl(0, 0%, 100%);
+  --dominant-dark: hsl(0, 0%, 5%);
+  --table_td: hsl(0, 0%, 94%);
+  --table_border: hsl(0, 0%, 87%);
+  --table_th-color: hsl(0, 0%, 19%);
+  --table_shadow: rgba(0, 0, 0, 0.1);
+  --table_s: rgba(0, 0, 0, 0.3);
+  --color-ad: hsl(206, 100%, 32%);
+  --color-red: hsl(0, 100%, 33%);
+  --color-green: hsl(120, 61%, 34%);
+  --grey_light: hsl(0, 0%, 55%);
+  --grey_dark: hsl(218, 19%, 17%);
+  --color-bg-selection: hsl(0, 0%, 15%);
+  --color-selection: hsl(0, 0%, 98%);
+  --color-font-grey: hsl(0, 0%, 21%);
+  --darkgrey: hsl(0, 0%, 13%);
+  --lightgreen: hsl(146, 97%, 23%);
+  --darkgreen: hsl(144, 96%, 10%);
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --dominant-light: hsl(0, 0%, 5%);
+    --dominant-dark: hsl(0, 0%, 100%);
+    --table_td: hsl(0, 0%, 12%);
+    --table_border: hsl(0, 0%, 26%);
+    --table_th-color: rgb(160, 157, 157);
+    --table_shadow: rgba(136, 136, 136, 0.1);
+    --table_s: rgba(0, 0, 0, 0.3);
+    --color-ad: hsl(205, 100%, 22%);
+    --color-red: hsl(0, 98%, 21%);
+    --color-green: hsl(144, 96%, 10%);
+    --grey_light: hsl(0, 0%, 100%);
+    --grey_dark: hsl(0, 0%, 100%);
+    --color-bg-selection: hsl(0, 0%, 15%);
+    --color-selection: hsl(0, 0%, 98%);
+    --color-font-grey: hsl(0, 0%, 21%);
+    --darkgrey: hsl(0, 0%, 13%);
+    --lightgreen: hsl(146, 97%, 23%);
+    --darkgreen: hsl(144, 96%, 10%);
+  }
+}
+[data-theme=dark] {
+  --dominant-light: hsl(0, 0%, 5%);
+  --dominant-dark: hsl(0, 0%, 100%);
+  --table_td: hsl(0, 0%, 12%);
+  --table_border: hsl(0, 0%, 26%);
+  --table_th-color: rgb(160, 157, 157);
+  --table_shadow: rgba(136, 136, 136, 0.1);
+  --table_s: rgba(0, 0, 0, 0.6);
+  --color-ad: hsl(205, 100%, 22%);
+  --color-red: hsl(0, 98%, 21%);
+  --color-green: hsl(144, 96%, 10%);
+  --grey_light: hsl(0, 0%, 100%);
+  --grey_dark: hsl(0, 0%, 100%);
+  --color-bg-selection: hsl(0, 0%, 15%);
+  --color-selection: hsl(0, 0%, 98%);
+  --color-font-grey: hsl(0, 0%, 21%);
+  --darkgrey: hsl(0, 0%, 13%);
+  --lightgreen: hsl(146, 97%, 23%);
+  --darkgreen: hsl(144, 96%, 10%);
+}
+
+.create-product {
+  width: 100%;
+  max-width: auto;
+  padding: 2rem;
+  background-color: var(--dominant-light);
+  border-radius: 10px;
+  box-shadow: 0 7px 10px var(--table_s);
+}
+.create-product h1 {
+  text-align: left;
+  color: var(--dominant-dark);
+  margin-bottom: 1rem;
+}
+.create-product h1::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.create-product h1::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.create-product .form-container {
+  height: 100%;
+  transition: max-height 0.5s ease, padding 0.5s ease;
+  padding: 0;
+}
+.create-product .form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.create-product .form-container form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  color: var(--grey_light);
+}
+.create-product .form-container form label::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.create-product .form-container form label::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.create-product .form-container form label .add-img {
+  max-width: 100%;
+  width: 100px;
+  margin: 0.5em 0;
+  border-radius: 5px;
+}
+.create-product .form-container form label input,
+.create-product .form-container form label textarea,
+.create-product .form-container form label select {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid var(--table_border);
+  border-radius: 5px;
+  transition: border-color 0.3s;
+  background-color: var(--table_td);
+  color: var(--dominant-dark);
+}
+.create-product .form-container form label input:focus,
+.create-product .form-container form label textarea:focus,
+.create-product .form-container form label select:focus {
+  border-color: #399be6;
+  outline: none;
+}
+.create-product .form-container form label input[type=checkbox] {
+  margin-top: 0.3rem;
+  width: auto;
+}
+.create-product .form-container form label input[type=file] {
+  padding: 0.2rem;
+}
+.create-product .form-container form label[for=popular] {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+.create-product .form-container form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+.create-product .form-container form fieldset legend {
+  font-weight: 400;
+  color: var(--grey_light);
+}
+.create-product .form-container form fieldset legend::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.create-product .form-container form fieldset legend::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.create-product .form-container form fieldset label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 1em;
+}
+.create-product .form-container form fieldset label input {
+  text-align: center;
+}
+.create-product .form-container form button {
+  align-self: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.create-product .form-container form button:hover {
+  background-color: #0056b3;
+}
+
+@media only screen and (max-width: 795px) {
+  .create-product {
+    padding: 0rem;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+}/*# sourceMappingURL=CreateProduct.css.map */

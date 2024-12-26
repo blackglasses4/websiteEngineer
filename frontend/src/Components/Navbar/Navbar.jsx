@@ -1,14 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaSearch, FaShoppingCart, FaUserCircle, FaBars, FaTimes } from 'react-icons/fa';
-import { useCart } from '../Cart/CartContext.jsx';
+import { Link, useNavigate } from 'react-router-dom';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch.jsx';
+import { toast } from "react-toastify";
+import { useProducts } from '../LikeButton/ProductContext.jsx';
+
+import useClick from '../useClick.jsx';
+import { useUser } from '../../Pages/UserContext.jsx';
+import { useCart } from '../Cart/CartContext.jsx';
+
 import './Navbar.scss';
 
 const Navbar = () => {
   const [input, setInput] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isUserMenuOpen, setUserMenuOpen] = useState(false);
+  const searchWrapperRef = useRef(null);
+  const { dataProducts } = useProducts();
   const { cart } = useCart();
+  const { usernameUser, logout } = useUser();
+  
+  const navigate = useNavigate();
+  useClick(searchWrapperRef, () => setInput(""));
+  useEffect(() => {
+    if (input === "") {
+      setSearchResults([]);
+    } else if (dataProducts && Array.isArray(dataProducts)) {
+      const filterResults = dataProducts.filter(product =>
+        product.name.toLowerCase().includes(input.toLowerCase())
+      );
+      setSearchResults(filterResults);
+    }
+  }, [input, dataProducts]);
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -18,15 +43,30 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const closeMenu = () => {
-    setIsMenuOpen(false);
+  const toggleModal = () => {
+    setModalOpen(!isModalOpen);
+  };
+
+  const toggleUserMenu = () => {
+    if (!usernameUser) return;
+    setUserMenuOpen(!isUserMenuOpen);
+  };
+
+  const buttonLogout = () => {
+    logout();
+
+    toast.success("Wylogowałeś się!");
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
   };
 
   return (
-    <header>
-      <a href="/" className="a-name" rel="internal">NAZWAAAAA</a>
+    <header className='header-main'>
+      <a href="/" className="a-name" rel="internal" aria-label="Logo sklepu internetowego">NAZWAAAAA</a>
 
-      <div className="nav-search">
+      <div className="nav-search" ref={searchWrapperRef}>
         <div className="input-wrapper">
           <FaSearch id="search-icon" />
           <input
@@ -35,19 +75,39 @@ const Navbar = () => {
             onChange={handleInputChange}
           />
         </div>
+
+        <div className='input-response'>
+        {input && searchResults.length === 0 && <p>Nie znaleziono żadnych wyników</p>} 
+        {input && searchResults.length > 0 && (
+          <ul>
+            {searchResults.map((product) => (
+              <li key={product.id}>
+                <a href={`/product/${product.id}`} onClick={toggleMenu}>{product.name}</a>
+              </li>
+            ))}
+          </ul>
+        )}
+        </div>
       </div>
 
       <div className={`nav-icons ${isMenuOpen ? 'menu-open' : ''}`}>
         <ThemeSwitch />
-        <a href="/cart">
+        <a href="/cart" aria-label="Przycisk do przejścia na stronę z koszykiem">
           <FaShoppingCart />
           <div className="nav-icons-cart">{cart.length}</div>
         </a>
-        <a href="/"><FaUserCircle /></a>
+
+        {usernameUser ? (
+          <div className="nav-user" onClick={toggleUserMenu}>
+              <button onClick={buttonLogout}>Wyloguj się</button>
+          </div>
+        ) : (
+          <a href="/login" aria-label="Przycisk do przejścia na stronę logowania"><FaUserCircle /></a>
+        )}
       </div>
 
       <div className="hamburger-menu" onClick={toggleMenu}>
-        <FaBars />
+        <FaBars style={{color:"white"}}/>
       </div>
 
       <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
@@ -56,13 +116,26 @@ const Navbar = () => {
         </div>
         <div className="mobile-menu-icons">
           <ThemeSwitch />
-          <a href="/cart" onClick={closeMenu}>
+          <a href="/cart" onClick={toggleMenu} aria-label="Przycisk do przejścia na stronę z koszykiem">
             <FaShoppingCart />
             <div className="nav-icons-cart">{cart.length}</div>
           </a>
-          <a href="/" onClick={closeMenu}>
-            <FaUserCircle />
-          </a>
+            {usernameUser ? (
+            <div className="nav-user" onClick={toggleUserMenu}>
+                <button onClick={buttonLogout}>Wyloguj się</button>
+            </div>
+          ) : (
+            <a href="/login" aria-label="Przycisk do przejścia na stronę logowania"><FaUserCircle /></a>
+          )}
+          <p>Kategorie</p>
+          <div className='mobile-nav-category'>
+            <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
+            <Link to="/kurtka" className='a-name' rel='internal'>Kurtki</Link>
+            <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
+            <Link to="/kurtka" className='a-name' rel='internal'>Kurtki</Link>
+            <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
+            <Link to="/equipment" className='a-name' rel='internal'>Sprzęty</Link>
+          </div>
         </div>
       </div>
     </header>

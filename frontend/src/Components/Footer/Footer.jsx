@@ -1,8 +1,8 @@
 import React from 'react';
+import { FaInstagram, FaFacebook, FaYoutube} from "react-icons/fa";
+import { Link } from 'react-router-dom';
 import './Footer.scss';
-import { FaInstagram } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa";
+
 
 const Footer = () => {
   return (
@@ -24,15 +24,13 @@ const Footer = () => {
             </div>
             
             <div className='f-subpages'>
-                <div className="f-subpages-name">
-                    <h2>Nazwa</h2>
-                    <p>O sklepie</p>
-                </div>
                 <div className="f-subpages-offer">
                     <h2>Oferta</h2>
-                    <p>Sprzęty</p>
-                    <p>Odzież</p>
-                    <p>Obuwie</p>
+                    <Link to="/koszulka" className='f-link' rel='internal'>Koszulki</Link>
+                    <Link to="/kurtka" className='f-link' rel='internal'>Kurtki</Link>
+                    <Link to="/spodnie" className='f-link' rel='internal'>Spodnie</Link>
+                    <Link to="/czapka" className='f-link' rel='internal'>Czapki</Link>
+                    <Link to="/stroje" className='f-link' rel='internal'>Stroje</Link>
                 </div>
             </div>
         </div>

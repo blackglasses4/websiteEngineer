@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import {BACKEND_URL} from '../config';
 import './PopularProduct.scss';
+import { getProducts } from '../../backend';
 
 const PopularProduct = () => {
   const [dataProduct, setDataProduct] = useState([]);
@@ -12,10 +16,20 @@ const PopularProduct = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3001/products');
+        // const response = await fetch(`${BACKEND_URL}/products`);
+        // const response = await fetch(`https://httpbin.org/basic-auth/uuu/hhhg`);
+        // if (response.status === 401) {
+        //   alert('Twoja sesja wygasła. Zaloguj się ponownie.');
+        //   window.location = '/login';
+        // }
 
+        // const data = await response.json();
+
+        const response = await getProducts();
         const data = await response.json();
-        const popularProducts = data.filter(product => product.popular === "true");
+
+        const popularProducts = data.filter(product => product.popular === true);
+
 
         setDataProduct(popularProducts);
         setIsFetched(true);
@@ -53,7 +67,7 @@ const PopularProduct = () => {
   if (error) {
     return (
       <section className='popularProduct'>
-        <h1>Popular Product</h1>
+        <h1>Popularne Produkty</h1>
         <div className="error-products">
           <p>Błąd podczas pobierania produktów. Przepraszamy za utrudnienia</p>
         </div>
@@ -63,7 +77,7 @@ const PopularProduct = () => {
 
   return (
     <section className='popularProduct'>
-      <h1>Popular Product</h1>
+      <h1>Popularne Produkty</h1>
 
       <div className="numberOfPages">
         <button
@@ -79,7 +93,14 @@ const PopularProduct = () => {
         {currentProducts.map(item => (
           <div className="item" key={item.id}>
             <Link to={`/product/${item.id}`}>
-              <img src={item.image} alt={item.name} />
+              <LazyLoadImage
+                src={item.image.url}
+                effect="blur"
+                alt={item.image.alt}
+                width="100%"
+                height="auto"
+                threshold={100}
+              />
               <p>{item.name}</p>
               <div className="item-prices">
                 <div className="item-prices-new">{item.new_price}zł</div>

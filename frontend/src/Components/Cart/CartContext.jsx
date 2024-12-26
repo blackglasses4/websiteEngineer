@@ -1,34 +1,74 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { useUser } from '../../Pages/UserContext'; 
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState(() => {
-    // Wczytaj tylko ID produktów z localStorage
-    const savedCart = localStorage.getItem('cart');
-    return savedCart ? JSON.parse(savedCart) : [];  // Sprawdzamy, czy są zapisane ID w koszyku
-  });
+  const { usernameUser } = useUser();
+  const [cart, setCart] = useState([]);
 
-  // Zapisujemy ID produktów do localStorage
+  const getCartKey = () => (usernameUser ? `cart_${usernameUser}` : null);
+
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));  // Zapisujemy tylko ID produktów
-  }, [cart]);
+    const cartKey = getCartKey();
+    if (cartKey) {
+      const savedCart = localStorage.getItem(cartKey);
+      setCart(savedCart ? JSON.parse(savedCart) : []);
+    } else {
+      setCart([]);
+    }
+  }, [usernameUser]);
 
-  const addToCart = (productId) => {
+  useEffect(() => {
+    const cartKey = getCartKey();
+    if (cartKey) {
+      localStorage.setItem(cartKey, JSON.stringify(cart));
+    }
+  }, [cart, usernameUser]);
+
+  const addToCart = (productDetails) => {
     setCart((prevCart) => {
-      if (!prevCart.includes(productId)) {
-        return [...prevCart, productId];  // Dodajemy tylko ID, nie cały obiekt
+      const uniqueId = `${productDetails.productId}-${productDetails.size}-${productDetails.color}`;
+      const isExisting = prevCart.some((item) => item.uniqueId === uniqueId);
+  
+      if (!isExisting) {
+        return [
+          ...prevCart,
+          { ...productDetails, uniqueId, quantity: 1 }, // Dodajemy nowy produkt
+        ];
       }
-      return prevCart;  // Unikamy duplikatów
+  
+      // Jeśli istnieje, zwiększ ilość
+      return prevCart.map((item) =>
+        item.uniqueId === uniqueId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
     });
+  };  
+
+  const updateCart = (uniqueId, updatedFields) => {
+    setCart((prevCart) =>
+      prevCart.map((product) =>
+        product.uniqueId === uniqueId
+          ? { ...product, ...updatedFields }
+          : product
+      )
+    );
   };
 
-  const removeFromCart = (productId) => {
-    setCart((prevCart) => prevCart.filter((id) => id !== productId));  // Usuwamy produkt na podstawie ID
+  const removeFromCart = (productToRemove) => {
+    setCart((prevCart) =>
+      prevCart.filter((product) => product.uniqueId !== productToRemove.uniqueId)
+    );
+  };  
+
+  const clearCart = () => {
+    setCart([]);
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, addToCart, updateCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );

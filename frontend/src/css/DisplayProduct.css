@@ -12,6 +12,7 @@
   --table_border: #ddd;
   --table_th-color: #555;
   --table_shadow: rgba(0, 0, 0, 0.1);
+  --table_s: rgba(0, 0, 0, 0.1);
 }
 
 [data-theme=light],
@@ -22,6 +23,7 @@
   --table_border: hsl(0, 0%, 87%);
   --table_th-color: hsl(0, 0%, 19%);
   --table_shadow: rgba(0, 0, 0, 0.1);
+  --table_s: rgba(0, 0, 0, 0.3);
   --color-ad: hsl(206, 100%, 32%);
   --color-red: hsl(0, 100%, 33%);
   --color-green: hsl(120, 61%, 34%);
@@ -43,6 +45,7 @@
     --table_border: hsl(0, 0%, 26%);
     --table_th-color: rgb(160, 157, 157);
     --table_shadow: rgba(136, 136, 136, 0.1);
+    --table_s: rgba(0, 0, 0, 0.3);
     --color-ad: hsl(205, 100%, 22%);
     --color-red: hsl(0, 98%, 21%);
     --color-green: hsl(144, 96%, 10%);
@@ -63,6 +66,7 @@
   --table_border: hsl(0, 0%, 26%);
   --table_th-color: rgb(160, 157, 157);
   --table_shadow: rgba(136, 136, 136, 0.1);
+  --table_s: rgba(0, 0, 0, 0.6);
   --color-ad: hsl(205, 100%, 22%);
   --color-red: hsl(0, 98%, 21%);
   --color-green: hsl(144, 96%, 10%);
@@ -107,7 +111,6 @@
   width: 100%;
   max-width: 400px;
   border-radius: 10px;
-  cursor: pointer;
 }
 .product-display__image-gallery img::-moz-selection {
   color: var(--dominant-light);
@@ -116,25 +119,6 @@
 .product-display__image-gallery img::selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
-}
-.product-display__image-gallery .additional-images {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 0 1em 0 0.5em;
-}
-.product-display__image-gallery .additional-images img {
-  width: 100%;
-  max-width: 100px;
-  height: auto;
-  border-radius: 8px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-.product-display__image-gallery .additional-images img:hover {
-  transform: scale(1.1);
 }
 .product-display__details {
   flex: 2;
@@ -173,6 +157,46 @@
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
+.product-display__details .product-display__colors {
+  margin: 10px 0;
+}
+.product-display__details .product-display__colors h3 {
+  color: var(--color-grey);
+  margin-bottom: 0.5em;
+}
+.product-display__details .product-display__colors h3::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details .product-display__colors h3::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details .product-display__colors .color-options {
+  display: flex;
+  gap: 10px;
+}
+.product-display__details .color-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border 0.3s;
+}
+.product-display__details .product-display__sizes {
+  margin: 10px 0;
+}
+.product-display__details .product-display__sizes .size-options {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}
+.product-display__details .product-display__sizes .size-options li.selected {
+  background-color: var(--dominant-dark);
+  color: var(--dominant-light);
+  border-color: var(--dominant-dark);
+}
 .product-display__details .product-display__sizes h3 {
   color: var(--grey_dark);
   margin-bottom: 0.5em;
@@ -195,7 +219,7 @@
 .product-display__details .product-display__sizes ul li {
   font-size: 1rem;
   padding: 5px 10px;
-  border: 1px solid var(--dominant-dark);
+  border: 2px solid var(--dominant-dark);
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -213,19 +237,30 @@
   color: var(--dominant-light);
 }
 .product-display__details button {
-  background-color: var(--color-green);
-  color: #ffffff;
-  border: none;
-  padding: 0.6em 1em;
-  border-radius: 10px;
+  background-color: var(--dominant-light);
+  color: var(--dominant-dark);
+  border: 1px solid var(--grey_dark);
+  padding: 0.4em 1em;
+  border-radius: 5px;
   cursor: pointer;
   margin-top: 15px;
   transition: background-color 0.3s ease;
   align-self: flex-start;
 }
 .product-display__details button:hover {
-  background-color: var(--dominant-dark);
+  background-color: var(--table_border);
+}
+.product-display__details span {
+  padding: 1em;
+  color: var(--grey_dark);
+}
+.product-display__details span::-moz-selection {
   color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.product-display__details span::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
 }
 
 .error-product, .loading-product {

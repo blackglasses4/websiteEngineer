@@ -1,13 +1,15 @@
 @use '../../scss/variables' as *;
 @use '../../scss/mixins' as *;
 
-header {
+header.header-main {
     background-color: var(--color-red);
     width: 100%;
     padding: 0.5rem 4rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+    flex-wrap: wrap;
 
     a {
         color: $white;
@@ -20,10 +22,14 @@ header {
     .nav-search {
         flex: 1;
         display: flex;
+        justify-content: center;
         position: relative;
+
+        max-width: 500px;
+        width: 100%; 
         flex-direction: column;
         align-items: center;
-
+         
         .input-wrapper {
             background-color: $white;
             width: 100%;
@@ -51,51 +57,49 @@ header {
                 }
             }
         }
+    }
 
-        .input-response {
-            position: absolute;
-            top: 80%;
-            width: 100%;
-            max-width: 500px; 
-            background-color: $white;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 2;
-
-            p {
-                @include selection-dark;
+    .input-response {
+        position: absolute;
+        top: 80%;
+        width: 100%;
+        max-width: 500px; 
+        background-color: $white;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 2;
+      
+        ul {
+          list-style-type: none;
+          padding: 0 0.5rem;
+          margin: 0;
+      
+          li {
+            margin: 0.5rem 0;
+      
+            a {
+              color: $black;
+              text-decoration: none;
+      
+              &:hover {
+                text-decoration: underline;
+              }
             }
-
-            ul {
-                list-style-type: none;
-                padding: 0 0.5rem;
-                margin: 0;
-
-                li {
-                    margin: 0.5rem 0;
-
-                    a {
-                        color: $black;
-                        text-decoration: none;
-
-                        &:hover {
-                            text-decoration: underline;
-                        }
-                    }
-                }
-            }
-
-            p {
-                margin: 0.5rem;
-            }
+          }
+        }
+      
+        p {
+          margin: 0.5rem;
         }
     }
 
     .nav-icons {
         display: flex;
         gap: 1rem;
+        align-items: center;
+        justify-content: flex-end;
         z-index: 0;
 
         &-cart {
@@ -112,6 +116,27 @@ header {
             background-color: var(--color-ad);
             color: var(--white);
             z-index: 10;
+        }
+
+        .nav-user {
+            button {
+                background-color: rgba(255, 255, 255, 0.2);
+                font-size: 0.8em;
+                color: $white;
+                border: 2px solid rgba(255, 255, 255, 0.6);
+                padding: 0.3em 0.4em;
+                border-radius: 10px;
+                cursor: pointer;
+                position: relative;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+            
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.3);
+                    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+                }
+            }
         }
 
         @media (max-width: #{map-get($breakpoints, 'tablet')}) {
@@ -136,7 +161,7 @@ header {
     .hamburger-menu {
         display: none;
         cursor: pointer;
-        color: $white;
+        color: var(--dominant-dark);
         
         @media (max-width: #{map-get($breakpoints, 'tablet')}) {
             display: block;
@@ -148,8 +173,10 @@ header {
         top: 0;
         right: 0;
         width: 50%;
-        height: 60%;
-        background-color: rgba(0, 0, 0, 0.9);
+        height: auto;
+        background-color: var(--dominant-light);
+        box-shadow: 0 5px 6px rgba(0, 0, 0, 0.6);
+        border-radius: 4px;
         padding: 2rem;
         display: flex;
         flex-direction: column;
@@ -166,15 +193,13 @@ header {
         .mobile-menu-icons {
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 0rem;
       
           a {
-            color: $white;
-            font-size: 1.5rem;
             text-decoration: none;
             display: block;
             padding: 1rem;
-            padding-right: 2em;
+            padding-right: 1.5em;
             text-align: right;
             transition: color 0.3s ease;
       
@@ -182,14 +207,19 @@ header {
               color: $table_th-color;
             }
           }
+
+          p {
+            color: var(--dominant-dark);
+            margin-bottom: 0rem;
+            padding: 0.5em;
+            font-weight: 600;
+          }
       
           .nav-icons-cart {
             position: relative;
             top: -10px;
-            right: -15px;
-            background-color: $red_dark;
+            right: -60px;
             border-radius: 50%;
-            color: $white;
             padding: 0.3rem 0.6rem;
             font-size: 0.8rem;
           }
@@ -213,7 +243,19 @@ header {
 }
 
 @media only screen and (max-width: #{map-get($breakpoints, 'tablet-XLwide')}) {
-    header {
+    header.header-main {
+        .mobile-menu {
+            .mobile-menu-icons {
+                a {
+                    color: var(--dominant-dark);
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet-XLwide')}) {
+    header.header-main {
         .nav-search {
             .input-response, .input-wrapper {
                 width: 100%; 
@@ -224,8 +266,9 @@ header {
 }
 
 @media only screen and (max-width: #{map-get($breakpoints, 'tablet-small')}) {
-    header {
+    header.header-main {
         padding: 0.5rem 1rem;
+        
         .nav-search {
             .input-response, .input-wrapper {
                 width: 100%; 
@@ -236,7 +279,7 @@ header {
 }
 
 @media only screen and (max-width: #{map-get($breakpoints, 'phone')}) {
-    header {
+    header.header-main {
         .nav-search {
             .input-response, .input-wrapper {
                 width: 100%; 

@@ -1,0 +1,64 @@
+.liked-products {
+  .liked-products-list {
+    list-style: none;
+    padding: 0;
+
+    .liked-product-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid var(--table_border);
+      border-radius: 8px;
+      background-color: var(--dominant-light);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      .liked-product-content {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        .liked-product-link {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          color: var(--dominant-dark);
+          flex-grow: 1;
+
+          .liked-product-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 10px;
+          }
+
+          .liked-product-info {
+            h3 {
+              font-size: 1.2em;
+              margin: 0;
+            }
+            p {
+              margin: 0;
+              color: var(--subtext);
+            }
+          }
+        }
+
+        .remove-like-button {
+          background: none;
+          border: none;
+          color: var(--error);
+          font-size: 1.5em;
+          cursor: pointer;
+          margin-left: 10px;
+          transition: transform 0.2s ease;
+
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+  }
+}

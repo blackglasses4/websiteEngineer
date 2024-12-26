@@ -1,0 +1,255 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.section__welcome {
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding: 3em;
+    height: 90dvh;
+    background: url('../../../public/images/welcome_baner.avif') no-repeat center center;
+    background-size: cover;
+    animation: fade-up 0.5s;
+
+    &-content {
+        text-align: left;
+        width: 40%;
+
+        p {
+            padding: 0.5em;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(7px);
+            color: $black;
+            border-radius: 4px;
+            @include selection-cookie;
+        }
+
+        h2 {
+            padding: 0.5em;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(7px);
+            color: $black;
+            border-radius: 4px;
+            @include selection-cookie;
+        }
+
+        button {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: $black;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            padding: 0.4em 1em;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+            position: relative;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            align-self: flex-start;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+        
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.4);
+                box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+            }
+        }
+    }
+}
+
+.section__offer {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 3em;
+    height: 81dvh;
+    background: url('../../../public/images/offer_baner.avif') no-repeat center center;
+    background-size: cover;
+    animation: fade-up 0.5s;
+
+    &-content {
+        text-align: right;
+        width: 40%;
+
+        p, h2 {
+            padding: 0.5em;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(7px);
+            color: $black;
+            border-radius: 4px;
+            @include selection-cookie;
+        }
+
+        h2 {
+            margin-top: 1em;
+        }
+
+        .button {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: $black;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            padding: 0.4em 1em;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 2em;
+            position: relative;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            align-self: flex-start;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+            @include selection-cookie;
+        
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.4);
+                box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+            }
+        }
+    }
+}
+
+.section__category {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 3em;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    &-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        background-color: rgba(0, 0, 0, 0.3);
+        box-shadow: 0 6px 13px rgba(0, 0, 0, 0.4);
+
+        &:nth-child(1) .category-image {
+            background-image: url('../../../public/images/category_jacket.avif');
+        }
+
+        &:nth-child(2) .category-image {
+            background-image: url('../../../public/images/category_outfit.jpg');
+        }
+
+        &:nth-child(3) .category-image {
+            background-image: url('../../../public/images/category_shirt2.avif');
+        }
+
+        &:nth-child(4) .category-image {
+            background-image: url('../../../public/images/category_hat.avif');
+        }
+
+        .category-image {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .category-content {
+            padding: 2rem;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            text-align: center;
+            transition: background-color 0.3s ease;
+
+            h2 {
+                color: $black;
+                @include selection-whitedark;
+            }
+        }
+
+        &:hover .category-content {
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+    }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'desktop-wide')}) {
+    .section__welcome, .section__offer {
+        &-card {
+            .category-image {
+                height: 100px;
+                background-size: cover;
+                background-position: center;
+            }
+        }
+        
+        &-content {
+            text-align: left;
+            width: 50%;
+        }
+    }
+
+    .section__offer {
+        &-content {
+            text-align: right;
+        }
+    }
+
+    .section__category {    
+        &-card {
+            .category-image {
+                height: 500px;
+                background-size: cover;
+                background-position: center;
+            }
+        }
+    }
+}
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
+    .section__welcome, .section__offer {
+        height: 73svh;
+        padding: 1em;
+
+        &-content {
+            text-align: left;
+            width: 70%;
+
+            p {
+                font-size: 0.9em;
+            }
+    
+            h2 {
+                font-size: 1.3em;
+            }
+        }
+    }
+    
+    .section__offer {
+        &-content {
+            text-align: right;
+        }
+    }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'phone-wide')}) {
+    .section__welcome {
+        height: 91svh;
+        padding: 1em;
+
+        &-content {
+            text-align: left;
+            width: 90%;
+        }
+    }
+    
+    .section__offer {
+        justify-content: flex-start;
+        height: 86svh;
+        padding: 1em;
+
+        &-content {
+            text-align: left;
+            width: 90%;
+        }
+    } 
+}
