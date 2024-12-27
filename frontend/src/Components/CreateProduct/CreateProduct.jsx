@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {BACKEND_URL} from '../config';
-import { getProducts } from '../../backend';
+import { getProducts2, addProduct } from '../../backend';
 
 import './Create.scss';
 
@@ -33,7 +33,7 @@ const CreateProduct = () => {
     // Ładowanie produktów z serwera, aby uzyskać ostatnie id
     useEffect(() => {
         const fetchProducts = async () => {
-            const response = await getProducts();
+            const response = await getProducts2();
             const data = await response.json();
             setProducts(data);
         };
@@ -129,13 +129,15 @@ const CreateProduct = () => {
                 },
             };
 
-            const response = await fetch(`${BACKEND_URL}/products`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(productData),
-            });
+            const response = await addProduct(productData);
+
+            // const response = await fetch(`${BACKEND_URL}/products`, {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(productData),
+            // });
 
             const data = await response.json();
             console.log(data);

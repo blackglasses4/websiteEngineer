@@ -1,37 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {BACKEND_URL, BACKEND_URL2} from '../config';
+import { editUser2, editUser } from '../../backend';
 
 import '../SearchProduct/Edit.scss';
 
 const EditUser = ({ user, onSave, onCancel }) => {
     const [editForm, setEditForm] = useState({
         id: user.id,
-        first_name: user.firstName || '',
-        last_name: user.lastName || '',
+        first_name: user.first_name || '',
+        last_name: user.last_name || '',
         username: user.username || '',
         email: user.email || '',
         password: user.password || '',
-        is_admin: user.isAdmin || false,
+        is_admin: user.is_admin || false,
     });    
 
     useEffect(() => {
-        setEditForm({
-            id: user.id,
-            first_name: user.firstName || '',
-            last_name: user.lastName || '',
-            username: user.username || '',
-            email: user.email || '',
-            password: user.password || '',
-            is_admin: user.isAdmin || false,
-        });
+        if (!user) {
+            toast.error('Brak danych użytkownika.', { position: 'top-right', autoClose: 5000 });
+            return;
+        }
+
+        if (user) {
+            setEditForm({
+                id: user.id,
+                first_name: user.first_name || '',
+                last_name: user.last_name || '',
+                username: user.username || '',
+                email: user.email || '',
+                password: user.password || '',
+                is_admin: user.is_admin || false,
+            });
+        }
     }, [user]);
 
-
     const validateForm = () => {
-        if (!editForm.firstName) return 'Imię jest wymagane.';
-        if (!editForm.lastName) return 'Nazwisko jest wymagane.';
+        if (!editForm.first_name) return 'Imię jest wymagane.';
+        if (!editForm.last_name) return 'Nazwisko jest wymagane.';
         if (!editForm.username) return 'Nazwa użytkownika jest wymagana.';
         if (!editForm.email) return 'Email jest wymagany.';
         return null;
@@ -45,21 +51,31 @@ const EditUser = ({ user, onSave, onCancel }) => {
             return;
         }
         try {
-            const response = await fetch(`${BACKEND_URL2}/auth/edit_user/${editForm.id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    id: editForm.id,
-                    first_name: editForm.firstName,
-                    last_name: editForm.lastName,
-                    username: editForm.username,
-                    email: editForm.email,
-                    password: editForm.password,
-                    is_admin: editForm.isAdmin,
-                }),
+            const response = await editUser2({
+                id: editForm.id,
+                first_name: editForm.first_name,
+                last_name: editForm.last_name,
+                username: editForm.username,
+                email: editForm.email,
+                password: editForm.password,
+                is_admin: editForm.is_admin,
             });
+
+            // const response = await fetch(`${BACKEND_URL2}/auth/edit_user/${editForm.id}`, {
+            //     method: 'PUT',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify({
+            //         id: editForm.id,
+            //         first_name: editForm.firstName,
+            //         last_name: editForm.lastName,
+            //         username: editForm.username,
+            //         email: editForm.email,
+            //         password: editForm.password,
+            //         is_admin: editForm.is_admin,
+            //     }),
+            // });
 
             if (!response.ok) {
                 throw new Error('Wystąpił błąd podczas aktualizacji użytkownika.');
@@ -86,8 +102,8 @@ const EditUser = ({ user, onSave, onCancel }) => {
                             <input
                                 id="input-text"
                                 type="text"
-                                value={editForm.firstName || ''}
-                                onChange={(e) => setEditForm({ ...editForm, firstName: e.target.value })}
+                                value={editForm.first_name || ''}
+                                onChange={(e) => setEditForm({ ...editForm, first_name: e.target.value })}
                             />
                         </label>
                     </td>
@@ -99,8 +115,8 @@ const EditUser = ({ user, onSave, onCancel }) => {
                             <input
                                 id="input-text"
                                 type="text"
-                                value={editForm.lastName || ''}
-                                onChange={(e) => setEditForm({ ...editForm, lastName: e.target.value })}
+                                value={editForm.last_name || ''}
+                                onChange={(e) => setEditForm({ ...editForm, last_name: e.target.value })}
                             />
                         </label>
                     </td>
@@ -151,8 +167,8 @@ const EditUser = ({ user, onSave, onCancel }) => {
                             <input
                                 id="input-admin"
                                 type="checkbox"
-                                checked={editForm.isAdmin || false}
-                                onChange={() => setEditForm((prevForm) => ({ ...prevForm, isAdmin: !prevForm.isAdmin }))}
+                                checked={editForm.is_admin || false}
+                                onChange={() => setEditForm((prevForm) => ({ ...prevForm, is_admin: !prevForm.is_admin }))}
                             />
                         </label>
                     </td>
@@ -227,8 +243,8 @@ const EditUser = ({ user, onSave, onCancel }) => {
                     <input
                         id="input-admin"
                         type="checkbox"
-                        checked={editForm.isAdmin || false}
-                        onChange={() => setEditForm((prevForm) => ({ ...prevForm, isAdmin: !prevForm.isAdmin }))}
+                        checked={editForm.is_admin || false}
+                        onChange={() => setEditForm((prevForm) => ({ ...prevForm, is_admin: !prevForm.is_admin }))}
                     />
                 </label>
             </p>

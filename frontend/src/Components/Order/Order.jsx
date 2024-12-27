@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OrderItem from './OrderItem';
-import { BACKEND_URL } from '../config';
+import { addOrder } from '../../backend';
 
 import "./Order.scss";
 
@@ -108,13 +108,16 @@ const Order = () => {
     };
 
     try {
-      const response = await fetch(`${BACKEND_URL}/orders`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(orderData),
-      });
+
+      const response = await addOrder(orderData);
+
+      // const response = await fetch(`${BACKEND_URL}/orders`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(orderData),
+      // });
 
       if (!response.ok) {
         throw new Error("Wystąpił błąd podczas przesyłania zamówienia.");
@@ -143,6 +146,7 @@ const Order = () => {
       });
 
     } catch (error) {
+      console.error("Błąd składania zamówienia:", error.message);
       toast.error("Wystąpił błąd podczas składania zamówienia.");
     }
   };

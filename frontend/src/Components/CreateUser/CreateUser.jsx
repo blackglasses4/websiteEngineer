@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {BACKEND_URL, BACKEND_URL2} from '../config';
-import { getUsers } from '../../backend';
+import { getUsers2, addUser, addUser2 } from '../../backend';
 
 import '../CreateProduct/Create.scss';
 
@@ -25,7 +25,8 @@ const CreateUser = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const response = await fetch(`${BACKEND_URL2}/auth/users`);
+            //do zmiany
+            const response = await getUsers2();
             const data = await response.json();
             setUsers(data);
         };
@@ -69,13 +70,15 @@ const CreateUser = () => {
                 is_admin: user.isAdmin ? user.isAdmin : null, 
             };
 
-            const response = await fetch(`${BACKEND_URL2}/auth/add_user`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(userData),
-            });
+            const response = await addUser2(userData);
+            
+            // const response = await fetch(`${BACKEND_URL2}/auth/add_user`, {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(userData),
+            // });
 
             const data = await response.json();
             console.log(data);

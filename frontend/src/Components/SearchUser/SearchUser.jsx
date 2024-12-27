@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {BACKEND_URL, BACKEND_URL2} from '../config';
 import { FaSlidersH } from 'react-icons/fa';
-import { getUsers } from '../../backend';
+import { getUsers2, deleteUser} from '../../backend';
 import useClick from '../useClick';
+
 
 import CreateUser from '../CreateUser/CreateUser';
 import SearchBar from '../SearchProduct/SearchBar';
@@ -48,8 +48,8 @@ const SearchUser = () => {
                 params['role'] = role;
             }
             
-            //get Users
-            const response = await getUsers(params);
+            //get Users do zmiany
+            const response = await getUsers2(params);
             const result = await response.json();
 
             setFirstPage(result['first']);
@@ -107,9 +107,11 @@ const SearchUser = () => {
         }
 
         try {
-            const response = await fetch(`${BACKEND_URL2}/auth/users/${id}`, {
-                method: 'DELETE',
-            });
+
+            const response = deleteUser(id);
+            // const response = await fetch(`${BACKEND_URL2}/auth/users/${id}`, {
+            //     method: 'DELETE',
+            // });
     
             if (!response.ok) {
                 throw new Error('Wystąpił błąd podczas usuwania użytkownika.');
@@ -233,7 +235,7 @@ const SearchUser = () => {
                                 <tr key={user.id}>
                                     <td>{user.id}</td>
                                     <td>{user.first_name || 'Brak'}</td>
-                                    <td>{user.last_name}</td>
+                                    <td>{user.last_name || 'Brak'}</td>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
                                     <td>{user.password}</td>

@@ -9,7 +9,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import useClick from '../useClick.jsx';
 import { useUser } from '../../Pages/UserContext.jsx';
 import { useCart } from '../Cart/CartContext.jsx';
-import { getProducts, getUsers } from '../../backend';
+import { getProducts2, getUsers } from '../../backend';
 
 import './Navbar.scss';
 
@@ -29,7 +29,8 @@ const Navbar = () => {
 
   const fetchProducts = async () => {
       try {
-        const response = await getProducts();
+        //do zmiany później
+        const response = await getProducts2();
         const result = await response.json();
 
         setProducts(result);
@@ -99,7 +100,6 @@ const Navbar = () => {
           height="auto"
         />
       </a>
-      {/* „zaopatrz się” lub „przygotuj się” na sportowe wyzwania to oznacza gearUp */}
 
       <div className="nav-search" ref={searchWrapperRef}>
         <div className="input-wrapper">
