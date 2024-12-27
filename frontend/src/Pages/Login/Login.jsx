@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BACKEND_URL,  BACKEND_URL2} from "../../Components/config";
+import { BACKEND_URL } from "../../config";
 import ThemeSwitch from '../../Components/ThemeSwitch/ThemeSwitch';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -69,7 +69,7 @@ const Login = () => {
       });
   
       // Wysyłamy żądanie do backendu
-      const response = await fetch(`${BACKEND_URL2}/auth/login`, {
+      const response = await fetch(`${ BACKEND_URL }/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded", // Właściwy nagłówek

@@ -1,4 +1,4 @@
-import { BACKEND_URL } from "./Components/config";
+import { BACKEND_URL } from "./config";
 
 async function get(endpoint, params) {
     const paramsStr = params ? `?${Object.entries(params).map(([k, v]) => `${k}=${v}`).join('&')}` : "";
