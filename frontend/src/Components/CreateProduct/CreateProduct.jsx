@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getProducts2, addProduct } from '../../backend';
+import { getProducts, addProduct } from '../../backend';
 
 import './Create.scss';
 
@@ -32,7 +32,7 @@ const CreateProduct = () => {
     // Ładowanie produktów z serwera, aby uzyskać ostatnie id
     useEffect(() => {
         const fetchProducts = async () => {
-            const response = await getProducts2();
+            const response = await getProducts();
             const data = await response.json();
             setProducts(data);
         };

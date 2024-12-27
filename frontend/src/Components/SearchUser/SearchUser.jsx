@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaSlidersH } from 'react-icons/fa';
-import { getUsers2, deleteUser} from '../../backend';
+import { getUsers, deleteUser} from '../../backend';
 import useClick from '../useClick';
 
 
@@ -49,7 +49,7 @@ const SearchUser = () => {
             }
             
             //get Users do zmiany
-            const response = await getUsers2(params);
+            const response = await getUsers(params);
             const result = await response.json();
 
             setFirstPage(result['first']);

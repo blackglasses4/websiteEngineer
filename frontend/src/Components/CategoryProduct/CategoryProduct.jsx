@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { getProducts2 } from '../../backend';
+import { getProducts } from '../../backend';
 import ProductFilter from '../ProductFilter/ProductFilter';
 
 import './CategoryProduct.scss';
@@ -19,7 +19,7 @@ const CategoryProducts = () => {
     const fetchProducts = async () => {
       try {
         //do zmiany
-        const response = await getProducts2();
+        const response = await getProducts();
         const data = await response.json();
 
         const filteredProducts = data.filter(product => product.category === category);

@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { getProducts2 } from '../backend';
+import { getProducts } from '../backend';
 
 const ProductContext = createContext();
 
@@ -17,7 +17,7 @@ export const ProductProvider = ({ children }) => {
         const fetchProducts = async () => {
             try {
                 //do zmiany
-                const response = await getProducts2();
+                const response = await getProducts();
                 const data = await response.json();
                 setProducts(data);
             } catch (error) {
