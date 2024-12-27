@@ -1,4 +1,5 @@
 import { BACKEND_URL } from "./config";
+import { BACKEND_URL } from "./config";
 
 async function get(endpoint, params) {
     const paramsStr = params ? `?${Object.entries(params).map(([k, v]) => `${k}=${v}`).join('&')}` : "";
@@ -55,6 +56,40 @@ async function del(endpoint, id) {
     const response = await fetch(`${BACKEND_URL}${endpoint}${id}`, {
         method: 'DELETE',
     });
+        body: JSON.stringify(indata),
+    });
+
+    if (response.status === 401) {
+        alert('Twoja sesja wygasła. Zaloguj się ponownie.');
+        window.location = '/login';
+        return;
+    }
+
+    return response;
+}
+
+async function put(endpoint, indata) {
+    const response = await fetch(`${BACKEND_URL}${endpoint}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(indata),
+    });
+
+    if (response.status === 401) {
+        alert('Twoja sesja wygasła. Zaloguj się ponownie.');
+        window.location = '/login';
+        return;
+    }
+
+    return response;
+}
+
+async function del(endpoint, id) {
+    const response = await fetch(`${BACKEND_URL}${endpoint}${id}`, {
+        method: 'DELETE',
+    });
 
     if (response.status === 401) {
         alert('Twoja sesja wygasła. Zaloguj się ponownie.');
@@ -72,6 +107,7 @@ async function del(endpoint, id) {
 
 async function getProducts(params) {
     const x = await get('/products/products_list', params);
+    const x = await get('/products/products_list', params);
     return x;
 }
 
@@ -85,6 +121,7 @@ async function getUsers(params) {
     return x;
 }
 
+//dodawanie
 //dodawanie
 async function addProduct(product) {
     return post('/products', product);
@@ -145,7 +182,17 @@ export {
     getProducts,
     getOrders,
     addOrder,
+    addOrder,
     getUsers,
+
+    addProduct,
+    addUser,
+
+    editProduct,
+    editUser,
+    deleteProduct,
+    deleteUser,
+};
 
     addProduct,
     addUser,
