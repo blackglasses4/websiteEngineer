@@ -1,2 +1,2 @@
 export const BACKEND_URL = "http://localhost:3001";
-export const BACKEND_URL2 = "http://localhost:8000";
+//export const BACKEND_URL = "http://localhost:8000";
