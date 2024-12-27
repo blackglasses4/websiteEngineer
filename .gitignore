@@ -1,2 +1,12 @@
+# Ignoruj foldery __pycache__
+__pycache__/
 
+# Ignoruj pliki .pyc
+*.pyc
+
+# Ignoruj pliki .pyc
+*.pyc
+.venv*
+
+requirements-ada.txt
 
