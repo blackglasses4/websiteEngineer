@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {BACKEND_URL, BACKEND_URL2} from '../config';
 import { getUsers2, addUser, addUser2 } from '../../backend';
 
 import '../CreateProduct/Create.scss';
