@@ -11,7 +11,7 @@ origins = [
 ]
 
 # Include the router
-app.include_router(router, prefix="/auth", tags=["Auth"])
+app.include_router(router, prefix="", tags=["Auth"])
 
 # Add CORSMiddleware to the app to allow cross-origin requests
 app.add_middleware(
