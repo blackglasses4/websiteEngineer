@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BACKEND_URL } from "../config";
+import { editProduct2, editProduct } from '../../backend';
 
 import "./Edit.scss";
 
@@ -58,28 +58,46 @@ const EditProduct = ({ product, onSave, onCancel }) => {
       return;
     }
     try {
-      const response = await fetch(`${BACKEND_URL}/products/${editForm.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
+
+      const response = await editProduct2({
+        id: editForm.id,
+        category: editForm.category,
+        gender: editForm.gender,
+        name: editForm.name,
+        image: editForm.image,
+        popular: editForm.popular,
+        new_price: editForm.new_price,
+        old_price: editForm.old_price,
+        description: editForm.description,
+        attributes: {
+          sizes: editForm.attributes.sizes,
+          color: editForm.attributes.color,
+          material: editForm.attributes.material,
         },
-        body: JSON.stringify({
-          id: editForm.id,
-          category: editForm.category,
-          gender: editForm.gender,
-          name: editForm.name,
-          image: editForm.image,
-          popular: editForm.popular,
-          new_price: editForm.new_price,
-          old_price: editForm.old_price,
-          description: editForm.description,
-          attributes: {
-            sizes: editForm.attributes.sizes,
-            color: editForm.attributes.color,
-            material: editForm.attributes.material,
-          },
-        }),
       });
+
+      // const response = await fetch(`${BACKEND_URL}/products/${editForm.id}`, {
+      //   method: "PUT",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     id: editForm.id,
+      //     category: editForm.category,
+      //     gender: editForm.gender,
+      //     name: editForm.name,
+      //     image: editForm.image,
+      //     popular: editForm.popular,
+      //     new_price: editForm.new_price,
+      //     old_price: editForm.old_price,
+      //     description: editForm.description,
+      //     attributes: {
+      //       sizes: editForm.attributes.sizes,
+      //       color: editForm.attributes.color,
+      //       material: editForm.attributes.material,
+      //     },
+      //   }),
+      // });
 
       if (!response.ok) {
         throw new Error("Wystąpił błąd podczas aktualizacji produktu.");

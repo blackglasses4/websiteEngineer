@@ -9,6 +9,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import NavbarCategory from './Components/Navbar/NavbarCategory';
 import CartPage from './Components/Cart/CartPage/CartPage';
+import { ProductProvider } from './Components/ProductContext';
 
 // Strony
 import Login from './Pages/Login/Login';
@@ -37,27 +38,29 @@ function AppLayout() {
 function App() {
   return (
     <UserProvider>
-          <CartProvider>
-            <Router>
-              <div className="App">
-                <Routes>
-                  <Route path="/" element={<AppLayout />}>
-                    <Route index element={<Home />} />
-                    <Route path=":category" element={<CategoryProducts />} />
-                    <Route path='product/:id' element={<DisplayProductPage/>} />
-                    <Route path="cart" element={<CartPage />} />
-                    <Route path="order" element={<Order />} />
-                    <Route path="order_summary" element={<OrderSummary />} />
-                  </Route>
+      <ProductProvider>
+        <CartProvider>
+          <Router>
+            <div className="App">
+              <Routes>
+                <Route path="/" element={<AppLayout />}>
+                  <Route index element={<Home />} />
+                  <Route path=":category" element={<CategoryProducts />} />
+                  <Route path='product/:id' element={<DisplayProductPage/>} />
+                  <Route path="cart" element={<CartPage />} />
+                  <Route path="order" element={<Order />} />
+                  <Route path="order_summary" element={<OrderSummary />} />
+                </Route>
 
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/admin/*" element={<Admin />} />
-                </Routes>
-                <ToastContainer />
-              </div>
-            </Router>
-          </CartProvider>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/admin/*" element={<Admin />} />
+              </Routes>
+              <ToastContainer />
+            </div>
+          </Router>
+        </CartProvider>
+      </ProductProvider>
     </UserProvider>
   );
 }

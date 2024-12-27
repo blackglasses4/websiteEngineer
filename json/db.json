@@ -2,34 +2,35 @@
   "users": [
     {
       "id": "1",
-      "firstName": "Adrianna",
-      "lastName": "Pawłowska",
-      "username": "ada",
+      "first_name": "Adriannaaa",
+      "last_name": "Pawłowskaaaa",
+      "username": "adaaaa",
       "email": "100@gmail.com",
       "password": "123456",
-      "isAdmin": false
+      "is_admin": true
     },
     {
       "id": "2",
-      "firstName": "Dominik",
-      "lastName": "Kowalski",
+      "first_name": "Dominik",
+      "last_name": "Kowalski",
       "username": "domino",
       "email": "domino@gmail.com",
-      "password": "domino"
+      "password": "domino",
+      "is_admin": true
     },
     {
       "id": "3",
-      "firstName": "admin",
-      "lastName": "admin",
+      "first_name": "admin",
+      "last_name": "admin",
       "username": "admin",
       "email": "admin@gmail.com",
       "password": "admin1",
-      "isAdmin": true
+      "is_admin": true
     },
     {
       "id": "4",
-      "firstName": "hfghfg",
-      "lastName": "hfghfgh",
+      "first_name": "hfghfg",
+      "last_name": "hfghfgh",
       "username": "ghfghfgh",
       "email": "aa@gmail.com",
       "password": "344343",
@@ -37,8 +38,8 @@
     },
     {
       "id": "5",
-      "firstName": "ssss",
-      "lastName": "ssssss",
+      "first_name": "ssss",
+      "last_name": "ssssss",
       "username": "ssssss",
       "email": "s@gmail.com",
       "password": "ddddd",
@@ -46,8 +47,8 @@
     },
     {
       "id": "6",
-      "firstName": "dfsdfsdf",
-      "lastName": "dfsdfsdfsdf",
+      "first_name": "dfsdfsdf",
+      "last_name": "dfsdfsdfsdf",
       "username": "sdfsdfdf",
       "email": "ff@gmail.com",
       "password": "fggfg",
@@ -55,8 +56,8 @@
     },
     {
       "id": "7",
-      "firstName": "fgdfgdfgg",
-      "lastName": "fdgfgdfgdfg",
+      "first_name": "fgdfgdfgg",
+      "last_name": "fdgfgdfgdfg",
       "username": "fgdgfgdfgdfgdfgdfgdfg",
       "email": "fgdgfgfgd@gmail.com",
       "password": "fgdfgfgfg",
@@ -64,8 +65,8 @@
     },
     {
       "id": "8",
-      "firstName": "dgfgdfgdfg",
-      "lastName": "dfgfgfgfgdfgdfgdfgd",
+      "first_name": "dgfgdfgdfg",
+      "last_name": "dfgfgfgfgdfgdfgdfgd",
       "username": "dfgf",
       "email": "dfgdg@gmail.com",
       "password": "ddd",
@@ -73,12 +74,21 @@
     },
     {
       "id": "9",
-      "firstName": "dddddd",
-      "lastName": "ddd",
+      "first_name": "dddddd",
+      "last_name": "ddd",
       "username": "dddd",
       "email": "dddd@gmial.com",
       "password": "dddd",
       "isAdmin": true
+    },
+    {
+      "id": "10",
+      "first_name": "Daniel",
+      "last_name": "Mieloch",
+      "username": "mielochdaniel",
+      "email": "daniel@gmail.com",
+      "password": "fsdfsfdfsdfsd",
+      "is_admin": true
     }
   ],
   "orders": [
@@ -319,6 +329,62 @@
       "date": "2024-12-26T07:06:53.236Z",
       "status": "W trakcie realizacji",
       "customer": "Anonimowy użytkownik"
+    },
+    {
+      "id": "a839",
+      "customerDetails": {
+        "phone": "666666666",
+        "street": "fgfdgf",
+        "postalCode": "56-000",
+        "city": "gdfgdfg",
+        "houseNumber": "5",
+        "apartmentNumber": "",
+        "comments": "gdgfgfggd"
+      },
+      "items": [
+        {
+          "productId": "2",
+          "quantity": 1,
+          "price": 35
+        },
+        {
+          "productId": "2",
+          "quantity": 3,
+          "price": 35
+        }
+      ],
+      "totalAmount": 140,
+      "date": "2024-12-27T09:39:41.442Z",
+      "status": "W trakcie realizacji",
+      "customer": "Anonimowy użytkownik"
+    },
+    {
+      "id": "7778",
+      "customerDetails": {
+        "phone": "444444444",
+        "street": "fggsg",
+        "postalCode": "45-000",
+        "city": "fgdgfgg",
+        "houseNumber": "",
+        "apartmentNumber": "5",
+        "comments": "gdgdfgdg"
+      },
+      "items": [
+        {
+          "productId": "2",
+          "quantity": 1,
+          "price": 35
+        },
+        {
+          "productId": "2",
+          "quantity": 3,
+          "price": 35
+        }
+      ],
+      "totalAmount": 140,
+      "date": "2024-12-27T09:45:11.915Z",
+      "status": "W trakcie realizacji",
+      "customer": "Anonimowy użytkownik"
     }
   ],
   "images": [
@@ -334,69 +400,6 @@
     }
   ],
   "products": [
-    {
-      "id": "1",
-      "category": "koszulka",
-      "gender": "women",
-      "name": "Koszulka sportowa",
-      "image": {
-        "url": "http://localhost:3001/shirt_women1.jpg",
-        "alt": "Koszulka sportowa dla kobiet"
-      },
-      "popular": true,
-      "new_price": 50,
-      "old_price": 80,
-      "description": "Lekka koszulka sportowa, idealna na treningi.",
-      "attributes": {
-        "sizes": [
-          "M",
-          "L",
-          "XL",
-          "XS",
-          "S",
-          "XXL"
-        ],
-        "color": [
-          "black",
-          "white",
-          "blue",
-          "red",
-          "navy"
-        ],
-        "material": "poliamid"
-      }
-    },
-    {
-      "id": "2",
-      "category": "koszulka",
-      "gender": "women",
-      "name": "Koszulka sportowa",
-      "popular": true,
-      "image": {
-        "url": "http://localhost:3001/shirt_women2.jpg",
-        "alt": "Koszulka sportowa dla kobiet"
-      },
-      "new_price": 35,
-      "old_price": 80,
-      "description": "Lekka koszulka sportowa, idealna na treningi.",
-      "attributes": {
-        "sizes": [
-          "S",
-          "M",
-          "L",
-          "XL"
-        ],
-        "color": [
-          "black",
-          "white",
-          "blue",
-          "red"
-        ],
-        "material": "poliester",
-        "stock": 100
-      },
-      "isLiked": false
-    },
     {
       "id": "3",
       "category": "koszulka",

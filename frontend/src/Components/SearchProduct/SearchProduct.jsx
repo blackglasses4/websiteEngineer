@@ -3,14 +3,13 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import {BACKEND_URL} from '../config';
 import { FaSlidersH } from 'react-icons/fa';
 
 import CreateProduct from '../CreateProduct/CreateProduct';
 import SearchBar from './SearchBar';
 import EditProduct from './EditProduct';
 import useClick from '../useClick';
-import { getProducts } from '../../backend';
+import { getProducts2, deleteProduct } from '../../backend';
 
 import '../Filter/Filter.scss';
 import './Search.scss';
@@ -55,7 +54,7 @@ const SearchProduct = () => {
             }
 
             //get Products
-            const response = await getProducts(params);
+            const response = await getProducts2(params);
             const result = await response.json();
 
             setFirstPage(result['first']);
@@ -114,16 +113,22 @@ const SearchProduct = () => {
         }
 
         try {
-            const response = await fetch(`${BACKEND_URL}/products/${id}`, {
-                method: 'DELETE',
-            });
+
+            const response = await deleteProduct(id);
+            // const response = await fetch(`${BACKEND_URL}/products/${id}`, {
+            //     method: 'DELETE',
+            // });
     
             if (!response.ok) {
                 throw new Error('Wystąpił błąd podczas usuwania produktu.');
             }
     
             setProducts((prev) => prev.filter((product) => product.id !== id));
-    
+
+            setTimeout(() => {
+                fetchProducts();
+            }, 2000);
+
             toast.success('Produkt został usunięty!', {
                 position: 'top-right',
                 autoClose: 5000,
@@ -134,7 +139,12 @@ const SearchProduct = () => {
                 progress: undefined,
             });
 
-            toast.dismiss(toastId);
+            if (toastId) {
+                toast.dismiss(toastId);
+            } else {
+                console.error('toastId is undefined');
+            }
+    
         } catch (err) {
             toast.error(err.message || 'Nie udało się usunąć produktu.', {
                 position: 'top-right',
@@ -144,10 +154,14 @@ const SearchProduct = () => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-            });
-            toast.dismiss(toastId);
+            });  
+            if (toastId) {
+                toast.dismiss(toastId);
+            }
         } finally {
-            toast.dismiss(toastId);
+            if (toastId) {
+                toast.dismiss(toastId);
+            }    
         }
     };
 
