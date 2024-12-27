@@ -59,9 +59,9 @@ const SearchUser = () => {
             setNumberOfPages(result['pages']);
             setNumberOfItems(result['items']);
 
-            const productList = result['data'];
-            setUsers(productList);
-            setConfirmedResults(productList);
+            const userList = result['data'];
+            setUsers(userList);
+            setConfirmedResults(userList);
         } catch (error) {
             toast.error('Nie udało się załadować produktów.', {
                 position: 'top-right',

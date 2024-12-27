@@ -3,14 +3,13 @@ import { FaSearch, FaShoppingCart, FaUserCircle, FaBars, FaTimes } from 'react-i
 import { Link, useNavigate } from 'react-router-dom';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch.jsx';
 import { toast } from "react-toastify";
-import { useProducts } from '../LikeButton/ProductContext.jsx';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import useClick from '../useClick.jsx';
 import { useUser } from '../../Pages/UserContext.jsx';
 import { useCart } from '../Cart/CartContext.jsx';
-
+import { getProducts, getUsers } from '../../backend';
 
 import './Navbar.scss';
 
@@ -20,22 +19,50 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
   const searchWrapperRef = useRef(null);
-  const { dataProducts } = useProducts();
+  const [products, setProducts] = useState();
+
   const { cart } = useCart();
   const { usernameUser, logout } = useUser();
   
   const navigate = useNavigate();
   useClick(searchWrapperRef, () => setInput(""));
+
+  const fetchProducts = async () => {
+      try {
+        const response = await getProducts();
+        const result = await response.json();
+
+        setProducts(result);
+      }
+      catch (error) {
+        toast.error('Nie udało się załadować produktów.', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+      });
+    }
+  }
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   useEffect(() => {
     if (input === "") {
       setSearchResults([]);
-    } else if (dataProducts && Array.isArray(dataProducts)) {
-      const filterResults = dataProducts.filter(product =>
+    } 
+    else if (products && Array.isArray(products))
+    {
+      const filterResults = products.filter(product =>
         product.name.toLowerCase().includes(input.toLowerCase())
       );
       setSearchResults(filterResults);
     }
-  }, [input, dataProducts]);
+  }, [input, products]);
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
