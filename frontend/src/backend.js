@@ -81,7 +81,7 @@ async function getOrders(params) {
 }
 
 async function getUsers(params) {
-    const x = await get('/users', params);
+    const x = await get('/auth/users', params);
     return x;
 }
 
@@ -95,7 +95,7 @@ async function addOrder(order) {
 }
 
 async function addUser(user) {
-    return post('/users', user); //do zmiany aby nie było auth
+    return post('/auth/add_user', user); //do zmiany aby nie było auth
 }
 
 
