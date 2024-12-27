@@ -57,7 +57,7 @@ const SearchProduct = () => {
 
     useEffect(() => {
         fetchOrders();
-    }, [fetchOrders]);
+    }, []);
 
     const statusOrderChange = async (id, newStatus) => {
         try {
