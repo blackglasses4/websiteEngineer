@@ -19,11 +19,6 @@ const CookieBanner = () => {
     setIsAccepted(true);
   };
 
-  const handleReject = () => {
-    localStorage.setItem('cookieConsent', 'rejected');
-    setIsRejected(true);
-  };
-
   if (isAccepted || isRejected) {
     return null;
   }
