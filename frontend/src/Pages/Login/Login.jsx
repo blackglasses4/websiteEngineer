@@ -5,6 +5,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BACKEND_URL,  BACKEND_URL2} from "../../Components/config";
 import ThemeSwitch from '../../Components/ThemeSwitch/ThemeSwitch';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import "./Login.scss";
 
@@ -104,6 +106,14 @@ const Login = () => {
   return (
     <div className="page-container">
       <header className="login-header">
+          <LazyLoadImage
+              src="/images/logo_dark.svg"
+              effect="blur"
+              alt="Logo sklepu"
+              className="theme-dependent-logo"
+              width="100px"
+              height="auto"
+          />
         <div className="theme-switch-container">
           <ThemeSwitch/>
         </div>

@@ -18,10 +18,31 @@
         @include selection-whitedark;
     }
 
+    .toggle-form-btn {
+        padding: 0.5rem 1rem;
+        font-size: 18px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        
+        &:hover {
+            background-color: #0056b3;
+        }
+    }
+
     .form-container {
-        height: 100%;
-        transition: max-height 0.5s ease, padding 0.5s ease;
+        height: 0;
+        overflow: hidden;
+        transition: height 0.5s ease, padding 0.5s ease;
         padding: 0;
+
+        &.open {
+            height: auto;
+            padding: 1em;
+        }
 
         form {
             display: flex;

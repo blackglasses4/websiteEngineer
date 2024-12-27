@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {BACKEND_URL} from '../config';
+import {BACKEND_URL, BACKEND_URL2} from '../config';
+import { getUsers } from '../../backend';
 
 import '../CreateProduct/Create.scss';
 
@@ -20,10 +21,11 @@ const CreateUser = () => {
     const [loading, setLoading] = useState(false);
     const [imagePreview, setImagePreview] = useState(null);
     const [users, setUsers] = useState([]);
+    const [isFormOpen, setIsFormOpen] = useState(false);
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const response = await fetch(`${BACKEND_URL}/users`);
+            const response = await fetch(`${BACKEND_URL2}/auth/users`);
             const data = await response.json();
             setUsers(data);
         };
@@ -59,15 +61,15 @@ const CreateUser = () => {
 
             const userData = {
                 id: newId,
-                firstName: user.firstName,
-                lastName: user.lastName,
+                first_name: user.firstName,
+                last_name: user.lastName,
                 username: user.username,
                 email: user.email,
                 password: user.password,
-                isAdmin: user.isAdmin ? user.isAdmin : null, 
+                is_admin: user.isAdmin ? user.isAdmin : null, 
             };
 
-            const response = await fetch(`${BACKEND_URL}/users`, {
+            const response = await fetch(`${BACKEND_URL2}/auth/add_user`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -121,9 +123,17 @@ const CreateUser = () => {
         }
     }
 
+    const toggleForm = () => {
+        setIsFormOpen(!isFormOpen);
+    };
+
     return (
         <div className="create-user">
-            <div className='form-container expand'>
+            <button className="toggle-form-btn" onClick={toggleForm}>
+                {isFormOpen ? 'Zwiń formularz' : 'Rozwiń formularz'}
+            </button>
+
+            <div className={`form-container ${isFormOpen ? 'open' : ''}`}>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="firstName">
                         Imię:
