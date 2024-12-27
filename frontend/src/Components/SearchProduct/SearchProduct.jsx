@@ -9,7 +9,7 @@ import CreateProduct from '../CreateProduct/CreateProduct';
 import SearchBar from './SearchBar';
 import EditProduct from './EditProduct';
 import useClick from '../useClick';
-import { getProducts2, deleteProduct } from '../../backend';
+import { getProducts, deleteProduct } from '../../backend';
 
 import '../Filter/Filter.scss';
 import './Search.scss';
@@ -54,7 +54,7 @@ const SearchProduct = () => {
             }
 
             //get Products
-            const response = await getProducts2(params);
+            const response = await getProducts(params);
             const result = await response.json();
 
             setFirstPage(result['first']);

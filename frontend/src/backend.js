@@ -1,4 +1,4 @@
-import { BACKEND_URL, BACKEND_URL2 } from "./Components/config";
+import { BACKEND_URL } from "./Components/config";
 
 async function get(endpoint, params) {
     const paramsStr = params ? `?${Object.entries(params).map(([k, v]) => `${k}=${v}`).join('&')}` : "";
@@ -70,11 +70,6 @@ async function del(endpoint, id) {
 //moje już będą oznaczone, jako 2, aby potem nie zmieniać nazw.
 // const response = await fetch(`${BACKEND_URL2}/products/products_list`);
 
-async function getProducts2(params) {
-    const x = await get('/products', params);
-    return x;
-}
-
 async function getProducts(params) {
     const x = await get('/products/products_list', params);
     return x;
@@ -85,16 +80,10 @@ async function getOrders(params) {
     return x;
 }
 
-async function getUsers2(params) {
+async function getUsers(params) {
     const x = await get('/users', params);
     return x;
 }
-
-async function getUsers(params) {
-    const x = await get('/auth/users', params);
-    return x;
-}
-
 
 //dodawanie
 async function addProduct(product) {
@@ -105,17 +94,13 @@ async function addOrder(order) {
     return post('/orders', order);
 }
 
-async function addUser2(user) {
-    return post('/users', user);
-}
-
 async function addUser(user) {
-    return post('/auth/users', user);
+    return post('/users', user); //do zmiany aby nie było auth
 }
 
 
 //edytowanie
-async function editProduct2(product) {
+async function editProduct(product) {
     return put(`/products/${product.id}`, {
         id: product.id,
         category: product.category,
@@ -134,40 +119,8 @@ async function editProduct2(product) {
     });
 }
 
-async function editProduct(product) {
-    //dostosuj sobie tu mikołaj
-    return put(`auth/products/${product.id}`, {
-        id: product.id,
-        category: product.category,
-        gender: product.gender,
-        name: product.name,
-        image: product.image,
-        popular: product.popular,
-        new_price: product.new_price,
-        old_price: product.old_price,
-        description: product.description,
-        attributes: {
-            sizes: product.attributes.sizes,
-            color: product.attributes.color,
-            material: product.attributes.material,
-        },
-    });
-}
-
-async function editUser2(user) {
-    return put(`/users/${user.id}`, {
-        id: user.id,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        username: user.username,
-        email: user.email,
-        password: user.password,
-        is_admin: user.is_admin,
-    });
-}
-
 async function editUser(user) {
-    return put(`/auth/edit_user/${user.id}`, {
+    return put(`/edit_user/${user.id}`, {
         id: user.id,
         first_name: user.first_name,
         last_name: user.last_name,
@@ -184,24 +137,21 @@ async function deleteProduct(product) {
 }
 
 async function deleteUser(user) {
-    return del('/auth/user/', user);
+    return del('/user/', user);
 }
 
 
 export {
-    getProducts2,
     getProducts,
-    addProduct,
     getOrders,
     addOrder,
-    getUsers2,
     getUsers,
-    addUser2,
+
+    addProduct,
     addUser,
-    editProduct2,
+
     editProduct,
     editUser,
-    editUser2,
     deleteProduct,
     deleteUser,
 };

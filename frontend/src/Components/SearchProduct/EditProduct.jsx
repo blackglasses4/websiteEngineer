@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { editProduct2, editProduct } from '../../backend';
+import { editProduct } from '../../backend';
 
 import "./Edit.scss";
 
@@ -59,7 +59,7 @@ const EditProduct = ({ product, onSave, onCancel }) => {
     }
     try {
 
-      const response = await editProduct2({
+      const response = await editProduct({
         id: editForm.id,
         category: editForm.category,
         gender: editForm.gender,
