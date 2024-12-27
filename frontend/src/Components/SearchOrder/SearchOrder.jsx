@@ -1,41 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 import {BACKEND_URL} from '../config';
+import { getOrders } from '../../backend';
 
-// import EditProduct from './EditProduct';
-// import Filter from './../Filter/Filter';
-
+import '../Filter/Filter.scss';
 import '../SearchProduct/Search.scss';
 
 const SearchProduct = () => {
+    // stronicowanie
+    const [page, setPage] = useState(1);
+    const [firstPage, setFirstPage] = useState();
+    const [prevPage, setPrevPage] = useState();
+    const [nextPage, setNextPage] = useState();
+    const [lastPage, setLastPage] = useState();
+
+    const [numberOfPages, setNumberOfPages] = useState();
+    const [numberOfItems, setNumberOfItems] = useState();
+
     const [orders, setOrders] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
 
-        const fetchOrders = async () => {
-            try {
-                const response = await fetch(`${BACKEND_URL}/orders`);
-                const data = await response.json();
-                setOrders(data);
-                setConfirmedResults(data); 
-            } catch (error) {
-                toast.error('Nie udało się załadować zamówień.', {
-                    position: 'top-right',
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+    const fetchOrders = async () => {
+        try {
+            const params = {
+                '_page': page,
+                '_per_page': 8
             }
-        };
 
-        useEffect(() => {
-            fetchOrders('');
-    }, []);
+            //get Orders
+            const response = await getOrders(params);
+            const result = await response.json();
+
+            setFirstPage(result['first']);
+            setPrevPage(result['prev']);
+            setNextPage(result['next']);
+            setLastPage(result['last']);
+            setNumberOfPages(result['pages']);
+            setNumberOfItems(result['items']);
+
+            const productList = result['data'];
+            setOrders(productList);
+            setConfirmedResults(productList); 
+        } catch (error) {
+            toast.error('Nie udało się załadować zamówień.', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    };
+
+    useEffect(() => {
+        fetchOrders();
+    }, [page]);
 
     const statusOrderChange = async (id, newStatus) => {
         try {
@@ -128,8 +150,15 @@ const SearchProduct = () => {
 
     return (
         <div className="search-order">
-            {/* <Filter fetchOrders={fetchOrders} /> */}
-            
+            <div className="filter">
+                <input type="button" value="Pierwsza" disabled={firstPage == null} onClick={() => {setPage(firstPage)}}></input>
+                <input type="button" value="Poprzednia" disabled={prevPage == null} onClick={() => {setPage(prevPage)}}></input>
+                <span>{page} z {numberOfPages}</span>
+                <input type="button" value="Następna" disabled={nextPage == null} onClick={() => {setPage(nextPage)}}></input>
+                <input type="button" value="Ostatnia" disabled={lastPage == null} onClick={() => {setPage(lastPage)}}></input>
+                <span>Liczba sztuk: {numberOfItems}</span>
+            </div>
+
             <section className="admin-search_orders">
             {confirmedResults.length === 0 ? (
                 <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać zamówienie powyżej.</p>

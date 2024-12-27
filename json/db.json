@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": "3c7c",
+      "id": "1",
       "firstName": "Adrianna",
       "lastName": "Pawłowska",
       "username": "ada",
@@ -10,7 +10,7 @@
       "isAdmin": false
     },
     {
-      "id": "89bc",
+      "id": "2",
       "firstName": "Dominik",
       "lastName": "Kowalski",
       "username": "domino",
@@ -18,7 +18,7 @@
       "password": "domino"
     },
     {
-      "id": "c732",
+      "id": "3",
       "firstName": "admin",
       "lastName": "admin",
       "username": "admin",
@@ -27,12 +27,57 @@
       "isAdmin": true
     },
     {
-      "id": null,
+      "id": "4",
       "firstName": "hfghfg",
       "lastName": "hfghfgh",
       "username": "ghfghfgh",
       "email": "aa@gmail.com",
       "password": "344343",
+      "isAdmin": true
+    },
+    {
+      "id": "5",
+      "firstName": "ssss",
+      "lastName": "ssssss",
+      "username": "ssssss",
+      "email": "s@gmail.com",
+      "password": "ddddd",
+      "isAdmin": true
+    },
+    {
+      "id": "6",
+      "firstName": "dfsdfsdf",
+      "lastName": "dfsdfsdfsdf",
+      "username": "sdfsdfdf",
+      "email": "ff@gmail.com",
+      "password": "fggfg",
+      "isAdmin": null
+    },
+    {
+      "id": "7",
+      "firstName": "fgdfgdfgg",
+      "lastName": "fdgfgdfgdfg",
+      "username": "fgdgfgdfgdfgdfgdfgdfg",
+      "email": "fgdgfgfgd@gmail.com",
+      "password": "fgdfgfgfg",
+      "isAdmin": true
+    },
+    {
+      "id": "8",
+      "firstName": "dgfgdfgdfg",
+      "lastName": "dfgfgfgfgdfgdfgdfgd",
+      "username": "dfgf",
+      "email": "dfgdg@gmail.com",
+      "password": "ddd",
+      "isAdmin": null
+    },
+    {
+      "id": "9",
+      "firstName": "dddddd",
+      "lastName": "ddd",
+      "username": "dddd",
+      "email": "dddd@gmial.com",
+      "password": "dddd",
       "isAdmin": true
     }
   ],
