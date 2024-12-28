@@ -14,11 +14,11 @@ class GenderEnum(enum.Enum):
     unisex = "Dla obu płci"
     
 class CategoryEnum(enum.Enum):
-    shirt = "Koszulka"
-    jacket = "Kurtka"
-    pants = "Spodnie"
-    hat = "Czapka"
-    outfit = "Stroje"
+    shirt = "koszulka"
+    jacket = "kurtka"
+    pants = "spodnie"
+    hat = "czapka"
+    outfit = "stroje"
 
 class Product(Base):
     __tablename__ = 'products' #Nazwa tabeli w bazie danych
