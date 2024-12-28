@@ -79,8 +79,8 @@ def product_add(product: ProductCreate, db: Session = Depends(get_db)):
 
     return new_product
 
-@product_router.get("/products_list")
-def get_all_products(db: Session = Depends(get_db)):
+@product_router.get("/products")
+def get_product_list(db: Session = Depends(get_db)):
     products = db.query(Product).all()  # Query all products from the database
     if not products:
         raise HTTPException(status_code=404, detail="No products found")
