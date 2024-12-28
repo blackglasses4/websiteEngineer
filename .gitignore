@@ -2,11 +2,11 @@
 __pycache__/
 
 # Ignoruj pliki .pyc
-*.pyc
+**/*.pyc
 
 # Ignoruj pliki .pyc
 *.pyc
 .venv*
 
-requirements-ada.txt
 
+requirements-ada.txt

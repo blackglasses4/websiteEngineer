@@ -84,6 +84,7 @@ const SearchProduct = () => {
         fetchProducts();
     }, [page, gender]);
 
+
     const handleConfirmDelete = (id) => {
         if(!id) {
             console.error('Id jest undefined');
