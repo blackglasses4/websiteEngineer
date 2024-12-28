@@ -41,33 +41,36 @@ const SearchProduct = () => {
     const fetchProducts = async () => {
         try {
             const params = {
-                '_page': page,
-                '_per_page': 8
-            }
+                'page': page,
+                'per_page': 8,
+                'gender': gender || undefined,
+                'sort': sort || undefined
+            };
             
-            if (gender) {
-                params['gender'] = gender;
-            }
-
-            if (sort && sort !== 'none') {
-                params['_sort'] = sort;
-            }
-
-            //get Products
+            // if (gender) {
+            //     params['gender'] = gender;
+            // }
+    
+            // if (sort && sort !== 'none') {
+            //     params['_sort'] = sort;
+            // }
+    
             const response = await getProducts(params);
             const result = await response.json();
-
-            setFirstPage(result['first']);
-            setPrevPage(result['prev']);
-            setNextPage(result['next']);
-            setLastPage(result['last']);
-            setNumberOfPages(result['pages']);
-            setNumberOfItems(result['items']);
-
-            const productList = result['data'];
-
-            setProducts(productList);
-            setConfirmedResults(productList); 
+    
+            if (result['data']) {
+                setFirstPage(result['first']);
+                setPrevPage(result['prev']);
+                setNextPage(result['next']);
+                setLastPage(result['last']);
+                setNumberOfPages(result['pages']);
+                setNumberOfItems(result['items']);
+                setProducts(result['data']);
+                setConfirmedResults(result['data']);
+            } else {
+                console.error('Brak danych w odpowiedzi');
+            }
+    
         } catch (error) {
             toast.error('Nie udało się załadować produktów.', {
                 position: 'top-right',
@@ -79,7 +82,7 @@ const SearchProduct = () => {
                 progress: undefined,
             });
         }
-    };
+    };    
     
     useEffect(() => {
         fetchProducts();
@@ -198,9 +201,9 @@ const SearchProduct = () => {
                 <div className="filter">
                     <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                     <input type="button" value="Pierwsza" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
-                    <input type="button" value="Poprzednia" disabled={prevPage === null} onClick={() => {setPage(prevPage)}}></input>
+                    <input type="button" value="Poprzednia" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage);}}></input>
                     <span>{page} z {numberOfPages}</span>
-                    <input type="button" value="Następna" disabled={nextPage === null} onClick={() => {setPage(nextPage)}}></input>
+                    <input type="button" value="Następna" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage);}}></input>
                     <input type="button" value="Ostatnia" disabled={page === numberOfPages} onClick={() => {setPage(lastPage)}}></input>
                     <span>Liczba sztuk: {numberOfItems}</span>
 
@@ -222,8 +225,8 @@ const SearchProduct = () => {
                                             setPage(1);
                                         }}>
                                         <option value="all">Wszystko</option>
-                                        <option value="women">Kobiety</option>
-                                        <option value="men">Mężczyźni</option>
+                                        <option value="woman">Kobiety</option>
+                                        <option value="man">Mężczyźni</option>
                                     </select>
                                 </div>
                                 <div className="filter-group">
@@ -233,7 +236,7 @@ const SearchProduct = () => {
                                         value={sort || 'none'}
                                         onChange={(e) => {
                                             const selectedSort = e.target.value === 'none' ? null : e.target.value;
-                                            setSort(selectedSort);
+                                            setSort(selectedSort === 'none' ? null : selectedSort);
                                             setPage(1);
                                         }}>
                                         <option value="none">Brak sortowania</option>
@@ -274,11 +277,13 @@ const SearchProduct = () => {
                                 <tr key={product.id}>
                                     <td>{product.id}</td>
                                     <td>
-                                        <LazyLoadImage
+                                        {product.image && (
+                                            <LazyLoadImage
                                             src={product.image.url}
-                                            alt={product.image.alt}
+                                            alt={product.image.alt || 'Zdjęcie produktu'}
                                             effect="blur"
                                             className="cart-item-image"/>
+                                        )}
                                     </td>
                                     <td>{product.category || 'Brak'}</td>
                                     <td>{product.gender}</td>
@@ -287,9 +292,9 @@ const SearchProduct = () => {
                                     <td>{product.new_price} zł</td>
                                     <td>{product.old_price ? `${product.old_price} zł` : '—'}</td>
                                     <td>{product.description ? product.description.slice(0,25) + '...' : 'Brak opisu'}</td>
-                                    <td>{product.attributes.sizes && product.attributes.sizes.length > 0 ? product.attributes.sizes.join(', ') : 'Brak'}</td>
-                                    <td>{product.attributes.color && product.attributes.color.length > 0 ? product.attributes.color.join(', ') : 'Brak'}</td>
-                                    <td>{product.attributes.material || 'Brak'}</td>
+                                    {/* <td>{product.sizes && product.sizes.length > 0 ? product.sizes.join(', ') : 'Brak'}</td>
+                                    <td>{product.color && product.color.length > 0 ? product.color.join(', ') : 'Brak'}</td>
+                                    <td>{product.material || 'Brak'}</td> */}
 
                                     <td><button className='button-edit' onClick={() => setProductToEdit(product)}>Edytuj</button></td>
                                     <td><button className='button-delete' onClick={() => handleConfirmDelete(product.id)}>Usuń</button></td>
@@ -320,11 +325,13 @@ const SearchProduct = () => {
                     <div className="search-mobile">
                         {confirmedResults.map((product) => (
                             <div className="search-mobile_product" key={product.id}>
-                                <LazyLoadImage
-                                    src={product.image.url}
-                                    alt={product.image.alt}
-                                    effect="blur"
-                                    className="product-image"/>
+                                {product.image && (
+                                        <LazyLoadImage
+                                        src={product.image.url}
+                                        alt={product.image.alt || 'Zdjęcie produktu'}
+                                        effect="blur"
+                                        className="product-image"/>
+                                    )}
                                 <div className="product-details">
                                     <p><span>ID: </span>{product.id}</p>
                                     <p><span>Kategoria: </span>{product.category}</p>
@@ -334,9 +341,9 @@ const SearchProduct = () => {
                                     <p><span>Nowa cena: </span>{product.new_price} zł</p>
                                     <p><span>Stara cena: </span>{product.old_price ? `${product.old_price} zł` : '—'}</p>
                                     <p><span>Opis: </span>{product.description ? product.description.slice(0, 20) + '...' : 'Brak opisu'}</p>
-                                    <p><span>Rozmiary: </span>{product.attributes.sizes && product.attributes.sizes.length > 0 ? product.attributes.sizes.join(', ') : 'Brak'}</p>
-                                    <p><span>Kolory: </span>{product.attributes.color && product.attributes.color.length > 0 ? product.attributes.color.join(', ') : 'Brak'}</p>
-                                    <p><span>Materiał: </span>{product.attributes.material ? `${product.attributes.material}` : '—'}</p>
+                                    {/* <p><span>Rozmiary: </span>{product.sizes && product.sizes.length > 0 ? product.sizes.join(', ') : 'Brak'}</p>
+                                    <p><span>Kolory: </span>{product.color && product.color.length > 0 ? product.color.join(', ') : 'Brak'}</p>
+                                    <p><span>Materiał: </span>{product.material ? `${product.material}` : '—'}</p> */}
 
                                     <div className="mobile-button">
                                         <button className='button-edit' onClick={() => setProductToEdit(product)}>Edytuj</button>
