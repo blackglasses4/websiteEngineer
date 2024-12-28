@@ -24,6 +24,33 @@ const Navbar = () => {
   
   const navigate = useNavigate();
   useClick(searchWrapperRef, () => setInput(""));
+
+  const fetchProducts = async () => {
+      try {
+        //do zmiany później
+        const response = await getProducts();
+        console.log(response);
+        const result = await response.json();
+
+        setProducts(result);
+      }
+      catch (error) {
+        toast.error('Nie udało się załadować produktów.', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+      });
+    }
+  }
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   useEffect(() => {
     if (input === "") {
       setSearchResults([]);

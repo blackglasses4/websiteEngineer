@@ -39,34 +39,33 @@ const SearchProduct = () => {
     const fetchProducts = async () => {
         try {
             const params = {
-                '_page': page,
-                '_per_page': 8
-            }
+                'page': page,
+                'per_page': 8
+            };
             
             if (gender) {
                 params['gender'] = gender;
             }
-
-            params['_sort'] = '-new_price';  //TODO
-            
+    
+            if (sort && sort !== 'none') {
+                params['_sort'] = sort;
+            }
+    
             const response = await getProducts(params);
-            //const response = await fetch(`${BACKEND_URL}/products?_page=${page}&_per_page=5`);
             const result = await response.json();
-            
-            console.log(result);
-
-            
-            setFirstPage(result['first']);
-            setPrevPage(result['prev']);
-            setNextPage(result['next']);
-            setLastPage(result['last']);
-            setNumberOfPages(result['pages']);
-            setNumberOfItems(result['items']);
-
-            const productList = result['data'];
-
-            setProducts(productList);
-            setConfirmedResults(productList); 
+    
+            if (result['data']) {
+                setFirstPage(result['first']);
+                setPrevPage(result['prev']);
+                setNextPage(result['next']);
+                setLastPage(result['last']);
+                setNumberOfPages(result['pages']);
+                setNumberOfItems(result['items']);
+                setProducts(result['data']);
+                setConfirmedResults(result['data']);
+            } else {
+                console.error('Brak danych w odpowiedzi');
+            }
         } catch (error) {
             toast.error('Nie udało się załadować produktów.', {
                 position: 'top-right',
@@ -82,8 +81,7 @@ const SearchProduct = () => {
     
     useEffect(() => {
         fetchProducts();
-    }, [page, gender]);
-
+    }, [page, gender, sort]);
 
     const handleConfirmDelete = (id) => {
         if(!id) {
@@ -182,23 +180,56 @@ const SearchProduct = () => {
             {/* <Filter fetchProducts={fetchProducts} /> */}
             
             <section className="admin-search_products">
-            <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
+                <div className="filter">
+                    <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
+                    <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
+                    <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage);}}></input>
+                    <span>{page} z {numberOfPages}</span>
+                    <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage);}}></input>
+                    <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage)}}></input>
+                    <span>Liczba: {numberOfItems}</span>
 
+                    <div className="product-filter">
+                        <button className="filter-toggle" onClick={() => setIsFilterOpen(!isFilterOpen)}>
+                            <FaSlidersH />Wszystkie filtr
+                        </button>
 
-            <input type="button" value="Pierwsza" disabled={firstPage == null} onClick={() => {setPage(firstPage)}}></input>
-            <input type="button" value="Poprzednia" disabled={prevPage == null} onClick={() => {setPage(prevPage)}}></input>
-            <input type="button" value="Następna" disabled={nextPage == null} onClick={() => {setPage(nextPage)}}></input>
-            <input type="button" value="Ostatnia" disabled={lastPage == null} onClick={() => {setPage(lastPage)}}></input>
-            <span>{page}/{numberOfPages}</span>
-            <input type="button" value="Women" onClick={() => {setGender('women'); setPage(1); }}></input>
-            <input type="button" value="Men" onClick={() => {setGender('men'); setPage(1); }}></input>
-            <input type="button" value="All" onClick={() => {setGender(null); setPage(1); }}></input>
-
-            <span>Liczba sztuk: {numberOfItems}</span>
-
-            {/* <button disabled={!true} onClick={() => {setPage(nextPage)}}>Następna</button> */}
-
-
+                        {isFilterOpen && (
+                            <div className="filter-panel" ref={filterPanelRef}>
+                                <div className="filter-group">
+                                    <label>Filtruj według płci:</label>
+                                    <select
+                                        id="gender-filter"
+                                        value={gender || 'all'}
+                                        onChange={(e) => {
+                                            const selectedGender = e.target.value === 'all' ? null : e.target.value;
+                                            setGender(selectedGender);
+                                            setPage(1);
+                                        }}>
+                                        <option value="all">Wszystko</option>
+                                        <option value="woman">Kobiety</option>
+                                        <option value="man">Mężczyźni</option>
+                                    </select>
+                                </div>
+                                <div className="filter-group">
+                                    <label htmlFor="sort-filter">Sortuj według ceny:</label>
+                                    <select
+                                        id="sort-filter"
+                                        value={sort || 'none'}
+                                        onChange={(e) => {
+                                            const selectedSort = e.target.value === 'none' ? null : e.target.value;
+                                            setSort(selectedSort === 'none' ? null : selectedSort);
+                                            setPage(1);
+                                        }}>
+                                        <option value="none">Brak sortowania</option>
+                                        <option value="new_price">Od najniższej do najwyższej</option>
+                                        <option value="-new_price">Od najwyższej do najniższej</option>
+                                    </select>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
 
             {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
@@ -241,9 +272,9 @@ const SearchProduct = () => {
                                     <td>{product.new_price} zł</td>
                                     <td>{product.old_price ? `${product.old_price} zł` : '—'}</td>
                                     <td>{product.description ? product.description.slice(0,25) + '...' : 'Brak opisu'}</td>
-                                    <td>{product.attributes.sizes && product.attributes.sizes.length > 0 ? product.attributes.sizes.join(', ') : 'Brak'}</td>
-                                    <td>{product.attributes.color && product.attributes.color.length > 0 ? product.attributes.color.join(', ') : 'Brak'}</td>
-                                    <td>{product.attributes.material || 'Brak'}</td>
+                                    <td>{product.sizes && product.sizes.length > 0 ? product.sizes.join(', ') : 'Brak'}</td>
+                                    <td>{product.color && product.color.length > 0 ? product.color.join(', ') : 'Brak'}</td>
+                                    <td>{product.material || 'Brak'}</td>
 
                                     <td><button className='button-edit' onClick={() => setProductToEdit(product)}>Edytuj</button></td>
                                     <td><button className='button-delete' onClick={() => handleConfirmDelete(product.id)}>Usuń</button></td>
