@@ -1,4 +1,4 @@
-import { BACKEND_URL } from "./Components/config";
+import { BACKEND_URL } from "./config";
 
 async function get(endpoint, params) {
     const paramsStr = params ? `?${Object.entries(params).map(([k, v]) => `${k}=${v}`).join('&')}` : "";
@@ -11,9 +11,7 @@ async function get(endpoint, params) {
         window.location = '/login';
         return;
     }
-
-    // console.debug(response);
-
+    
     return response;
 }
 
@@ -23,10 +21,8 @@ async function post(endpoint, indata) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: indata ? JSON.stringify(indata) : '',
+        body: JSON.stringify(indata),
     });
-
-    // console.debug(response);
 
     if (response.status === 401) {
         alert('Twoja sesja wygasła. Zaloguj się ponownie.');
@@ -37,8 +33,42 @@ async function post(endpoint, indata) {
     return response;
 }
 
+async function put(endpoint, indata) {
+    const response = await fetch(`${BACKEND_URL}${endpoint}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(indata),
+    });
+
+    if (response.status === 401) {
+        alert('Twoja sesja wygasła. Zaloguj się ponownie.');
+        window.location = '/login';
+        return;
+    }
+
+    return response;
+}
+
+async function del(endpoint, id) {
+    const response = await fetch(`${BACKEND_URL}${endpoint}${id}`, {
+        method: 'DELETE',
+    });
+
+    if (response.status === 401) {
+        alert('Twoja sesja wygasła. Zaloguj się ponownie.');
+        window.location = '/login';
+        return;
+    }
+
+    return response;
+}
+
+//wyświetlanie
+
 async function getProducts(params) {
-    const x = await get('/products/products_list', params);
+    const x = await get('/products', params);
     return x;
 }
 //products_list
@@ -48,7 +78,12 @@ async function getOrders(params) {
     return x;
 }
 
+async function getUsers(params) {
+    const x = await get('/users', params);
+    return x;
+}
 
+//dodawanie
 async function addProduct(product) {
     return post('/products', product);
 }
@@ -77,7 +112,7 @@ async function editProduct(product) {
         sizes: product.sizes,
         color: product.color,
         material: product.material,
-    });
+});
 }
 
 async function editUser(user) {
@@ -104,5 +139,15 @@ async function deleteUser(user) {
 
 export {
     getProducts,
-    addProduct
+    getOrders,
+    addOrder,
+    getUsers,
+
+    addProduct,
+    addUser,
+
+    editProduct,
+    editUser,
+    deleteProduct,
+    deleteUser,
 };

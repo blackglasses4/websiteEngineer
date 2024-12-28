@@ -3,11 +3,13 @@ import { FaSearch, FaShoppingCart, FaUserCircle, FaBars, FaTimes } from 'react-i
 import { Link, useNavigate } from 'react-router-dom';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch.jsx';
 import { toast } from "react-toastify";
-import { useProducts } from '../LikeButton/ProductContext.jsx';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import useClick from '../useClick.jsx';
 import { useUser } from '../../Pages/UserContext.jsx';
 import { useCart } from '../Cart/CartContext.jsx';
+import { getProducts, getUsers } from '../../backend';
 
 import './Navbar.scss';
 
@@ -15,10 +17,10 @@ const Navbar = () => {
   const [input, setInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isModalOpen, setModalOpen] = useState(false);
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
   const searchWrapperRef = useRef(null);
-  const { dataProducts } = useProducts();
+  const [products, setProducts] = useState();
+
   const { cart } = useCart();
   const { usernameUser, logout } = useUser();
   
@@ -54,13 +56,15 @@ const Navbar = () => {
   useEffect(() => {
     if (input === "") {
       setSearchResults([]);
-    } else if (dataProducts && Array.isArray(dataProducts)) {
-      const filterResults = dataProducts.filter(product =>
+    } 
+    else if (products && Array.isArray(products))
+    {
+      const filterResults = products.filter(product =>
         product.name.toLowerCase().includes(input.toLowerCase())
       );
       setSearchResults(filterResults);
     }
-  }, [input, dataProducts]);
+  }, [input, products]);
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -68,10 +72,6 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  };
-
-  const toggleModal = () => {
-    setModalOpen(!isModalOpen);
   };
 
   const toggleUserMenu = () => {
@@ -91,7 +91,16 @@ const Navbar = () => {
 
   return (
     <header className='header-main'>
-      <a href="/" className="a-name" rel="internal" aria-label="Logo sklepu internetowego">NAZWAAAAA</a>
+      <a href="/" className="a-name" rel="internal" aria-label="Logo sklepu internetowego">
+        <LazyLoadImage
+          src="/images/logo.png"
+          effect="blur"
+          className="logo"
+          alt="Logo sklepu"
+          width="100px"
+          height="auto"
+        />
+      </a>
 
       <div className="nav-search" ref={searchWrapperRef}>
         <div className="input-wrapper">
@@ -147,22 +156,21 @@ const Navbar = () => {
             <FaShoppingCart />
             <div className="nav-icons-cart">{cart.length}</div>
           </a>
-            {usernameUser ? (
+          <p>Kategorie</p>
+          <div className='mobile-nav-category'>
+            <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
+            <Link to="/kurtka" className='a-name' rel='internal'>Kurtki</Link>
+            <Link to="/spodnie" className='a-name' rel='internal'>Spodnie</Link>
+            <Link to="/czapka" className='a-name' rel='internal'>Czapki</Link>
+            <Link to="/stroje" className='a-name' rel='internal'>Stroje</Link>
+          </div>
+          {usernameUser ? (
             <div className="nav-user" onClick={toggleUserMenu}>
                 <button onClick={buttonLogout}>Wyloguj się</button>
             </div>
           ) : (
             <a href="/login" aria-label="Przycisk do przejścia na stronę logowania"><FaUserCircle /></a>
           )}
-          <p>Kategorie</p>
-          <div className='mobile-nav-category'>
-            <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
-            <Link to="/kurtka" className='a-name' rel='internal'>Kurtki</Link>
-            <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
-            <Link to="/kurtka" className='a-name' rel='internal'>Kurtki</Link>
-            <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
-            <Link to="/equipment" className='a-name' rel='internal'>Sprzęty</Link>
-          </div>
         </div>
       </div>
     </header>
