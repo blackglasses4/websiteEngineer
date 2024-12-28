@@ -17,8 +17,8 @@ def get_db():
     finally:
         db.close()
 
-@product_router.get("/product_list")
-def get_product_list(
+@product_router.get("/products")
+def get_product(
     page: int = Query(1, ge=1),
     per_page: int = Query(8, ge=1),
     gender: Optional[str] = None,
@@ -84,9 +84,18 @@ def product_add(product: ProductCreate, db: Session = Depends(get_db)):
 
     return new_product
 
+
 @product_router.get("/products_list")
 def get_product_list(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     products = db.query(Product).offset(skip).limit(limit).all()  # Query all products from the database
     if not products:
         raise HTTPException(status_code=404, detail="No products found")
     return {"data": products}
+
+# @product_router.get("/products")
+# def get_product(db: Session = Depends(get_db)):
+#     products = db.query(Product).all()  # Query all products from the database
+#     if not products:
+#         raise HTTPException(status_code=404, detail="No products found")
+#     return {"data": products}
+
