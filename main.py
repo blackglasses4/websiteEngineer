@@ -17,13 +17,11 @@ origins = [
 ]
 
 # Include the router
-
 app.include_router(router, tags=["Auth"])
 app.include_router(product_router, tags=["Products"])
 app.include_router(order_router, tags=["Orders"])
 
 # Add CORSMiddleware to the app to allow cross-origin requests
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,  # List of allowed origins
