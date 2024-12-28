@@ -3,8 +3,12 @@ from backend.routers.auth import router
 from backend.routers.products import product_router
 from backend.routers.order import order_router
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
+
+# Static files
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # List of allowed origins (this should be the URL of your frontend)
 origins = [
