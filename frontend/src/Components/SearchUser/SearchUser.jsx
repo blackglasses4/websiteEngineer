@@ -52,16 +52,18 @@ const SearchUser = () => {
             const response = await getUsers(params);
             const result = await response.json();
 
-            setFirstPage(result['first']);
-            setPrevPage(result['prev']);
-            setNextPage(result['next']);
-            setLastPage(result['last']);
-            setNumberOfPages(result['pages']);
-            setNumberOfItems(result['items']);
-
-            const userList = result['data'];
-            setUsers(userList);
-            setConfirmedResults(userList);
+            if (result['data']) {
+                setFirstPage(result['first']);
+                setPrevPage(result['prev']);
+                setNextPage(result['next']);
+                setLastPage(result['last']);
+                setNumberOfPages(result['pages']);
+                setNumberOfItems(result['items']);
+                setUsers(result['data']);
+                setConfirmedResults(result['data']);
+            } else {
+                console.error('Brak danych w odpowiedzi');
+            }
         } catch (error) {
             toast.error('Nie udało się załadować produktów.', {
                 position: 'top-right',
