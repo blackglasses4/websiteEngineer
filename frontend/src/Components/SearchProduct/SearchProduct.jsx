@@ -83,7 +83,7 @@ const SearchProduct = () => {
     
     useEffect(() => {
         fetchProducts();
-    }, [page, gender, sort]);
+    }, []);
 
     const handleConfirmDelete = (id) => {
         if(!id) {
