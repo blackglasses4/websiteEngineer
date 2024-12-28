@@ -89,7 +89,7 @@ const DisplayProduct = () => {
             <div className="product-display__colors">
               <h3>Wybierz kolor</h3>
               <div className="color-options">
-                {product.attributes.color.map((color, index) => (
+                {product.color.map((color, index) => (
                   <div
                     key={`${color}-${index}`}
                     className={`color-circle ${
@@ -110,8 +110,8 @@ const DisplayProduct = () => {
             <div className="product-display__sizes">
               <h3>Wybierz rozmiar</h3>
               <ul className="size-options">
-                {product.attributes.sizes.length > 0 ? (
-                  product.attributes.sizes.map((size, index) => (
+                {product.sizes.length > 0 ? (
+                  product.sizes.map((size, index) => (
                     <li
                       key={`${size}-${index}`}
                       className={selectedSize === size ? 'selected' : ''}

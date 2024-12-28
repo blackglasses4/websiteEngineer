@@ -16,11 +16,9 @@ const EditProduct = ({ product, onSave, onCancel }) => {
     new_price: product.new_price || 0,
     old_price: product.old_price || 0,
     description: product.description || "",
-    attributes: {
-      sizes: product.attributes.sizes || [],
-      color: product.attributes.color || [],
-      material: product.attributes.material || "",
-    },
+    sizes: product.sizes || [],
+    color: product.color || [],
+    material: product.material || "",
   });
 
   useEffect(() => {
@@ -34,11 +32,9 @@ const EditProduct = ({ product, onSave, onCancel }) => {
       new_price: product.new_price || 0,
       old_price: product.old_price || 0,
       description: product.description || "",
-      attributes: {
-        sizes: product.attributes.sizes || [],
-        color: product.attributes.color || [],
-        material: product.attributes.material || "",
-      },
+      sizes: product.sizes || [],
+      color: product.color || [],
+      material: product.material || "",
     });
   }, [product]);
 
@@ -69,12 +65,10 @@ const EditProduct = ({ product, onSave, onCancel }) => {
         new_price: editForm.new_price,
         old_price: editForm.old_price,
         description: editForm.description,
-        attributes: {
-          sizes: editForm.attributes.sizes,
-          color: editForm.attributes.color,
-          material: editForm.attributes.material,
-        },
-      });
+        sizes: editForm.sizes,
+        color: editForm.color,
+        material: editForm.material,
+    });
 
       // const response = await fetch(`${BACKEND_URL}/products/${editForm.id}`, {
       //   method: "PUT",
@@ -115,16 +109,13 @@ const EditProduct = ({ product, onSave, onCancel }) => {
 
   const handleSizeChange = (size) => {
     setEditForm((prevForm) => {
-      const sizes = prevForm.attributes.sizes.includes(size)
-        ? prevForm.attributes.sizes.filter((s) => s !== size)
-        : [...prevForm.attributes.sizes, size];
-
+      const sizes = prevForm.sizes.includes(size)
+        ? prevForm.sizes.filter((s) => s !== size)
+        : [...prevForm.sizes, size];
+  
       return {
         ...prevForm,
-        attributes: {
-          ...prevForm.attributes,
-          sizes,
-        },
+        sizes, // Teraz sizes jest bezpośrednio w głównym obiekcie
       };
     });
   };
@@ -132,25 +123,19 @@ const EditProduct = ({ product, onSave, onCancel }) => {
   const handleMaterialChange = (material) => {
     setEditForm((prevForm) => ({
       ...prevForm,
-      attributes: {
-        ...prevForm.attributes,
-        material,
-      },
+      material,
     }));
   };
-
+  
   const handleColorChange = (color) => {
     setEditForm((prevForm) => {
-      const updatedColors = prevForm.attributes.color.includes(color)
-        ? prevForm.attributes.color.filter((c) => c !== color)
-        : [...prevForm.attributes.color, color];
-
+      const updatedColors = prevForm.color.includes(color)
+        ? prevForm.color.filter((c) => c !== color)
+        : [...prevForm.color, color];
+  
       return {
         ...prevForm,
-        attributes: {
-          ...prevForm.attributes,
-          color: updatedColors,
-        },
+        color: updatedColors,
       };
     });
   };
@@ -295,7 +280,7 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                       id="input-size"
                       type="checkbox"
                       value={size}
-                      checked={editForm.attributes.sizes.includes(size)} // Zmieniamy na checked
+                      checked={editForm.sizes.includes(size)} // Zmieniamy na checked
                       onChange={() => handleSizeChange(size)}
                     />
                   </label>
@@ -329,10 +314,10 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                     <input
                       type="checkbox"
                       value={color}
-                      checked={editForm.attributes.color.includes(color)}
+                      checked={editForm.color.includes(color)}
                       disabled={
-                        !editForm.attributes.color.includes(color) &&
-                        editForm.attributes.color.length >= 5
+                        !editForm.color.includes(color) &&
+                        editForm.color.length >= 5
                       }
                       onChange={() => handleColorChange(color)}
                     />
@@ -348,7 +333,7 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                 <select
                   id="input-text"
                   type="text"
-                  value={editForm.attributes.material || ""}
+                  value={editForm.material || ""}
                   onChange={(e) => handleMaterialChange(e.target.value)}
                 >
                   <option value="">Wybierz materiał</option>
@@ -500,7 +485,7 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                   id="input-size"
                   type="checkbox"
                   value={size}
-                  checked={editForm.attributes.sizes.includes(size)}
+                  checked={editForm.sizes.includes(size)}
                   onChange={() => handleSizeChange(size)}
                 />
               </label>
@@ -535,10 +520,10 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                 <input
                   type="checkbox"
                   value={color}
-                  checked={editForm.attributes.color.includes(color)}
+                  checked={editForm.color.includes(color)}
                   disabled={
-                    !editForm.attributes.color.includes(color) &&
-                    editForm.attributes.color.length >= 5
+                    !editForm.color.includes(color) &&
+                    editForm.color.length >= 5
                   }
                   onChange={() => handleColorChange(color)}
                 />
@@ -552,7 +537,7 @@ const EditProduct = ({ product, onSave, onCancel }) => {
           <select
             id="input-text"
             type="text"
-            value={editForm.attributes.material || ""}
+            value={editForm.material || ""}
             onChange={(e) => handleMaterialChange(e.target.value)}
           >
             <option value="">Wybierz materiał</option>
