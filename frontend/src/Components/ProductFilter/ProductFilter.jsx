@@ -40,8 +40,8 @@ const ProductFilter = ({ products, onFilterChange }) => {
                             onChange={handleGenderChange}
                         >
                             <option value="all">Wszystko</option>
-                            <option value="women">Kobiety</option>
-                            <option value="men">Mężczyźni</option>
+                            <option value="Kobiety">Kobiety</option>
+                            <option value="Mężczyźni">Mężczyźni</option>
                         </select>
                     </div>
 
