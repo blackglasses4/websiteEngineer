@@ -399,6 +399,7 @@
       "productId": "4"
     }
   ],
+  
   "products": [
     {
       "id": "3",
@@ -413,7 +414,6 @@
       "new_price": 45,
       "old_price": 90,
       "description": "Koszulka do intensywnych treningów, przewiewna i elastyczna.",
-      "attributes": {
         "sizes": [
           "S",
           "M",
@@ -426,8 +426,6 @@
         ],
         "material": "bawełna",
         "stock": 80
-      },
-      "isLiked": false
     },
     {
       "id": "4",
@@ -442,7 +440,7 @@
       "new_price": 65,
       "old_price": 130,
       "description": "Koszulka do intensywnych treningów na tenis, przewiewna i elastyczna.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -456,8 +454,6 @@
         ],
         "material": "poliester",
         "stock": 50
-      },
-      "isLiked": false
     },
     {
       "id": "5",
@@ -472,7 +468,7 @@
       "new_price": 45,
       "old_price": 90,
       "description": "Koszulka fitnessowa z oddychającego materiału, zapewnia wygodę podczas intensywnych treningów.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -486,8 +482,6 @@
         ],
         "material": "poliester",
         "stock": 80
-      },
-      "isLiked": false
     },
     {
       "id": "6",
@@ -502,7 +496,7 @@
       "new_price": 35,
       "old_price": 70,
       "description": "Koszulka do jogi, wygodna i elastyczna, wykonana z naturalnych materiałów.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -515,8 +509,6 @@
         ],
         "material": "bawełna",
         "stock": 100
-      },
-      "isLiked": false
     },
     {
       "id": "7",
@@ -531,7 +523,7 @@
       "new_price": 50,
       "old_price": 100,
       "description": "Lekka koszulka do biegania, z materiału odprowadzającego wilgoć, zapewnia komfort podczas treningu.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -546,7 +538,6 @@
           "lime"
         ],
         "material": "elastan"
-      }
     },
     {
       "id": "8",
@@ -561,7 +552,7 @@
       "new_price": 55,
       "old_price": 100,
       "description": "Lekka i przewiewna koszulka sportowa idealna na intensywne treningi.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -575,7 +566,6 @@
         ],
         "material": "poliester",
         "stock": 120
-      }
     },
     {
       "id": "9",
@@ -590,7 +580,7 @@
       "new_price": 35,
       "old_price": 60,
       "description": "Uniwersalna koszulka bawełniana idealna na co dzień.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -605,7 +595,6 @@
         ],
         "material": "bawełna",
         "stock": 75
-      }
     },
     {
       "id": "10",
@@ -620,7 +609,7 @@
       "new_price": 70,
       "old_price": 120,
       "description": "Zaawansowana koszulka termoaktywna, idealna na chłodniejsze dni i aktywności outdoorowe.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -634,7 +623,6 @@
         ],
         "material": "mieszanka bawełny i elastanu",
         "stock": 60
-      }
     },
     {
       "id": "11",
@@ -649,7 +637,7 @@
       "new_price": 30,
       "old_price": 50,
       "description": "Koszulka bez rękawów idealna na siłownię lub w ciepłe dni.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -662,7 +650,6 @@
         ],
         "material": "poliester",
         "stock": 95
-      }
     },
     {
       "id": "12",
@@ -677,7 +664,7 @@
       "new_price": 150,
       "old_price": 300,
       "description": "Koszula sportowa idealna do biegania w chłodniejsze dni. Lekka i oddychająca.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -690,7 +677,6 @@
         ],
         "material": "spandex",
         "stock": 80
-      }
     },
     {
       "id": "13",
@@ -705,7 +691,7 @@
       "new_price": 150,
       "old_price": 300,
       "description": "Kurtka sportowa idealna do biegania w chłodniejsze dni. Lekka i oddychająca.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -718,7 +704,6 @@
         ],
         "material": "nylon",
         "stock": 80
-      }
     },
     {
       "id": "14",
@@ -733,7 +718,7 @@
       "new_price": 120,
       "old_price": 240,
       "description": "Kurtka windbreaker do ochrony przed wiatrem, świetna na lekkie treningi na świeżym powietrzu.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -745,7 +730,6 @@
           "navy"
         ],
         "material": "poliamid"
-      }
     },
     {
       "id": "15",
@@ -760,7 +744,7 @@
       "new_price": 180,
       "old_price": 350,
       "description": "Kurtka sportowa z funkcjonalnym kapturem, doskonała do aktywności na świeżym powietrzu w każdą pogodę.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -774,7 +758,6 @@
         ],
         "material": "poliester",
         "stock": 100
-      }
     },
     {
       "id": "16",
@@ -789,7 +772,7 @@
       "new_price": 130,
       "old_price": 260,
       "description": "Polarowa kurtka sportowa do biegania w zimne dni. Ciepła i wygodna.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -802,7 +785,6 @@
         ],
         "material": "polar",
         "stock": 70
-      }
     },
     {
       "id": "17",
@@ -817,7 +799,7 @@
       "new_price": 250,
       "old_price": 500,
       "description": "Wysokiej jakości kurtka puchowa, idealna na zimowe treningi na świeżym powietrzu.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -830,7 +812,6 @@
         ],
         "material": "puch",
         "stock": 40
-      }
     },
     {
       "id": "18",
@@ -845,7 +826,7 @@
       "new_price": 270,
       "old_price": 540,
       "description": "Ciepła i lekka kurtka puchowa z kapturem, doskonała na chłodne dni.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -859,7 +840,6 @@
         ],
         "material": "puch",
         "stock": 50
-      }
     },
     {
       "id": "19",
@@ -874,7 +854,7 @@
       "new_price": 320,
       "old_price": 640,
       "description": "Wodoodporna kurtka narciarska z wieloma kieszeniami i regulowanym kapturem.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -888,7 +868,6 @@
         ],
         "material": "poliester",
         "stock": 35
-      }
     },
     {
       "id": "20",
@@ -903,7 +882,7 @@
       "new_price": 180,
       "old_price": 360,
       "description": "Praktyczna kurtka softshell, idealna na aktywności outdoorowe w wietrzne dni.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -917,7 +896,6 @@
         ],
         "material": "softshell",
         "stock": 65
-      }
     },
     {
       "id": "21",
@@ -932,7 +910,7 @@
       "new_price": 150,
       "old_price": 300,
       "description": "Lekka kurtka przejściowa, idealna na wiosnę i jesień.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -946,7 +924,6 @@
         ],
         "material": "bawełna z domieszką poliestru",
         "stock": 45
-      }
     },
     {
       "id": "22",
@@ -961,7 +938,7 @@
       "new_price": 400,
       "old_price": 800,
       "description": "Elegancka i ciepła kurtka zimowa z odpinanym futrem przy kapturze.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -974,7 +951,6 @@
         ],
         "material": "poliester z dodatkiem puchu",
         "stock": 30
-      }
     },
     {
       "id": "23",
@@ -989,7 +965,7 @@
       "new_price": 120,
       "old_price": 240,
       "description": "Lekka kurtka przeciwdeszczowa z regulowanym kapturem, idealna na deszczowe dni.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1005,7 +981,6 @@
         ],
         "material": "poliester wodoodporny",
         "stock": 70
-      }
     },
     {
       "id": "24",
@@ -1020,7 +995,7 @@
       "new_price": 200,
       "old_price": 400,
       "description": "Stylowa kurtka pikowana, odpowiednia na chłodne poranki i wieczory.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1036,7 +1011,6 @@
         ],
         "material": "poliester",
         "stock": 55
-      }
     },
     {
       "id": "25",
@@ -1051,7 +1025,7 @@
       "new_price": 120,
       "old_price": 200,
       "description": "Zaawansowane legginsy kompresyjne wspomagające regenerację mięśni, idealne na siłownię i treningi biegowe.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1067,7 +1041,6 @@
         ],
         "material": "poliester z elastanem",
         "stock": 50
-      }
     },
     {
       "id": "26",
@@ -1082,7 +1055,7 @@
       "new_price": 150,
       "old_price": 300,
       "description": "Idealny strój męski do surfowania, idealny do wody",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -1097,7 +1070,6 @@
         ],
         "material": "Poliester wodoodporny",
         "stock": 35
-      }
     },
     {
       "id": "27",
@@ -1112,7 +1084,7 @@
       "new_price": 110,
       "old_price": 220,
       "description": "Elastyczne i lekkie spodnie, zaprojektowane z myślą o biegaczach, zapewniają swobodę ruchów i komfort.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1127,7 +1099,6 @@
         ],
         "material": "poliester z dodatkiem elastanu",
         "stock": 60
-      }
     },
     {
       "id": "28",
@@ -1142,7 +1113,7 @@
       "new_price": 140,
       "old_price": 280,
       "description": "Funkcjonalne spodnie z kieszeniami na drobiazgi, idealne do treningów na świeżym powietrzu.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1159,7 +1130,6 @@
         ],
         "material": "poliester",
         "stock": 40
-      }
     },
     {
       "id": "29",
@@ -1174,7 +1144,7 @@
       "new_price": 130,
       "old_price": 260,
       "description": "Stylowe spodnie do boksu, idealne do aktywności na siłowni lub na ringu.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1190,7 +1160,6 @@
         ],
         "material": "poliester",
         "stock": 55
-      }
     },
     {
       "id": "30",
@@ -1205,7 +1174,7 @@
       "new_price": 130,
       "old_price": 260,
       "description": "Funkcjonalne i wygodne spodnie do pływania dla mężczyzn, zaprojektowane z myślą o komforcie i wydajności w wodzie.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1221,7 +1190,6 @@
         ],
         "material": "poliester",
         "stock": 55
-      }
     },
     {
       "id": "31",
@@ -1236,7 +1204,7 @@
       "new_price": 110,
       "old_price": 220,
       "description": "Stylowe i wygodne spodnie sportowe z wysokim stanem, doskonałe do treningów fitness i jogi. Wykonane z elastycznego materiału, zapewniają swobodę ruchów i idealne dopasowanie.",
-      "attributes": {
+      
         "sizes": [
           "XS",
           "S",
@@ -1253,7 +1221,6 @@
         ],
         "material": "elastan z dodatkiem bawełny",
         "stock": 50
-      }
     },
     {
       "id": "32",
@@ -1268,7 +1235,7 @@
       "new_price": 130,
       "old_price": 260,
       "description": "Funkcjonalne spodnie treningowe z kieszeniami, idealne do biegania i aktywności na świeżym powietrzu. Materiał oddychający i szybkoschnący.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1282,7 +1249,6 @@
         ],
         "material": "poliester z elastanem",
         "stock": 45
-      }
     },
     {
       "id": "33",
@@ -1297,7 +1263,7 @@
       "new_price": 150,
       "old_price": 300,
       "description": "Ciepłe i wygodne spodnie termiczne, idealne na treningi w chłodniejsze dni. Wykonane z materiału utrzymującego ciepło i odprowadzającego wilgoć.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -1312,7 +1278,6 @@
         ],
         "material": "mieszanka poliestru i wełny",
         "stock": 40
-      }
     },
     {
       "id": "34",
@@ -1327,7 +1292,7 @@
       "new_price": 120,
       "old_price": 240,
       "description": "Wyraziste spodnie sportowe w wielokolorowym wzorze, które dodadzą energii każdemu treningowi. Materiał elastyczny i oddychający.",
-      "attributes": {
+      
         "sizes": [
           "XS",
           "S",
@@ -1341,7 +1306,6 @@
         ],
         "material": "poliester z elastanem",
         "stock": 60
-      }
     },
     {
       "id": "35",
@@ -1356,7 +1320,7 @@
       "new_price": 140,
       "old_price": 280,
       "description": "Nowoczesne spodnie dresowe o kroju slim fit, idealne do codziennych aktywności i lekkich treningów. Wyposażone w elastyczny pas i zwężane nogawki.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1370,7 +1334,6 @@
         ],
         "material": "bawełna z dodatkiem elastanu",
         "stock": 55
-      }
     },
     {
       "id": "36",
@@ -1385,7 +1348,7 @@
       "new_price": 100,
       "old_price": 200,
       "description": "Miękkie i elastyczne spodnie stworzone z myślą o jodze i pilatesie. Doskonale dopasowują się do sylwetki i zapewniają pełną swobodę ruchów.",
-      "attributes": {
+      
         "sizes": [
           "XS",
           "S",
@@ -1400,7 +1363,6 @@
         ],
         "material": "bawełna z elastanem",
         "stock": 70
-      }
     },
     {
       "id": "37",
@@ -1415,7 +1377,7 @@
       "new_price": 50,
       "old_price": 100,
       "description": "Ciepła i wygodna czapka sportowa, idealna na treningi w zimowych warunkach. Wykonana z materiałów zapewniających izolację i komfort.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1429,7 +1391,6 @@
         ],
         "material": "polar z dodatkiem elastanu",
         "stock": 50
-      }
     },
     {
       "id": "38",
@@ -1444,7 +1405,7 @@
       "new_price": 45,
       "old_price": 90,
       "description": "Lekka i oddychająca czapka sportowa, doskonała na biegi i treningi w chłodne dni. Zapewnia wygodę i swobodę ruchów.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1459,7 +1420,6 @@
         ],
         "material": "mikropolar",
         "stock": 40
-      }
     },
     {
       "id": "39",
@@ -1474,7 +1434,7 @@
       "new_price": 40,
       "old_price": 80,
       "description": "Sportowa czapka z daszkiem, idealna na treningi w słoneczne dni. Chroni oczy przed słońcem, a materiał zapewnia dobrą wentylację.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1489,7 +1449,6 @@
         ],
         "material": "poliester",
         "stock": 60
-      }
     },
     {
       "id": "40",
@@ -1504,7 +1463,7 @@
       "new_price": 60,
       "old_price": 120,
       "description": "Cienka, termiczna czapka treningowa. Odpowiednia na intensywne ćwiczenia na świeżym powietrzu w chłodniejsze dni.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -1518,7 +1477,6 @@
         ],
         "material": "poliester z membraną",
         "stock": 30
-      }
     },
     {
       "id": "41",
@@ -1533,7 +1491,7 @@
       "new_price": 55,
       "old_price": 110,
       "description": "Uniwersalna opaska sportowa, nadająca się do różnych aktywności, takich jak bieganie, fitness czy trekking. Lekka i funkcjonalna.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1547,7 +1505,6 @@
         ],
         "material": "bawełna z dodatkiem elastanu",
         "stock": 50
-      }
     },
     {
       "id": "42",
@@ -1562,7 +1519,7 @@
       "new_price": 60,
       "old_price": 120,
       "description": "Ciepła czapka sportowa idealna na treningi w zimowe dni. Zapewnia komfort i ochronę przed zimnem.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -1576,7 +1533,6 @@
         ],
         "material": "polar z elastanem",
         "stock": 45
-      }
     },
     {
       "id": "43",
@@ -1591,7 +1547,7 @@
       "new_price": 50,
       "old_price": 100,
       "description": "Czapka termiczna zaprojektowana z myślą o treningach w chłodne dni. Lekka i oddychająca, zapewnia ciepło i odprowadzenie wilgoci.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -1603,7 +1559,6 @@
         ],
         "material": "poliester z membraną",
         "stock": 30
-      }
     },
     {
       "id": "44",
@@ -1618,7 +1573,7 @@
       "new_price": 40,
       "old_price": 80,
       "description": "Sportowa czapka z daszkiem idealna na treningi na świeżym powietrzu. Chroni oczy przed słońcem i zapewnia wentylację.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1633,7 +1588,6 @@
         ],
         "material": "bawełna",
         "stock": 60
-      }
     },
     {
       "id": "45",
@@ -1648,7 +1602,7 @@
       "new_price": 35,
       "old_price": 70,
       "description": "Lekka czapka sportowa wykonana z przewiewnych materiałów. Idealna na cieplejsze dni i treningi w słońcu.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -1661,7 +1615,6 @@
         ],
         "material": "poliester",
         "stock": 50
-      }
     },
     {
       "id": "46",
@@ -1676,7 +1629,7 @@
       "new_price": 30,
       "old_price": 60,
       "description": "Elastyczna opaska sportowa idealna na treningi biegowe i fitness. Zapewnia wygodę i dobrze odprowadza pot.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1690,7 +1643,6 @@
         ],
         "material": "bawełna z dodatkiem elastanu",
         "stock": 70
-      }
     },
     {
       "id": "47",
@@ -1705,7 +1657,7 @@
       "new_price": 150,
       "old_price": 300,
       "description": "Profesjonalny strój bokserski wykonany z elastycznego materiału, zapewniający pełną swobodę ruchów i komfort podczas treningów bokserskich.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1719,7 +1671,6 @@
         ],
         "material": "poliester, elastan",
         "stock": 50
-      }
     },
     {
       "id": "48",
@@ -1734,7 +1685,7 @@
       "new_price": 400,
       "old_price": 800,
       "description": "Wodoodporny i ciepły strój narciarski z technologią oddychającą, zaprojektowany do jazdy na nartach w zimowych warunkach.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1748,7 +1699,6 @@
         ],
         "material": "nylon, poliester",
         "stock": 30
-      }
     },
     {
       "id": "49",
@@ -1763,7 +1713,7 @@
       "new_price": 120,
       "old_price": 240,
       "description": "Strój do jogi wykonany z oddychającego materiału, elastyczny i wygodny, zapewnia komfort i pełną swobodę podczas ćwiczeń.",
-      "attributes": {
+      
         "sizes": [
           "XS",
           "S",
@@ -1777,7 +1727,6 @@
         ],
         "material": "bawełna, elastan",
         "stock": 100
-      }
     },
     {
       "id": "50",
@@ -1792,7 +1741,7 @@
       "new_price": 120,
       "old_price": 240,
       "description": "Kolorowy strój do jogi wykonany z oddychającego materiału, elastyczny i wygodny, zapewnia komfort i pełną swobodę podczas ćwiczeń.",
-      "attributes": {
+      
         "sizes": [
           "XS",
           "S",
@@ -1806,7 +1755,6 @@
         ],
         "material": "bawełna, elastan",
         "stock": 100
-      }
     },
     {
       "id": "51",
@@ -1821,7 +1769,7 @@
       "new_price": 110,
       "old_price": 220,
       "description": "Strój do pilatesu zaprojektowany z myślą o elastyczności i wygodzie. Wykonany z materiałów, które umożliwiają swobodne wykonywanie ćwiczeń.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1835,7 +1783,6 @@
         ],
         "material": "poliester, elastan",
         "stock": 60
-      }
     },
     {
       "id": "52",
@@ -1850,7 +1797,7 @@
       "new_price": 130,
       "old_price": 260,
       "description": "Strój gimnastyczny, który zapewnia elastyczność i wygodę, idealny do ćwiczeń gimnastycznych, oparte na technologiach odprowadzania wilgoci.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1863,7 +1810,6 @@
         ],
         "material": "bawełna, elastan",
         "stock": 80
-      }
     },
     {
       "id": "53",
@@ -1878,7 +1824,7 @@
       "new_price": 90,
       "old_price": 180,
       "description": "Elegancki strój baletowy, wykonany z elastycznego materiału, zaprojektowany z myślą o baletnikach i miłośniczkach tańca.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1892,7 +1838,6 @@
         ],
         "material": "bawełna, elastan",
         "stock": 70
-      }
     },
     {
       "id": "54",
@@ -1907,7 +1852,7 @@
       "new_price": 42,
       "old_price": 85,
       "description": "Wygodny strój z długim rękawem, odpowiednia do aktywności fizycznej do sportów sztuk walki.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -1921,7 +1866,6 @@
         ],
         "material": "bawełna",
         "stock": 90
-      }
     },
     {
       "id": "55",
@@ -1936,7 +1880,7 @@
       "new_price": 150,
       "old_price": 300,
       "description": "Wygodny strój z długim rękawem, odpowiednia do aktywności fizycznej do sportów sztuk walki.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -1949,7 +1893,6 @@
         ],
         "material": "spandex",
         "stock": 80
-      }
     },
     {
       "id": "56",
@@ -1964,7 +1907,7 @@
       "new_price": 150,
       "old_price": 300,
       "description": "Wysokiej jakości strój snowboardowy, zapewniający komfort i ciepło podczas jazdy na stoku. Wykonany z wodoodpornego materiału, idealny do zimowych warunków. Dzięki swojej elastyczności, umożliwia pełną swobodę ruchów, zapewniając wygodę podczas wykonywania trików i manewrów na snowboardzie.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -1977,7 +1920,6 @@
         ],
         "material": "bawełna",
         "stock": 80
-      }
     },
     {
       "id": "57",
@@ -1992,7 +1934,7 @@
       "new_price": 90,
       "old_price": 180,
       "description": "Elegancki strój baletowy ze spódniczką, wykonany z elastycznego materiału, zaprojektowany z myślą o baletnikach i miłośniczkach tańca.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -2006,7 +1948,6 @@
         ],
         "material": "bawełna, elastan",
         "stock": 70
-      }
     },
     {
       "id": "58",
@@ -2021,7 +1962,7 @@
       "new_price": 150,
       "old_price": 300,
       "description": "Profesjonalny strój bokserski wykonany z elastycznego materiału, zapewniający pełną swobodę ruchów i komfort podczas treningów bokserskich.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -2035,7 +1976,6 @@
         ],
         "material": "poliester, elastan",
         "stock": 50
-      }
     },
     {
       "id": "59",
@@ -2050,7 +1990,7 @@
       "new_price": 400,
       "old_price": 800,
       "description": "Wodoodporny i ciepły strój narciarski z technologią oddychającą, zaprojektowany do jazdy na nartach w zimowych warunkach.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -2064,7 +2004,6 @@
         ],
         "material": "nylon, poliester",
         "stock": 30
-      }
     },
     {
       "id": "60",
@@ -2079,7 +2018,7 @@
       "new_price": 120,
       "old_price": 240,
       "description": "Strój do jogi wykonany z oddychającego materiału, elastyczny i wygodny, zapewnia komfort i pełną swobodę podczas ćwiczeń.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -2092,7 +2031,6 @@
         ],
         "material": "bawełna, elastan",
         "stock": 100
-      }
     },
     {
       "id": "61",
@@ -2107,7 +2045,7 @@
       "new_price": 150,
       "old_price": 300,
       "description": "Wysokiej jakości strój snowboardowy, zapewniający komfort i ciepło podczas jazdy na stoku. Wykonany z wodoodpornego materiału, idealny do zimowych warunków. Dzięki swojej elastyczności, umożliwia pełną swobodę ruchów, zapewniając wygodę podczas wykonywania trików i manewrów na snowboardzie.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -2120,7 +2058,6 @@
         ],
         "material": "bawełna",
         "stock": 80
-      }
     },
     {
       "id": "62",
@@ -2135,7 +2072,7 @@
       "new_price": 150,
       "old_price": 300,
       "description": "Wysokiej jakości strój do pływania, zaprojektowany z myślą o intensywnych treningach i rekreacyjnym pływaniu. Strój zapewnia doskonałą elastyczność i wygodę, umożliwiając swobodny ruch w wodzie.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -2148,7 +2085,6 @@
         ],
         "material": "poliester",
         "stock": 80
-      }
     },
     {
       "id": "63",
@@ -2163,7 +2099,7 @@
       "new_price": 180,
       "old_price": 360,
       "description": "Profesjonalny strój piłkarski zapewniający komfort i swobodę ruchów podczas gry. Wykonany z lekkiego, oddychającego materiału, idealny do intensywnych meczów oraz treningów. Strój wyposażony w elastyczne panele, które poprawiają dopasowanie.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -2177,7 +2113,6 @@
         ],
         "material": "poliamid, elastan",
         "stock": 50
-      }
     },
     {
       "id": "64",
@@ -2192,7 +2127,7 @@
       "new_price": 250,
       "old_price": 500,
       "description": "Strój hokejowy wykonany z wytrzymałych materiałów, które zapewniają ochronę, komfort i elastyczność podczas gry. Zawiera specjalne wzmocnienia w newralgicznych miejscach, takich jak ramiona i kolana, oraz elastyczne panele, które umożliwiają pełną swobodę ruchów.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -2205,7 +2140,6 @@
         ],
         "material": "poliester, nylon, elastan",
         "stock": 30
-      }
     },
     {
       "id": "65",
@@ -2220,7 +2154,7 @@
       "new_price": 350,
       "old_price": 700,
       "description": "Profesjonalny strój do szermierki dla mężczyzn, zaprojektowany z myślą o pełnej ochronie i komforcie podczas rywalizacji. Wykonany z wytrzymałych materiałów, takich jak kevlar i poliester, gwarantuje doskonałą elastyczność i bezpieczeństwo.",
-      "attributes": {
+      
         "sizes": [
           "M",
           "L",
@@ -2233,7 +2167,6 @@
         ],
         "material": "poliester, kevlar",
         "stock": 50
-      }
     },
     {
       "id": "66",
@@ -2248,7 +2181,7 @@
       "new_price": 350,
       "old_price": 700,
       "description": "Profesjonalny strój do szermierki dla kobiet, zapewniający pełną swobodę ruchów oraz maksymalną ochronę. Wykonany z lekkich, odpornych na uszkodzenia materiałów, zapewniających komfort i bezpieczeństwo podczas walki.",
-      "attributes": {
+      
         "sizes": [
           "S",
           "M",
@@ -2263,6 +2196,5 @@
         "material": "poliester, kevlar",
         "stock": 40
       }
-    }
   ]
 }

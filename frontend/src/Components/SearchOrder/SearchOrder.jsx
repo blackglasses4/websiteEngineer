@@ -32,16 +32,18 @@ const SearchProduct = () => {
             const response = await getOrders(params);
             const result = await response.json();
 
-            setFirstPage(result['first']);
-            setPrevPage(result['prev']);
-            setNextPage(result['next']);
-            setLastPage(result['last']);
-            setNumberOfPages(result['pages']);
-            setNumberOfItems(result['items']);
-
-            const productList = result['data'];
-            setOrders(productList);
-            setConfirmedResults(productList); 
+            if (result['data']) {
+                setFirstPage(result['first']);
+                setPrevPage(result['prev']);
+                setNextPage(result['next']);
+                setLastPage(result['last']);
+                setNumberOfPages(result['pages']);
+                setNumberOfItems(result['items']);
+                setOrders(result['data']);
+                setConfirmedResults(result['data']);
+            } else {
+                console.error('Brak danych w odpowiedzi');
+            } 
         } catch (error) {
             toast.error('Nie udało się załadować zamówień.', {
                 position: 'top-right',
