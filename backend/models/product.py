@@ -42,6 +42,18 @@ class MaterialEnum(enum.Enum):
     polar = "Polar"
     puch = "Puch"
 
+class GenderEnum(enum.Enum):
+    man = "Mężczyźni"
+    woman = "Kobiety"
+    unisex = "Dla obu płci"
+    
+class CategoryEnum(enum.Enum):
+    shirt = "koszulka"
+    jacket = "kurtka"
+    pants = "spodnie"
+    hat = "czapka"
+    outfit = "stroje"
+
 class Product(Base):
     __tablename__ = 'products' #Nazwa tabeli w bazie danych
     

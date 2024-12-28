@@ -21,7 +21,9 @@ const CategoryProducts = () => {
         const response = await fetch(`${BACKEND_URL}/products`);
         const data = await response.json();
 
-        const filteredProducts = data.filter(product => product.category === category);
+        console.log(data);
+        const filteredProducts = Array.isArray(data?.data)
+        ? data.data.filter(product => product.category === category) : [];
         setProducts(filteredProducts);
         setFilteredProducts(filteredProducts); 
       } catch (error) {
@@ -105,7 +107,8 @@ const CategoryProducts = () => {
         {currentProducts.map(item => (
           <div className="item" key={item.id}>
             <Link to={`/product/${item.id}`}>
-              <LazyLoadImage
+                {item.image && (
+                  <LazyLoadImage
                   src={item.image.url}
                   effect="blur"
                   alt={item.image.alt}
@@ -113,6 +116,7 @@ const CategoryProducts = () => {
                   height="auto"
                   threshold={100}
                 />
+              )}
               <p>{item.name}</p>
               <div className="item-prices">
                 <div className="item-prices-new">{item.new_price}zł</div>
