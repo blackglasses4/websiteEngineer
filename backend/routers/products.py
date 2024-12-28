@@ -66,11 +66,15 @@ def product_add(product: ProductCreate, db: Session = Depends(get_db)):
         name=product.name,
         category=product.category,
         gender=product.gender,
+        popular = product.popular,
         new_price=product.new_price,
         old_price=product.old_price,
         amount=product.amount,
         description=product.description,
         picture=product.picture,
+        size = product.size,
+        color = product.color,
+        material = product.material
     )
 
     # Dodanie produktu do sesji i zapisanie do bazy danych
