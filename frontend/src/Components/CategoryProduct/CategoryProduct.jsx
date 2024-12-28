@@ -22,9 +22,8 @@ const CategoryProducts = () => {
         const response = await getProducts();
         const data = await response.json();
 
-        console.log(data);
-        const filteredProducts = Array.isArray(data?.data)
-        ? data.data.filter(product => product.category === category) : [];
+        const filteredProducts = data.data.filter(product => product.category === category);
+
         setProducts(filteredProducts);
         setFilteredProducts(filteredProducts); 
       } catch (error) {
