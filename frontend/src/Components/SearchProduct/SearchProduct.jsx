@@ -290,9 +290,9 @@ const SearchProduct = () => {
                                     <td>{product.new_price} zł</td>
                                     <td>{product.old_price ? `${product.old_price} zł` : '—'}</td>
                                     <td>{product.description ? product.description.slice(0,25) + '...' : 'Brak opisu'}</td>
-                                    {/* <td>{product.sizes && product.sizes.length > 0 ? product.sizes.join(', ') : 'Brak'}</td>
+                                    <td>{product.sizes && product.sizes.length > 0 ? product.sizes.join(', ') : 'Brak'}</td>
                                     <td>{product.color && product.color.length > 0 ? product.color.join(', ') : 'Brak'}</td>
-                                    <td>{product.material || 'Brak'}</td> */}
+                                    <td>{product.material || 'Brak'}</td>
 
                                     <td><button className='button-edit' onClick={() => setProductToEdit(product)}>Edytuj</button></td>
                                     <td><button className='button-delete' onClick={() => handleConfirmDelete(product.id)}>Usuń</button></td>
