@@ -23,5 +23,13 @@ class Order(Base):
 
 class OrderCreate(BaseModel):
 
+    phone: int
+    street: str
+    postal_code = str
+    city: str
+    house_number: Optional[int] = None
+    apartment_number: Optional[int] = None
+    comment: Optional[str] = None
+    
     class Config:
         from_attributes = True  # Allows compatibility with SQLAlchemy models
