@@ -1,0 +1,104 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.admin-search_products,
+.search-order,
+.search-user {
+    display: block;
+
+    .filter {
+        position: relative;
+        padding: 1em 0;
+
+        input {
+            font-size: 18px;
+            margin-right: 0.3em;
+            padding: 8px 10px;
+            border: 1px solid var(--table_border);
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            background-color: var(--dominant-light);
+            color: var(--dominant-dark);
+
+            &:hover {
+                background-color: var(--table_td);
+            }
+
+            &:disabled {
+                background-color: var(--dominant-light);
+                color: $grey_light;
+                cursor: not-allowed;
+                border: 1px solid var(--table_border);
+                border-radius: 8px;
+            }
+        }
+
+        span {
+            margin: 0 0.3em;
+            color: var(--dominant-dark);
+        }
+    
+        .product-filter {
+            margin: -2em 0;
+            position: absolute;
+            right: 0;
+        
+            .filter-toggle {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 10px 15px;
+                background-color: var(--dominant-light);
+                border: 1px solid var(--table_border);
+                color: var(--dominant-dark);
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+        
+                &:hover {
+                    background-color: var(--table_td);
+                }
+        
+                svg {
+                    font-size: 18px;
+                }
+            }
+        
+            .filter-panel {
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background-color: var(--dominant-light);
+                border: 1px solid var(--table_border);
+                border-radius: 8px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                z-index: 1;
+                width: 300px;
+                padding: 0.8em;
+                max-height: 500px;
+                overflow-y: auto;
+                
+                .filter-group {
+        
+                    label {
+                        color: var(--dominant-dark);
+                        margin-bottom: 0.4em;
+                    }
+        
+                    select {
+                        width: 100%;
+                        padding: 0.3em 0.3em;
+                        background-color: var(--dominant-light);
+                        color: var(--dominant-dark);
+                        border: 1px solid var(--table_border);
+                        border-radius: 5px;
+                        font-size: 0.9em;
+                    }
+                }
+            }
+        }
+    }    
+}
+
+
