@@ -40,7 +40,7 @@ def product_add(product: ProductCreate, db: Session = Depends(get_db)):
 
 
 
-@product_router.get("/products_list")
+@product_router.get("/products")
 def get_product_list(db: Session = Depends(get_db)):
     products = db.query(Product).all()  # Query all products from the database
     if not products:
