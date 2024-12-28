@@ -18,7 +18,6 @@ app.include_router(router, tags=["Auth"])
 app.include_router(product_router, tags=["Products"])
 app.include_router(order_router, tags=["Orders"])
 
->>>>>>> feature/making-admin
 # Add CORSMiddleware to the app to allow cross-origin requests
 
 app.add_middleware(
