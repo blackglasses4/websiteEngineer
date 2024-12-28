@@ -67,13 +67,11 @@ async function del(endpoint, id) {
 
 //wyświetlanie
 
-//moje już będą oznaczone, jako 2, aby potem nie zmieniać nazw.
-// const response = await fetch(`${BACKEND_URL2}/products/products_list`);
-
 async function getProducts(params) {
     const x = await get('/products/products_list', params);
     return x;
 }
+//products_list
 
 async function getOrders(params) {
     const x = await get('/orders', params);
@@ -111,12 +109,10 @@ async function editProduct(product) {
         new_price: product.new_price,
         old_price: product.old_price,
         description: product.description,
-        attributes: {
-            sizes: product.attributes.sizes,
-            color: product.attributes.color,
-            material: product.attributes.material,
-        },
-    });
+        sizes: product.sizes,
+        color: product.color,
+        material: product.material,
+});
 }
 
 async function editUser(user) {
