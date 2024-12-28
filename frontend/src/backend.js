@@ -74,19 +74,10 @@ async function editProduct(product) {
         new_price: product.new_price,
         old_price: product.old_price,
         description: product.description,
-<<<<<<<<< Temporary merge branch 1
-        attributes: {
-            sizes: product.attributes.sizes,
-            color: product.attributes.color,
-            material: product.attributes.material,
-        },
-    });
-=========
         sizes: product.sizes,
         color: product.color,
         material: product.material,
-});
->>>>>>>>> Temporary merge branch 2
+    });
 }
 
 async function editUser(user) {
