@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import {BACKEND_URL} from '../config';
+import { FaSlidersH } from 'react-icons/fa';
 
 import CreateProduct from '../CreateProduct/CreateProduct';
 import SearchBar from './SearchBar';
 import EditProduct from './EditProduct';
-// import Filter from '../Filter/Filter';
+import useClick from '../useClick';
+import { getProducts, deleteProduct } from '../../backend';
 
+import '../Filter/Filter.scss';
 import './Search.scss';
-import { getProducts } from '../../backend';
 
 const SearchProduct = () => {
-   
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const filterPanelRef = useRef(null);
+    useClick(filterPanelRef, () => setIsFilterOpen(false));
+
     const [products, setProducts] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
     const [productToEdit, setProductToEdit] = useState(null);
@@ -31,10 +35,8 @@ const SearchProduct = () => {
 
     //filtrowanie
     const [gender, setGender] = useState();
-
     //sortortowanie
-    // TODO
-
+    const [sort, setSort] = useState("none");
 
     const fetchProducts = async () => {
         try {
@@ -66,6 +68,7 @@ const SearchProduct = () => {
             } else {
                 console.error('Brak danych w odpowiedzi');
             }
+    
         } catch (error) {
             toast.error('Nie udało się załadować produktów.', {
                 position: 'top-right',
@@ -77,7 +80,7 @@ const SearchProduct = () => {
                 progress: undefined,
             });
         }
-    };
+    };    
     
     useEffect(() => {
         fetchProducts();
@@ -111,16 +114,22 @@ const SearchProduct = () => {
         }
 
         try {
-            const response = await fetch(`${BACKEND_URL}/products/${id}`, {
-                method: 'DELETE',
-            });
+
+            const response = await deleteProduct(id);
+            // const response = await fetch(`${BACKEND_URL}/products/${id}`, {
+            //     method: 'DELETE',
+            // });
     
             if (!response.ok) {
                 throw new Error('Wystąpił błąd podczas usuwania produktu.');
             }
     
             setProducts((prev) => prev.filter((product) => product.id !== id));
-    
+
+            setTimeout(() => {
+                fetchProducts();
+            }, 2000);
+
             toast.success('Produkt został usunięty!', {
                 position: 'top-right',
                 autoClose: 5000,
@@ -131,7 +140,12 @@ const SearchProduct = () => {
                 progress: undefined,
             });
 
-            toast.dismiss(toastId);
+            if (toastId) {
+                toast.dismiss(toastId);
+            } else {
+                console.error('toastId is undefined');
+            }
+    
         } catch (err) {
             toast.error(err.message || 'Nie udało się usunąć produktu.', {
                 position: 'top-right',
@@ -141,10 +155,14 @@ const SearchProduct = () => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-            });
-            toast.dismiss(toastId);
+            });  
+            if (toastId) {
+                toast.dismiss(toastId);
+            }
         } finally {
-            toast.dismiss(toastId);
+            if (toastId) {
+                toast.dismiss(toastId);
+            }    
         }
     };
 
@@ -172,12 +190,10 @@ const SearchProduct = () => {
     return (
         <div className="search-product">
             <h1 className='admin-h1'>Dodaj nowy produkt</h1>
-            {/* <CreateProduct/> */}
+            <CreateProduct/>
             <h1 className='admin-h1'>Wyszukaj produkty</h1>
 
             <SearchBar data={products} setConfirmedResults={setConfirmedResults} type="products" />
-
-            {/* <Filter fetchProducts={fetchProducts} /> */}
             
             <section className="admin-search_products">
                 <div className="filter">
@@ -259,11 +275,13 @@ const SearchProduct = () => {
                                 <tr key={product.id}>
                                     <td>{product.id}</td>
                                     <td>
-                                        <LazyLoadImage
+                                        {product.image && (
+                                            <LazyLoadImage
                                             src={product.image.url}
-                                            alt={product.image.alt}
+                                            alt={product.image.alt || 'Zdjęcie produktu'}
                                             effect="blur"
                                             className="cart-item-image"/>
+                                        )}
                                     </td>
                                     <td>{product.category || 'Brak'}</td>
                                     <td>{product.gender}</td>
@@ -297,7 +315,7 @@ const SearchProduct = () => {
                 )}
             </section>
 
-            {/* <section className="admin-search_products-mobile">
+            <section className="admin-search_products-mobile">
                 <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                 {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
@@ -305,11 +323,13 @@ const SearchProduct = () => {
                     <div className="search-mobile">
                         {confirmedResults.map((product) => (
                             <div className="search-mobile_product" key={product.id}>
-                                <LazyLoadImage
-                                    src={product.image.url}
-                                    alt={product.image.alt}
-                                    effect="blur"
-                                    className="product-image"/>
+                                {product.image && (
+                                        <LazyLoadImage
+                                        src={product.image.url}
+                                        alt={product.image.alt || 'Zdjęcie produktu'}
+                                        effect="blur"
+                                        className="product-image"/>
+                                    )}
                                 <div className="product-details">
                                     <p><span>ID: </span>{product.id}</p>
                                     <p><span>Kategoria: </span>{product.category}</p>
@@ -319,9 +339,9 @@ const SearchProduct = () => {
                                     <p><span>Nowa cena: </span>{product.new_price} zł</p>
                                     <p><span>Stara cena: </span>{product.old_price ? `${product.old_price} zł` : '—'}</p>
                                     <p><span>Opis: </span>{product.description ? product.description.slice(0, 20) + '...' : 'Brak opisu'}</p>
-                                    <p><span>Rozmiary: </span>{product.attributes.sizes && product.attributes.sizes.length > 0 ? product.attributes.sizes.join(', ') : 'Brak'}</p>
-                                    <p><span>Kolory: </span>{product.attributes.color && product.attributes.color.length > 0 ? product.attributes.color.join(', ') : 'Brak'}</p>
-                                    <p><span>Materiał: </span>{product.attributes.material ? `${product.attributes.material}` : '—'}</p>
+                                    {/* <p><span>Rozmiary: </span>{product.sizes && product.sizes.length > 0 ? product.sizes.join(', ') : 'Brak'}</p>
+                                    <p><span>Kolory: </span>{product.color && product.color.length > 0 ? product.color.join(', ') : 'Brak'}</p>
+                                    <p><span>Materiał: </span>{product.material ? `${product.material}` : '—'}</p> */}
 
                                     <div className="mobile-button">
                                         <button className='button-edit' onClick={() => setProductToEdit(product)}>Edytuj</button>
@@ -341,7 +361,7 @@ const SearchProduct = () => {
                         ))}
                     </div>
                 )}
-            </section> */}
+            </section>
         </div>
     );
 };
