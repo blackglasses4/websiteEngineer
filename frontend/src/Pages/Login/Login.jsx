@@ -60,63 +60,42 @@ const Login = () => {
     }
 
     try {
-    //   // Zaktualizuj ten URL, aby wskazywał na prawdziwe API backendu (np. FastAPI)
-    // const response = await fetch(`http://`${BACKEND_URL}/login`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     usernameOrEmail: loginDetails.usernameOrEmail,
-    //     password: loginDetails.password,
-    //   }),
-    // });
-
-    // const data = await response.json();
-
-    // if (!response.ok) {
-    //   throw new Error(data.message || "Błędna nazwa użytkownika, email lub hasło.");
-    // }
-
-    // // Zakładając, że odpowiedź zawiera dane użytkownika, zapisujemy je w localStorage
-    // localStorage.setItem("user", JSON.stringify({ username: data.username }));
-    // toast.success("Zalogowano pomyślnie!");
-
-      //chwilowy do server-json.
-      const response = await fetch(`${BACKEND_URL}/users`);
-      const users = await response.json();
-
-      if (response.status === StatusCodes.UNAUTHORIZED) { //401
-        throw new Error("Błędna nazwa użytkownika, email lub hasło.");
+      // Tworzymy dane w formacie x-www-form-urlencoded
+      const body = new URLSearchParams({
+        username: loginDetails.usernameOrEmail,
+        password: loginDetails.password,
+      });
+  
+      // Wysyłamy żądanie do backendu
+      const response = await fetch(`${ BACKEND_URL }/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded", // Właściwy nagłówek
+        },
+        body: body.toString(), // Dane w formacie x-www-form-urlencoded
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.detail || "Błędna nazwa użytkownika, email lub hasło.");
       }
-
-      // Sprawdzanie, czy użytkownik istnieje i hasło jest poprawne
-      const user = users.find(
-        (user) =>
-          (user.username === loginDetails.usernameOrEmail ||
-            user.email === loginDetails.usernameOrEmail) &&
-            user.password === loginDetails.password
-      );
-
-      if (!user) {
-        throw new Error("Błędna nazwa użytkownika, email lub hasło.");
-      }
-
-      localStorage.setItem("user", JSON.stringify({ username: user.username }));
-      toast.success("Zalogowałeś się!");
-
-      if(user.username.toLowerCase().includes('admin')) {
+  
+      // Zapisujemy dane użytkownika w localStorage
+      localStorage.setItem("user", JSON.stringify({ username: data.username }));
+      toast.success("Zalogowano pomyślnie!");
+  
+      // Przekierowanie w zależności od użytkownika
+      if (data.is_admin) {
         setTimeout(() => {
           navigate("/admin");
         }, 1000);
-      }
-      else {
+      } else {
         setTimeout(() => {
           navigate("/");
           window.location.reload();
         }, 1000);
       }
-
     } catch (error) {
       toast.error(error.message || "Wystąpił problem podczas logowania.");
     }

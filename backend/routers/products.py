@@ -60,16 +60,21 @@ def get_product_list(
 
 @product_router.post("/products")
 def product_add(product: ProductCreate, db: Session = Depends(get_db)):
-    # Tworzymy produkt w bazie danych
+
+    # Tworzymy użytkownika w bazie danych
     new_product = Product(
         name=product.name,
         category=product.category,
         gender=product.gender,
+        popular = product.popular,
         new_price=product.new_price,
         old_price=product.old_price,
         amount=product.amount,
         description=product.description,
         picture=product.picture,
+        size = product.size,
+        color = product.color,
+        material = product.material
     )
 
     # Dodanie produktu do sesji i zapisanie do bazy danych
@@ -80,8 +85,8 @@ def product_add(product: ProductCreate, db: Session = Depends(get_db)):
     return new_product
 
 @product_router.get("/products_list")
-def get_all_products(db: Session = Depends(get_db)):
-    products = db.query(Product).all()  # Query all products from the database
+def get_product_list(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    products = db.query(Product).offset(skip).limit(limit).all()  # Query all products from the database
     if not products:
         raise HTTPException(status_code=404, detail="No products found")
     return {"data": products}
