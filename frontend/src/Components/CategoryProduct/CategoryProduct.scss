@@ -12,6 +12,10 @@
         @include selection-whitedark;
     }
 
+    .filter-category {
+        padding: 0 2em;
+    }
+
     h1 {
         color: var(--dominant-dark);
         padding: 1.1em;
@@ -162,6 +166,11 @@
 @media only screen and (max-width: #{map-get($breakpoints, 'tablet-small')}) {
     .categoryProduct {
         margin: 1em;
+
+        .filter-category {
+            padding: 0 1em;
+        }
+
         .category-item {
             .item {
                 img {

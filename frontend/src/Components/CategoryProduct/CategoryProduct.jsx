@@ -1,78 +1,94 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useParams, Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { getProducts } from '../../backend';
-import ProductFilter from '../ProductFilter/ProductFilter';
+import { FaSlidersH } from 'react-icons/fa';
+
+import useClick from '../useClick';
 
 import './CategoryProduct.scss';
+import '../Filter/Filter.scss';
 
 const CategoryProducts = () => {
   const { category } = useParams();
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
   const [error, setError] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const maxProduct = 8;
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const filterPanelRef = useRef(null);
+  useClick(filterPanelRef, () => setIsFilterOpen(false));
+
+  const [products, setProducts] = useState([]);
+  const [confirmedResults, setConfirmedResults] = useState([]);
+
+  // stronicowanie
+  const [page, setPage] = useState(1);
+  const [firstPage, setFirstPage] = useState();
+  const [prevPage, setPrevPage] = useState();
+  const [nextPage, setNextPage] = useState();
+  const [lastPage, setLastPage] = useState();
+
+  const [numberOfPages, setNumberOfPages] = useState();
+  const [numberOfItems, setNumberOfItems] = useState();
+
+  //filtrowanie
+  const [gender, setGender] = useState();
+
+  //sortortowanie
+  const [sort, setSort] = useState("none");
+
+  const fetchProducts = async () => {
+    try {
+      const params = {
+        'page': page,
+        'per_page': 8,
+        'category': category
+      };
+      
+      console.log(category);
+
+      if (gender) {
+        params['gender'] = gender;
+      }
+
+      if (sort && sort !== 'none') {
+          params['_sort'] = sort;
+      }
+
+      const response = await getProducts(params);
+      const result = await response.json();
+      console.log(result);
+
+      if (result['data']) {
+        setFirstPage(result['first']);
+        setPrevPage(result['prev']);
+        setNextPage(result['next']);
+        setLastPage(result['last']);
+        setNumberOfPages(result['pages']);
+        setNumberOfItems(result['items']);
+        setProducts(result['data']);
+        setConfirmedResults(result['data']);
+      } else {
+        console.error('Brak danych w odpowiedzi');
+      }
+    } catch (error) {
+      toast.error('Nie udało się załadować produktów.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setError(true);
+    }
+  };
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        //do zmiany
-        const response = await getProducts();
-        const data = await response.json();
-
-        console.log(data);
-        const filteredProducts = data.data.filter(product => product.category === category);
-
-        console.log(filteredProducts);
-        setProducts(filteredProducts);
-        setFilteredProducts(filteredProducts); 
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setError(true);
-      }
-    };
-
     fetchProducts();
-  }, [category]);
-
-  const handleFilterChange = ({ gender, sortOrder }) => {
-    let updatedProducts = [...products];
-
-    if (gender !== "all") {
-      updatedProducts = updatedProducts.filter(
-        (product) => product.gender === gender
-      );
-    }
-
-    if (sortOrder === "asc") {
-      updatedProducts.sort((a, b) => a.new_price - b.new_price);
-    } else if (sortOrder === "desc") {
-      updatedProducts.sort((a, b) => b.new_price - a.new_price);
-    }
-
-    setFilteredProducts(updatedProducts);
-    setCurrentPage(1);
-  };
-
-  const totalPages = Math.ceil(filteredProducts.length / maxProduct);
-  const currentProducts = filteredProducts.slice(
-    (currentPage - 1) * maxProduct,
-    currentPage * maxProduct
-  );
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(prev => prev + 1);
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(prev => prev - 1);
-    }
-  };
+  }, [category, page, gender, sort]);
 
   if (error) {
     return (
@@ -82,7 +98,6 @@ const CategoryProducts = () => {
         {category === "spodnie" && <h1>Spodnie</h1>}
         {category === "czapka" && <h1>Czapki</h1>}
         {category === "stroje" && <h1>Stroje</h1>}
-
         <p className="error-products">Błąd podczas pobierania produktów. Przepraszamy za utrudnienia</p>
       </section>
     );
@@ -96,17 +111,58 @@ const CategoryProducts = () => {
       {category === "czapka" && <h1>Czapki</h1>}
       {category === "stroje" && <h1>Stroje</h1>}
 
-      <div className="filter-and-pagination">
-        <div className="numberOfPages">
-            <button onClick={handlePrevPage} disabled={currentPage === 1}>Wstecz</button>
-            <span>Strona {currentPage} z {totalPages}</span>
-            <button onClick={handleNextPage} disabled={currentPage === totalPages}>Następne</button>
+      <div className="filter">
+        <div className="filter-category">
+          <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
+          <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage);}}></input>
+          <span>{page} z {numberOfPages}</span>
+          <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage);}}></input>
+          <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage)}}></input>
         </div>
-        <ProductFilter products={products} onFilterChange={handleFilterChange} />
-      </div>
+        <div className="product-filter">
+            <button className="filter-toggle" onClick={() => setIsFilterOpen(!isFilterOpen)}>
+                <FaSlidersH />Wszystkie filtr
+            </button>
+
+            {isFilterOpen && (
+                <div className="filter-panel" ref={filterPanelRef}>
+                    <div className="filter-group">
+                        <label>Filtruj według płci:</label>
+                        <select
+                            id="gender-filter"
+                            value={gender || 'all'}
+                            onChange={(e) => {
+                                const selectedGender = e.target.value === 'all' ? null : e.target.value;
+                                setGender(selectedGender);
+                                setPage(1);
+                            }}>
+                            <option value="all">Wszystko</option>
+                            <option value="woman">Kobiety</option>
+                            <option value="man">Mężczyźni</option>
+                        </select>
+                    </div>
+                    <div className="filter-group">
+                        <label htmlFor="sort-filter">Sortuj według ceny:</label>
+                        <select
+                            id="sort-filter"
+                            value={sort || 'none'}
+                            onChange={(e) => {
+                                const selectedSort = e.target.value === 'none' ? null : e.target.value;
+                                setSort(selectedSort === 'none' ? null : selectedSort);
+                                setPage(1);
+                            }}>
+                            <option value="none">Brak sortowania</option>
+                            <option value="new_price">Od najniższej do najwyższej</option>
+                            <option value="-new_price">Od najwyższej do najniższej</option>
+                        </select>
+                    </div>
+                </div>
+            )}
+        </div>
+    </div>
 
       <div className="category-item">
-        {currentProducts.map(item => (
+        {confirmedResults.map(item => (
           <div className="item" key={item.id}>
             <Link to={`/product/${item.id}`}>
                 {item.image && (

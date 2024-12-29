@@ -1,57 +1,82 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import './PopularProduct.scss';
 import { getProducts } from '../../backend';
 
-const PopularProduct = () => {
-  const [dataProduct, setDataProduct] = useState([]);
-  const [error, setError] = useState(false);
-  const [isFetched, setIsFetched] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const maxProduct = 4;
+import './PopularProduct.scss';
+import '../Filter/Filter.scss';
 
-  useEffect(() => {
+const PopularProduct = () => {
+    const [error, setError] = useState(false);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const filterPanelRef = useRef(null);
+
+    const [products, setProducts] = useState([]);
+    const [confirmedResults, setConfirmedResults] = useState([]);
+
+    // stronicowanie
+    const [page, setPage] = useState(1);
+    const [firstPage, setFirstPage] = useState();
+    const [prevPage, setPrevPage] = useState();
+    const [nextPage, setNextPage] = useState();
+    const [lastPage, setLastPage] = useState();
+
+    const [numberOfPages, setNumberOfPages] = useState();
+    const [numberOfItems, setNumberOfItems] = useState();
+
+    //filtrowanie
+    const [popular, setPopular] = useState();
+
     const fetchProducts = async () => {
       try {
-        const response = await getProducts();
-        const data = await response.json();
-        console.log(data);
-        const popularProducts = data.data.filter(product => product.popular === true);
-        console.log(popularProducts);
-        setDataProduct(popularProducts);
-        setIsFetched(true);
+        const params = {
+          'page': page,
+          'per_page': 8,
+          'popular': true
+        };
+
+        const response = await getProducts(params);
+        const result = await response.json();
+        console.log(result);
+
+        if (result['data']) {
+          setFirstPage(result['first']);
+          setPrevPage(result['prev']);
+          setNextPage(result['next']);
+          setLastPage(result['last']);
+          setNumberOfPages(result['pages']);
+          setNumberOfItems(result['items']);
+
+          setProducts(result['data']);
+          setConfirmedResults(result['data']);
+        } else {
+          console.error('Brak danych w odpowiedzi');
+        }
+        // const popularProducts = data.data.filter(product => product.popular === true);
+        // console.log(popularProducts);
+        // setDataProduct(popularProducts);
+        // setIsFetched(true);
 
       } catch (error) {
-        console.error("Błąd podczas pobierania danych:", error);
+        toast.error('Nie udało się załadować produktów.', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         setError(true);
       }
-    };
-
-    if (!isFetched) {
-      fetchProducts();
-    }
-  }, [isFetched]);
-
-  const totalPages = Math.ceil(dataProduct.length / maxProduct);
-  const currentProducts = dataProduct.slice(
-    (currentPage - 1) * maxProduct,
-    currentPage * maxProduct
-  );
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(prev => prev + 1);
-    }
   };
 
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(prev => prev - 1);
-    }
-  };
-
+  useEffect(() => {
+    fetchProducts();
+  }, [page, popular]);
 
   if (error) {
     return (
@@ -68,18 +93,18 @@ const PopularProduct = () => {
     <section className='popularProduct'>
       <h1>Popularne Produkty</h1>
 
-      <div className="numberOfPages">
-        <button
-          onClick={handlePrevPage}
-          disabled={currentPage === 1}>Wstecz</button>
-        <span>Strona {currentPage} z {totalPages}</span>
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}>Następne</button>
+      <div className="filter-popular">
+        <div className="filter">
+          <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
+          <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage);}}></input>
+          <span>{page} z {numberOfPages}</span>
+          <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage);}}></input>
+          <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage)}}></input>
+        </div>
       </div>
 
       <div className="popular-item">
-        {currentProducts.map(item => (
+        {confirmedResults.map(item => (
           <div className="item" key={item.id}>
             <Link to={`/product/${item.id}`}>
               {item.image && (
