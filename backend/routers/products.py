@@ -91,3 +91,11 @@ def product_add(product: ProductCreate, db: Session = Depends(get_db)):
     db.refresh(new_product)
 
     return new_product
+
+@product_router.get("/product/{id}", response_model=Product)
+def get_single_product(id: int, db: Session = Depends(get_db)):
+    product = db.query(Product).filter(Product.id == id).first()
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+    return product
+    
