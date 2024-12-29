@@ -90,5 +90,20 @@ class ProductCreate(BaseModel):
     color: ColorEnum
     material: MaterialEnum
 
+class ProductResponse(BaseModel):
+    id: int
+    name: str
+    category: CategoryEnum
+    gender: GenderEnum
+    popular: bool
+    new_price: int
+    old_price: Optional[int]
+    amount: Optional[int]
+    description: Optional[str]
+    size: SizeEnum
+    color: ColorEnum
+    material: MaterialEnum
+    picture: Optional[str]  # Include serialized path/URL for the image if needed
+    
     class Config:
         from_attributes = True  # Allows compatibility with SQLAlchemy models
