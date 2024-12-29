@@ -80,7 +80,6 @@ const Navbar = () => {
 
   const buttonLogout = () => {
     logout();
-
     toast.success("Wylogowałeś się!");
 
     setTimeout(() => {

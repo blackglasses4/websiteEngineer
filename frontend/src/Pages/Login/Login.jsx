@@ -7,10 +7,11 @@ import { BACKEND_URL } from "../../config";
 import ThemeSwitch from '../../Components/ThemeSwitch/ThemeSwitch';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-
+import { useUser } from "../UserContext";
 import "./Login.scss";
 
 const Login = () => {
+  const { login } = useUser(); 
   const [loginDetails, setLoginDetails] = useState({
     usernameOrEmail: "",
     password: "",
@@ -82,6 +83,8 @@ const Login = () => {
       if (!response.ok) {
         throw new Error(data.detail || "Błędna nazwa użytkownika, email lub hasło.");
       }
+
+      login({ username: data.username });
   
       // Zapisujemy dane użytkownika w localStorage
       localStorage.setItem("user", JSON.stringify({ username: data.username }));
