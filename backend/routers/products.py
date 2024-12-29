@@ -80,8 +80,8 @@ def product_add(product: ProductCreate, db: Session = Depends(get_db)):
         amount=product.amount,
         description=product.description,
         picture=product.picture,
-        size = product.size,
-        color = product.color,
+        sizes = product.sizes,
+        colors = product.colors,
         material = product.material
     )
 
