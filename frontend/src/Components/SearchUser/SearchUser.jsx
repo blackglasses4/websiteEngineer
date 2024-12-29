@@ -51,6 +51,7 @@ const SearchUser = () => {
             //get Users do zmiany
             const response = await getUsers(params);
             const result = await response.json();
+            console.log(result);
 
             if (result['data']) {
                 setFirstPage(result['first']);
@@ -178,11 +179,11 @@ const SearchUser = () => {
             <SearchBar data={users} setConfirmedResults={setConfirmedResults} type="users" />
 
             <div className="filter">
-                <input type="button" value="Pierwsza" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
-                <input type="button" value="Poprzednia" disabled={prevPage === null} onClick={() => {setPage(prevPage)}}></input>
+                <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
+                <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage);}}></input>
                 <span>{page} z {numberOfPages}</span>
-                <input type="button" value="Następna" disabled={nextPage === null} onClick={() => {setPage(nextPage)}}></input>
-                <input type="button" value="Ostatnia" disabled={page === numberOfPages} onClick={() => {setPage(lastPage)}}></input>
+                <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage);}}></input>
+                <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage)}}></input>
                 <span>Liczba sztuk: {numberOfItems}</span>
 
                 <div className="product-filter">
