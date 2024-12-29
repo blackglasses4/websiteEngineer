@@ -4,7 +4,7 @@ from sqlalchemy import asc, desc
 from typing import Optional
 from backend.db_connect import SessionLocal
 from backend.models import Product
-from backend.models.product import ProductCreate
+from backend.models.product import ProductCreate, CategoryEnum
 
 # Tworzenie instancji routera
 product_router = APIRouter()
@@ -23,7 +23,7 @@ def get_product_list(
     per_page: int = Query(8, ge=1),
     gender: Optional[str] = None,
     popular: Optional[bool] = None,
-    category: Optional[str] = None,
+    category: Optional[CategoryEnum] = None,
     sort: Optional[str] = None,
     db: Session = Depends(get_db),
 ):
