@@ -1,4 +1,5 @@
 import enum
+from re import S
 from unicodedata import category
 from sqlalchemy import Column, ForeignKey, Integer, String, Enum, Boolean
 from sqlalchemy.ext.declarative import declarative_base
@@ -21,12 +22,12 @@ class CategoryEnum(enum.Enum):
     outfit = "stroje"
 
 class SizeEnum(enum.Enum):
-    extra_small = "XS"
-    small = "S"
-    medium = "M"
-    large = "L"
-    extra_large = "XL"
-    extra_extra_large = "XXL"
+    xs= "XS"
+    s = "S"
+    m = "M"
+    l = "L"
+    xl = "XL"
+    xxl = "XXL"
 
 class ColorEnum(enum.Enum):
     white = "white"
