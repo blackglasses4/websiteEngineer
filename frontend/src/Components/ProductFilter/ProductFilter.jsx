@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { FaSlidersH } from 'react-icons/fa';
 import useClick from '../useClick';
 import './ProductFilter.scss';

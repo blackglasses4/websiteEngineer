@@ -131,7 +131,7 @@
     p {
       margin-bottom: 1em;
     }
-
+    
     .checkout-button, .clear-cart-button {
       background-color: $green_brighter;
       color: $white;
@@ -334,6 +334,12 @@
   .cart-empty {
     display: flex;
     flex-wrap: wrap;
+  }
+
+  .cart-summary {
+    .clear-cart-button {
+      margin: 10px 0;
+    }
   }
 }
 
