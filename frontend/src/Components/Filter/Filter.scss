@@ -3,7 +3,9 @@
 
 .admin-search_products,
 .search-order,
-.search-user {
+.search-user,
+.popularProduct,
+.categoryProduct {
     display: block;
 
     .filter {
@@ -36,6 +38,7 @@
         span {
             margin: 0 0.3em;
             color: var(--dominant-dark);
+            @include selection-whitedark;
         }
     
         .product-filter {
@@ -84,6 +87,7 @@
                     label {
                         color: var(--dominant-dark);
                         margin-bottom: 0.4em;
+                        @include selection-whitedark;
                     }
         
                     select {
@@ -94,6 +98,7 @@
                         border: 1px solid var(--table_border);
                         border-radius: 5px;
                         font-size: 0.9em;
+                        @include selection-whitedark;
                     }
                 }
             }
