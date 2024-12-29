@@ -1,0 +1,2 @@
+STATIC_FILES_URL_BASE_PATH="/static"
+FILES_DIR="static"
