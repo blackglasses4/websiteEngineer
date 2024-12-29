@@ -67,7 +67,8 @@ class Product(Base):
     old_price = Column(Integer, nullable=True)        # Nazwy kolumn w bazie
     amount = Column(Integer, nullable=True)     #
     description = Column(String(255), nullable=True) 
-    picture = image_attachment('ProductPicture')
+#    picture = image_attachment('ProductPicture')
+    picture = Column(String(255), nullable=True)
     size = Column(Enum(SizeEnum), nullable=False)
     color = Column(Enum(ColorEnum), nullable=False)
     material = Column(Enum(MaterialEnum), nullable=False)
