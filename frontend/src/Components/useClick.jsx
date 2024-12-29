@@ -26,7 +26,7 @@ const useClick = (ref, closeCallback) => {
             document.removeEventListener('mousedown', handleClickOutside);
             document.removeEventListener('keydown', handleEscKey);
         };
-    }, []); // Hook uruchomi się tylko raz przy zamontowaniu komponentu
+    }, []);
 };
 
 export default useClick;

@@ -3,8 +3,10 @@ import { StatusCodes } from 'http-status-codes';
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BACKEND_URL } from "../../Components/config";
+import { BACKEND_URL } from "../../config";
 import ThemeSwitch from '../../Components/ThemeSwitch/ThemeSwitch';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import "./Login.scss";
 
@@ -52,13 +54,13 @@ const Login = () => {
 
   const loginUser = async (e) => {
     e.preventDefault();
-
+  
     const isValid = validateFields();
     if (!isValid) {
       toast.error("Proszę poprawnie uzupełnić formularz!");
       return;
     }
-
+  
     try {
       // Tworzymy dane w formacie x-www-form-urlencoded
       const body = new URLSearchParams({
@@ -67,7 +69,7 @@ const Login = () => {
       });
   
       // Wysyłamy żądanie do backendu
-      const response = await fetch(`${ BACKEND_URL }/auth/login`, {
+      const response = await fetch(`${ BACKEND_URL }/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded", // Właściwy nagłówek
@@ -104,6 +106,14 @@ const Login = () => {
   return (
     <div className="page-container">
       <header className="login-header">
+          <LazyLoadImage
+              src="/images/logo_dark.svg"
+              effect="blur"
+              alt="Logo sklepu"
+              className="theme-dependent-logo"
+              width="100px"
+              height="auto"
+          />
         <div className="theme-switch-container">
           <ThemeSwitch/>
         </div>

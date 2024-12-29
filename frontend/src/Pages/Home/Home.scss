@@ -33,7 +33,7 @@
             @include selection-cookie;
         }
 
-        button {
+        .button {
             background-color: rgba(255, 255, 255, 0.2);
             color: $black;
             border: 2px solid rgba(255, 255, 255, 0.6);
@@ -46,7 +46,8 @@
             backdrop-filter: blur(10px);
             align-self: flex-start;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
-        
+            @include selection-cookie;
+
             &:hover {
                 background-color: rgba(255, 255, 255, 0.4);
                 box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);

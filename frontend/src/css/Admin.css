@@ -80,12 +80,22 @@
   --darkgreen: hsl(144, 96%, 10%);
 }
 
+.logo::-moz-selection {
+  color: hsl(0, 61%, 34%);
+  background-color: #ffffff;
+}
+
+.logo::selection {
+  color: hsl(0, 61%, 34%);
+  background-color: #ffffff;
+}
+
 .welcome-admin {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: auto;
   text-align: center;
 }
 .welcome-admin h2::-moz-selection, .welcome-admin p::-moz-selection {
@@ -109,7 +119,7 @@
 header.header-admin {
   background-color: var(--color-red);
   width: 100%;
-  padding: 1em 2rem;
+  padding: 0.5em 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

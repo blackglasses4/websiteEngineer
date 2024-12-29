@@ -148,7 +148,7 @@ const CartPage = () => {
                       type="number"
                       value={product.quantity || 1}
                       min="1"
-                      onChange={(e) => updateQuantity(product.productId, parseInt(e.target.value, 10))}
+                      onChange={(e) => updateQuantity(product.uniqueId, parseInt(e.target.value, 10))}
                     />
                   </div>
                   <p><span>Całkowita cena: </span>{(product.price * product.quantity).toFixed(2)} zł</p>
@@ -159,7 +159,10 @@ const CartPage = () => {
           <div className="cart-summary">
             <h2>Podsumowanie</h2>
             <p>Łączna kwota: {calculateTotal().toFixed(2)} zł</p>
-            <button className="checkout-button" onClick={handleCheckout}>Złóż zamówienie</button>
+            <div className='cart-summary-button'>
+              <button className="checkout-button" onClick={handleCheckout}>Złóż zamówienie</button>
+              <button className="clear-cart-button" onClick={clearCart}>Wyczyść koszyk</button>
+            </div>
           </div>
           </>
         )}

@@ -1,42 +1,85 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {BACKEND_URL} from '../config';
+import { FaSlidersH } from 'react-icons/fa';
+import { getUsers, deleteUser} from '../../backend';
+import useClick from '../useClick';
+
 
 import CreateUser from '../CreateUser/CreateUser';
 import SearchBar from '../SearchProduct/SearchBar';
 import EditUser from './EditUser';
-// import Filter from './../Filter/Filter';
 
+import '../Filter/Filter.scss';
 import '../SearchProduct/Search.scss';
 
 const SearchUser = () => {
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const filterPanelRef = useRef(null);
+    useClick(filterPanelRef, () => setIsFilterOpen(false));
+
     const [users, setUsers] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
     const [userToEdit, setUserToEdit] = useState(null);
 
-        const fetchUsers = async () => {
-            try {
-                const response = await fetch(`${BACKEND_URL}/users`);
-                const data = await response.json();
-                setUsers(data);
-                setConfirmedResults(data); 
-            } catch (error) {
-                toast.error('Nie udało się załadować produktów.', {
-                    position: 'top-right',
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
-            }
-        };
+    // stronicowanie
+    const [page, setPage] = useState(1);
+    const [firstPage, setFirstPage] = useState();
+    const [prevPage, setPrevPage] = useState();
+    const [nextPage, setNextPage] = useState();
+    const [lastPage, setLastPage] = useState();
 
-        useEffect(() => {
-            fetchUsers('');
-    }, []);
+    const [numberOfPages, setNumberOfPages] = useState();
+    const [numberOfItems, setNumberOfItems] = useState();
+
+    //filtrowanie
+    // const [gender, setGender] = useState();
+    //sortortowanie
+    const [role, setRole] = useState();
+
+    const fetchUsers = async () => {
+        try {
+            const params = {
+                '_page': page,
+                '_per_page': 8
+            }
+            
+            if (role) {
+                params['role'] = role;
+            }
+            
+            //get Users do zmiany
+            const response = await getUsers(params);
+            const result = await response.json();
+
+            if (result['data']) {
+                setFirstPage(result['first']);
+                setPrevPage(result['prev']);
+                setNextPage(result['next']);
+                setLastPage(result['last']);
+                setNumberOfPages(result['pages']);
+                setNumberOfItems(result['items']);
+                setUsers(result['data']);
+                setConfirmedResults(result['data']);
+            } else {
+                console.error('Brak danych w odpowiedzi');
+            }
+        } catch (error) {
+            toast.error('Nie udało się załadować produktów.', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    };
+
+    useEffect(() => {
+        fetchUsers();
+    }, [page, role]);
 
     const handleConfirmDelete = (id) => {
         if(!id) {
@@ -66,12 +109,14 @@ const SearchUser = () => {
         }
 
         try {
-            const response = await fetch(`${BACKEND_URL}/users/${id}`, {
-                method: 'DELETE',
-            });
+
+            const response = deleteUser(id);
+            // const response = await fetch(`${BACKEND_URL2}/auth/users/${id}`, {
+            //     method: 'DELETE',
+            // });
     
             if (!response.ok) {
-                throw new Error('Wystąpił błąd podczas usuwania produktu.');
+                throw new Error('Wystąpił błąd podczas usuwania użytkownika.');
             }
     
             setUsers((prev) => prev.filter((product) => product.id !== id));
@@ -88,7 +133,7 @@ const SearchUser = () => {
 
             toast.dismiss(toastId);
         } catch (err) {
-            toast.error(err.message || 'Nie udało się usunąć produktu.', {
+            toast.error(err.message || 'Nie udało się usunąć użytkownika.', {
                 position: 'top-right',
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -132,8 +177,41 @@ const SearchUser = () => {
 
             <SearchBar data={users} setConfirmedResults={setConfirmedResults} type="users" />
 
-            {/* <Filter fetchUsers={fetchProducts} /> */}
-            
+            <div className="filter">
+                <input type="button" value="Pierwsza" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
+                <input type="button" value="Poprzednia" disabled={prevPage === null} onClick={() => {setPage(prevPage)}}></input>
+                <span>{page} z {numberOfPages}</span>
+                <input type="button" value="Następna" disabled={nextPage === null} onClick={() => {setPage(nextPage)}}></input>
+                <input type="button" value="Ostatnia" disabled={page === numberOfPages} onClick={() => {setPage(lastPage)}}></input>
+                <span>Liczba sztuk: {numberOfItems}</span>
+
+                <div className="product-filter">
+                    <button className="filter-toggle" onClick={() => setIsFilterOpen(!isFilterOpen)}>
+                        <FaSlidersH />Wszystkie filtr
+                    </button>
+
+                    {isFilterOpen && (
+                        <div className="filter-panel" ref={filterPanelRef}>
+                            <div className="filter-group">
+                                <label>Filtruj według płci:</label>
+                                {/* <select
+                                    id="role-filter"
+                                    value={role || 'all'}
+                                    onChange={(e) => {
+                                        const selectedRole = e.target.value === 'all' ? null : e.target.value;
+                                        setRole(selectedRole);
+                                        setPage(1);
+                                    }}>
+                                    <option value="all">Wszyscy</option>
+                                    <option value="user">Uzytkownicy</option>
+                                    <option value="admin">Administrator</option>
+                                </select> */}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+
             <section className="admin-search_users">
                 <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                 {confirmedResults.length === 0 ? (
@@ -158,12 +236,12 @@ const SearchUser = () => {
                                 <React.Fragment key={user.id}>
                                 <tr key={user.id}>
                                     <td>{user.id}</td>
-                                    <td>{user.firstName || 'Brak'}</td>
-                                    <td>{user.lastName}</td>
+                                    <td>{user.first_name || 'Brak'}</td>
+                                    <td>{user.last_name || 'Brak'}</td>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
                                     <td>{user.password}</td>
-                                    <td>{user.isAdmin === true ? 'Admin' : 'Użytkownik'}</td>
+                                    <td>{user.is_admin ? 'Admin' : 'Użytkownik'}</td>
 
                                     <td><button className='button-edit' onClick={() => setUserToEdit(user)}>Edytuj</button></td>
                                     <td><button className='button-delete' onClick={() => handleConfirmDelete(user.id)}>Usuń</button></td>
@@ -196,12 +274,12 @@ const SearchUser = () => {
                             <div className="search-mobile_user" key={user.id}>
                                 <div className="user-details">
                                     <p><span>ID: </span>{user.id}</p>
-                                    <p><span>Imię: </span>{user.firstName}</p>
-                                    <p><span>Nazwisko: </span>{user.lastName}</p>
+                                    <p><span>Imię: </span>{user.first_name}</p>
+                                    <p><span>Nazwisko: </span>{user.last_name}</p>
                                     <p><span>Nazwa użytkownika: </span>{user.username}</p>
                                     <p><span>Email: </span>{user.email}</p>
                                     <p><span>Hasło: </span>{user.password}</p>
-                                    <p><span>Rola: </span>{user.isAdmin ? 'Admin' : 'Użytkownik'}</p>
+                                    <p><span>Rola: </span>{user.is_admin ? 'Admin' : 'Użytkownik'}</p>
 
                                     <div className="mobile-button">
                                         <button className='button-edit' onClick={() => setUserToEdit(user)}>Edytuj</button>

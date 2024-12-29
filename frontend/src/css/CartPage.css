@@ -258,7 +258,7 @@
 .cart-summary p {
   margin-bottom: 1em;
 }
-.cart-summary .checkout-button {
+.cart-summary .checkout-button, .cart-summary .clear-cart-button {
   background-color: #27ae60;
   color: #ffffff;
   border: none;
@@ -268,16 +268,23 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.cart-summary .checkout-button::-moz-selection {
+.cart-summary .checkout-button::-moz-selection, .cart-summary .clear-cart-button::-moz-selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.cart-summary .checkout-button::selection {
+.cart-summary .checkout-button::selection, .cart-summary .clear-cart-button::selection {
   color: var(--dominant-light);
   background-color: var(--dominant-dark);
 }
-.cart-summary .checkout-button:hover {
+.cart-summary .checkout-button:hover, .cart-summary .clear-cart-button:hover {
   background-color: #19703d;
+}
+.cart-summary .clear-cart-button {
+  margin: 0 1em;
+  background-color: #e74c3c;
+}
+.cart-summary .clear-cart-button:hover {
+  background-color: hsl(0, 61%, 34%);
 }
 
 .cart-mobile {
@@ -483,5 +490,8 @@
   .cart-empty {
     display: flex;
     flex-wrap: wrap;
+  }
+  .cart-summary .clear-cart-button {
+    margin: 10px 0;
   }
 }/*# sourceMappingURL=CartPage.css.map */

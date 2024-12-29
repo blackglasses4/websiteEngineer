@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {BACKEND_URL} from '../config';
+import { getProducts, addProduct } from '../../backend';
 
 import './Create.scss';
 
@@ -16,22 +16,21 @@ const CreateProduct = () => {
         new_price: '',
         old_price: '',
         description: '',
-        attributes: {
-            sizes: [],
-            color: [],
-            material: '',
-        }
+        sizes: [],
+        color: [],
+        material: '',
     };
 
     const [product, setProduct] = useState(initialProductState);
     const [loading, setLoading] = useState(false);
     const [imagePreview, setImagePreview] = useState(null);
     const [products, setProducts] = useState([]);
+    const [isFormOpen, setIsFormOpen] = useState(false);
 
     // Ładowanie produktów z serwera, aby uzyskać ostatnie id
     useEffect(() => {
         const fetchProducts = async () => {
-            const response = await fetch(`${BACKEND_URL}/products`);
+            const response = await getProducts();
             const data = await response.json();
             setProducts(data);
         };
@@ -52,33 +51,24 @@ const CreateProduct = () => {
             const size = value;
             setProduct((prev) => ({
                 ...prev,
-                attributes: {
-                    ...prev.attributes,
-                    sizes: checked 
-                        ? [...prev.attributes.sizes, size]
-                        : prev.attributes.sizes.filter((s) => s !== size),
-                }
+                sizes: checked 
+                    ? [...prev.sizes, size]
+                    : prev.sizes.filter((s) => s !== size),
             }));
         }
-        else if (type === 'checkbox' && name === 'color'){
+        else if (type === 'checkbox' && name === 'color') {
             const color = value;
             setProduct((prev) => ({
                 ...prev,
-                attributes: {
-                    ...prev.attributes,
-                    color: checked
-                        ? [...prev.attributes.color, color]
-                        : prev.attributes.color.filter((c) => c !== color),
-                },
+                color: checked
+                    ? [...prev.color, color]
+                    : prev.color.filter((c) => c !== color),
             }));
         }
         else if (name === 'material') {
             setProduct((prev) => ({
                 ...prev,
-                attributes: {
-                    ...prev.attributes,
-                    material: value,
-                },
+                material: value,
             }));
         }
         else if (type === 'file') {
@@ -120,20 +110,20 @@ const CreateProduct = () => {
                 new_price: product.new_price,
                 old_price: product.old_price,
                 description: product.description,
-                attributes: {
-                    sizes: product.attributes.sizes,
-                    color: product.attributes.color,
-                    material: product.attributes.material,
-                },
+                sizes: product.sizes,
+                color: product.color,
+                material: product.material,
             };
 
-            const response = await fetch(`${BACKEND_URL}/products`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(productData),
-            });
+            const response = await addProduct(productData);
+
+            // const response = await fetch(`${BACKEND_URL}/products`, {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(productData),
+            // });
 
             const data = await response.json();
             console.log(data);
@@ -181,9 +171,17 @@ const CreateProduct = () => {
         }
     }
 
+    const toggleForm = () => {
+        setIsFormOpen(!isFormOpen);
+    };
+
     return (
         <div className="create-product">
-            <div className='form-container expand'>
+            <button className="toggle-form-btn" onClick={toggleForm}>
+                {isFormOpen ? 'Zwiń formularz' : 'Rozwiń formularz'}
+            </button>
+
+            <div className={`form-container ${isFormOpen ? 'open' : ''}`}>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="nazwa">Nazwa: <input type="text" name="name" id="name" maxLength="30" value={product.name} onChange={handleInputChange} required/></label>
                     <label htmlFor="category">Kategoria: 
@@ -191,11 +189,9 @@ const CreateProduct = () => {
                                 <option value="">Wybierz kategorię</option>
                                 <option value="koszulka">Koszulka</option>
                                 <option value="kurtka">Kurtka</option>
+                                <option value="spodnie">Spodnie</option>
                                 <option value="czapka">Czapka</option>
-                                <option value="bluza">Bluza</option>
-                                <option value="buty">Buty</option>
-                                <option value="skarpetki">Skarpetki</option>
-                                <option value="stanikSportowy">Stanik Sportowy</option>
+                                <option value="stroje">Stroje</option>
                         </select>
                     </label>
 
@@ -225,7 +221,7 @@ const CreateProduct = () => {
                                     name="size"
                                     id="size"
                                     value={size}
-                                    checked={product.attributes.sizes.includes(size)}
+                                    checked={product.sizes.includes(size)}
                                     onChange={handleInputChange}/>
                             </label>
                         ))}
@@ -240,15 +236,15 @@ const CreateProduct = () => {
                                     name="color"
                                     id="color"
                                     value={color}
-                                    checked={product.attributes.color.includes(color)}
-                                    disabled={!product.attributes.color.includes(color) && product.attributes.color.length >= 5}
+                                    checked={product.color.includes(color)}
+                                    disabled={!product.color.includes(color) && product.color.length >= 5}
                                     onChange={handleInputChange}/>
                             </label>
                         ))}
                     </fieldset>
 
                     <label htmlFor="material">Materiały: 
-                        <select name="material" id="material" value={product.attributes.material} onChange={handleInputChange} required>
+                        <select name="material" id="material" value={product.material} onChange={handleInputChange} required>
                                 <option value="">Wybierz materiał</option>
                                 <option value="poliester">Poliester</option>
                                 <option value="bawełna">Bawełna</option>

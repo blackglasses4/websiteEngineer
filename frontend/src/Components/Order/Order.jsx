@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OrderItem from './OrderItem';
-import { BACKEND_URL } from '../config';
+import { addOrder } from '../../backend';
 
 import "./Order.scss";
 
 const Order = () => {
+  const navigate = useNavigate();
   const [orderItems, setOrderItems] = useState([]);
   const [orderDetails, setOrderDetails] = useState({
     phone: "",
@@ -83,6 +85,11 @@ const Order = () => {
   const sendDataOrder = async (e) => {
     e.preventDefault();
 
+    if(orderItems.length === 0) {
+      toast.error("Nie można złożyć zamówienia bez produktów!");
+      return;
+    }
+
     const isValid = validateRequiredFields();
     if (!isValid) {
       toast.error("Proszę poprawnie uzupełnić formularz!");
@@ -101,13 +108,16 @@ const Order = () => {
     };
 
     try {
-      const response = await fetch(`${BACKEND_URL}/orders`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(orderData),
-      });
+
+      const response = await addOrder(orderData);
+
+      // const response = await fetch(`${BACKEND_URL}/orders`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(orderData),
+      // });
 
       if (!response.ok) {
         throw new Error("Wystąpił błąd podczas przesyłania zamówienia.");
@@ -126,7 +136,17 @@ const Order = () => {
       setOrderItems([]);
       localStorage.removeItem("order");
       localStorage.removeItem("cart");
+
+      navigate("/order_summary", {
+        state: {
+          orderDetails,
+          orderItems,
+          totalAmount: calculateTotal(),
+        }
+      });
+
     } catch (error) {
+      console.error("Błąd składania zamówienia:", error.message);
       toast.error("Wystąpił błąd podczas składania zamówienia.");
     }
   };
