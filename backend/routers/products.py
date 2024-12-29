@@ -22,6 +22,8 @@ def get_product_list(
     page: int = Query(1, ge=1),
     per_page: int = Query(8, ge=1),
     gender: Optional[str] = None,
+    popular: Optional[bool] = None,
+    category: Optional[str] = None,
     sort: Optional[str] = None,
     db: Session = Depends(get_db),
 ):
@@ -31,6 +33,12 @@ def get_product_list(
     # Filtrowanie według płci
     if gender:
         query = query.filter(Product.gender == gender)
+
+    if popular:
+        query = query.filter(Product.popular == popular)
+
+    if category:
+        query = query.filter(Product.category == category)
 
     # Sortowanie
     if sort == "new_price":
