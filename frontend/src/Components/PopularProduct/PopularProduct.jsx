@@ -17,9 +17,9 @@ const PopularProduct = () => {
       try {
         const response = await getProducts();
         const data = await response.json();
-
-        const popularProducts = data.filter(product => product.popular === true);
-
+        console.log(data);
+        const popularProducts = data.data.filter(product => product.popular === true);
+        console.log(popularProducts);
         setDataProduct(popularProducts);
         setIsFetched(true);
 
@@ -82,14 +82,15 @@ const PopularProduct = () => {
         {currentProducts.map(item => (
           <div className="item" key={item.id}>
             <Link to={`/product/${item.id}`}>
-              <LazyLoadImage
-                src={item.image.url}
-                effect="blur"
-                alt={item.image.alt}
-                width="100%"
-                height="auto"
-                threshold={100}
-              />
+              {item.image && (
+                <LazyLoadImage
+                  src={item.image.url}
+                  effect="blur"
+                  alt={item.image.alt}
+                  width="100%"
+                  height="auto"
+                  threshold={100}/>
+              )}
               <p>{item.name}</p>
               <div className="item-prices">
                 <div className="item-prices-new">{item.new_price}zł</div>
