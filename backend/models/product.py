@@ -14,11 +14,11 @@ class GenderEnum(enum.Enum):
     unisex = "Dla obu płci"
     
 class CategoryEnum(enum.Enum):
-    shirt = "Koszulka"
-    jacket = "Kurtka"
-    pants = "Spodnie"
-    hat = "Czapka"
-    outfit = "Stroje"
+    shirt = "koszulka"
+    jacket = "kurtka"
+    pants = "spodnie"
+    hat = "czapka"
+    outfit = "stroje"
 
 class SizeEnum(enum.Enum):
     extra_small = "XS"

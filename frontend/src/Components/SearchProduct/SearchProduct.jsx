@@ -42,18 +42,16 @@ const SearchProduct = () => {
         try {
             const params = {
                 'page': page,
-                'per_page': 8,
-                'gender': gender || undefined,
-                'sort': sort || undefined
+                'per_page': 8
             };
             
-            // if (gender) {
-            //     params['gender'] = gender;
-            // }
+            if (gender) {
+                params['gender'] = gender;
+            }
     
-            // if (sort && sort !== 'none') {
-            //     params['_sort'] = sort;
-            // }
+            if (sort && sort !== 'none') {
+                params['_sort'] = sort;
+            }
     
             const response = await getProducts(params);
             const result = await response.json();
@@ -200,11 +198,11 @@ const SearchProduct = () => {
             <section className="admin-search_products">
                 <div className="filter">
                     <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
-                    <input type="button" value="Pierwsza" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
-                    <input type="button" value="Poprzednia" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage);}}></input>
+                    <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
+                    <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage);}}></input>
                     <span>{page} z {numberOfPages}</span>
-                    <input type="button" value="Następna" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage);}}></input>
-                    <input type="button" value="Ostatnia" disabled={page === numberOfPages} onClick={() => {setPage(lastPage)}}></input>
+                    <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage);}}></input>
+                    <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage)}}></input>
                     <span>Liczba sztuk: {numberOfItems}</span>
 
                     <div className="product-filter">
