@@ -197,17 +197,23 @@ const SearchProduct = () => {
                                         {order.phone}
                                     </td>
                                     <td>
-                                        {order.items && Array.isArray(order.items) ? (
-                                            order.items.map((product) => (
-                                                <p key={product.productId}>
-                                                    <span>Id:</span> {product.productId}, <span>Ilość:</span> {product.quantity}, <span>Cena:</span> {product.price} zł
+                                        {order.products_order && Array.isArray(order.products_order) ? (
+                                            order.products_order.map((product, index) => (
+                                                <p key={index}>
+                                                    <span>Id:</span> {product.productId || "Brak danych"}, 
+                                                    <span> Ilość:</span> {product.quantity || "Brak danych"}, 
+                                                    <span> Cena:</span> {product.price || "Brak danych"} zł
                                                 </p>
                                             ))
                                         ) : (
-                                            <span>Brak produktów</span>
+                                            <span>
+                                                {typeof order.products_order === 'string'
+                                                    ? order.products_order
+                                                    : "Brak produktów"}
+                                            </span>
                                         )}
                                     </td>
-                                    <td>{order.totalAmount} zł</td>
+                                    <td>{order.total_amount} zł</td>
                                     <td>
                                         <select value={order.status || ""} onChange={(e) => statusOrderChange(order.id, e.target.value)}>
                                             <option value="">Wybierz status</option>
@@ -265,7 +271,7 @@ const SearchProduct = () => {
                                         ) : (
                                             <span>Brak produktów</span>
                                         )}</p>  
-                                    <p><span>Całkowita cena: </span>{order.totalAmount} zł</p>  
+                                    <p><span>Całkowita cena: </span>{order.total_amount} zł</p>  
                                     <p><span>Status: </span>
                                         <select value={order.status || ""} onChange={(e) => statusOrderChange(order.id, e.target.value)}>
                                             <option value="">Wybierz status</option>

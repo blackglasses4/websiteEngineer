@@ -6,23 +6,23 @@ const OrderSummary = () => {
   const location = useLocation();
   const orderDetails = location.state?.orderDetails || {};
   const orderItems = location.state?.orderItems || [];
-  const totalAmount = location.state?.totalAmount || 0;
+  const total_amount = location.state?.total_amount || 0;
 
   return (
     <section className="order-summary">
       <h1>Dziękujemy za zamówienie!</h1>
-      <p className="summary-p">Twoje zamówienie zostało pomyślnie złożone. Łączna kwota: <span> {totalAmount.toFixed(2)} zł </span>. Szczegóły zamówienia:</p>
+      <p className="summary-p">Twoje zamówienie zostało pomyślnie złożone. Łączna kwota: <span> {total_amount.toFixed(2)} zł </span>. Szczegóły zamówienia:</p>
 
     <div className="order-data">
         <div className="customer-details">
             <h2>Dane klienta:</h2>
             <p><span>Telefon:</span> {orderDetails.phone}</p>
             <p><span>Ulica:</span> {orderDetails.street}</p>
-            <p><span>Kod pocztowy:</span> {orderDetails.postalCode}</p>
+            <p><span>Kod pocztowy:</span> {orderDetails.postal_code}</p>
             <p><span>Miejscowość:</span> {orderDetails.city}</p>
-            {orderDetails.houseNumber && <p><span>Numer domu:</span> {orderDetails.houseNumber}</p>}
-            {orderDetails.apartmentNumber && <p><span>Numer mieszkania:</span> {orderDetails.apartmentNumber}</p>}
-            {orderDetails.comments && <p><span>Uwagi:</span> {orderDetails.comments}</p>}
+            {orderDetails.houseNumber && <p><span>Numer domu:</span> {orderDetails.house_number}</p>}
+            {orderDetails.apartmentNumber && <p><span>Numer mieszkania:</span> {orderDetails.apartment_number}</p>}
+            {orderDetails.comment && <p><span>Uwagi:</span> {orderDetails.comment}</p>}
         </div>
 
         <div className="order-items">
