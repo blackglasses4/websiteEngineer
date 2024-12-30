@@ -115,12 +115,8 @@ const SearchProduct = () => {
         }
 
         try {
-
             const response = await deleteProduct(id);
-            // const response = await fetch(`${BACKEND_URL}/products/${id}`, {
-            //     method: 'DELETE',
-            // });
-    
+
             if (!response.ok) {
                 throw new Error('Wystąpił błąd podczas usuwania produktu.');
             }
@@ -176,7 +172,7 @@ const SearchProduct = () => {
             product.id === updatedProduct.id ? updatedProduct : product
         ));
     
-        setProductToEdit(null); // Zamykamy tryb edycji po zapisaniu zmian
+        setProductToEdit(null);
     
         toast.success('Produkt został zaktualizowany!', {
             position: 'top-right',
