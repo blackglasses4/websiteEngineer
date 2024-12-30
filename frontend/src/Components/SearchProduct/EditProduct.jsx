@@ -57,9 +57,9 @@ const EditProduct = ({ product, onSave, onCancel }) => {
 
       const response = await editProduct({
         id: editForm.id,
+        name: editForm.name,
         category: editForm.category,
         gender: editForm.gender,
-        name: editForm.name,
         image: editForm.image,
         popular: editForm.popular,
         new_price: editForm.new_price,
@@ -127,15 +127,15 @@ const EditProduct = ({ product, onSave, onCancel }) => {
     }));
   };
   
-  const handleColorChange = (color) => {
+  const handlecolorChange = (color) => {
     setEditForm((prevForm) => {
-      const updatedColors = prevForm.color.includes(color)
+      const updatedcolors = prevForm.color.includes(color)
         ? prevForm.color.filter((c) => c !== color)
         : [...prevForm.color, color];
   
       return {
         ...prevForm,
-        color: updatedColors,
+        color: updatedcolors,
       };
     });
   };
@@ -144,6 +144,21 @@ const EditProduct = ({ product, onSave, onCancel }) => {
     <>
       <table className="edit-product-form">
         <tbody>
+        <tr>
+            <td>
+              <label>
+                Nazwa:
+                <input
+                  id="input-text"
+                  type="text"
+                  value={editForm.name || ""}
+                  onChange={(e) =>
+                    setEditForm({ ...editForm, name: e.target.value })
+                  }
+                />
+              </label>
+            </td>
+          </tr>
           <tr>
             <td>
               <label>
@@ -158,11 +173,9 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                   <option value="">Wybierz kategorię</option>
                   <option value="koszulka">Koszulka</option>
                   <option value="kurtka">Kurtka</option>
+                  <option value="spodnie">Spodnie</option>
                   <option value="czapka">Czapka</option>
-                  <option value="bluza">Bluza</option>
-                  <option value="buty">Buty</option>
-                  <option value="skarpetki">Skarpetki</option>
-                  <option value="stanikSportowy">Stanik Sportowy</option>
+                  <option value="stroje">Stroje</option>
                 </select>
               </label>
             </td>
@@ -184,21 +197,6 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                   <option value="men">Mężczyzna</option>
                   <option value="unisex">Dla obu płci</option>
                 </select>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label>
-                Nazwa:
-                <input
-                  id="input-text"
-                  type="text"
-                  value={editForm.name || ""}
-                  onChange={(e) =>
-                    setEditForm({ ...editForm, name: e.target.value })
-                  }
-                />
               </label>
             </td>
           </tr>
@@ -319,7 +317,7 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                         !editForm.color.includes(color) &&
                         editForm.color.length >= 5
                       }
-                      onChange={() => handleColorChange(color)}
+                      onChange={() => handlecolorChange(color)}
                     />
                   </label>
                 ))}
@@ -372,6 +370,16 @@ const EditProduct = ({ product, onSave, onCancel }) => {
 
       <div className="edit-product-form-mobile">
         <p>
+          <span>Nazwa:</span>
+          <input
+            id="input-text"
+            type="text"
+            value={editForm.name || ""}
+            onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
+          />
+        </p>
+
+        <p>
           <span>Kategoria:</span>
           <select
             id="input-text"
@@ -406,16 +414,6 @@ const EditProduct = ({ product, onSave, onCancel }) => {
             <option value="men">Mężczyzna</option>
             <option value="unisex">Dla obu płci</option>
           </select>
-        </p>
-
-        <p>
-          <span>Nazwa:</span>
-          <input
-            id="input-text"
-            type="text"
-            value={editForm.name || ""}
-            onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
-          />
         </p>
 
         <p>
@@ -525,7 +523,7 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                     !editForm.color.includes(color) &&
                     editForm.color.length >= 5
                   }
-                  onChange={() => handleColorChange(color)}
+                  onChange={() => handlecolorChange(color)}
                 />
               </label>
             </p>
