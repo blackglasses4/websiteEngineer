@@ -112,3 +112,4 @@ class ProductResponse(BaseModel):
     picture: Optional[str]  # Include serialized path/URL for the image if needed
     class Config:
         from_attributes = True  # Allows compatibility with SQLAlchemy models
+        

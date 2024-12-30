@@ -64,27 +64,33 @@ const SearchProduct = () => {
 
     const statusOrderChange = async (id, newStatus) => {
         try {
+            console.log(`Zmiana statusu zamówienia ${id} na ${newStatus}`);
+    
             const response = await fetch(`${BACKEND_URL}/orders/${id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: newStatus }),
             });
-
+    
             if (!response.ok) {
-                throw new Error('Nie udało się zmienić statusu.');
+                const errorData = await response.json();
+                console.error('Błąd odpowiedzi:', errorData);
+                throw new Error(errorData.detail || 'Nie udało się zmienić statusu.');
             }
-
+    
             const updatedOrders = orders.map((order) =>
                 order.id === id ? { ...order, status: newStatus } : order
             );
             setOrders(updatedOrders);
             setConfirmedResults(updatedOrders);
-
+    
             toast.success('Status zamówienia został zaktualizowany.');
         } catch (error) {
+            console.error('Błąd podczas aktualizacji statusu:', error);
             toast.error(error.message || 'Wystąpił problem z aktualizacją statusu.');
         }
     };
+    
 
     const handleConfirmDelete = (id) => {
         if(!id) {
@@ -218,8 +224,8 @@ const SearchProduct = () => {
                                         <select value={order.status || ""} onChange={(e) => statusOrderChange(order.id, e.target.value)}>
                                             <option value="">Wybierz status</option>
                                             <option value="W_trakcie_realizacji">W trakcie realizacji</option>
-                                            <option value="Opłacone">Opłacone</option>
-                                            <option value="Wysłane">Wysłane</option>
+                                            <option value="Oplacone">Opłacone</option>
+                                            <option value="Wyslane">Wysłane</option>
                                             <option value="Dostarczone">Dostarczone</option>
                                             <option value="Reklamacja">Reklamacja</option>
                                         </select>
@@ -275,9 +281,9 @@ const SearchProduct = () => {
                                     <p><span>Status: </span>
                                         <select value={order.status || ""} onChange={(e) => statusOrderChange(order.id, e.target.value)}>
                                             <option value="">Wybierz status</option>
-                                            <option value="W trakcie realizacji">W trakcie realizacji</option>
-                                            <option value="Opłacone">Opłacone</option>
-                                            <option value="Wysłane">Wysłane</option>
+                                            <option value="W_trakcie_realizacji">W trakcie realizacji</option>
+                                            <option value="Oplacone">Opłacone</option>
+                                            <option value="Wyslane">Wysłane</option>
                                             <option value="Dostarczone">Dostarczone</option>
                                             <option value="Reklamacja">Reklamacja</option>
                                         </select>

@@ -108,7 +108,7 @@ const Order = () => {
       apartment_number: orderDetails.apartment_number || null,
       house_number: orderDetails.house_number || null,
       comment: orderDetails.comment,
-      status: "W trakcie realizacji",
+      status: "W_trakcie_realizacji",
       total_amount: calculateTotal(),
       products_order: JSON.stringify(orderItems),
     };

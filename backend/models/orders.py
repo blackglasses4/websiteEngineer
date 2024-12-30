@@ -12,9 +12,9 @@ from pydantic import BaseModel
 from backend.base import Base
 
 class StatusEnum(enum.Enum):
-    W_trakcie_realizacji = "W trakcie realizacji"
-    Oplacone = "Opłacone"
-    Wyslane = "Wysłane"
+    W_trakcie_realizacji = "W_trakcie_realizacji"
+    Oplacone = "Oplacone"
+    Wyslane = "Wyslane"
     Dostarczone = "Dostarczone"
     Reklamacja = "Reklamacja"
 
@@ -33,7 +33,8 @@ class Order(Base):
     date = Column(DateTime, default=func.now())
     total_amount = Column(Integer, nullable=False)
     products_order = Column(String(255), nullable=False)
-
+class UpdateOrderStatusRequest(BaseModel):
+    status: str
 class OrderCreate(BaseModel):
 
     phone: int
