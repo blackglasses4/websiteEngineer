@@ -31,6 +31,8 @@ class Order(Base):
     comment = Column(String(255), nullable=True)
     status = Column(Enum(StatusEnum), default=StatusEnum.W_trakcie_realizacji)
     date = Column(DateTime, default=func.now())
+    total_amount = Column(Integer, nullable=False)
+    products_order = Column(String(255), nullable=False)
 
 class OrderCreate(BaseModel):
 
@@ -43,6 +45,8 @@ class OrderCreate(BaseModel):
     comment: Optional[str] = None
     status: StatusEnum
     date: Optional[datetime] = None
+    total_amount: int
+    products_order: str
     
     class Config:
         from_attributes = True  # Allows compatibility with SQLAlchemy models

@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from backend.db_connect import SessionLocal
 from backend.models import Order
 from backend.models.orders import OrderCreate, StatusEnum
-import datetime
+from datetime import datetime 
 
 #Tworzenie instancji routera
 order_router = APIRouter()
@@ -23,15 +23,17 @@ def order_add(order: OrderCreate, db: Session = Depends(get_db)):
         order.date = datetime.utcnow()
 
     new_order = Order(
-        phone = order.phone,
+        phone = int(order.phone),
         street = order.street,
         postal_code = order.postal_code,
         city = order.city,
-        house_number = order.house_number,
-        apartment_number = order.apartment_number,
+        house_number = order.house_number if order.house_number else None,
+        apartment_number = order.apartment_number if order.apartment_number else None,
         comment = order.comment,
-        status = order.status,
-        date = order.date
+        status=StatusEnum(order.status),
+        date = order.date,
+        total_amount = int(order.total_amount),
+        products_order = order.products_order
     )
 
     # Dodanie produktu do sesji i zapisanie do bazy danych
