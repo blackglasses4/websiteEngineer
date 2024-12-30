@@ -5,7 +5,6 @@ from sqlalchemy.exc import OperationalError
 from .base import Base  # Import the shared Base
 from .models.user import User  # Import models to ensure they are registered with Base
 from .models.product import Product
-from .models.product_images import ProductPicture
 
 try:
     # Database configuration
