@@ -136,6 +136,9 @@ async function deleteUser(user) {
     return del('/user/', user);
 }
 
+async function deleteOrder(order) {
+    return del('/order/', order);
+}
 
 export {
     getProducts,
@@ -150,4 +153,5 @@ export {
     editUser,
     deleteProduct,
     deleteUser,
+    deleteOrder
 };

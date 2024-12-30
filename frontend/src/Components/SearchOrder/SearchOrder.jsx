@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BACKEND_URL } from '../../config';
-import { getOrders } from '../../backend';
+import { getOrders, deleteOrder } from '../../backend';
 
 import '../Filter/Filter.scss';
 import '../SearchProduct/Search.scss';
@@ -31,6 +31,7 @@ const SearchProduct = () => {
             //get Orders
             const response = await getOrders(params);
             const result = await response.json();
+            console.log(result);
 
             if (result['data']) {
                 setFirstPage(result['first']);
@@ -113,9 +114,7 @@ const SearchProduct = () => {
         }
 
         try {
-            const response = await fetch(`${BACKEND_URL}/orders/${id}`, {
-                method: 'DELETE',
-            });
+            const response = await deleteOrder(id);
     
             if (!response.ok) {
                 throw new Error('Wystąpił błąd podczas usuwania zamówienia.');
@@ -153,11 +152,11 @@ const SearchProduct = () => {
     return (
         <div className="search-order">
             <div className="filter">
-                <input type="button" value="Pierwsza" disabled={firstPage == null} onClick={() => {setPage(firstPage)}}></input>
-                <input type="button" value="Poprzednia" disabled={prevPage == null} onClick={() => {setPage(prevPage)}}></input>
+            <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
+                <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage);}}></input>
                 <span>{page} z {numberOfPages}</span>
-                <input type="button" value="Następna" disabled={nextPage == null} onClick={() => {setPage(nextPage)}}></input>
-                <input type="button" value="Ostatnia" disabled={lastPage == null} onClick={() => {setPage(lastPage)}}></input>
+                <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage);}}></input>
+                <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage)}}></input>
                 <span>Liczba sztuk: {numberOfItems}</span>
             </div>
 
@@ -188,14 +187,14 @@ const SearchProduct = () => {
                                     <td>{order.customer}</td>
                                     <td>{new Date(order.date).toLocaleDateString('pl-PL')}</td>
                                     <td>
-                                        {`${order.customerDetails.street} ${order.customerDetails.houseNumber}${
-                                            order.customerDetails.apartmentNumber
-                                                ? `/${order.customerDetails.apartmentNumber}`
+                                        {`${order.street} ${order.house_number}${
+                                            order.apartment_number
+                                                ? `/${order.apartment_number}`
                                                 : ""
-                                        }, ${order.customerDetails.postalCode} ${order.customerDetails.city}`}
+                                        }, ${order.postal_code} ${order.city}`}
                                     </td>
                                     <td>
-                                        {order.customerDetails.phone}
+                                        {order.phone}
                                     </td>
                                     <td>
                                         {order.items && Array.isArray(order.items) ? (
@@ -212,13 +211,14 @@ const SearchProduct = () => {
                                     <td>
                                         <select value={order.status || ""} onChange={(e) => statusOrderChange(order.id, e.target.value)}>
                                             <option value="">Wybierz status</option>
-                                            <option value="W trakcie realizacji">W trakcie realizacji</option>
+                                            <option value="W_trakcie_realizacji">W trakcie realizacji</option>
+                                            <option value="Opłacone">Opłacone</option>
                                             <option value="Wysłane">Wysłane</option>
                                             <option value="Dostarczone">Dostarczone</option>
                                             <option value="Reklamacja">Reklamacja</option>
                                         </select>
                                     </td>
-                                    <td>{order.customerDetails.comments ? order.customerDetails.comments.slice(0,25) + '...' : 'Brak komentarzy'}</td>
+                                    <td>{order.comment ? order.comment.slice(0,25) + '...' : 'Brak komentarzy'}</td>
                                     <td>
                                         <button
                                             className='button-delete'
@@ -246,16 +246,16 @@ const SearchProduct = () => {
                                     <p><span>Kupujący: </span>{order.customer}</p>
                                     <p><span>Data: </span>{new Date(order.date).toLocaleDateString('pl-PL')}</p>
                                     <p><span>Numer domu/mieszkania: </span>
-                                        {`${order.customerDetails.houseNumber}${
-                                            order.customerDetails.apartmentNumber
-                                                ? `/${order.customerDetails.apartmentNumber}`
+                                        {`${order.houseNumber}${
+                                            order.apartmentNumber
+                                                ? `/${order.apartmentNumber}`
                                                 : ""
                                         }`}
                                     </p>
-                                    <p><span>Ulica: </span>{order.customerDetails.street > 20 ? `${order.customerDetails.street.slice(0, 20)}...` : order.customerDetails.street}</p>
-                                    <p><span>Kod pocztowy: </span>{order.customerDetails.postalCode}</p>
-                                    <p><span>Miasto: </span>{order.customerDetails.city}</p>
-                                    <p><span>Telefon: </span>{order.customerDetails.phone}</p>  
+                                    <p><span>Ulica: </span>{order.street > 20 ? `${order.street.slice(0, 20)}...` : order.street}</p>
+                                    <p><span>Kod pocztowy: </span>{order.postalCode}</p>
+                                    <p><span>Miasto: </span>{order.city}</p>
+                                    <p><span>Telefon: </span>{order.phone}</p>  
                                     <p><span>Produkty: </span>{order.items && Array.isArray(order.items) ? (
                                             order.items.map((product) => (
                                                 <p key={product.productId}>
@@ -270,12 +270,13 @@ const SearchProduct = () => {
                                         <select value={order.status || ""} onChange={(e) => statusOrderChange(order.id, e.target.value)}>
                                             <option value="">Wybierz status</option>
                                             <option value="W trakcie realizacji">W trakcie realizacji</option>
+                                            <option value="Opłacone">Opłacone</option>
                                             <option value="Wysłane">Wysłane</option>
                                             <option value="Dostarczone">Dostarczone</option>
                                             <option value="Reklamacja">Reklamacja</option>
                                         </select>
                                     </p>  
-                                    <p><span>Uwagi: </span>{order.customerDetails.comments ? order.customerDetails.comments.slice(0,50) + '...' : 'Brak komentarzy'}</p>  
+                                    <p><span>Uwagi: </span>{order.comments ? order.comments.slice(0,50) + '...' : 'Brak komentarzy'}</p>  
                                     <div className="mobile-button">
                                         <button className='button-delete' onClick={() => handleConfirmDelete(order.id)}>Usuń</button>
                                     </div>
