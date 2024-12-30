@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.orm import Session
 from backend.db_connect import SessionLocal
 from backend.models import Order
-from backend.models.orders import OrderCreate, StatusEnum
+from backend.models.orders import OrderCreate, StatusEnum, UpdateOrderStatusRequest
 from datetime import datetime 
 
 #Tworzenie instancji routera
@@ -89,24 +89,27 @@ def delete_order(id: int, db: Session = Depends(get_db)):
     return {"message": f"Zamówienie o ID {id} zostało usunięte pomyślnie."}
 
 @order_router.patch("/orders/{id}")
-def update_order_status(id: int, status: str, db: Session = Depends(get_db)):
-    try:
-        # Przekształcamy status w stringu na odpowiedni enum
-        new_status = StatusEnum[status.upper()]
-    except KeyError:
+def update_order_status(id: int, request: UpdateOrderStatusRequest, db: Session = Depends(get_db)):
+    status_map = {
+        "W_trakcie_realizacji": StatusEnum.W_trakcie_realizacji,
+        "Oplacone": StatusEnum.Oplacone,
+        "Wyslane": StatusEnum.Wyslane,
+        "Dostarczone": StatusEnum.Dostarczone,
+        "Reklamacja": StatusEnum.Reklamacja,
+    }
+
+    new_status = status_map.get(request.status)
+    if not new_status:
         raise HTTPException(status_code=400, detail="Niepoprawny status")
 
-    # Wyszukujemy zamówienie po ID
     order = db.query(Order).filter(Order.id == id).first()
-    
-    # Jeśli zamówienie nie istnieje, rzucamy wyjątek
-    if order is None:
+    if not order:
         raise HTTPException(status_code=404, detail="Nie znaleziono zamówienia")
 
-    # Zaktualizowanie statusu (przypisujemy enum, a nie string)
-    order.status = new_status
+    print(f"Zmieniam status zamówienia {id} z {order.status} na {new_status.value}")
+    order.status = new_status.value
     db.commit()
     db.refresh(order)
+    print(f"Status po zapisaniu w bazie: {order.status}")
 
-    # Zwracamy zaktualizowane zamówienie
-    return order
+    return {"id": order.id, "status": order.status}
