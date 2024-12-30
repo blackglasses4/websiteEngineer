@@ -2,8 +2,7 @@ from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.orm import Session
 from backend.db_connect import SessionLocal
 from backend.models import Order
-from backend.models.orders import OrderCreate
-
+from backend.models.orders import OrderCreate, StatusEnum
 
 #Tworzenie instancji routera
 order_router = APIRouter()
@@ -19,6 +18,9 @@ def get_db():
 @order_router.post("/orders")
 def order_add(order: OrderCreate, db: Session = Depends(get_db)):
     # Tworzymy użytkownika w bazie danych
+    if not order.date:
+        order.date = datetime.utcnow()
+
     new_order = Order(
         phone = order.phone,
         street = order.street,
@@ -26,7 +28,9 @@ def order_add(order: OrderCreate, db: Session = Depends(get_db)):
         city = order.city,
         house_number = order.house_number,
         apartment_number = order.apartment_number,
-        comment = order.comment
+        comment = order.comment,
+        status = order.status,
+        date = order.date
     )
 
     # Dodanie produktu do sesji i zapisanie do bazy danych
@@ -80,3 +84,26 @@ def delete_order(id: int, db: Session = Depends(get_db)):
 
     # Return a success message
     return {"message": f"Zamówienie o ID {id} zostało usunięte pomyślnie."}
+
+@order_router.patch("/orders/{id}")
+def update_order_status(id: int, status: str, db: Session = Depends(get_db)):
+    try:
+        # Przekształcamy status w stringu na odpowiedni enum
+        new_status = StatusEnum[status.upper()]
+    except KeyError:
+        raise HTTPException(status_code=400, detail="Niepoprawny status")
+
+    # Wyszukujemy zamówienie po ID
+    order = db.query(Order).filter(Order.id == id).first()
+    
+    # Jeśli zamówienie nie istnieje, rzucamy wyjątek
+    if order is None:
+        raise HTTPException(status_code=404, detail="Nie znaleziono zamówienia")
+
+    # Zaktualizowanie statusu (przypisujemy enum, a nie string)
+    order.status = new_status
+    db.commit()
+    db.refresh(order)
+
+    # Zwracamy zaktualizowane zamówienie
+    return order
