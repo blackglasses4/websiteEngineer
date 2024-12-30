@@ -1,14 +1,18 @@
 from fastapi import FastAPI
 from backend.routers.auth import router
+from backend.routers.files import files_router
 from backend.routers.products import product_router
 from backend.routers.order import order_router
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
+from config import FILES_DIR, STATIC_FILES_URL_BASE_PATH
+
 app = FastAPI()
 
 # Static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
+
+app.mount(STATIC_FILES_URL_BASE_PATH, StaticFiles(directory=FILES_DIR), name="static")
 
 # List of allowed origins (this should be the URL of your frontend)
 origins = [
@@ -18,6 +22,7 @@ origins = [
 
 # Include the router
 app.include_router(router, tags=["Auth"])
+app.include_router(files_router, tags=["Files"])
 app.include_router(product_router, tags=["Products"])
 app.include_router(order_router, tags=["Orders"])
 # Add CORSMiddleware to the app to allow cross-origin requests

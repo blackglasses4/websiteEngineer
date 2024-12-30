@@ -11,8 +11,8 @@ import "./Register.scss";
 
 const Register = () => {
   const [userDetails, setUserDetails] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     username: "",
     email: "",
     password: "",
@@ -113,8 +113,8 @@ const Register = () => {
       toast.success("Rejestracja zakończona sukcesem!");
 
       setUserDetails({
-        firstName: "",
-        lastName: "",
+        first_name: "",
+        last_name: "",
         username: "",
         email: "",
         password: "",
@@ -150,32 +150,32 @@ const Register = () => {
           <h1>Rejestracja</h1>
           <form onSubmit={registerUser}>
 
-            <label htmlFor="firstName" className={errors.firstName ? "error" : ""}>
+            <label htmlFor="first_name" className={errors.first_name ? "error" : ""}>
               Imię:
               <input
                 type="text"
-                name="firstName"
-                id="firstName"
-                value={userDetails.firstName}
+                name="first_name"
+                id="first_name"
+                value={userDetails.first_name}
                 onChange={changeUserData}
                 placeholder="Wpisz swoje imię"
                 required
               />
-              {errors.firstName && <span className="error-message">{errors.firstName}</span>}
+              {errors.first_name && <span className="error-message">{errors.first_name}</span>}
             </label>
 
-            <label htmlFor="lastName" className={errors.lastName ? "error" : ""}>
+            <label htmlFor="last_name" className={errors.last_name ? "error" : ""}>
               Nazwisko:
               <input
                 type="text"
-                name="lastName"
-                id="lastName"
-                value={userDetails.lastName}
+                name="last_name"
+                id="last_name"
+                value={userDetails.last_name}
                 onChange={changeUserData}
                 placeholder="Wpisz swoje nazwisko"
                 required
               />
-              {errors.lastName && <span className="error-message">{errors.lastName}</span>}
+              {errors.last_name && <span className="error-message">{errors.last_name}</span>}
             </label>
 
             <label htmlFor="username" className={errors.username ? "error" : ""}>

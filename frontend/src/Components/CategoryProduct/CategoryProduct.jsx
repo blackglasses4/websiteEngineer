@@ -6,6 +6,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { getProducts } from '../../backend';
 import { FaSlidersH } from 'react-icons/fa';
+import { BACKEND_URL } from '../../config';
 
 import useClick from '../useClick';
 
@@ -165,11 +166,11 @@ const CategoryProducts = () => {
         {confirmedResults.map(item => (
           <div className="item" key={item.id}>
             <Link to={`/product/${item.id}`}>
-                {item.image && (
+                {item.picture && (
                   <LazyLoadImage
-                  src={item.image.url}
+                  src={`${BACKEND_URL}${item.picture}`}
                   effect="blur"
-                  alt={item.image.alt}
+                  alt='vvvv'
                   width="100%"
                   height="auto"
                   threshold={100}

@@ -10,6 +10,7 @@ import Footer from './Components/Footer/Footer';
 import NavbarCategory from './Components/Navbar/NavbarCategory';
 import CartPage from './Components/Cart/CartPage/CartPage';
 import { ProductProvider } from './Components/ProductContext';
+import ProtectedRoute from "./Pages/ProtectedRoute";
 
 // Strony
 import Login from './Pages/Login/Login';
@@ -54,7 +55,7 @@ function App() {
 
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/admin/*" element={<Admin />} />
+                <Route path="/admin/*" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
               </Routes>
               <ToastContainer />
             </div>
