@@ -3,36 +3,50 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCart } from '../Cart/CartContext';
 import { toast } from 'react-toastify';
-import { useProducts } from '../ProductContext';
-import SimilarProducts from './SimilarProduct/SimilarProduct';
+// import { useProducts } from '../ProductContext';
+// import SimilarProducts from './SimilarProduct/SimilarProduct';
 import './DisplayProduct.scss';
+import { getProduct } from '../../backend';
+import { BACKEND_URL } from '../../config';
 
 const DisplayProduct = () => {
   const { id } = useParams();
-  const { products, error, loading } = useProducts();
+  // const { products, error, loading } = useProducts();
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [product, setProduct] = useState(null);
 
   const { addToCart } = useCart();
 
+  async function fetchProduct() {
+    const response = await getProduct(id);
+    const product = await response.json();
+    product.sizes = product.sizes ? product.sizes.split(',') : [];
+    product.colors = product.colors ? product.colors.split(',') : [];
+
+    setProduct(product);
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    if (products && products.length > 0) {
-        const foundProduct = products.find((item) => item.id === id);
-        if (foundProduct) {
-            setProduct(foundProduct);
-        }
-        else 
-        {
-        setProduct(null);
-      }
-    }
-}, [id, products]);
+    // if (products && products.length > 0) {
+    //     const foundProduct = products.find((item) => item.id === id);
+    //     if (foundProduct) {
+    //         setProduct(foundProduct);
+    //     }
+    //     else 
+    //     {
+    //     setProduct(null);
+    //   }
+    // }
 
-  if (loading) return <p>Ładowanie produktu...</p>;
-  if (error) return <p className="error-product">Błąd podczas pobierania danych o produkcie</p>;
+    fetchProduct();
+
+}, [id]);
+
+  // if (loading) return <p>Ładowanie produktu...</p>;
+  // if (error) return <p className="error-product">Błąd podczas pobierania danych o produkcie</p>;
   if (!product) return <p className="error-product">Produkt nie został odnaleziony</p>;
 
   const handleAddToCart = () => {
@@ -51,7 +65,7 @@ const DisplayProduct = () => {
 
     addToCart({
       productId: product.id,
-      image: product.image.url,
+      picture: product.picture,
       name: product.name,
       price: product.new_price,
       size: selectedSize,
@@ -77,7 +91,7 @@ const DisplayProduct = () => {
         <h1>{product.name}</h1>
         <div className="product-display__content">
           <div className="product-display__image-gallery">
-            <img src={product.image.url} alt={product.image.alt} />
+            <img src={BACKEND_URL + product.picture} alt="" />
           </div>
           <div className="product-display__details">
             <p className="description">{product.description}</p>
@@ -89,7 +103,7 @@ const DisplayProduct = () => {
             <div className="product-display__colors">
               <h3>Wybierz kolor</h3>
               <div className="color-options">
-                {product.color.map((color, index) => (
+                {product.colors.map((color, index) => (
                   <div
                     key={`${color}-${index}`}
                     className={`color-circle ${
@@ -130,7 +144,7 @@ const DisplayProduct = () => {
         </div>
       </section>
 
-      <SimilarProducts products={products} category={product.category} selectedProductId={product.id}/>
+      {/* <SimilarProducts products={products} category={product.category} selectedProductId={product.id}/> */}
     </>
   );
 };

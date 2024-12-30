@@ -6,6 +6,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import './CartPage.scss';
+import { BACKEND_URL } from '../../../config';
 
 const CartPage = () => {
   const { cart, removeFromCart, updateCart, clearCart } = useCart();
@@ -74,9 +75,9 @@ const CartPage = () => {
             <tbody>
               {products.map((product) => (
                 <tr key={product.uniqueId}>
-                  <td data-label="Produkt"> {product.image ? (
+                  <td data-label="Produkt"> {product.picture ? (
                         <LazyLoadImage
-                        src={product.image}
+                        src={BACKEND_URL + product.picture}
                         className='cart-item-image'
                         effect="blur"
                         alt={product.name}
@@ -129,10 +130,10 @@ const CartPage = () => {
             {products.map((product) => (
               <div className="cart-card" key={product.uniqueId}>
                   <LazyLoadImage
-                        src={product.image}
+                        src={BACKEND_URL + product.picture}
                         className='cart-item-image'
                         effect="blur"
-                        alt={product.name}
+                        alt=""
                         height="auto"
                         threshold={100}
                   />

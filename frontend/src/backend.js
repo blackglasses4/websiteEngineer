@@ -71,6 +71,11 @@ async function getProducts(params) {
     const product = await get('/products', params);
     return product;
 }
+
+async function getProduct(id) {
+    const product = await get(`/product/${id}`);
+    return product;
+}
 //products_list
 
 async function getOrders(params) {
@@ -129,7 +134,7 @@ async function editUser(user) {
 
 //usuwanie
 async function deleteProduct(product) {
-    return del('/products/', product);
+    return del('/product/', product);
 }
 
 async function deleteUser(user) {
@@ -142,6 +147,7 @@ async function deleteOrder(order) {
 
 export {
     getProducts,
+    getProduct,
     getOrders,
     addOrder,
     getUsers,
