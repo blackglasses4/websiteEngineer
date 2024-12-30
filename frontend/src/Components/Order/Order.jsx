@@ -13,11 +13,11 @@ const Order = () => {
   const [orderDetails, setOrderDetails] = useState({
     phone: "",
     street: "",
-    postalCode: "",
+    postal_code: "",
     city: "",
-    houseNumber: "",
-    apartmentNumber: "",
-    comments: "",
+    house_number: "",
+    apartment_number: "",
+    comment: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -44,7 +44,7 @@ const Order = () => {
     const requiredFields = [
       "phone",
       "street",
-      "postalCode",
+      "postal_code",
       "city",
     ];
     let isValid = true;
@@ -63,14 +63,14 @@ const Order = () => {
       isValid = false;
     }
   
-    if (orderDetails.postalCode && !validatePostalCode(orderDetails.postalCode)) {
-      newErrors.postalCode = "Podaj prawidłowy kod pocztowy (np. 00-000).";
+    if (orderDetails.postal_code && !validatePostalCode(orderDetails.postal_code)) {
+      newErrors.postal_code = "Podaj prawidłowy kod pocztowy (np. 00-000).";
       isValid = false;
     }
   
     // Logika walidacji - jedno z pól (dom lub mieszkanie) musi być wypełnione
-    if (!orderDetails.houseNumber && !orderDetails.apartmentNumber) {
-      newErrors.houseNumber = "Musisz podać numer domu lub mieszkania!";
+    if (!orderDetails.house_number && !orderDetails.apartment_number) {
+      newErrors.house_number = "Musisz podać numer domu lub mieszkania!";
       isValid = false;
     }
   
@@ -82,6 +82,7 @@ const Order = () => {
     return orderItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
+  
   const sendDataOrder = async (e) => {
     e.preventDefault();
 
@@ -96,19 +97,23 @@ const Order = () => {
       return;
     }
 
-    const usernameUser = localStorage.getItem('usernameUser');
+    //const usernameUser = localStorage.getItem('usernameUser');
 
     const orderData = {
-      customerDetails: orderDetails,
-      items: orderItems,
-      totalAmount: calculateTotal(),
-      date: new Date().toISOString(),
+      phone: parseInt(orderDetails.phone, 10),
+      street: orderDetails.street,
+      postal_code: orderDetails.postal_code,
+      city: orderDetails.city,
+      apartment_number: orderDetails.apartment_number || null,
+      house_number: orderDetails.house_number || null,
+      comment: orderDetails.comment,
       status: "W trakcie realizacji",
-      customer: usernameUser || "Anonimowy użytkownik",
+      total_amount: calculateTotal(),
+      products_order: JSON.stringify(orderItems),
     };
 
     try {
-
+      console.log(orderData);
       const response = await addOrder(orderData);
       
       if (!response.ok) {
@@ -119,11 +124,11 @@ const Order = () => {
       setOrderDetails({
         phone: "",
         street: "",
-        postalCode: "",
+        postal_code: "",
         city: "",
-        houseNumber: "",
-        apartmentNumber: "",
-        comments: "",
+        house_number: "",
+        apartment_number: "",
+        comment: "",
       });
       setOrderItems([]);
       localStorage.removeItem("order");
@@ -133,7 +138,7 @@ const Order = () => {
         state: {
           orderDetails,
           orderItems,
-          totalAmount: calculateTotal(),
+          total_amount: calculateTotal(),
         }
       });
 
@@ -182,20 +187,20 @@ const Order = () => {
                 {errors && errors.street && <span className="error-message">{errors.street}</span>}
               </label>
 
-              <label htmlFor="postalCode" className={errors.postalCode ? "error" : ""}>
+              <label htmlFor="postal_code" className={errors.postal_code ? "error" : ""}>
                 Kod pocztowy:
                 <input
                   type="text"
-                  name="postalCode"
-                  id="postalCode"
-                  value={orderDetails.postalCode}
+                  name="postal_code"
+                  id="postal_code"
+                  value={orderDetails.postal_code}
                   onChange={changeDataOrder}
                   placeholder="Np. 00-000"
                   inputMode="numeric"
                   maxLength={6}
                   required
                 />
-                {errors && errors.postalCode && <span className="error-message">{errors.postalCode}</span>}
+                {errors && errors.postal_code && <span className="error-message">{errors.postal_code}</span>}
               </label>
 
               <label htmlFor="city" className={errors.city ? "error" : ""}>
@@ -212,42 +217,42 @@ const Order = () => {
                 {errors && errors.city && <span className="error-message">{errors.city}</span>}
               </label>
 
-              <label htmlFor="houseNumber" className={errors.houseNumber ? "error" : ""}>
+              <label htmlFor="house_number" className={errors.house_number ? "error" : ""}>
                 Numer domu:
                 <input
                   type="number"
-                  name="houseNumber"
-                  id="houseNumber"
-                  value={orderDetails.houseNumber}
+                  name="house_number"
+                  id="house_number"
+                  value={orderDetails.house_number}
                   onChange={changeDataOrder}
                   placeholder="Np. 4"
                   min={1}
                 />
-                {errors && errors.houseNumber && <span className="error-message">{errors.houseNumber}</span>}
+                {errors && errors.house_number && <span className="error-message">{errors.house_number}</span>}
               </label>
 
-              <label htmlFor="apartmentNumber">
+              <label htmlFor="apartment_number">
                 Numer mieszkania:
                 <input
                   type="number"
-                  name="apartmentNumber"
-                  id="apartmentNumber"
-                  value={orderDetails.apartmentNumber}
+                  name="apartment_number"
+                  id="apartment_number"
+                  value={orderDetails.apartment_number}
                   onChange={changeDataOrder}
                   placeholder="Np. 15"
                   min={1}
                 />
-                {errors && errors.apartmentNumber && <span className="error-message">{errors.apartmentNumber}</span>}
+                {errors && errors.apartment_number && <span className="error-message">{errors.apartment_number}</span>}
               </label>
 
-              <label htmlFor="comments">
+              <label htmlFor="comment">
                 Uwagi: (opcjonalnie)
                 <textarea
-                  id="comments"
-                  name="comments"
+                  id="comment"
+                  name="comment"
                   rows="5"
                   cols="33"
-                  value={orderDetails.comments}
+                  value={orderDetails.comment}
                   onChange={changeDataOrder}
                   placeholder="Napisz swoje uwagi"
                 />

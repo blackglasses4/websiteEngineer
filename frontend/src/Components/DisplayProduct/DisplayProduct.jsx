@@ -30,23 +30,10 @@ const DisplayProduct = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // if (products && products.length > 0) {
-    //     const foundProduct = products.find((item) => item.id === id);
-    //     if (foundProduct) {
-    //         setProduct(foundProduct);
-    //     }
-    //     else 
-    //     {
-    //     setProduct(null);
-    //   }
-    // }
-
     fetchProduct();
 
 }, [id]);
 
-  // if (loading) return <p>Ładowanie produktu...</p>;
-  // if (error) return <p className="error-product">Błąd podczas pobierania danych o produkcie</p>;
   if (!product) return <p className="error-product">Produkt nie został odnaleziony</p>;
 
   const handleAddToCart = () => {
