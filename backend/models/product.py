@@ -4,7 +4,6 @@ from unicodedata import category
 from sqlalchemy import Column, ForeignKey, Integer, String, Enum, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from sqlalchemy_imageattach.entity import Image , image_attachment
 from typing import Optional
 from pydantic import BaseModel
 from backend.base import Base
@@ -77,7 +76,6 @@ class Product(Base):
     old_price = Column(Integer, nullable=True)        # Nazwy kolumn w bazie
     amount = Column(Integer, nullable=True)     #
     description = Column(String(255), nullable=True)
-#    picture = image_attachment('ProductPicture')
     picture = Column(String(255), nullable=True)
     sizes = Column(String(255), nullable=False)
     colors = Column(String(255), nullable=False)
