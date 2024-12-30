@@ -96,7 +96,21 @@ def product_add(product: ProductCreate, db: Session = Depends(get_db)):
 def get_single_product(id: int, db: Session = Depends(get_db)):
     product = db.query(Product).filter(Product.id == id).first()
     if not product:
-        raise HTTPException(status_code=404, detail="Product not found")
+        raise HTTPException(status_code=404, detail="Nie znaleziono produktów")
     return product
 
+@product_router.delete("/product/{id}")
+def delete_product(id: int, db: Session = Depends(get_db)):
+    # Query the user by ID
+    product = db.query(Product).filter(Product.id == id).first()
     
+    # If the user does not exist, raise a 404 error
+    if product is None:
+        raise HTTPException(status_code=404, detail="Nie znaleziono produktu")
+    
+    # Delete the user from the database
+    db.delete(product)
+    db.commit()
+
+    # Return a success message
+    return {"message": f"Produkt o ID {id} został usunięty pomyślnie."}

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.orm import Session
 from backend.db_connect import SessionLocal
 from backend.models import Order
@@ -65,4 +65,18 @@ def get_orders(
         "items": total_items,
     }
     
+@order_router.delete("/order/{id}")
+def delete_order(id: int, db: Session = Depends(get_db)):
+    # Query the user by ID
+    order = db.query(Order).filter(Order.id == id).first()
     
+    # If the user does not exist, raise a 404 error
+    if order is None:
+        raise HTTPException(status_code=404, detail="Nie znaleziono zamówienia")
+    
+    # Delete the user from the database
+    db.delete(order)
+    db.commit()
+
+    # Return a success message
+    return {"message": f"Zamówienie o ID {id} zostało usunięte pomyślnie."}
