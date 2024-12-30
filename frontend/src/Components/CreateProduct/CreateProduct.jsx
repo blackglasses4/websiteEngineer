@@ -4,15 +4,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getProducts, addProduct } from '../../backend';
 
 import './Create.scss';
+import { BACKEND_URL } from '../../config';
 
 const CreateProduct = () => {
     const initialProductState = {
-        id: '',
         category: '',
         gender: '',
         name: '',
-        image: null,
         popular: false,
+        picture: null,
         new_price: '',
         old_price: '',
         description: '',
@@ -24,19 +24,7 @@ const CreateProduct = () => {
     const [product, setProduct] = useState(initialProductState);
     const [loading, setLoading] = useState(false);
     const [imagePreview, setImagePreview] = useState(null);
-    const [products, setProducts] = useState([]);
     const [isFormOpen, setIsFormOpen] = useState(false);
-
-    // Ładowanie produktów z serwera, aby uzyskać ostatnie id
-    useEffect(() => {
-        const fetchProducts = async () => {
-            const response = await getProducts();
-            const data = await response.json();
-            setProducts(data);
-        };
-
-        fetchProducts();
-    }, []);
 
     const handleInputChange = (e) => {
         const { type, name, value, checked } = e.target;
@@ -71,14 +59,6 @@ const CreateProduct = () => {
                 material: value,
             }));
         }
-        else if (type === 'file') {
-            const file = e.target.files[0];
-            setProduct((prev) => ({
-                ...prev,
-                image: file,
-            }));
-            setImagePreview(URL.createObjectURL(file));
-        }
         else if (name === 'new_price' || name === 'old_price') {
             setProduct((prev) => ({
                 ...prev,
@@ -98,32 +78,35 @@ const CreateProduct = () => {
         setLoading(true);
 
         try {
-            const newId = products.length ? Math.max(...products.map(p => p.id)) + 1 : 1;
+            const form = new FormData();
+            form.append('file', document.getElementById('fileInput').files[0]);
+            
+            const result = await fetch(`${BACKEND_URL}/files/`, {
+                method:'POST',
+                body: form
+            });
+            const res = await result.json();
+            const picture_path = res['filepath'];
+            console.log(res);
 
             const productData = {
-                id: newId,
+                // id: newId,
                 name: product.name,
                 category: product.category,
                 gender: product.gender,
-                image: product.image ? product.image.name : null, 
                 popular: product.popular,
                 new_price: product.new_price,
                 old_price: product.old_price,
                 description: product.description,
-                sizes: product.sizes,
-                color: product.color,
+                sizes: product.sizes.join(','),
+                colors: product.color.join(','),
                 material: product.material,
+                picture: picture_path
             };
 
-            const response = await addProduct(productData);
 
-            // const response = await fetch(`${BACKEND_URL}/products`, {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify(productData),
-            // });
+
+            const response = await addProduct(productData);
 
             const data = await response.json();
             console.log(data);
@@ -153,7 +136,6 @@ const CreateProduct = () => {
 
             // Resetowanie formularza
             setProduct(initialProductState);
-            setProducts((prev) => [...prev, productData]);
         }
         catch (err){
             toast.error(err.message || 'Coś poszło nie tak.', {
@@ -194,18 +176,18 @@ const CreateProduct = () => {
                                 <option value="stroje">Stroje</option>
                         </select>
                     </label>
-
+``
                     <label htmlFor="gender">Płeć: 
                         <select name="gender" id="gender" value={product.gender} onChange={handleInputChange} required>
                         <option value="">Wybierz płeć</option>
-                                <option value="women">Kobieta</option>
-                                <option value="men">Mężczyzna</option>
-                                <option value="unisex">Dla obu płci</option>
+                                <option value="kobiety">Kobieta</option>
+                                <option value="mężczyźni">Mężczyzna</option>
+                                <option value="dla obu płci">Dla obu płci</option>
                         </select>
                     </label>
 
                     <label htmlFor="image">Obraz: 
-                        <input type="file" name="image" accept='image/*' id="image" onChange={handleInputChange} required/>
+                        <input type="file" name="image" accept='image/*' id="fileInput" required/>
                         {imagePreview && <img className='add-img' src={imagePreview} alt="preview" />}
                     </label>
                     <label htmlFor="popular">Czy jest popularny: <input type="checkbox" name="popular" id="popular" onChange={handleInputChange} checked={product.popular}/></label>
@@ -215,7 +197,7 @@ const CreateProduct = () => {
                     <fieldset>
                         <legend>Rozmiary:</legend>
                         {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map((size) => (
-                            <label htmlFor="sizes" key={size}>{size}
+                            <label htmlFor="size" key={size}>{size}
                                 <input
                                     type="checkbox"
                                     name="size"
