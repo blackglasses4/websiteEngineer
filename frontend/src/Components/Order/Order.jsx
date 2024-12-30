@@ -264,7 +264,7 @@ const Order = () => {
               <button type="submit">Przejdź do płatności</button>
             </form>
           </div>
-          <ToastContainer />
+          {/* <ToastContainer /> */}
         </div>
       </div>
     </section>

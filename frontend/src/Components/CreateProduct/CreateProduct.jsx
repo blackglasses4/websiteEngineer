@@ -241,7 +241,6 @@ const CreateProduct = () => {
                     <button type="submit" disabled={loading}>{loading ? 'Dodawanie...' : 'Dodaj produkt'}</button>
                 </form>
             </div>
-            <ToastContainer/>
         </div>
     )
 }

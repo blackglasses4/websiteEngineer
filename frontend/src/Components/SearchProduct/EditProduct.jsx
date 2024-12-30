@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { editProduct } from '../../backend';
+import { saveProduct } from '../../backend';
 
 import "./Edit.scss";
 
@@ -16,8 +16,8 @@ const EditProduct = ({ product, onSave, onCancel }) => {
     new_price: product.new_price || 0,
     old_price: product.old_price || 0,
     description: product.description || "",
-    sizes: product.sizes || [],
-    colors: product.colors || [],
+    sizes: product.sizes ? product.sizes.split(',') : [],
+    colors: product.colors ? product.colors.split(',') : [],
     material: product.material || "",
   });
 
@@ -32,8 +32,8 @@ const EditProduct = ({ product, onSave, onCancel }) => {
       new_price: product.new_price || 0,
       old_price: product.old_price || 0,
       description: product.description || "",
-      sizes: product.sizes || [],
-      colors: product.colors || [],
+      sizes: product.sizes ? product.sizes.split(',') : [],
+      colors: product.colors ? product.colors.split(',') : [],
       material: product.material || "",
     });
   }, [product]);
@@ -55,7 +55,7 @@ const EditProduct = ({ product, onSave, onCancel }) => {
     }
     try {
 
-      const response = await editProduct({
+      const response = await saveProduct({
         id: editForm.id,
         name: editForm.name,
         category: editForm.category,
@@ -76,7 +76,13 @@ const EditProduct = ({ product, onSave, onCancel }) => {
       }
 
       const updatedProduct = await response.json();
-      onSave(updatedProduct);
+      onSave(updatedProduct["product"]);
+
+      toast.success('Produkt został zaktualizowany!', {
+        position: 'top-right',
+        autoClose: 5000,
+      });
+
     } catch (error) {
       toast.error(error.message || "Nie udało się zaktualizować produktu.", {
         position: "top-right",
@@ -173,9 +179,9 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                   }
                 >
                   <option value="">Wybierz płeć</option>
-                  <option value="women">Kobieta</option>
-                  <option value="men">Mężczyzna</option>
-                  <option value="unisex">Dla obu płci</option>
+                  <option value="kobiety">Kobieta</option>
+                  <option value="mężczyźni">Mężczyzna</option>
+                  <option value="dla obu płci">Dla obu płci</option>
                 </select>
               </label>
             </td>
@@ -205,11 +211,11 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                 <input
                   id="input-text"
                   type="number"
-                  value={editForm.new_price || ""}
+                  value={editForm.new_price != null ? editForm.new_price : ""}
                   onChange={(e) =>
                     setEditForm({
                       ...editForm,
-                      new_price: parseFloat(e.target.value),
+                      new_price: e.target.value ? parseFloat(e.target.value) : null,
                     })
                   }
                 />
@@ -223,11 +229,11 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                 <input
                   id="input-text"
                   type="number"
-                  value={editForm.old_price || ""}
+                  value={editForm.old_price != null ? editForm.old_price : ""}
                   onChange={(e) =>
                     setEditForm({
                       ...editForm,
-                      old_price: parseFloat(e.target.value),
+                      old_price: e.target.value ? parseFloat(e.target.value) : null,
                     })
                   }
                 />
@@ -371,11 +377,9 @@ const EditProduct = ({ product, onSave, onCancel }) => {
             <option value="">Wybierz kategorię</option>
             <option value="koszulka">Koszulka</option>
             <option value="kurtka">Kurtka</option>
+            <option value="spodnie">Spodnie</option>
             <option value="czapka">Czapka</option>
-            <option value="bluza">Bluza</option>
-            <option value="buty">Buty</option>
-            <option value="skarpetki">Skarpetki</option>
-            <option value="stanikSportowy">Stanik Sportowy</option>
+            <option value="stroje">Stroje</option>
           </select>
         </p>
 
@@ -390,9 +394,9 @@ const EditProduct = ({ product, onSave, onCancel }) => {
             }
           >
             <option value="">Wybierz płeć</option>
-            <option value="women">Kobieta</option>
-            <option value="men">Mężczyzna</option>
-            <option value="unisex">Dla obu płci</option>
+            <option value="kobiety">Kobieta</option>
+            <option value="mężczyźni">Mężczyzna</option>
+            <option value="dla obu płci">Dla obu płci</option>
           </select>
         </p>
 

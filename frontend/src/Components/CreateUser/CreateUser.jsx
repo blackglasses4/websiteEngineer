@@ -70,14 +70,6 @@ const CreateUser = () => {
             };
 
             const response = await addUser(userData);
-            
-            // const response = await fetch(`${BACKEND_URL2}/auth/add_user`, {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify(userData),
-            // });
 
             const data = await response.json();
             console.log(data);
@@ -208,7 +200,6 @@ const CreateUser = () => {
                     <button type="submit" disabled={loading}>{loading ? 'Dodawanie...' : 'Dodaj użytkownika'}</button>
                 </form>
             </div>
-            <ToastContainer/>
         </div>
     )
 }

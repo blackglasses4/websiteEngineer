@@ -72,8 +72,6 @@ const Admin = () => {
                     </Routes>
                 </main>
             </div>
-
-            <ToastContainer />
         </>
     );
 };
