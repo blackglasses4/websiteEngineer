@@ -55,7 +55,7 @@ function App() {
 
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/admin/*" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
+                <Route path="/admin/*" element={<Admin />} />
               </Routes>
               <ToastContainer />
             </div>

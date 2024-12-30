@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { FaSlidersH } from 'react-icons/fa';
+import { BACKEND_URL } from '../../config';
 
 import CreateProduct from '../CreateProduct/CreateProduct';
 import SearchBar from './SearchBar';
@@ -274,10 +275,10 @@ const SearchProduct = () => {
                                 <tr key={product.id}>
                                     <td>{product.id}</td>
                                     <td>
-                                        {product.image && (
+                                        {product.picture && (
                                             <LazyLoadImage
-                                            src={product.image.url}
-                                            alt={product.image.alt || 'Zdjęcie produktu'}
+                                            src={`${BACKEND_URL}${product.picture}`}
+                                            alt='Zdjęcie produktu'
                                             effect="blur"
                                             className="cart-item-image"/>
                                         )}

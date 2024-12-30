@@ -110,15 +110,7 @@ const Order = () => {
     try {
 
       const response = await addOrder(orderData);
-
-      // const response = await fetch(`${BACKEND_URL}/orders`, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(orderData),
-      // });
-
+      
       if (!response.ok) {
         throw new Error("Wystąpił błąd podczas przesyłania zamówienia.");
       }
