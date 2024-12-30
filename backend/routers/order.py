@@ -51,14 +51,14 @@ def get_orders(
     query = db.query(Order)
 
     # Liczba wszystkich zamówień
-    total_items = query.count()
+    total_orders = query.count()
 
     # Paginacja
     query = query.offset((page - 1) * per_page).limit(per_page)
     orders = query.all()
 
     # Obliczanie liczby stron
-    total_pages = (total_items + per_page - 1) // per_page
+    total_pages = (total_orders + per_page - 1) // per_page
 
     return {
         "data": orders,
@@ -67,7 +67,7 @@ def get_orders(
         "next": page + 1 if page < total_pages else None,
         "last": total_pages,
         "pages": total_pages,
-        "items": total_items,
+        "orders": total_orders,
     }
     
 @order_router.delete("/order/{id}")
