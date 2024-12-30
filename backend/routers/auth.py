@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from backend.models.user import User, UserCreate, UserOut
@@ -140,14 +140,36 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
     }
     
 @router.get("/users")
-def get_users(db: Session = Depends(get_db)):
-    users = db.query(User).all()  # Query all products from the database
+def get_users(
+    page:int = Query(1,ge=1),
+    per_page: int = Query(8,ge=1),
+    db: Session = Depends(get_db)
+    ):
+    
+    query = db.query(User)
+    
+    total_users = query.count()
+    
+    query = query.offset((page - 1)* per_page).limit(per_page)
+    users = query.all()  # Query all products from the database
+    
+    total_pages = (total_users + per_page - 1) // per_page
+    
     if not users:
         raise HTTPException(status_code=404, detail="No users found")
-    return users
+    return {
+        "data": users,
+        "first": 1,
+        "prev": page - 1 if page > 1 else None,
+        "next": page + 1 if page < total_pages else None,
+        "last": total_pages,
+        "pages": total_pages,
+        "users": total_users,
+    }
 
 @router.delete("/users/{id}")
 def delete_user(id: int, db: Session = Depends(get_db)):
+    
     # Query the user by ID
     user = db.query(User).filter(User.id == id).first()
     
