@@ -128,7 +128,7 @@ const SearchProduct = () => {
     
             setOrders((prev) => prev.filter((order) => order.id !== id));
     
-            toast.success('Produkt został usunięty!', {
+            toast.success('Zamówienie zostało usunięte!', {
                 position: 'top-right',
                 autoClose: 5000,
                 hideProgressBar: false,
