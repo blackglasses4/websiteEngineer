@@ -19,6 +19,9 @@ export const ProductProvider = ({ children }) => {
                 //do zmiany
                 const response = await getProducts();
                 const data = await response.json();
+                data.sizes = data.sizes.split(',');
+                data.colors = data.colors.split(',');
+
                 setProducts(data);
             } catch (error) {
                 console.error("Błąd podczas pobierania produktów", error);

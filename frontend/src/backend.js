@@ -68,8 +68,8 @@ async function del(endpoint, id) {
 //wyświetlanie
 
 async function getProducts(params) {
-    const x = await get('/products', params);
-    return x;
+    const product = await get('/products', params);
+    return product;
 }
 //products_list
 
