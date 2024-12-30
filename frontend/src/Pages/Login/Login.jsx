@@ -159,7 +159,6 @@ const Login = () => {
           <p className="register-redirect">
             Nie masz jeszcze konta? <Link className="register-link" to="/register">Zarejestruj się</Link>
           </p>
-          <ToastContainer />
         </div>
       </section>
     </div>

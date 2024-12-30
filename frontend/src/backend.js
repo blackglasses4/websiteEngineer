@@ -108,7 +108,7 @@ async function addUser(user) {
 
 
 //edytowanie
-async function editProduct(product) {
+async function saveProduct(product) {
     return put(`/products/${product.id}`, {
         id: product.id,
         category: product.category,
@@ -120,7 +120,7 @@ async function editProduct(product) {
         old_price: product.old_price,
         description: product.description,
         sizes: product.sizes,
-        color: product.color,
+        colors: product.colors,
         material: product.material,
 });
 }
@@ -160,7 +160,7 @@ export {
     addProduct,
     addUser,
 
-    editProduct,
+    saveProduct,
     editUser,
     deleteProduct,
     deleteUser,

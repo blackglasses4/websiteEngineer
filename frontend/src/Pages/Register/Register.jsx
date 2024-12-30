@@ -241,7 +241,6 @@ const Register = () => {
           <p className="login-redirect">
             Masz już konto? <Link className="login-link" to="/login">Zaloguj się</Link>
           </p>
-          <ToastContainer />
         </div>
       </section>
     </div>

@@ -163,21 +163,18 @@ const SearchProduct = () => {
         }
     };
 
-    const handleSaveProduct = (updatedProduct) => {
-        setProducts((prevProducts) => prevProducts.map((product) => 
-            product.id === updatedProduct.id ? updatedProduct : product
-        ));
+    const handleSaveProduct = async (updatedProduct) => {
+        // setProducts((prevProducts) => prevProducts.map((product) => 
+        //     product.id === updatedProduct.id ? updatedProduct : product
+        // ));
     
-        setConfirmedResults((prevConfirmedResults) => prevConfirmedResults.map((product) => 
-            product.id === updatedProduct.id ? updatedProduct : product
-        ));
+        // setConfirmedResults((prevConfirmedResults) => prevConfirmedResults.map((product) => 
+        //     product.id === updatedProduct.id ? updatedProduct : product
+        // ));
+        
+        await fetchProducts();
     
-        setProductToEdit(null);
-    
-        toast.success('Produkt został zaktualizowany!', {
-            position: 'top-right',
-            autoClose: 5000,
-        });
+        setProductToEdit(null);   
     };    
 
     const handleCancelEdit = () => {
@@ -224,7 +221,7 @@ const SearchProduct = () => {
                                         <option value="man">Mężczyźni</option>
                                     </select>
                                 </div>
-                                <div className="filter-group">
+                                {/* <div className="filter-group">
                                     <label htmlFor="sort-filter">Sortuj według ceny:</label>
                                     <select
                                         id="sort-filter"
@@ -238,7 +235,7 @@ const SearchProduct = () => {
                                         <option value="new_price">Od najniższej do najwyższej</option>
                                         <option value="-new_price">Od najwyższej do najniższej</option>
                                     </select>
-                                </div>
+                                </div> */}
                             </div>
                         )}
                     </div>
@@ -283,11 +280,11 @@ const SearchProduct = () => {
                                     <td>{product.gender}</td>
                                     <td>{product.name.length > 20 ? `${product.name.slice(0,20)}...` : product.name}</td>
                                     <td>{product.popular === true ? 'Tak' : 'Nie'}</td>
-                                    <td>{product.new_price} zł</td>
-                                    <td>{product.old_price ? `${product.old_price} zł` : '—'}</td>
+                                    <td>{product.new_price != null ? `${product.new_price} zł` : '—'}</td>
+                                    <td>{product.old_price != null ? `${product.old_price} zł` : '—'}</td>
                                     <td>{product.description ? product.description.slice(0,25) + '...' : 'Brak opisu'}</td>
-                                    <td>{product.size || "Brak"}</td>
-                                    <td>{product.color || "Brak"}</td>
+                                    <td>{product.sizes || "Brak"}</td>
+                                    <td>{product.colors || "Brak"}</td>
                                     <td>{product.material || 'Brak'}</td>
 
                                     <td><button className='button-edit' onClick={() => setProductToEdit(product)}>Edytuj</button></td>
@@ -319,10 +316,10 @@ const SearchProduct = () => {
                     <div className="search-mobile">
                         {confirmedResults.map((product) => (
                             <div className="search-mobile_product" key={product.id}>
-                                {product.image && (
+                                {product.picture && (
                                         <LazyLoadImage
-                                        src={product.image.url}
-                                        alt={product.image.alt || 'Zdjęcie produktu'}
+                                        src={`${BACKEND_URL}${product.picture}`}
+                                        alt='Zdjęcie produktu'
                                         effect="blur"
                                         className="product-image"/>
                                     )}
@@ -332,11 +329,11 @@ const SearchProduct = () => {
                                     <p><span>Płeć: </span>{product.gender}</p>
                                     <p><span>Nazwa: </span>{product.name.length > 20 ? `${product.name.slice(0, 20)}...` : product.name}</p>
                                     <p><span>Popularne: </span>{product.popular ? 'Tak' : 'Nie'}</p>
-                                    <p><span>Nowa cena: </span>{product.new_price} zł</p>
-                                    <p><span>Stara cena: </span>{product.old_price ? `${product.old_price} zł` : '—'}</p>
+                                    <p><span>Nowa cena: </span>{product.new_price != null ? `${product.new_price} zł` : '—'}</p>
+                                    <p><span>Stara cena: </span>{product.old_price != null ? `${product.old_price} zł` : '—'}</p>
                                     <p><span>Opis: </span>{product.description ? product.description.slice(0, 20) + '...' : 'Brak opisu'}</p>
-                                    <p><span>Rozmiary: </span>{product.size || 'Brak'}</p>
-                                    <p><span>Kolory: </span>{product.color || 'Brak'}</p>
+                                    <p><span>Rozmiary: </span>{product.sizes || 'Brak'}</p>
+                                    <p><span>Kolory: </span>{product.colors || 'Brak'}</p>
                                     <p><span>Materiał: </span>{product.material || 'Brak'}</p> 
 
                                     <div className="mobile-button">
