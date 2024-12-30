@@ -115,7 +115,7 @@ def delete_product(id: int, db: Session = Depends(get_db)):
     # Return a success message
     return {"message": f"Produkt o ID {id} został usunięty pomyślnie."}
 
-@product_router.get("/all_product", response_model=ProductResponse)
+@product_router.get("/all_products", response_model=ProductResponse)
 def get_all_products(db: Session = Depends(get_db)):
     products = db.query(Product).all()
     if not products:
