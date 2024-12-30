@@ -103,9 +103,8 @@ async function addOrder(order) {
 }
 
 async function addUser(user) {
-    return post('/users', user); //do zmiany aby nie było auth
+    return post('/add_user', user); //do zmiany aby nie było auth
 }
-
 
 //edytowanie
 async function saveProduct(product) {
@@ -143,7 +142,7 @@ async function deleteProduct(product) {
 }
 
 async function deleteUser(user) {
-    return del('/user/', user);
+    return del('/users/', user);
 }
 
 async function deleteOrder(order) {
