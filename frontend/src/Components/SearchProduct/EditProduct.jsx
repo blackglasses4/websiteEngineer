@@ -17,7 +17,7 @@ const EditProduct = ({ product, onSave, onCancel }) => {
     old_price: product.old_price || 0,
     description: product.description || "",
     sizes: product.sizes || [],
-    color: product.color || [],
+    colors: product.colors || [],
     material: product.material || "",
   });
 
@@ -33,7 +33,7 @@ const EditProduct = ({ product, onSave, onCancel }) => {
       old_price: product.old_price || 0,
       description: product.description || "",
       sizes: product.sizes || [],
-      color: product.color || [],
+      colors: product.colors || [],
       material: product.material || "",
     });
   }, [product]);
@@ -65,33 +65,11 @@ const EditProduct = ({ product, onSave, onCancel }) => {
         new_price: editForm.new_price,
         old_price: editForm.old_price,
         description: editForm.description,
-        sizes: editForm.sizes,
-        color: editForm.color,
+        sizes: editForm.sizes.join(','),
+        colors: editForm.colors.join(','),
         material: editForm.material,
     });
 
-      // const response = await fetch(`${BACKEND_URL}/products/${editForm.id}`, {
-      //   method: "PUT",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     id: editForm.id,
-      //     category: editForm.category,
-      //     gender: editForm.gender,
-      //     name: editForm.name,
-      //     image: editForm.image,
-      //     popular: editForm.popular,
-      //     new_price: editForm.new_price,
-      //     old_price: editForm.old_price,
-      //     description: editForm.description,
-      //     attributes: {
-      //       sizes: editForm.attributes.sizes,
-      //       color: editForm.attributes.color,
-      //       material: editForm.attributes.material,
-      //     },
-      //   }),
-      // });
 
       if (!response.ok) {
         throw new Error("Wystąpił błąd podczas aktualizacji produktu.");
@@ -121,21 +99,23 @@ const EditProduct = ({ product, onSave, onCancel }) => {
   };
 
   const handleMaterialChange = (material) => {
-    setEditForm((prevForm) => ({
-      ...prevForm,
-      material,
-    }));
+    setEditForm((prevForm) => {
+      const updatedMaterials = prevForm.material.includes(material)
+        ? prevForm.material.filter(m => m !== material)
+        : [...prevForm.material, material];
+      return { ...prevForm, material: updatedMaterials };
+    });
   };
   
   const handlecolorChange = (color) => {
     setEditForm((prevForm) => {
-      const updatedcolors = prevForm.color.includes(color)
-        ? prevForm.color.filter((c) => c !== color)
-        : [...prevForm.color, color];
+      const updatedcolors = prevForm.colors.includes(color)
+        ? prevForm.colors.filter((c) => c !== color)
+        : [...prevForm.colors, color];
   
       return {
         ...prevForm,
-        color: updatedcolors,
+        colors: updatedcolors,
       };
     });
   };
@@ -312,10 +292,10 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                     <input
                       type="checkbox"
                       value={color}
-                      checked={editForm.color.includes(color)}
+                      checked={editForm.colors.includes(color)}
                       disabled={
-                        !editForm.color.includes(color) &&
-                        editForm.color.length >= 5
+                        !editForm.colors.includes(color) &&
+                        editForm.colors.length >= 5
                       }
                       onChange={() => handlecolorChange(color)}
                     />
@@ -518,10 +498,10 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                 <input
                   type="checkbox"
                   value={color}
-                  checked={editForm.color.includes(color)}
+                  checked={editForm.colors.includes(color)}
                   disabled={
-                    !editForm.color.includes(color) &&
-                    editForm.color.length >= 5
+                    !editForm.colors.includes(color) &&
+                    editForm.colors.length >= 5
                   }
                   onChange={() => handlecolorChange(color)}
                 />
