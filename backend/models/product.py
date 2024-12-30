@@ -111,8 +111,8 @@ class ProductResponse(BaseModel):
     old_price: Optional[int]
     amount: Optional[int]
     description: Optional[str]
-    size: str
-    color: str
+    sizes: str
+    colors: str
     material: MaterialEnum
     picture: Optional[str]  # Include serialized path/URL for the image if needed
     
