@@ -5,6 +5,7 @@ from typing import Optional
 from backend.db_connect import SessionLocal
 from backend.models import Product
 from backend.models.product import ProductCreate, CategoryEnum, ProductResponse
+from typing import List
 
 # Tworzenie instancji routera
 product_router = APIRouter()
@@ -115,12 +116,18 @@ def delete_product(id: int, db: Session = Depends(get_db)):
     # Return a success message
     return {"message": f"Produkt o ID {id} został usunięty pomyślnie."}
 
-@product_router.get("/all_products", response_model=ProductResponse)
+@product_router.get("/all_products", response_model=List[ProductResponse])
 def get_all_products(db: Session = Depends(get_db)):
+    """
+    Endpoint do pobierania wszystkich produktów.
+    """
     products = db.query(Product).all()
     if not products:
         raise HTTPException(status_code=404, detail="Brak produktów w bazie danych")
-    return products
+    
+    # Użycie model_validate zamiast from_orm
+    return [ProductResponse.model_validate(product) for product in products]
+
 
 @product_router.put("/products/{id}")
 def update_product(id: int, product_data: ProductCreate, db: Session = Depends(get_db)):

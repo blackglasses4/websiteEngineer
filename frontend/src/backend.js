@@ -72,6 +72,11 @@ async function getProducts(params) {
     return product;
 }
 
+async function getAllProducts() {
+    const product = await get('/all_products');
+    return product;
+}
+
 async function getProduct(id) {
     const product = await get(`/product/${id}`);
     return product;
@@ -151,7 +156,7 @@ export {
     getOrders,
     addOrder,
     getUsers,
-
+    getAllProducts,
     addProduct,
     addUser,
 
