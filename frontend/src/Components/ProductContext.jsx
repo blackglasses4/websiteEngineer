@@ -19,8 +19,15 @@ export const ProductProvider = ({ children }) => {
                 //do zmiany
                 const response = await getProducts();
                 const data = await response.json();
-                data.sizes = data.sizes.split(',');
-                data.colors = data.colors.split(',');
+                
+                data['data'].forEach(item => {
+                    if (item.sizes) {
+                        item.sizes = item.sizes.split(',');
+                    }
+                    if (item.colors) {
+                        item.colors = item.colors.split(',');
+                    }
+                });
 
                 setProducts(data);
             } catch (error) {

@@ -176,7 +176,6 @@ const CreateProduct = () => {
                                 <option value="stroje">Stroje</option>
                         </select>
                     </label>
-``
                     <label htmlFor="gender">Płeć: 
                         <select name="gender" id="gender" value={product.gender} onChange={handleInputChange} required>
                         <option value="">Wybierz płeć</option>

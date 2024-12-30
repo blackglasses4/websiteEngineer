@@ -41,7 +41,6 @@ const PopularProduct = () => {
 
         const response = await getProducts(params);
         const result = await response.json();
-        console.log(result);
 
         if (result['data']) {
           setFirstPage(result['first']);

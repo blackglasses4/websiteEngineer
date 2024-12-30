@@ -1,41 +1,4 @@
 {
-  "users": [
-    {
-      "id": "3c7c",
-      "firstName": "Adrianna",
-      "lastName": "Pawłowska",
-      "username": "ada",
-      "email": "100@gmail.com",
-      "password": "123456",
-      "isAdmin": false
-    },
-    {
-      "id": "89bc",
-      "firstName": "Dominik",
-      "lastName": "Kowalski",
-      "username": "domino",
-      "email": "domino@gmail.com",
-      "password": "domino"
-    },
-    {
-      "id": "c732",
-      "firstName": "admin",
-      "lastName": "admin",
-      "username": "admin",
-      "email": "admin@gmail.com",
-      "password": "admin1",
-      "isAdmin": true
-    },
-    {
-      "id": null,
-      "firstName": "hfghfg",
-      "lastName": "hfghfgh",
-      "username": "ghfghfgh",
-      "email": "aa@gmail.com",
-      "password": "344343",
-      "isAdmin": true
-    }
-  ],
   "orders": [
     {
       "id": "7038",
@@ -117,18 +80,6 @@
       "date": "2024-12-19T21:50:21.666Z",
       "status": "Reklamacja",
       "customer": "Anonimowy użytkownik"
-    }
-  ],
-  "images": [
-    {
-      "id": "1",
-      "path": "img/1.jpg",
-      "productId": "4"
-    },
-    {
-      "id": "2",
-      "path": "img/2.jpg",
-      "productId": "4"
     }
   ],
   "products": [
