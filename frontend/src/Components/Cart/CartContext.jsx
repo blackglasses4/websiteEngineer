@@ -26,6 +26,13 @@ export const CartProvider = ({ children }) => {
     }
   }, [cart, getCartKey]);
 
+  const clearCartFromStorage = () => {
+    const cartKey = getCartKey();
+    if (cartKey) {
+      localStorage.removeItem(cartKey);
+    }
+  };  
+
   const addToCart = (productDetails) => {
     setCart((prevCart) => {
       const uniqueId = `${productDetails.productId}-${productDetails.size}-${productDetails.color}`;
@@ -68,7 +75,7 @@ export const CartProvider = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, updateCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, updateCart, removeFromCart, clearCart, clearCartFromStorage }}>
       {children}
     </CartContext.Provider>
   );

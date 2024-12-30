@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OrderItem from './OrderItem';
 import { addOrder } from '../../backend';
+import { useCart } from '../Cart/CartContext';
 
 import "./Order.scss";
 
 const Order = () => {
   const navigate = useNavigate();
+  const { cart, clearCartFromStorage } = useCart();
   const [orderItems, setOrderItems] = useState([]);
   const [orderDetails, setOrderDetails] = useState({
     phone: "",
@@ -19,6 +21,7 @@ const Order = () => {
     apartment_number: "",
     comment: "",
   });
+
 
   const [errors, setErrors] = useState({});
 
@@ -97,8 +100,6 @@ const Order = () => {
       return;
     }
 
-    //const usernameUser = localStorage.getItem('usernameUser');
-
     const orderData = {
       phone: parseInt(orderDetails.phone, 10),
       street: orderDetails.street,
@@ -111,6 +112,8 @@ const Order = () => {
       total_amount: calculateTotal(),
       products_order: JSON.stringify(orderItems),
     };
+
+    console.log(orderData);
 
     try {
       console.log(orderData);
@@ -132,7 +135,7 @@ const Order = () => {
       });
       setOrderItems([]);
       localStorage.removeItem("order");
-      localStorage.removeItem("cart");
+      clearCartFromStorage();
 
       navigate("/order_summary", {
         state: {
