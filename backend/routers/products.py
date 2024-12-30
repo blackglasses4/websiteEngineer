@@ -114,3 +114,25 @@ def delete_product(id: int, db: Session = Depends(get_db)):
 
     # Return a success message
     return {"message": f"Produkt o ID {id} został usunięty pomyślnie."}
+
+@product_router.get("/all_product", response_model=ProductResponse)
+def get_all_products(db: Session = Depends(get_db)):
+    products = db.query(Product).all()
+    if not products:
+        raise HTTPException(status_code=404, detail="Brak produktów w bazie danych")
+    return products
+
+@product_router.put("/products/{id}")
+def update_product(id: int, product_data: ProductCreate, db: Session = Depends(get_db)):
+
+    product = db.query(Product).filter(Product.id == id).first()
+    if not product:
+        raise HTTPException(status_code=404, detail="Produkt nie istnieje")
+
+    for field, value in product_data.dict(exclude_unset=True).items():
+        setattr(product, field, value)
+
+    db.commit()
+    db.refresh(product)
+    return {"message": "Produkt zaktualizowany", "product": product}
+
