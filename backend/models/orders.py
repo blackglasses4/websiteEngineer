@@ -6,7 +6,6 @@ from sqlalchemy import func
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from sqlalchemy_imageattach.entity import Image , image_attachment
 from typing import Optional
 from pydantic import BaseModel
 from backend.base import Base
