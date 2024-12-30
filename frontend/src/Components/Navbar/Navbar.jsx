@@ -30,7 +30,7 @@ const Navbar = () => {
   const fetchProducts = async () => {
       try {
         //do zmiany później
-        const response = await getProducts();
+        const response = await getAllProducts();
         const result = await response.json();
         console.log(result);
 

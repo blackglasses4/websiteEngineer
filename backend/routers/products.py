@@ -116,7 +116,7 @@ def delete_product(id: int, db: Session = Depends(get_db)):
     # Return a success message
     return {"message": f"Produkt o ID {id} został usunięty pomyślnie."}
 
-@product_router.get("/all_products", response_model=List[ProductResponse])
+@product_router.get("/products/all", response_model=List[ProductResponse])
 def get_all_products(db: Session = Depends(get_db)):
     """
     Endpoint do pobierania wszystkich produktów.
@@ -125,8 +125,9 @@ def get_all_products(db: Session = Depends(get_db)):
     if not products:
         raise HTTPException(status_code=404, detail="Brak produktów w bazie danych")
     
-    # Użycie model_validate zamiast from_orm
-    return [ProductResponse.model_validate(product) for product in products]
+    # Przekształcenie obiektów w słowniki
+    return [ProductResponse.model_validate(product).model_dump() for product in products]
+
 
 
 @product_router.put("/products/{id}")
