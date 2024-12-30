@@ -83,10 +83,6 @@ class Product(Base):
     colors = Column(String(255), nullable=False)
     material = Column(Enum(MaterialEnum), nullable=False)
 
-    # Establish bidirectional relationship
-    pictures = relationship('ProductPicture', back_populates='product')
-
-
 class ProductCreate(BaseModel):
     name: str
     category: CategoryEnum
@@ -100,7 +96,6 @@ class ProductCreate(BaseModel):
     sizes: str
     colors: str
     material: MaterialEnum
-
 class ProductResponse(BaseModel):
     id: int
     name: str
@@ -115,6 +110,5 @@ class ProductResponse(BaseModel):
     colors: str
     material: MaterialEnum
     picture: Optional[str]  # Include serialized path/URL for the image if needed
-    
     class Config:
         from_attributes = True  # Allows compatibility with SQLAlchemy models
