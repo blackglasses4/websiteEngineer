@@ -73,7 +73,7 @@ async function getProducts(params) {
 }
 
 async function getAllProducts() {
-    const product = await get('/all_products');
+    const product = await get('/products/all');
     return product;
 }
 
