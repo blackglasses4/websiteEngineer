@@ -7,13 +7,12 @@ import '../CreateProduct/Create.scss';
 
 const CreateUser = () => {
     const initialUserState = {
-        id: '',
-        firstName: '',
-        lastName: '',
+        first_name: '',
+        last_name: '',
         username: '',
         email: '',
         password: '',
-        isAdmin: false,
+        is_admin: false,
     };
 
     const [user, setUser] = useState(initialUserState);
@@ -24,7 +23,6 @@ const CreateUser = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            //do zmiany
             const response = await getUsers();
             const data = await response.json();
             setUsers(data);
@@ -37,14 +35,14 @@ const CreateUser = () => {
         const { type, name, value, checked } = e.target;
 
         // Dostosowanie dla checkboxów
-        if (type === 'checkbox' && name === 'isAdmin') {
+        if (type === 'checkbox' && name === 'is_admin') {
             setUser((prev) => ({
                 ...prev,
-                isAdmin: checked,
+                is_admin: checked,
             }));
         }
         // Dostosowanie dla tekstowych pól input
-        else if (type !== 'checkbox' && name !== 'isAdmin') {
+        else if (type !== 'checkbox' && name !== 'is_admin') {
             setUser((prev) => ({
                 ...prev,
                 [name]: value,
@@ -61,12 +59,12 @@ const CreateUser = () => {
 
             const userData = {
                 id: newId,
-                first_name: user.firstName,
-                last_name: user.lastName,
+                first_name: user.first_name,
+                last_name: user.last_name,
                 username: user.username,
                 email: user.email,
                 password: user.password,
-                is_admin: user.isAdmin ? user.isAdmin : null, 
+                is_admin: user.is_admin ? user.is_admin : null, 
             };
 
             const response = await addUser(userData);
@@ -99,7 +97,7 @@ const CreateUser = () => {
 
             // Resetowanie formularza
             setUser(initialUserState);
-            setUsers((prev) => [...prev, userData]);
+            setUsers((prev) => Array.isArray(prev) ? [...prev, userData] : [userData]);
         }
         catch (err){
             toast.error(err.message || 'Coś poszło nie tak.', {
@@ -129,26 +127,26 @@ const CreateUser = () => {
 
             <div className={`form-container ${isFormOpen ? 'open' : ''}`}>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="firstName">
+                    <label htmlFor="first_name">
                         Imię:
                         <input
                             type="text"
-                            name="firstName"
-                            id="firstName"
+                            name="first_name"
+                            id="first_name"
                             maxLength="30"
-                            value={user.firstName}
+                            value={user.first_name}
                             onChange={handleInputChange}
                             required
                         />
                     </label>
-                    <label htmlFor="lastName">
+                    <label htmlFor="last_name">
                         Nazwisko:
                         <input
                             type="text"
-                            name="lastName"
-                            id="lastName"
+                            name="last_name"
+                            id="last_name"
                             maxLength="30"
-                            value={user.lastName}
+                            value={user.last_name}
                             onChange={handleInputChange}
                             required
                         />
@@ -187,13 +185,13 @@ const CreateUser = () => {
                         />
                     </label>
 
-                    <label htmlFor="isAdmin">
+                    <label htmlFor="is_admin">
                         Administrator:
                         <input
                             type="checkbox"
-                            name="isAdmin"
-                            id="isAdmin"
-                            checked={user.isAdmin}
+                            name="is_admin"
+                            id="is_admin"
+                            checked={user.is_admin}
                             onChange={handleInputChange}
                         />
                     </label>

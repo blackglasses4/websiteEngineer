@@ -110,11 +110,7 @@ const SearchUser = () => {
         }
 
         try {
-
-            const response = deleteUser(id);
-            // const response = await fetch(`${BACKEND_URL2}/auth/users/${id}`, {
-            //     method: 'DELETE',
-            // });
+            const response = await deleteUser(id);
     
             if (!response.ok) {
                 throw new Error('Wystąpił błąd podczas usuwania użytkownika.');
@@ -158,7 +154,7 @@ const SearchUser = () => {
             user.id === updatedUser.id ? updatedUser : user
         ));
     
-        setUserToEdit(null); // Zamykamy tryb edycji po zapisaniu zmian
+        setUserToEdit(null);
     
         toast.success('Użytkownik został zaktualizowany!', {
             position: 'top-right',
@@ -228,7 +224,7 @@ const SearchUser = () => {
                                 <th>Email</th>
                                 <th>Hasło</th>
                                 <th>Rola</th>
-                                <th>Edytuj</th>
+                                {/* <th>Edytuj</th> */}
                                 <th>Usuń</th>
                             </tr>
                         </thead>
@@ -241,10 +237,10 @@ const SearchUser = () => {
                                     <td>{user.last_name || 'Brak'}</td>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
-                                    <td>{user.password}</td>
+                                    <td>{user.hashed_password}</td>
                                     <td>{user.is_admin ? 'Admin' : 'Użytkownik'}</td>
 
-                                    <td><button className='button-edit' onClick={() => setUserToEdit(user)}>Edytuj</button></td>
+                                    {/* <td><button className='button-edit' onClick={() => setUserToEdit(user)}>Edytuj</button></td> */}
                                     <td><button className='button-delete' onClick={() => handleConfirmDelete(user.id)}>Usuń</button></td>
                                 </tr>
                                 {userToEdit && userToEdit.id === user.id && (
@@ -279,11 +275,11 @@ const SearchUser = () => {
                                     <p><span>Nazwisko: </span>{user.last_name}</p>
                                     <p><span>Nazwa użytkownika: </span>{user.username}</p>
                                     <p><span>Email: </span>{user.email}</p>
-                                    <p><span>Hasło: </span>{user.password}</p>
+                                    <p><span>Hasło: </span>{user.hashed_password}</p>
                                     <p><span>Rola: </span>{user.is_admin ? 'Admin' : 'Użytkownik'}</p>
 
                                     <div className="mobile-button">
-                                        <button className='button-edit' onClick={() => setUserToEdit(user)}>Edytuj</button>
+                                        {/* <button className='button-edit' onClick={() => setUserToEdit(user)}>Edytuj</button> */}
                                         <button className='button-delete' onClick={() => handleConfirmDelete(user.id)}>Usuń</button>
                                     </div>
                                 </div>
