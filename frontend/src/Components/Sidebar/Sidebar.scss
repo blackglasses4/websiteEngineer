@@ -48,18 +48,23 @@
     }
 }
 
-@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
+@media only screen and (max-width: #{map-get($breakpoints, 'phone-2')}) {
     .admin-sidebar {
         position: static;
         width: 100%;
         top: 0;
         box-shadow: none;
-        flex-direction: row;
-        justify-content: space-around;
+        flex-direction: column; /* Zmieniamy na układ pionowy */
+        align-items: center; /* Wyrównujemy przyciski w poziomie */
+        justify-content: flex-start; /* Wyrównanie do góry */
+        padding: 1rem 0; /* Zmniejszamy padding */
 
         button {
-            padding: 0.5rem 0.75rem;
-            font-size: 0.9rem;
+            width: 100%; /* Przyciski zajmują całą szerokość */
+            padding: 0.5rem 0.75rem; /* Zmniejszamy padding przycisków */
+            font-size: 0.9rem; /* Zmniejszamy czcionkę */
+            justify-content: flex-start; /* Wyrównanie tekstu do lewej */
+            gap: 8px;
 
             .icon {
                 font-size: 1.2rem;

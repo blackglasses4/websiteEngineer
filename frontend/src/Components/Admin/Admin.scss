@@ -55,6 +55,13 @@ header.header-admin {
     .nav-icons {
         display: flex;
         gap: 1em;
+
+        .sidebar-toggle {
+            border: none;
+            background: none;
+            color: $white;
+            font-size: 1em;
+        }
     }
 }
 
@@ -104,7 +111,7 @@ header.header-admin {
     
         .nav-icons {
             display: flex;
-            gap: 0.5em;
+            gap: 0.9em;
         }
     }
 }

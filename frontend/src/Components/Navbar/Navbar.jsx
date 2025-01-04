@@ -19,6 +19,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
   const searchWrapperRef = useRef(null);
+  const mobileMenuRef = useRef(null);
   const [products, setProducts] = useState();
 
   const { cart } = useCart();
@@ -26,6 +27,7 @@ const Navbar = () => {
   
   const navigate = useNavigate();
   useClick(searchWrapperRef, () => setInput(""));
+  useClick(mobileMenuRef, () => setIsMenuOpen(false));
 
   const fetchProducts = async () => {
       try {
@@ -145,7 +147,7 @@ const Navbar = () => {
         <FaBars style={{color:"white"}}/>
       </div>
 
-      <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
+      <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`} ref={mobileMenuRef}>
         <div className="hamburger-menu" onClick={toggleMenu}>
           <FaTimes />
         </div>

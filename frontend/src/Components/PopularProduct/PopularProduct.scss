@@ -208,6 +208,11 @@
     }
 
     .popularProduct {
+
+        .filter-popular {
+            padding: 0;
+        }
+
         .popular-item {
             gap: 1.1em;
             margin: 0em;

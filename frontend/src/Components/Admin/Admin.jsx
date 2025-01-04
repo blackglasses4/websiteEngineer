@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { FiMenu } from "react-icons/fi";
 
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 import SearchProduct from '../SearchProduct/SearchProduct';
@@ -14,6 +14,8 @@ import SearchUser from '../SearchUser/SearchUser';
 
 import Sidebar from '../Sidebar/Sidebar';
 import './Admin.scss';
+
+import useClick from '../useClick';
 
 const WelcomeAdmin = () => {
     return (
@@ -26,6 +28,13 @@ const WelcomeAdmin = () => {
 
 const Admin = () => {
     const navigate = useNavigate();
+    const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+    const sidebarRef = useRef(null);
+    useClick(sidebarRef, () => setIsSidebarVisible(false));
+
+    const toggleSidebar = () => {
+        setIsSidebarVisible(!isSidebarVisible);
+    };
 
     useEffect(() => {
         toast.success('Witaj w panelu administracyjnym!', {
@@ -52,15 +61,23 @@ const Admin = () => {
                         height="auto"
                     />
                 </a>
+
                 <div className='nav-icons'>
                     <ThemeSwitch />
                     <a href="/login"><FaUserCircle /></a>
+                    <button className="sidebar-toggle" onClick={toggleSidebar}>
+                        <FiMenu className="icon" />
+                    </button>
                 </div>
             </header>
 
             <div className="admin-container">
-                {/* Sidebar */}
-                <Sidebar onSelect={(view) => navigate(`/admin/${view}`)} />
+                <Sidebar 
+                    onSelect={(view) => navigate(`/admin/${view}`)} 
+                    isSidebarVisible={isSidebarVisible} 
+                    toggleSidebar={toggleSidebar} 
+                    ref={sidebarRef} 
+                />
 
                 {/* Main Content */}
                 <main className="admin-main">

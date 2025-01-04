@@ -275,7 +275,7 @@ const SearchUser = () => {
                                     <p><span>Nazwisko: </span>{user.last_name}</p>
                                     <p><span>Nazwa użytkownika: </span>{user.username}</p>
                                     <p><span>Email: </span>{user.email}</p>
-                                    <p><span>Hasło: </span>{user.hashed_password}</p>
+                                    <p><span>Hasło: </span>{user.hashed_password.length > 20 ? `${user.hashed_password.substring(0, 20)}...` : user.hashed_password}</p>
                                     <p><span>Rola: </span>{user.is_admin ? 'Admin' : 'Użytkownik'}</p>
 
                                     <div className="mobile-button">

@@ -11,7 +11,6 @@ import { BACKEND_URL } from '../../config';
 
 const DisplayProduct = () => {
   const { id } = useParams();
-  // const { products, error, loading } = useProducts();
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [product, setProduct] = useState(null);
