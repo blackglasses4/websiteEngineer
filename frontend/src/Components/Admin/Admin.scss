@@ -56,6 +56,13 @@ header.header-admin {
         display: flex;
         gap: 1em;
 
+        button {
+            background: none;
+            color: $white;
+            border: none;
+
+        }
+
         .sidebar-toggle {
             border: none;
             background: none;

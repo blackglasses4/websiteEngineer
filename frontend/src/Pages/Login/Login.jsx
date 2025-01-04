@@ -82,24 +82,23 @@ const Login = () => {
       if (!response.ok) {
         throw new Error(data.detail || "Błędna nazwa użytkownika, email lub hasło.");
       }
+      
+       // Zapisujemy dane użytkownika i token w localStorage
+      login({ username: data.username, is_admin: data.is_admin }, data.access_token);
 
-      login({ username: data.username });
-  
-      // Zapisujemy dane użytkownika w localStorage
-      localStorage.setItem("user", JSON.stringify({ username: data.username }));
-      toast.success("Zalogowano pomyślnie!");
-  
-      // Przekierowanie w zależności od użytkownika
-      if (data.is_admin) {
-        setTimeout(() => {
-          navigate("/admin");
-        }, 1000);
-      } else {
-        setTimeout(() => {
-          navigate("/");
-          window.location.reload();
-        }, 1000);
-      }
+      toast.success("Zalogowałeś się!");
+    
+        // Przekierowanie w zależności od użytkownika
+        if (data.is_admin) {
+          setTimeout(() => {
+            navigate("/admin");
+          }, 1000);
+        } else {
+          setTimeout(() => {
+            navigate("/");
+            window.location.reload();
+          }, 1000);
+        }
     } catch (error) {
       toast.error(error.message || "Wystąpił problem podczas logowania.");
     }

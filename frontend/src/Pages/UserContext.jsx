@@ -10,32 +10,44 @@ export const UserProvider = ({ children }) => {
   const [usernameUser, setUsernameUser] = useState(null);
   const [userRole, setUserRole] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [accessToken, setAccessToken] = useState(null);
 
   useEffect(() => {
     const loggedUser = localStorage.getItem('user');
-    if (loggedUser) {
+    const token = localStorage.getItem('token');
+
+    if (loggedUser && token) {
       const parsedUser = JSON.parse(loggedUser);
       setUsernameUser(parsedUser?.username || null);
+      setUserRole(parsedUser?.admin ? 'admin' : 'user'); // Ustalamy rolę na podstawie danych użytkownika
+      setAccessToken(token);
       setIsLoggedIn(true);
     }
   }, []);
 
-  const login = (user) => {
+  const login = (user, token) => {
     localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", token);
+
+    // Aktualizujemy stan aplikacji
     setUsernameUser(user.username);
-    setUserRole(user.is_admin ? "admin" : "user"); // Ustawiamy rolę
+    setUserRole(user.is_admin ? 'admin' : 'user');
+    setAccessToken(token);
     setIsLoggedIn(true);
   };
   
   const logout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
+
     setUsernameUser(null);
     setUserRole(null);
+    setAccessToken(null);
     setIsLoggedIn(false);
   };
 
   return (
-    <UserContext.Provider value={{ usernameUser, setUsernameUser, isLoggedIn, userRole, login ,logout }}>
+    <UserContext.Provider value={{ usernameUser, setUsernameUser, isLoggedIn, accessToken, userRole, login , logout }}>
       {children}
     </UserContext.Provider>
   );

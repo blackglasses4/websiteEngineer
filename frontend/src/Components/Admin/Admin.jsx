@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { FiMenu } from "react-icons/fi";
+import { useUser } from '../../Pages/UserContext';
 
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 import SearchProduct from '../SearchProduct/SearchProduct';
@@ -16,6 +17,20 @@ import Sidebar from '../Sidebar/Sidebar';
 import './Admin.scss';
 
 import useClick from '../useClick';
+
+const checkAdmin = () => {
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("user"));
+    
+    console.log(user.is_admin);
+    if (!token || !user || user.is_admin === undefined) {
+        console.error("Brak danych użytkownika lub nie jest administratorem.");
+        return false;
+    }
+
+    console.log("User is_admin:", user.is_admin);
+    return user.is_admin;
+};
 
 const WelcomeAdmin = () => {
     return (
@@ -30,6 +45,7 @@ const Admin = () => {
     const navigate = useNavigate();
     const [isSidebarVisible, setIsSidebarVisible] = useState(true);
     const sidebarRef = useRef(null);
+    const { logout } = useUser(); 
     useClick(sidebarRef, () => setIsSidebarVisible(false));
 
     const toggleSidebar = () => {
@@ -37,6 +53,22 @@ const Admin = () => {
     };
 
     useEffect(() => {
+        if (!checkAdmin()) {
+            toast.error('Brak dostępu do panelu administracyjnego!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            
+            logout();
+            navigate("/login");
+            return;
+        }
+
         toast.success('Witaj w panelu administracyjnym!', {
             position: 'top-right',
             autoClose: 5000,
@@ -46,7 +78,15 @@ const Admin = () => {
             draggable: true,
             progress: undefined,
         });
-    }, []);
+    }, [navigate]);
+
+    const handleLogout = () => {
+        logout();
+        toast.success("Wylogowałeś się!");
+        setTimeout(() => {
+            navigate("/login");
+        }, 1000);
+    };
 
     return (
         <>
@@ -64,7 +104,9 @@ const Admin = () => {
 
                 <div className='nav-icons'>
                     <ThemeSwitch />
-                    <a href="/login"><FaUserCircle /></a>
+                    <button onClick={handleLogout}>
+                        <FaUserCircle />
+                    </button>
                     <button className="sidebar-toggle" onClick={toggleSidebar}>
                         <FiMenu className="icon" />
                     </button>
