@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -19,7 +19,7 @@ const WelcomeAdmin = () => {
     return (
         <div className="welcome-admin">
             <h2>Witaj w panelu administracyjnym!</h2>
-            <p>Wybierz opcję z menu po lewej stronie, aby rozpocząć zarządzanie produktami.</p>
+            <p>Wybierz opcję z górnego menu, aby rozpocząć zarządzanie danymi.</p>
         </div>
     );
 };

@@ -7,8 +7,6 @@ import './Home.scss';
 const Home = () => {
   return (
     <div>
-        <CookieBanner />
-
         <section id="welcome" className="section__welcome">
           <div className="section__welcome-content">
               <h2>„Z nami osiągniesz więcej – w stylu i komforcie.”</h2>

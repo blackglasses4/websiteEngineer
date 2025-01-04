@@ -31,7 +31,6 @@ const CategoryProducts = () => {
   const [lastPage, setLastPage] = useState();
 
   const [numberOfPages, setNumberOfPages] = useState();
-  const [numberOfItems, setNumberOfItems] = useState();
 
   //filtrowanie
   const [gender, setGender] = useState();
@@ -67,7 +66,6 @@ const CategoryProducts = () => {
         setNextPage(result['next']);
         setLastPage(result['last']);
         setNumberOfPages(result['pages']);
-        setNumberOfItems(result['items']);
         setProducts(result['data']);
         setConfirmedResults(result['data']);
       } else {

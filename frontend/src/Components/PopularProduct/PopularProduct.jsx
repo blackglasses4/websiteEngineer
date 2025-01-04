@@ -12,8 +12,6 @@ import '../Filter/Filter.scss';
 
 const PopularProduct = () => {
     const [error, setError] = useState(false);
-    const [isFilterOpen, setIsFilterOpen] = useState(false);
-    const filterPanelRef = useRef(null);
 
     const [products, setProducts] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);

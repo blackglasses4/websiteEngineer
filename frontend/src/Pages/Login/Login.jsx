@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { StatusCodes } from 'http-status-codes';
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BACKEND_URL } from "../../config";
 import ThemeSwitch from '../../Components/ThemeSwitch/ThemeSwitch';

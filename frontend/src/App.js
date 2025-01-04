@@ -21,6 +21,7 @@ import Admin from './Components/Admin/Admin';
 import DisplayProductPage from './Components/DisplayProduct/SimilarProduct/DisplayProductPage';
 import Order from './Components/Order/Order';
 import OrderSummary from './Components/Order/OrderSummary';
+import CookieBanner from './Components/CookieBanner/CookieBanner';
 
 // Główny układ z Navbar, Kategoriami i Footerem
 function AppLayout() {
@@ -58,6 +59,7 @@ function App() {
                 <Route path="/admin/*" element={<Admin />} />
               </Routes>
               <ToastContainer />
+              <CookieBanner/>
             </div>
           </Router>
         </CartProvider>

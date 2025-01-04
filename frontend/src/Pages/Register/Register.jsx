@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BACKEND_URL} from "../../config";
 import ThemeSwitch from '../../Components/ThemeSwitch/ThemeSwitch';
@@ -85,19 +85,6 @@ const Register = () => {
     };
 
     try {
-      //1, Sprawdzanie 
-      const checkResponse = await fetch(`${BACKEND_URL}/users`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: userDetails.username,
-        email: userDetails.email,
-      }),
-    });
-
-      //2. Rejestracja użytkownika, jeśli wszystko jest w porządku.
       const response = await fetch(`${BACKEND_URL}/register`, {
         method: "POST",
         headers: {
