@@ -67,7 +67,26 @@ def get_product_list(
         "items": total_items,
     }
 
-@product_router.post("/products")
+@product_router.get("/products/all", response_model=List[ProductResponse])
+def get_all_products(db: Session = Depends(get_db)):
+    """
+    Endpoint do pobierania wszystkich produktów.
+    """
+    products = db.query(Product).all()
+    if not products:
+        raise HTTPException(status_code=404, detail="Brak produktów w bazie danych")
+    
+    # Przekształcenie obiektów w słowniki
+    return [ProductResponse.model_validate(product).model_dump() for product in products]
+
+@product_router.get("/product/{id}", response_model=ProductResponse)
+def get_single_product(id: int, db: Session = Depends(get_db)):
+    product = db.query(Product).filter(Product.id == id).first()
+    if not product:
+        raise HTTPException(status_code=404, detail="Nie znaleziono produktów")
+    return product
+
+@product_router.post("/product")
 def product_add(product: ProductCreate, db: Session = Depends(get_db)):
 
     # Tworzymy użytkownika w bazie danych
@@ -78,7 +97,6 @@ def product_add(product: ProductCreate, db: Session = Depends(get_db)):
         popular = product.popular,
         new_price=product.new_price,
         old_price=product.old_price,
-        amount=product.amount,
         description=product.description,
         picture=product.picture,
         sizes = product.sizes,
@@ -92,13 +110,6 @@ def product_add(product: ProductCreate, db: Session = Depends(get_db)):
     db.refresh(new_product)
 
     return new_product
-
-@product_router.get("/product/{id}", response_model=ProductResponse)
-def get_single_product(id: int, db: Session = Depends(get_db)):
-    product = db.query(Product).filter(Product.id == id).first()
-    if not product:
-        raise HTTPException(status_code=404, detail="Nie znaleziono produktów")
-    return product
 
 @product_router.delete("/product/{id}")
 def delete_product(id: int, db: Session = Depends(get_db)):
@@ -116,21 +127,9 @@ def delete_product(id: int, db: Session = Depends(get_db)):
     # Return a success message
     return {"message": f"Produkt o ID {id} został usunięty pomyślnie."}
 
-@product_router.get("/products/all", response_model=List[ProductResponse])
-def get_all_products(db: Session = Depends(get_db)):
-    """
-    Endpoint do pobierania wszystkich produktów.
-    """
-    products = db.query(Product).all()
-    if not products:
-        raise HTTPException(status_code=404, detail="Brak produktów w bazie danych")
-    
-    # Przekształcenie obiektów w słowniki
-    return [ProductResponse.model_validate(product).model_dump() for product in products]
 
 
-
-@product_router.put("/products/{id}")
+@product_router.put("/product/{id}")
 def update_product(id: int, product_data: ProductCreate, db: Session = Depends(get_db)):
 
     product = db.query(Product).filter(Product.id == id).first()

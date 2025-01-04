@@ -66,7 +66,7 @@ const SearchProduct = () => {
         try {
             console.log(`Zmiana statusu zamówienia ${id} na ${newStatus}`);
     
-            const response = await fetch(`${BACKEND_URL}/orders/${id}`, {
+            const response = await fetch(`${BACKEND_URL}/order/${id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: newStatus }),

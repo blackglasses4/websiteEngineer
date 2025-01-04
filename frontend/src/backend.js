@@ -95,20 +95,20 @@ async function getUsers(params) {
 
 //dodawanie
 async function addProduct(product) {
-    return post('/products', product);
+    return post('/product', product);
 }
 
 async function addOrder(order) {
-    return post('/orders', order);
+    return post('/order', order);
 }
 
 async function addUser(user) {
-    return post('/add_user', user); //do zmiany aby nie było auth
+    return post('/user', user); //do zmiany aby nie było auth
 }
 
 //edytowanie
 async function saveProduct(product) {
-    return put(`/products/${product.id}`, {
+    return put(`/product/${product.id}`, {
         id: product.id,
         category: product.category,
         gender: product.gender,
@@ -125,7 +125,7 @@ async function saveProduct(product) {
 }
 
 async function editUser(user) {
-    return put(`/edit_user/${user.id}`, {
+    return put(`/user/${user.id}`, {
         id: user.id,
         first_name: user.first_name,
         last_name: user.last_name,
@@ -142,7 +142,7 @@ async function deleteProduct(product) {
 }
 
 async function deleteUser(user) {
-    return del('/users/', user);
+    return del('/user/', user);
 }
 
 async function deleteOrder(order) {

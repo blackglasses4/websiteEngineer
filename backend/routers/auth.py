@@ -49,7 +49,66 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
 
     return db_user  # Zwracamy stworzonego użytkownika
 
-@router.post("/add_user", response_model=UserOut)
+@router.post("/login",)
+def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    """
+    Funkcja obsługująca logowanie użytkownika.
+    """
+    print("Received data:", form_data.username, form_data.password)  # Loguj dane
+    # Pobieramy użytkownika z bazy danych
+    user = db.query(User).filter(
+        or_(
+            User.username == form_data.username,
+            User.email == form_data.username
+        )
+    ).first()
+    
+    # Jeśli użytkownik nie istnieje lub hasło jest nieprawidłowe
+    if not user or not verify_password(form_data.password, user.hashed_password):
+        raise HTTPException(status_code=401, detail="Invalid username or password")
+    
+    # Generujemy token dostępu
+    access_token_expires = timedelta(minutes=30)
+    access_token = create_access_token(
+        data={"sub": user.username}, expires_delta=access_token_expires
+    )
+
+    return {
+        "access_token": access_token,
+        "token_type": "bearer",
+        "username": user.username,
+        "is_admin": user.is_admin
+    }
+
+@router.get("/users")
+def get_users(
+    page:int = Query(1,ge=1),
+    per_page: int = Query(8,ge=1),
+    db: Session = Depends(get_db)
+    ):
+    
+    query = db.query(User)
+    
+    total_users = query.count()
+    
+    query = query.offset((page - 1)* per_page).limit(per_page)
+    users = query.all()  # Query all products from the database
+    
+    total_pages = (total_users + per_page - 1) // per_page
+    
+    if not users:
+        raise HTTPException(status_code=404, detail="No users found")
+    return {
+        "data": users,
+        "first": 1,
+        "prev": page - 1 if page > 1 else None,
+        "next": page + 1 if page < total_pages else None,
+        "last": total_pages,
+        "pages": total_pages,
+        "users": total_users,
+    }
+
+@router.post("/user", response_model=UserOut)
 def add_user(user: UserCreate, db: Session = Depends(get_db)):
     # Sprawdzamy, czy użytkownik już istnieje
     existing_user = db.query(User).filter(User.username == user.username).first()
@@ -76,7 +135,7 @@ def add_user(user: UserCreate, db: Session = Depends(get_db)):
 
     return db_user  # Zwracamy stworzonego użytkownika
 
-@router.put("/edit_user/{id}", response_model=UserOut)
+@router.put("/user/{id}", response_model=UserOut)
 def edit_user(id: int, user: UserCreate, db: Session = Depends(get_db)):
     # Find the user in the database by ID
     db_user = db.query(User).filter(User.id == id).first()
@@ -108,66 +167,7 @@ def edit_user(id: int, user: UserCreate, db: Session = Depends(get_db)):
     # Return the updated user object
     return db_user
 
-@router.post("/login",)
-def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    """
-    Funkcja obsługująca logowanie użytkownika.
-    """
-    print("Received data:", form_data.username, form_data.password)  # Loguj dane
-    # Pobieramy użytkownika z bazy danych
-    user = db.query(User).filter(
-        or_(
-            User.username == form_data.username,
-            User.email == form_data.username
-        )
-    ).first()
-    
-    # Jeśli użytkownik nie istnieje lub hasło jest nieprawidłowe
-    if not user or not verify_password(form_data.password, user.hashed_password):
-        raise HTTPException(status_code=401, detail="Invalid username or password")
-    
-    # Generujemy token dostępu
-    access_token_expires = timedelta(minutes=30)
-    access_token = create_access_token(
-        data={"sub": user.username}, expires_delta=access_token_expires
-    )
-
-    return {
-        "access_token": access_token,
-        "token_type": "bearer",
-        "username": user.username,
-        "is_admin": user.is_admin
-    }
-    
-@router.get("/users")
-def get_users(
-    page:int = Query(1,ge=1),
-    per_page: int = Query(8,ge=1),
-    db: Session = Depends(get_db)
-    ):
-    
-    query = db.query(User)
-    
-    total_users = query.count()
-    
-    query = query.offset((page - 1)* per_page).limit(per_page)
-    users = query.all()  # Query all products from the database
-    
-    total_pages = (total_users + per_page - 1) // per_page
-    
-    if not users:
-        raise HTTPException(status_code=404, detail="No users found")
-    return {
-        "data": users,
-        "first": 1,
-        "prev": page - 1 if page > 1 else None,
-        "next": page + 1 if page < total_pages else None,
-        "last": total_pages,
-        "pages": total_pages,
-        "users": total_users,
-    }
-
-@router.delete("/users/{id}")
+@router.delete("/user/{id}")
 def delete_user(id: int, db: Session = Depends(get_db)):
     
     # Query the user by ID

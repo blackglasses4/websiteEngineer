@@ -15,33 +15,6 @@ def get_db():
         yield db  # Zwracamy sesję do użycia w endpointach
     finally:
         db.close()  # Po zakończeniu zapytania sesja jest zamykana
-        
-@order_router.post("/orders")
-def order_add(order: OrderCreate, db: Session = Depends(get_db)):
-    # Tworzymy użytkownika w bazie danych
-    if not order.date:
-        order.date = datetime.utcnow()
-
-    new_order = Order(
-        phone = int(order.phone),
-        street = order.street,
-        postal_code = order.postal_code,
-        city = order.city,
-        house_number = order.house_number if order.house_number else None,
-        apartment_number = order.apartment_number if order.apartment_number else None,
-        comment = order.comment,
-        status=StatusEnum(order.status),
-        date = order.date,
-        total_amount = int(order.total_amount),
-        products_order = order.products_order
-    )
-
-    # Dodanie produktu do sesji i zapisanie do bazy danych
-    db.add(new_order)
-    db.commit()
-    db.refresh(new_order)
-
-    return new_order
 
 @order_router.get("/orders")
 def get_orders(
@@ -71,6 +44,33 @@ def get_orders(
         "pages": total_pages,
         "orders": total_orders,
     }
+
+@order_router.post("/order")
+def order_add(order: OrderCreate, db: Session = Depends(get_db)):
+    # Tworzymy użytkownika w bazie danych
+    if not order.date:
+        order.date = datetime.utcnow()
+
+    new_order = Order(
+        phone = int(order.phone),
+        street = order.street,
+        postal_code = order.postal_code,
+        city = order.city,
+        house_number = order.house_number if order.house_number else None,
+        apartment_number = order.apartment_number if order.apartment_number else None,
+        comment = order.comment,
+        status=StatusEnum(order.status),
+        date = order.date,
+        total_amount = int(order.total_amount),
+        products_order = order.products_order
+    )
+
+    # Dodanie produktu do sesji i zapisanie do bazy danych
+    db.add(new_order)
+    db.commit()
+    db.refresh(new_order)
+
+    return new_order
     
 @order_router.delete("/order/{id}")
 def delete_order(id: int, db: Session = Depends(get_db)):
@@ -88,7 +88,7 @@ def delete_order(id: int, db: Session = Depends(get_db)):
     # Return a success message
     return {"message": f"Zamówienie o ID {id} zostało usunięte pomyślnie."}
 
-@order_router.patch("/orders/{id}")
+@order_router.patch("/order/{id}")
 def update_order_status(id: int, request: UpdateOrderStatusRequest, db: Session = Depends(get_db)):
     status_map = {
         "W_trakcie_realizacji": StatusEnum.W_trakcie_realizacji,
