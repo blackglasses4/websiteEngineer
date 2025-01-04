@@ -3,6 +3,7 @@ from backend.routers.auth import router
 from backend.routers.files import files_router
 from backend.routers.products import product_router
 from backend.routers.order import order_router
+from backend.routers.admin import router as admin_router
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
@@ -25,6 +26,7 @@ app.include_router(router, tags=["Auth"])
 app.include_router(files_router, tags=["Files"])
 app.include_router(product_router, tags=["Products"])
 app.include_router(order_router, tags=["Orders"])
+app.include_router(admin_router, tags=["Admin"])
 # Add CORSMiddleware to the app to allow cross-origin requests
 
 app.add_middleware(

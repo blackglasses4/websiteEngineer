@@ -70,7 +70,7 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
     # Generujemy token dostępu
     access_token_expires = timedelta(minutes=30)
     access_token = create_access_token(
-        data={"sub": user.username}, expires_delta=access_token_expires
+        data={"sub": user.username, "is_admin": user.is_admin}, expires_delta=access_token_expires
     )
 
     return {
@@ -79,6 +79,8 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
         "username": user.username,
         "is_admin": user.is_admin
     }
+
+
 
 @router.get("/users")
 def get_users(
