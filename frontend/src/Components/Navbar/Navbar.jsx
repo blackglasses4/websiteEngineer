@@ -9,7 +9,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import useClick from '../useClick.jsx';
 import { useUser } from '../../Pages/UserContext.jsx';
 import { useCart } from '../Cart/CartContext.jsx';
-import { getProducts, getUsers, getAllProducts } from '../../backend';
+import { getAllProducts } from '../../backend';
 
 import './Navbar.scss';
 

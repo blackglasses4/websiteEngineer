@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getUsers, addUser } from '../../backend';
 
@@ -17,7 +17,6 @@ const CreateUser = () => {
 
     const [user, setUser] = useState(initialUserState);
     const [loading, setLoading] = useState(false);
-    // const [imagePreview, setImagePreview] = useState(null);
     const [users, setUsers] = useState([]);
     const [isFormOpen, setIsFormOpen] = useState(false);
 

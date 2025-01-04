@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
@@ -12,8 +12,6 @@ import '../Filter/Filter.scss';
 
 const PopularProduct = () => {
     const [error, setError] = useState(false);
-
-    const [products, setProducts] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
 
     // stronicowanie
@@ -24,7 +22,6 @@ const PopularProduct = () => {
     const [lastPage, setLastPage] = useState();
 
     const [numberOfPages, setNumberOfPages] = useState();
-    const [numberOfItems, setNumberOfItems] = useState();
 
     //filtrowanie
     const [popular, setPopular] = useState();
@@ -46,17 +43,10 @@ const PopularProduct = () => {
           setNextPage(result['next']);
           setLastPage(result['last']);
           setNumberOfPages(result['pages']);
-          setNumberOfItems(result['items']);
-
-          setProducts(result['data']);
           setConfirmedResults(result['data']);
         } else {
           console.error('Brak danych w odpowiedzi');
         }
-        // const popularProducts = data.data.filter(product => product.popular === true);
-        // console.log(popularProducts);
-        // setDataProduct(popularProducts);
-        // setIsFetched(true);
 
       } catch (error) {
         toast.error('Nie udało się załadować produktów.', {

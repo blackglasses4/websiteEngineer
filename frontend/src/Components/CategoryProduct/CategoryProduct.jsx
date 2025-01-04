@@ -20,7 +20,6 @@ const CategoryProducts = () => {
   const filterPanelRef = useRef(null);
   useClick(filterPanelRef, () => setIsFilterOpen(false));
 
-  const [products, setProducts] = useState([]);
   const [confirmedResults, setConfirmedResults] = useState([]);
 
   // stronicowanie
@@ -66,7 +65,6 @@ const CategoryProducts = () => {
         setNextPage(result['next']);
         setLastPage(result['last']);
         setNumberOfPages(result['pages']);
-        setProducts(result['data']);
         setConfirmedResults(result['data']);
       } else {
         console.error('Brak danych w odpowiedzi');

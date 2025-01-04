@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addProduct } from '../../backend';
@@ -23,9 +23,7 @@ const CreateProduct = () => {
 
     const [product, setProduct] = useState(initialProductState);
     const [loading, setLoading] = useState(false);
-    const [imagePreview, setImagePreview] = useState(null);
     const [isFormOpen, setIsFormOpen] = useState(false);
-    const fileInputRef = useRef(null);
 
     const handleInputChange = (e) => {
         const { type, name, value, checked } = e.target;
@@ -188,7 +186,7 @@ const CreateProduct = () => {
 
                     <label htmlFor="image">Obraz: 
                         <input type="file" name="image" accept='image/*' id="fileInput" required/>
-                        {imagePreview && <img className="add-img" src={imagePreview} alt="Podgląd" />}
+                        {/* {imagePreview && <img className="add-img" src={imagePreview} alt="Podgląd" />} */}
                     </label>
                     <label htmlFor="popular">Czy jest popularny: <input type="checkbox" name="popular" id="popular" onChange={handleInputChange} checked={product.popular}/></label>
                     <label htmlFor="new_price">Nowa cena: <input type="number" name="new_price" id="new_price" min="0" step="0.01" value={product.new_price} onChange={handleInputChange} required/></label>
