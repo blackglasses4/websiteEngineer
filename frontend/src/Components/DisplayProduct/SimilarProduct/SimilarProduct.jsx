@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import './SimilarProduct.scss';
+import { BACKEND_URL } from '../../../config';
 
 const SimilarProducts = ({ products, category, selectedProductId }) => {
   const similarProducts = products
@@ -10,7 +11,7 @@ const SimilarProducts = ({ products, category, selectedProductId }) => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const itemsPerSlide = 2; // Liczba produktów na jeden slajd
+  const itemsPerSlide = 2;
   const totalSlides = Math.ceil(similarProducts.length / itemsPerSlide);
 
   const handleNext = () => {
@@ -42,8 +43,8 @@ const SimilarProducts = ({ products, category, selectedProductId }) => {
               <div className="similar-products__item" key={item.id}>
                 <Link to={`/product/${item.id}`}>
                   <LazyLoadImage
-                    src={item.image.url}
-                    alt={item.image.alt}
+                    src={BACKEND_URL + item.picture}
+                    alt="Zdjęcie podobnego produktu do wybranego"
                     effect="blur"
                     className="similar-products__image"
                   />

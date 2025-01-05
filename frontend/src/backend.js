@@ -1,10 +1,21 @@
 import { BACKEND_URL } from "./config";
 
+function getToken() {
+    return localStorage.getItem('token');
+}
+
 async function get(endpoint, params) {
     const paramsStr = params ? `?${Object.entries(params).map(([k, v]) => `${k}=${v}`).join('&')}` : "";
 
     const url = `${BACKEND_URL}${endpoint}${paramsStr}`;
-    const response = await fetch(url);
+    const token = getToken();
+
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
     
     if (response.status === 401) {
         alert('Twoja sesja wygasła. Zaloguj się ponownie.');
@@ -16,10 +27,13 @@ async function get(endpoint, params) {
 }
 
 async function post(endpoint, indata) {
+    const token = getToken();
+
     const response = await fetch(`${BACKEND_URL}${endpoint}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(indata),
     });
@@ -34,10 +48,13 @@ async function post(endpoint, indata) {
 }
 
 async function put(endpoint, indata) {
+    const token = getToken();
+
     const response = await fetch(`${BACKEND_URL}${endpoint}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(indata),
     });
@@ -52,8 +69,13 @@ async function put(endpoint, indata) {
 }
 
 async function del(endpoint, id) {
+    const token = getToken();
+
     const response = await fetch(`${BACKEND_URL}${endpoint}${id}`, {
         method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
     });
 
     if (response.status === 401) {

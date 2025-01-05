@@ -52,7 +52,7 @@ const CategoryProducts = () => {
       }
 
       if (sort && sort !== 'none') {
-          params['_sort'] = sort;
+          params['sort'] = sort;
       }
 
       const response = await getProducts(params);

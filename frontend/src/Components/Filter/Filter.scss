@@ -2,6 +2,7 @@
 @use '../../scss/mixins' as *;
 
 .admin-search_products,
+.admin-search_products-mobile,
 .search-order,
 .search-user,
 .popularProduct,
@@ -86,7 +87,7 @@
 
                     label {
                         color: var(--dominant-dark);
-                        margin-bottom: 0.4em;
+                        margin: 0.4em 0;
                         @include selection-whitedark;
                     }
 
@@ -106,8 +107,19 @@
     }
 }
 
+.categoryProduct {
+    .filter {
+        .product-filter {
+            .filter-toggle {
+                margin: -0.5em 2.5em;
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: #{map-get($breakpoints, 'phablet')}) {
     .admin-search_products,
+    .admin-search_products-mobile,
     .search-order,
     .search-user,
     .popularProduct,
@@ -119,6 +131,10 @@
 
                 .filter-panel {
                     left: 0;
+                }
+
+                .filter-toggle {
+                    margin: 0;
                 }
             }
         }
