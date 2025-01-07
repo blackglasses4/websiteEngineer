@@ -1,0 +1,136 @@
+//Colors
+
+$white: #ffffff;
+$black: #000000;
+
+$table_td: #f8f8f8;
+$table_border: #ddd;
+$table_th-color: #555; 
+$table_shadow: rgba(0, 0, 0, 0.1);
+$table_s: rgba(0, 0, 0, 0.1);
+
+$grey_light: #8c8c8c;
+$grey_dark: #232933;
+
+$green_brighter: #27ae60;
+$green_light: #228B22;
+$green_hover: #19703d;
+$red_brighter: #e74c3c;
+$red_light: hsl(0, 61%, 34%);
+$red_dark: hsl(0, 60%, 24%);
+$blue_brighter: #399be6;
+$blue_light: #225E8B;
+$blue_dark: #184261;
+$bluegray_sidebar: #2c3e50;
+
+:root {
+    --white: #{$white};
+    --black: #{$black};
+    --grey_light: #{$grey_light};
+    --grey_dark: #{$grey_dark};
+    --green_light: #{$green_light};
+    --red_light: #{$red_light};
+    --grey_dark: #{$grey_dark};
+    --blue_light: #{$blue_light};
+    --blue_dark: #{$blue_dark};
+
+    --table_td: #{$table_td};
+    --table_border: #{$table_border};
+    --table_th-color: #{$table_th-color};
+    --table_shadow: #{$table_shadow};
+    --table_s: #{$table_s};
+}
+
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+  --dominant-light: hsl(0, 0%, 100%);
+  --dominant-dark: hsl(0, 0%, 5%);
+
+  --table_td: hsl(0, 0%, 94%);
+  --table_border: hsl(0, 0%, 87%);
+  --table_th-color: hsl(0, 0%, 19%);
+  --table_shadow: rgba(0, 0, 0, 0.1);
+  --table_s: rgba(0, 0, 0, 0.3);
+
+  --color-ad: hsl(206, 100%, 32%);
+  --color-red: hsl(0, 100%, 33%);
+  --color-green: hsl(120, 61%, 34%);
+
+  --grey_light: hsl(0, 0%, 55%);
+  --grey_dark: hsl(218, 19%, 17%);
+
+  --color-bg-selection: hsl(0, 0%, 15%);
+  --color-selection: hsl(0, 0%, 98%);
+  --color-font-grey: hsl(0, 0%, 21%);
+  --darkgrey: hsl(0, 0%, 13%);
+  --lightgreen: hsl(146, 97%, 23%);
+  --darkgreen: hsl(144, 96%, 10%);
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+   :root:not([data-theme]) {
+    --dominant-light: hsl(0, 0%, 5%);
+    --dominant-dark: hsl(0, 0%, 100%);
+
+    --table_td: hsl(0, 0%, 12%);
+    --table_border: hsl(0, 0%, 26%);
+    --table_th-color: rgb(160, 157, 157);
+    --table_shadow: rgba(136, 136, 136, 0.1);
+    --table_s: rgba(0, 0, 0, 0.3);
+
+    --color-ad: hsl(205, 100%, 22%);
+    --color-red: hsl(0, 98%, 21%);
+    --color-green: hsl(144, 96%, 10%);
+
+    --grey_light: hsl(0, 0%, 100%);
+    --grey_dark: hsl(0, 0%, 100%);
+
+    --color-bg-selection: hsl(0, 0%, 15%);
+    --color-selection: hsl(0, 0%, 98%);
+    --color-font-grey: hsl(0, 0%, 21%);
+    --darkgrey: hsl(0, 0%, 13%);
+    --lightgreen: hsl(146, 97%, 23%);
+    --darkgreen: hsl(144, 96%, 10%);
+   }
+}
+
+[data-theme="dark"] {
+    --dominant-light: hsl(0, 0%, 5%);
+    --dominant-dark: hsl(0, 0%, 100%);
+
+    --table_td: hsl(0, 0%, 12%);
+    --table_border: hsl(0, 0%, 26%);
+    --table_th-color: rgb(160, 157, 157);
+    --table_shadow: rgba(136, 136, 136, 0.1);
+    --table_s: rgba(0, 0, 0, 0.6);
+
+    --color-ad: hsl(205, 100%, 22%);
+    --color-red: hsl(0, 98%, 21%);
+    --color-green: hsl(144, 96%, 10%);
+
+    --grey_light: hsl(0, 0%, 100%);
+    --grey_dark: hsl(0, 0%, 100%);
+
+    --color-bg-selection: hsl(0, 0%, 15%);
+    --color-selection: hsl(0, 0%, 98%);
+    --color-font-grey: hsl(0, 0%, 21%);
+    --darkgrey: hsl(0, 0%, 13%);
+    --lightgreen: hsl(146, 97%, 23%);
+    --darkgreen: hsl(144, 96%, 10%);
+}
+
+$breakpoints: (
+    "phone":        410px,
+    "phone-2":      427px,
+    "phone-wide":   480px,
+    "phablet":      554px,
+    "tablet-small": 640px,
+    "tablet":       795px,
+    "tablet-wide":  860px,
+    "tablet-XLwide": 888px,
+    "tablet-table-wide": 940px,
+    "tablet-Lwide":  1024px,
+    "desktop":      1248px,
+    "desktop-wide": 1440px,
+    'desktop-Lwide': 1550px
+);

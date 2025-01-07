@@ -1,0 +1,29 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+nav.nav-admin {
+    background-color: $red_light;
+    width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+        color: $white;
+        text-decoration: none;
+        list-style-type: none;
+        border: none;
+        @include selection-light;
+    }
+    
+    h3 {
+        color: $white;
+        @include selection-light;
+    }
+
+    .nav-icons {
+        display: flex;
+        gap: 1rem;
+    }
+}

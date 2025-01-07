@@ -1,6 +1,3 @@
-/app/
-/db/
-
 # Ignoruj foldery __pycache__
 __pycache__/
 

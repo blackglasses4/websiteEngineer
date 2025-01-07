@@ -1,0 +1,111 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.order-summary {
+    padding: 1rem;
+
+    .order-data {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    h1 {
+        color: var(--dominant-dark);
+        text-align: center;
+        @include selection-whitedark;
+    }
+
+    .summary-p {
+        color: var(--red_light);
+        text-align: center;
+        @include selection-whitedark;
+
+        span {
+            font-weight: 500;
+            color: var(--dominant-dark);
+            @include selection-whitedark;
+        }
+    }
+
+    h2 {
+        margin-top: 0.5em;
+        color: var(--dominant-dark);
+        @include selection-whitedark;
+    }
+
+    .customer-details {
+        p {
+            font-size: 16px;
+            color: var(--dominant-dark);
+            @include selection-whitedark;
+
+            span {
+                font-weight: 600;
+                @include selection-whitedark;
+            }
+        }
+    }
+
+    ul {
+        list-style-type: none;
+        color: var(--dominant-dark);
+        font-size: 16px;
+
+        li {
+            margin: 0.2em 0;
+            @include selection-whitedark;
+        }
+    }
+
+    .payment-details {
+        padding: 0.3em;
+        border: 1px solid var(--dominant-light);
+        border-radius: 8px;
+        background-color: var(--background-light);
+        text-align: center;
+      
+        h2 {
+          color: var(--dominant-dark);
+          margin-bottom: 1rem;
+        }
+      
+        p {
+          font-size: 16px;
+          color: var(--dominant-dark);
+          margin-bottom: 0.5rem;
+          @include selection-whitedark;
+        }
+
+        span {
+            font-weight: 600;
+            @include selection-whitedark;
+        }
+      
+        .bank-account {
+          font-size: 18px;
+          font-weight: 300;
+          color: var(--red_light);
+          margin: 1rem 0;
+        }
+    }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
+    .order-summary {
+        .order-data {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .customer-details {
+                width: 100%;
+            }
+
+            .order-items {
+                width: 100%;
+                text-align: left;
+            }
+        }
+    }
+}

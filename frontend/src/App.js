@@ -1,33 +1,68 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { CartProvider } from './Components/Cart/CartContext'; 
+import { UserProvider } from './Pages/UserContext';
 
-//page & layout imports
-import Homepage from './pages/Homepage'
-import ReviewDetails from './pages/ReviewDetails'
-import Genre from './pages/Genre'
-import SiteHeader from './components/SiteHeader'
+// Komponenty
+import Navbar from './Components/Navbar/Navbar';
+import Footer from './Components/Footer/Footer';
+import NavbarCategory from './Components/Navbar/NavbarCategory';
+import CartPage from './Components/Cart/CartPage/CartPage';
+import { ProductProvider } from './Components/ProductContext';
+import ProtectedRoute from "./Pages/ProtectedRoute";
 
-//apollo client 
-const client = new ApolloClient({
-  uri: 'http://localhost:1337/graphql',
-  cache: new InMemoryCache()
-})
-//dfgfgfgdgd
-////fgdfggd
+// Strony
+import Login from './Pages/Login/Login';
+import Register from './Pages/Register/Register';
+import Home from './Pages/Home/Home';
+import CategoryProducts from './Components/CategoryProduct/CategoryProduct';
+import Admin from './Components/Admin/Admin';
+import DisplayProductPage from './Components/DisplayProduct/SimilarProduct/DisplayProductPage';
+import Order from './Components/Order/Order';
+import OrderSummary from './Components/Order/OrderSummary';
+
+// Główny układ z Navbar, Kategoriami i Footerem
+function AppLayout() {
+  return (
+    <>
+      <Navbar/>
+      <NavbarCategory className="nav-category"/>
+      <div className="content">
+        <Outlet />
+      </div>
+      <Footer />
+    </>
+  );
+}
+
 function App() {
   return (
-    <Router>
-      <ApolloProvider client={client}>
-        <div className="App">
-          <SiteHeader />
-          <Routes>
-            <Route exact path="/" element={<Homepage />}/>
-            <Route path="/details/:id" element={<ReviewDetails />}/>
-            <Route path="/genre/:id" element={<Genre />}/>
-          </Routes>
-        </div>
-      </ApolloProvider>
-    </Router>
+    <UserProvider>
+      <ProductProvider>
+        <CartProvider>
+          <Router>
+            <div className="App">
+              <Routes>
+                <Route path="/" element={<AppLayout />}>
+                  <Route index element={<Home />} />
+                  <Route path=":category" element={<CategoryProducts />} />
+                  <Route path='product/:id' element={<DisplayProductPage/>} />
+                  <Route path="cart" element={<CartPage />} />
+                  <Route path="order" element={<Order />} />
+                  <Route path="order_summary" element={<OrderSummary />} />
+                </Route>
+
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/admin/*" element={<Admin />} />
+              </Routes>
+              <ToastContainer />
+            </div>
+          </Router>
+        </CartProvider>
+      </ProductProvider>
+    </UserProvider>
   );
 }
 

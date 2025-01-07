@@ -1,0 +1,36 @@
+//Colors
+
+$white: #ffffff;
+$black: #000000;
+
+$grey_light: #D9D9D9;
+$grey_dark: #B4B4B4;
+
+$green_light: #228B22;
+$red_light: #8B2222;
+$red_dark: #611818;
+$blue_light: #225E8B;
+$blue_dark: #184261;
+
+:root {
+    --white: #{$white};
+    --black: #{$black};
+    --grey_light: #{$grey_light};
+    --grey_dark: #{$grey_dark};
+    --green_light: #{$green_light};
+    --red_light: #{$red_light};
+    --grey_dark: #{$grey_dark};
+    --blue_light: #{$blue_light};
+    --blue_dark: #{$blue_dark};
+}
+
+$breakpoints: (
+    "phone":        410px,
+    "phone-wide":   480px,
+    "phablet":      554px,
+    "tablet-small": 640px,
+    "tablet":       795px,
+    "tablet-wide":  1024px,
+    "desktop":      1248px,
+    "desktop-wide": 1440px
+);

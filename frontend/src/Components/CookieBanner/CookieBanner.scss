@@ -1,0 +1,61 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    background-color: $white;
+    padding: 0.1em;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.cookie-text {
+    color: $grey_dark;
+    font-size: 14px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    @include selection-cookie;
+
+    @media (max-width: #{map-get($breakpoints, 'tablet')}) {
+        font-size: 10px;
+    }
+
+    @media (max-width: #{map-get($breakpoints, 'mobile')}) {
+        font-size: 8px;
+    }
+}
+
+.cookie-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+
+    button {
+        padding: 6px 10px;
+        background-color: $white;
+        border: 1px solid $grey_dark;
+        color: $grey_dark;
+        font-size: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: $grey_light;
+        }
+    }
+}

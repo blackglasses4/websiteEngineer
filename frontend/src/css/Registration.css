@@ -1,0 +1,202 @@
+@charset "UTF-8";
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --grey_light: #8c8c8c;
+  --grey_dark: #232933;
+  --green_light: #228B22;
+  --red_light: hsl(0, 61%, 34%);
+  --grey_dark: #232933;
+  --blue_light: #225E8B;
+  --blue_dark: #184261;
+  --table_td: #f8f8f8;
+  --table_border: #ddd;
+  --table_th-color: #555;
+  --table_shadow: rgba(0, 0, 0, 0.1);
+  --table_s: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme=light],
+:root:not([data-theme=dark]) {
+  --dominant-light: hsl(0, 0%, 100%);
+  --dominant-dark: hsl(0, 0%, 5%);
+  --table_td: hsl(0, 0%, 94%);
+  --table_border: hsl(0, 0%, 87%);
+  --table_th-color: hsl(0, 0%, 19%);
+  --table_shadow: rgba(0, 0, 0, 0.1);
+  --table_s: rgba(0, 0, 0, 0.3);
+  --color-ad: hsl(206, 100%, 32%);
+  --color-red: hsl(0, 100%, 33%);
+  --color-green: hsl(120, 61%, 34%);
+  --grey_light: hsl(0, 0%, 55%);
+  --grey_dark: hsl(218, 19%, 17%);
+  --color-bg-selection: hsl(0, 0%, 15%);
+  --color-selection: hsl(0, 0%, 98%);
+  --color-font-grey: hsl(0, 0%, 21%);
+  --darkgrey: hsl(0, 0%, 13%);
+  --lightgreen: hsl(146, 97%, 23%);
+  --darkgreen: hsl(144, 96%, 10%);
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --dominant-light: hsl(0, 0%, 5%);
+    --dominant-dark: hsl(0, 0%, 100%);
+    --table_td: hsl(0, 0%, 12%);
+    --table_border: hsl(0, 0%, 26%);
+    --table_th-color: rgb(160, 157, 157);
+    --table_shadow: rgba(136, 136, 136, 0.1);
+    --table_s: rgba(0, 0, 0, 0.3);
+    --color-ad: hsl(205, 100%, 22%);
+    --color-red: hsl(0, 98%, 21%);
+    --color-green: hsl(144, 96%, 10%);
+    --grey_light: hsl(0, 0%, 100%);
+    --grey_dark: hsl(0, 0%, 100%);
+    --color-bg-selection: hsl(0, 0%, 15%);
+    --color-selection: hsl(0, 0%, 98%);
+    --color-font-grey: hsl(0, 0%, 21%);
+    --darkgrey: hsl(0, 0%, 13%);
+    --lightgreen: hsl(146, 97%, 23%);
+    --darkgreen: hsl(144, 96%, 10%);
+  }
+}
+[data-theme=dark] {
+  --dominant-light: hsl(0, 0%, 5%);
+  --dominant-dark: hsl(0, 0%, 100%);
+  --table_td: hsl(0, 0%, 12%);
+  --table_border: hsl(0, 0%, 26%);
+  --table_th-color: rgb(160, 157, 157);
+  --table_shadow: rgba(136, 136, 136, 0.1);
+  --table_s: rgba(0, 0, 0, 0.6);
+  --color-ad: hsl(205, 100%, 22%);
+  --color-red: hsl(0, 98%, 21%);
+  --color-green: hsl(144, 96%, 10%);
+  --grey_light: hsl(0, 0%, 100%);
+  --grey_dark: hsl(0, 0%, 100%);
+  --color-bg-selection: hsl(0, 0%, 15%);
+  --color-selection: hsl(0, 0%, 98%);
+  --color-font-grey: hsl(0, 0%, 21%);
+  --darkgrey: hsl(0, 0%, 13%);
+  --lightgreen: hsl(146, 97%, 23%);
+  --darkgreen: hsl(144, 96%, 10%);
+}
+
+.registration {
+  display: flex;
+  width: 100%;
+  min-height: 100dvh;
+  align-items: center;
+  background-color: #232933;
+}
+.registration .register-image {
+  flex: 1;
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.registration .register-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.registration .registration-form {
+  flex: 1;
+  max-width: 50%;
+  padding: 2em;
+  border-radius: 8px;
+}
+.registration .registration-form .input-with-icon {
+  position: relative;
+}
+.registration .registration-form .input-with-icon .input-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8c8c8c;
+}
+.registration .registration-form .input-with-icon input {
+  padding-left: 50px;
+}
+.registration .registration-form h1 {
+  color: var(--dominant-light);
+  text-align: center;
+  padding-bottom: 1em;
+}
+.registration .registration-form h1::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form h1::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form p {
+  color: var(--dominant-light);
+  text-align: center;
+  padding-top: 0.6em;
+}
+.registration .registration-form p::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form p::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form p.p-min {
+  padding: 0em 0em 0.5em 0em;
+  font-size: 0.8em;
+  text-align: left;
+}
+.registration .registration-form p.p-min::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form p.p-min::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form p a {
+  text-decoration: none;
+  list-style-type: none;
+  border: none;
+  color: #225E8B;
+}
+.registration .registration-form p a::-moz-selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form p a::selection {
+  color: var(--dominant-light);
+  background-color: var(--dominant-dark);
+}
+.registration .registration-form p a:hover {
+  color: #184261;
+}
+.registration .registration-form .d-grid {
+  margin-top: 20px;
+}
+.registration .registration-form .d-grid Button {
+  width: auto; /* Ustawia szerokość przycisku na auto, żeby był dopasowany do zawartości */
+  padding: 10px 20px; /* Ustawienie odpowiednich marginesów wewnętrznych dla przycisku */
+  font-size: 1rem; /* Opcjonalnie ustawiamy rozmiar czcionki, żeby był estetyczny */
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .registration {
+    flex-direction: column;
+  }
+  .register-image, .registration-form {
+    max-width: 100%;
+    flex: 1;
+  }
+  .registration-form {
+    box-shadow: none;
+  }
+}/*# sourceMappingURL=Registration.css.map */

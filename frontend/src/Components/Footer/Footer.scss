@@ -1,0 +1,123 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.theme-dependent-logo {
+    @include selection-light;
+}
+
+footer {
+    background-color: var(--color-red);
+    width: 100%;
+    height: auto;
+    margin-top: auto;
+    bottom: 0;
+
+    .f-top {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 2rem 4rem;
+
+        .f-contact {
+
+            &-form {
+                padding-bottom: 2rem;
+                color: $white;
+            }
+    
+            &-community {
+                color: $white;
+    
+                a {
+                    font-size: 1.5rem;
+                    padding-right: 2rem;
+                    color: $white;
+                    text-decoration: none;
+                    list-style-type: none;
+                    border: none;
+                }
+            }
+
+            &-form, &-community {
+                h2, p {
+                    @include selection-light;
+                }
+            }
+        }
+
+        .f-subpages {
+            display: flex;
+            gap: 3rem;
+
+            &-name, &-offer {
+                h2, p {
+                    color: $white;
+                    @include selection-light;
+                }
+            }
+
+            &-offer {
+                .f-link {
+                    display: flex;
+                    justify-content: end;
+                    color: $white;
+                    text-decoration: none;
+                    border-bottom: none;
+                    padding-bottom: 0.1em;
+                    @include selection-light;
+
+                    &:hover {
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+
+    p.copyright {
+        color: $white;
+        text-align: center;
+        @include selection-light;
+    }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
+    footer {
+        .f-top {
+            flex-direction: column;
+            padding: 2rem 4rem; 
+            align-items: flex-start; 
+
+            .f-contact {
+                margin-bottom: 2rem; 
+            }
+        }
+
+        p.copyright {
+            padding: 0.5rem;
+            font-size: 1em;
+        }
+    }
+}
+
+@media only screen and (max-width: #{map-get($breakpoints, 'phone-wide')}) {
+    footer {
+        position: relative;
+        .f-top {
+            padding: 2rem 1rem; 
+
+            .f-contact {
+                margin-bottom: 2rem;
+
+                &-form {
+                    padding: 2rem;
+                    margin-bottom: 1rem;
+                    background-color: $white;
+                    border-radius: 70px 70px 70px 5px;
+                    color: $black;
+                }
+            }
+        }
+    }
+
+}
