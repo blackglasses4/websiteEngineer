@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { editUser } from '../../backend';
+import { saveUser } from '../../backend';
 
 import '../SearchProduct/Edit.scss';
 
@@ -14,7 +14,7 @@ const EditUser = ({ user, onSave, onCancel }) => {
         email: user.email || '',
         password: user.password || '',
         is_admin: user.is_admin || false,
-    });    
+    });
 
     useEffect(() => {
         if (!user) {
@@ -40,6 +40,7 @@ const EditUser = ({ user, onSave, onCancel }) => {
         if (!editForm.last_name) return 'Nazwisko jest wymagane.';
         if (!editForm.username) return 'Nazwa użytkownika jest wymagana.';
         if (!editForm.email) return 'Email jest wymagany.';
+        if (!editForm.password) return 'Hasło jest wymagane.';
         return null;
     };
 
@@ -51,7 +52,7 @@ const EditUser = ({ user, onSave, onCancel }) => {
             return;
         }
         try {
-            const response = await editUser({
+            const response = await saveUser({
                 id: editForm.id,
                 first_name: editForm.first_name,
                 last_name: editForm.last_name,
@@ -60,22 +61,6 @@ const EditUser = ({ user, onSave, onCancel }) => {
                 password: editForm.password,
                 is_admin: editForm.is_admin,
             });
-
-            // const response = await fetch(`${BACKEND_URL2}/auth/edit_user/${editForm.id}`, {
-            //     method: 'PUT',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({
-            //         id: editForm.id,
-            //         first_name: editForm.firstName,
-            //         last_name: editForm.lastName,
-            //         username: editForm.username,
-            //         email: editForm.email,
-            //         password: editForm.password,
-            //         is_admin: editForm.is_admin,
-            //     }),
-            // });
 
             if (!response.ok) {
                 throw new Error('Wystąpił błąd podczas aktualizacji użytkownika.');
@@ -188,8 +173,8 @@ const EditUser = ({ user, onSave, onCancel }) => {
                     <input
                         id="input-first-name"
                         type="text"
-                        value={editForm.firstName || ''}
-                        onChange={(e) => setEditForm({ ...editForm, firstName: e.target.value })}
+                        value={editForm.first_name || ''}
+                        onChange={(e) => setEditForm({ ...editForm, first_name: e.target.value })}
                     />
                 </label>
             </p>
@@ -199,8 +184,8 @@ const EditUser = ({ user, onSave, onCancel }) => {
                     <input
                         id="input-last-name"
                         type="text"
-                        value={editForm.lastName || ''}
-                        onChange={(e) => setEditForm({ ...editForm, lastName: e.target.value })}
+                        value={editForm.last_name || ''}
+                        onChange={(e) => setEditForm({ ...editForm, last_name: e.target.value })}
                     />
                 </label>
             </p>
@@ -226,7 +211,7 @@ const EditUser = ({ user, onSave, onCancel }) => {
                     />
                 </label>
             </p>
-            <p>
+            {/* <p>
                 <span>Hasło:</span>
                 <label>
                     <input
@@ -236,7 +221,7 @@ const EditUser = ({ user, onSave, onCancel }) => {
                         onChange={(e) => setEditForm({ ...editForm, password: e.target.value })}
                     />
                 </label>
-            </p>
+            </p> */}
             <p>
                 <span>Administrator:</span>
                 <label>

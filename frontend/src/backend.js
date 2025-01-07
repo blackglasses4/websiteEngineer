@@ -146,7 +146,7 @@ async function saveProduct(product) {
 });
 }
 
-async function editUser(user) {
+async function saveUser(user) {
     return put(`/user/${user.id}`, {
         id: user.id,
         first_name: user.first_name,
@@ -175,14 +175,16 @@ export {
     getProducts,
     getProduct,
     getOrders,
-    addOrder,
     getUsers,
     getAllProducts,
+
+    addOrder,
     addProduct,
     addUser,
 
     saveProduct,
-    editUser,
+    saveUser,
+
     deleteProduct,
     deleteUser,
     deleteOrder

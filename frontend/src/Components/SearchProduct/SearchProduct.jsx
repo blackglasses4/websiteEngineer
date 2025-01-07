@@ -164,14 +164,6 @@ const SearchProduct = () => {
     };
 
     const handleSaveProduct = async (updatedProduct) => {
-        // setProducts((prevProducts) => prevProducts.map((product) => 
-        //     product.id === updatedProduct.id ? updatedProduct : product
-        // ));
-    
-        // setConfirmedResults((prevConfirmedResults) => prevConfirmedResults.map((product) => 
-        //     product.id === updatedProduct.id ? updatedProduct : product
-        // ));
-        
         await fetchProducts();
     
         setProductToEdit(null);   
