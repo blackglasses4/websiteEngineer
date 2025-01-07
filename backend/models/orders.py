@@ -1,5 +1,7 @@
 import enum
+from ipaddress import collapse_addresses
 from re import S
+import string
 from unicodedata import category
 from sqlalchemy import Column, ForeignKey, Integer, String, Enum, null, DateTime
 from sqlalchemy import func
@@ -32,6 +34,9 @@ class Order(Base):
     date = Column(DateTime, default=func.now())
     total_amount = Column(Integer, nullable=False)
     products_order = Column(String(255), nullable=False)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)  # Klucz obcy do tabeli users
+    user = relationship("User", back_populates="orders")  # Relacja do użytkownika
+    
 class UpdateOrderStatusRequest(BaseModel):
     status: str
 class OrderCreate(BaseModel):
@@ -47,6 +52,7 @@ class OrderCreate(BaseModel):
     date: Optional[datetime] = None
     total_amount: int
     products_order: str
+    user_id: int  # Wskazuje na użytkownika
     
     class Config:
         from_attributes = True  # Allows compatibility with SQLAlchemy models

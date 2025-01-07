@@ -46,7 +46,7 @@ def get_orders(
     }
 
 @order_router.post("/order")
-def order_add(order: OrderCreate, db: Session = Depends(get_db)):
+def order_add(user_id: int, order: OrderCreate, db: Session = Depends(get_db)):
     # Tworzymy użytkownika w bazie danych
     if not order.date:
         order.date = datetime.utcnow()
@@ -62,7 +62,8 @@ def order_add(order: OrderCreate, db: Session = Depends(get_db)):
         status=StatusEnum(order.status),
         date = order.date,
         total_amount = int(order.total_amount),
-        products_order = order.products_order
+        products_order = order.products_order,
+        user_id=user_id  # Powiązanie z użytkownikiem
     )
 
     # Dodanie produktu do sesji i zapisanie do bazy danych
