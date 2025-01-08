@@ -1,4 +1,11 @@
 Dane do bazy danych
+Użytkownicy
+INSERT INTO users (id, first_name, last_name, username, email, hashed_password, is_admin)
+VALUES
+(1, 'admin123', 'admin123', 'admin123', 'admin123@gmail.com', 'admin123', true),
+(2, 'user123', 'user123', 'user123', 'user@gmail.com', 'user123', false);
+
+Produkty
 
 INSERT INTO sklep.products (id, category, gender, name, popular, new_price, old_price, description, picture, sizes, colors, material)
 VALUES
@@ -85,3 +92,4 @@ VALUES
 (65, 'outfit', 'man', 'Strój do szermierki', true, 350, 700, 'Profesjonalny strój do szermierki dla mężczyzn, zaprojektowany z myślą o pełnej ochronie i komforcie podczas rywalizacji. Wykonany z wytrzymałych materiałów, takich jak kevlar i poliester, gwarantuje doskonałą elastyczność i bezpieczeństwo.', '/static/outfit_men8.jpg', 'M,L', 'black,white', 'poliester'),
 (66, 'outfit', 'woman', 'Strój do szermierki', true, 350, 700, 'Profesjonalny strój do szermierki dla kobiet, zapewniający pełną swobodę ruchów oraz maksymalną ochronę. Wykonany z lekkich, odpornych na uszkodzenia materiałów, zapewniających komfort i bezpieczeństwo podczas walki.', '/static/outfit_women10.jpg', 'S,M', 'white,black', 'poliester'),
 (67, 'outfit', 'woman', 'Spódniczka do ćwiczeń', true, 35, 60, 'Sportowa spódniczka wykonana z lekkiego, elastycznego materiału.', '/static/skirt_women1.jpg', 'S,M,L,XL,XXL,XS', 'white,lime,red,green,pink', 'poliester');
+
