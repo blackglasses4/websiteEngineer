@@ -34,7 +34,6 @@ const Navbar = () => {
         //do zmiany później
         const response = await getAllProducts();
         const result = await response.json();
-        console.log(result);
 
         setProducts(result);
       }

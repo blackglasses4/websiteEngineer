@@ -15,6 +15,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const loggedUser = localStorage.getItem('user');
     const token = localStorage.getItem('token');
+   
 
     if (loggedUser && token) {
       const parsedUser = JSON.parse(loggedUser);

@@ -84,8 +84,7 @@ const Login = () => {
       }
       
        // Zapisujemy dane użytkownika i token w localStorage
-      login({ username: data.username, is_admin: data.is_admin }, data.access_token);
-
+      login({ id: data.id, username: data.username, is_admin: data.is_admin }, data.access_token);
       toast.success("Zalogowałeś się!");
     
         // Przekierowanie w zależności od użytkownika

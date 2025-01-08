@@ -86,7 +86,6 @@ const CreateProduct = () => {
             });
             const res = await result.json();
             const picture_path = res['filepath'];
-            console.log(res);
 
             const productData = {
                 // id: newId,
@@ -108,7 +107,6 @@ const CreateProduct = () => {
             const response = await addProduct(productData);
 
             const data = await response.json();
-            console.log(data);
 
             if (!response.ok) {
                 toast.error('Wystąpił błąd podczas dodawania produktu.', {

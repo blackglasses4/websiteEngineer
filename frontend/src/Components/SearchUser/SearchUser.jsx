@@ -51,7 +51,6 @@ const SearchUser = () => {
             //get Users do zmiany
             const response = await getUsers(params);
             const result = await response.json();
-            console.log(result);
 
             if (result['data']) {
                 setFirstPage(result['first']);

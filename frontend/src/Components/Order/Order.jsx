@@ -100,6 +100,9 @@ const Order = () => {
       return;
     }
 
+    const user_id = JSON.parse(localStorage.getItem("user")).id;
+    console.log(user_id);
+
     const orderData = {
       phone: parseInt(orderDetails.phone, 10),
       street: orderDetails.street,
@@ -111,12 +114,11 @@ const Order = () => {
       status: "W_trakcie_realizacji",
       total_amount: calculateTotal(),
       products_order: JSON.stringify(orderItems),
+      user_id: user_id,
     };
-
     console.log(orderData);
 
     try {
-      console.log(orderData);
       const response = await addOrder(orderData);
       
       if (!response.ok) {
@@ -264,7 +266,6 @@ const Order = () => {
               <button type="submit">Przejdź do płatności</button>
             </form>
           </div>
-          {/* <ToastContainer /> */}
         </div>
       </div>
     </section>

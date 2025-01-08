@@ -1,7 +1,11 @@
 import { BACKEND_URL } from "./config";
 
 function getToken() {
-    return localStorage.getItem('token');
+    const token = localStorage.getItem('token');
+    if (!token) {
+        console.log('Brak tokenu w localStorage!');
+    }
+    return token;
 }
 
 async function get(endpoint, params) {

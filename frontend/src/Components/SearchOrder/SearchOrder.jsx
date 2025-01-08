@@ -31,7 +31,6 @@ const SearchProduct = () => {
             //get Orders
             const response = await getOrders(params);
             const result = await response.json();
-            console.log(result);
 
             if (result['data']) {
                 setFirstPage(result['first']);
@@ -63,9 +62,7 @@ const SearchProduct = () => {
     }, [page]);
 
     const statusOrderChange = async (id, newStatus) => {
-        try {
-            console.log(`Zmiana statusu zamówienia ${id} na ${newStatus}`);
-    
+        try {    
             const response = await fetch(`${BACKEND_URL}/order/${id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
@@ -190,7 +187,7 @@ const SearchProduct = () => {
                             <React.Fragment key={order.id}>
                                 <tr>
                                     <td>{order.id}</td>
-                                    <td>{order.customer}</td>
+                                    <td>{order.user?.username || 'Brak danych'}</td>
                                     <td>{new Date(order.date).toLocaleDateString('pl-PL')}</td>
                                     <td>
                                         {`${order.street} ${order.house_number}${

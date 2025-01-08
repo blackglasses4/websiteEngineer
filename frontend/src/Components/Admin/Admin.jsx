@@ -22,13 +22,11 @@ const checkAdmin = () => {
     const token = localStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user"));
     
-    console.log(user.is_admin);
     if (!token || !user || user.is_admin === undefined) {
         console.error("Brak danych użytkownika lub nie jest administratorem.");
         return false;
     }
 
-    console.log("User is_admin:", user.is_admin);
     return user.is_admin;
 };
 

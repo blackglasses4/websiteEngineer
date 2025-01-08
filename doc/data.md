@@ -25,11 +25,11 @@ VALUES
 
 INSERT INTO sklep.products (id, category, gender, name, popular, new_price, old_price, description, picture, sizes, colors, material)
 VALUES
-(13, 'jacket', 'man', 'Kurtka treningowa', false, 150, 300, 'Kurtka sportowa idealna do biegania w chłodniejsze dni. Lekka i oddychająca.', '/static/jacket_men1.jpg', 'M,L,XL', 'black,grey,blue', 'nylon'),
-(14, 'jacket', 'man', 'Kurtka', true, 120, 240, 'Kurtka windbreaker do ochrony przed wiatrem, świetna na lekkie treningi na świeżym powietrzu.', '/static/jacket_men2.jpg','M,L,XL', 'black,green,navy', 'poliamid'),
-(15, 'jacket', 'man', 'Kurtka sportowa z kapturem', true, 180, 350, 'Kurtka sportowa z funkcjonalnym kapturem, doskonała do aktywności na świeżym powietrzu w każdą pogodę.','/static/jacket_men3.jpg', 'S,M,L,XL', 'black,grey,red', 'poliester'),
-(16, 'jacket', 'man', 'Kurtka polarowa', true, 130, 260, 'Polarowa kurtka sportowa do biegania w zimne dni. Ciepła i wygodna.', '/static/jacket_men4.jpg', 'M,L,XL', 'navy,lime,darkgreen', 'polar'),
-(17, 'jacket', 'man', 'Kurtka puchowa sportowa', true, 250, 500, 'Wysokiej jakości kurtka puchowa, idealna na zimowe treningi na świeżym powietrzu.', '/static/jacket_men5.jpg', 'M,L,XL', 'black,grey,darkcyan', 'puch'),
+(13, 'jacket', 'man', 'Kurtka treningowa', false, 150, 300, 'Kurtka sportowa idealna do biegania w chłodniejsze dni. Lekka i oddychająca.', '/static/jacket_men1.png', 'M,L,XL', 'black,grey,blue', 'nylon'),
+(14, 'jacket', 'man', 'Kurtka', true, 120, 240, 'Kurtka windbreaker do ochrony przed wiatrem, świetna na lekkie treningi na świeżym powietrzu.', '/static/jacket_men2.png','M,L,XL', 'black,green,navy', 'poliamid'),
+(15, 'jacket', 'man', 'Kurtka sportowa z kapturem', true, 180, 350, 'Kurtka sportowa z funkcjonalnym kapturem, doskonała do aktywności na świeżym powietrzu w każdą pogodę.','/static/jacket_men3.png', 'S,M,L,XL', 'black,grey,red', 'poliester'),
+(16, 'jacket', 'man', 'Kurtka polarowa', true, 130, 260, 'Polarowa kurtka sportowa do biegania w zimne dni. Ciepła i wygodna.', '/static/jacket_men4.png', 'M,L,XL', 'navy,lime,darkgreen', 'polar'),
+(17, 'jacket', 'man', 'Kurtka puchowa sportowa', true, 250, 500, 'Wysokiej jakości kurtka puchowa, idealna na zimowe treningi na świeżym powietrzu.', '/static/jacket_men5.png', 'M,L,XL', 'black,grey,darkcyan', 'puch'),
 (18, 'jacket', 'woman', 'Kurtka puchowa z kapturem', true, 270, 540, 'Ciepła i lekka kurtka puchowa z kapturem, doskonała na chłodne dni.', '/static/jacket_women1.jpg', 'S,M,L,XL', 'black,darkcyan,blue', 'puch'),
 (19, 'jacket', 'woman', 'Kurtka narciarska damska', false, 320, 640, 'Wodoodporna kurtka narciarska z wieloma kieszeniami i regulowanym kapturem.', '/static/jacket_women2.jpg', 'M,L,XL', 'red,purple,navy,grey', 'poliester'),
 (20, 'jacket', 'woman', 'Kurtka softshell damska', true, 180, 360, 'Praktyczna kurtka softshell, idealna na aktywności outdoorowe w wietrzne dni.', '/static/jacket_women3.jpg', 'S,M,L', 'pink,turquoise,gray,green', 'spandex'),

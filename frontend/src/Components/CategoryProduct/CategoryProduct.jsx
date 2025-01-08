@@ -45,8 +45,6 @@ const CategoryProducts = () => {
         'category': category
       };
       
-      console.log(category);
-
       if (gender) {
         params['gender'] = gender;
       }
@@ -57,7 +55,6 @@ const CategoryProducts = () => {
 
       const response = await getProducts(params);
       const result = await response.json();
-      console.log(result);
 
       if (result['data']) {
         setFirstPage(result['first']);
