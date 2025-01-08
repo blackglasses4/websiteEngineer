@@ -4,6 +4,9 @@ from backend.db_connect import SessionLocal
 from backend.models import Order
 from backend.models.orders import OrderCreate, StatusEnum, UpdateOrderStatusRequest
 from datetime import datetime 
+from backend.utils.token import get_current_user
+from sqlalchemy.orm import joinedload
+from backend.utils.token import admin_required
 
 #Tworzenie instancji routera
 order_router = APIRouter()
@@ -23,7 +26,7 @@ def get_orders(
     db: Session = Depends(get_db),
 ):
     # Pobranie zapytań dotyczących zamówień
-    query = db.query(Order)
+    query = db.query(Order).options(joinedload(Order.user)) 
 
     # Liczba wszystkich zamówień
     total_orders = query.count()
@@ -46,7 +49,7 @@ def get_orders(
     }
 
 @order_router.post("/order")
-def order_add(user_id: int, order: OrderCreate, db: Session = Depends(get_db)):
+def order_add(order: OrderCreate, db: Session = Depends(get_db), current_user: dict = Depends(get_current_user)):
     # Tworzymy użytkownika w bazie danych
     if not order.date:
         order.date = datetime.utcnow()
@@ -63,7 +66,7 @@ def order_add(user_id: int, order: OrderCreate, db: Session = Depends(get_db)):
         date = order.date,
         total_amount = int(order.total_amount),
         products_order = order.products_order,
-        user_id=user_id  # Powiązanie z użytkownikiem
+        user_id = current_user["id"]  # Powiązanie z użytkownikiem
     )
 
     # Dodanie produktu do sesji i zapisanie do bazy danych
@@ -74,13 +77,13 @@ def order_add(user_id: int, order: OrderCreate, db: Session = Depends(get_db)):
     return new_order
     
 @order_router.delete("/order/{id}")
-def delete_order(id: int, db: Session = Depends(get_db)):
+def delete_order(id: int, db: Session = Depends(get_db), current_user: dict = Depends(admin_required)):
     # Query the user by ID
     order = db.query(Order).filter(Order.id == id).first()
     
     # If the user does not exist, raise a 404 error
     if order is None:
-        raise HTTPException(status_code=404, detail="Nie znaleziono zamówienia")
+        raise HTTPException(status_code=404, detail="Nie znaleziono zamówienia")    
     
     # Delete the user from the database
     db.delete(order)
@@ -90,7 +93,7 @@ def delete_order(id: int, db: Session = Depends(get_db)):
     return {"message": f"Zamówienie o ID {id} zostało usunięte pomyślnie."}
 
 @order_router.patch("/order/{id}")
-def update_order_status(id: int, request: UpdateOrderStatusRequest, db: Session = Depends(get_db)):
+def update_order_status(id: int, request: UpdateOrderStatusRequest, db: Session = Depends(get_db), current_user: dict = Depends(admin_required)):
     status_map = {
         "W_trakcie_realizacji": StatusEnum.W_trakcie_realizacji,
         "Oplacone": StatusEnum.Oplacone,

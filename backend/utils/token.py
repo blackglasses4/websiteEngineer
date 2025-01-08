@@ -37,10 +37,12 @@ def verify_access_token(token: str):
     """
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")  # Pobieramy nazwę użytkownika (sub)
-        if username is None:
-            raise HTTPException(status_code=401, detail="Invalid token")
-        return payload  # Zwracamy dane z tokenu
+        user_id: int = payload.get("id")
+        if user_id is None:
+            raise HTTPException(status_code=401, detail="Could not validate credentials")
+
+        return {"id": user_id, "username": payload.get("sub"), "is_admin": payload.get("is_admin")}
+        
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token has expired")
     except jwt.InvalidTokenError:

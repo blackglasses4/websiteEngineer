@@ -5,6 +5,7 @@ from typing import Optional
 from backend.db_connect import SessionLocal
 from backend.models import Product
 from backend.models.product import ProductCreate, CategoryEnum, ProductResponse
+from backend.utils.token import admin_required
 from typing import List
 
 # Tworzenie instancji routera
@@ -87,7 +88,7 @@ def get_single_product(id: int, db: Session = Depends(get_db)):
     return product
 
 @product_router.post("/product")
-def product_add(product: ProductCreate, db: Session = Depends(get_db)):
+def product_add(product: ProductCreate, db: Session = Depends(get_db), current_user: dict = Depends(admin_required)):
 
     # Tworzymy użytkownika w bazie danych
     new_product = Product(
@@ -112,7 +113,7 @@ def product_add(product: ProductCreate, db: Session = Depends(get_db)):
     return new_product
 
 @product_router.delete("/product/{id}")
-def delete_product(id: int, db: Session = Depends(get_db)):
+def delete_product(id: int, db: Session = Depends(get_db),  current_user: dict = Depends(admin_required)):
     # Query the user by ID
     product = db.query(Product).filter(Product.id == id).first()
     
@@ -130,7 +131,7 @@ def delete_product(id: int, db: Session = Depends(get_db)):
 
 
 @product_router.put("/product/{id}")
-def update_product(id: int, product_data: ProductCreate, db: Session = Depends(get_db)):
+def update_product(id: int, product_data: ProductCreate, db: Session = Depends(get_db), current_user: dict = Depends(admin_required)):
 
     product = db.query(Product).filter(Product.id == id).first()
     if not product:

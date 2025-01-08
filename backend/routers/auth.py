@@ -8,6 +8,7 @@ from backend.utils.hashing import hash_password
 from backend.utils.hashing import verify_password
 from backend.utils.token import create_access_token
 from sqlalchemy.sql import or_
+from backend.utils.token import admin_required
 
 
 # Tworzenie instancji routera
@@ -54,7 +55,6 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
     """
     Funkcja obsługująca logowanie użytkownika.
     """
-    print("Received data:", form_data.username, form_data.password)  # Loguj dane
     # Pobieramy użytkownika z bazy danych
     user = db.query(User).filter(
         or_(
@@ -70,16 +70,16 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
     # Generujemy token dostępu
     access_token_expires = timedelta(minutes=30)
     access_token = create_access_token(
-        data={"sub": user.username, "is_admin": user.is_admin}, expires_delta=access_token_expires
+        data={"sub": user.username, "is_admin": user.is_admin, "id": user.id}, expires_delta=access_token_expires
     )
 
     return {
+        "id": user.id,
         "access_token": access_token,
         "token_type": "bearer",
         "username": user.username,
         "is_admin": user.is_admin
     }
-
 
 
 @router.get("/users")
@@ -111,7 +111,7 @@ def get_users(
     }
 
 @router.post("/user", response_model=UserOut)
-def add_user(user: UserCreate, db: Session = Depends(get_db)):
+def add_user(user: UserCreate, db: Session = Depends(get_db), current_user: dict = Depends(admin_required)):
     # Sprawdzamy, czy użytkownik już istnieje
     existing_user = db.query(User).filter(User.username == user.username).first()
     if existing_user:
@@ -138,7 +138,7 @@ def add_user(user: UserCreate, db: Session = Depends(get_db)):
     return db_user  # Zwracamy stworzonego użytkownika
 
 @router.put("/user/{id}", response_model=UserOut)
-def edit_user(id: int, user: UserCreate, db: Session = Depends(get_db)):
+def edit_user(id: int, user: UserCreate, db: Session = Depends(get_db), current_user: dict = Depends(admin_required)):
     # Find the user in the database by ID
     db_user = db.query(User).filter(User.id == id).first()
     
@@ -170,7 +170,7 @@ def edit_user(id: int, user: UserCreate, db: Session = Depends(get_db)):
     return db_user
 
 @router.delete("/user/{id}")
-def delete_user(id: int, db: Session = Depends(get_db)):
+def delete_user(id: int, db: Session = Depends(get_db), current_user: dict = Depends(admin_required)):
     
     # Query the user by ID
     user = db.query(User).filter(User.id == id).first()

@@ -6,10 +6,14 @@ from backend.routers.order import order_router
 from backend.routers.admin import router as admin_router
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from dotenv import load_dotenv
+
 
 from config import FILES_DIR, STATIC_FILES_URL_BASE_PATH
 
 app = FastAPI()
+
+load_dotenv()
 
 # Static files
 
