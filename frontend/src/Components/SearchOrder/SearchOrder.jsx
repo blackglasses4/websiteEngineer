@@ -28,7 +28,6 @@ const SearchProduct = () => {
                 'per_page': 8
             }
 
-            //get Orders
             const response = await getOrders(params);
             const result = await response.json();
 
@@ -65,7 +64,10 @@ const SearchProduct = () => {
         try {    
             const response = await fetch(`${BACKEND_URL}/order/${id}`, {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}` 
+                },
                 body: JSON.stringify({ status: newStatus }),
             });
     
@@ -148,6 +150,7 @@ const SearchProduct = () => {
             });
             toast.dismiss(toastId);
         } finally {
+            fetchOrders();
             toast.dismiss(toastId);
         }
     };

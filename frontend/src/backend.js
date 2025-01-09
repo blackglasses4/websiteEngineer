@@ -72,6 +72,26 @@ async function put(endpoint, indata) {
     return response;
 }
 
+async function changeUserPassword(id, new_password) {
+    const token = getToken();
+
+    const response = await fetch(`${BACKEND_URL}/user/${id}/change-password?new_password=${new_password}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+
+    if (response.status === 401) {
+        alert('Twoja sesja wygasła. Zaloguj się ponownie.');
+        window.location = '/login';
+        return;
+    }
+
+    return response;
+}
+
 async function del(endpoint, id) {
     const token = getToken();
 
@@ -191,5 +211,7 @@ export {
 
     deleteProduct,
     deleteUser,
-    deleteOrder
+    deleteOrder,
+
+    changeUserPassword
 };

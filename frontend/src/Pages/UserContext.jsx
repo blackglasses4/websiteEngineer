@@ -20,7 +20,7 @@ export const UserProvider = ({ children }) => {
     if (loggedUser && token) {
       const parsedUser = JSON.parse(loggedUser);
       setUsernameUser(parsedUser?.username || null);
-      setUserRole(parsedUser?.admin ? 'admin' : 'user'); // Ustalamy rolę na podstawie danych użytkownika
+      setUserRole(parsedUser?.admin ? 'admin' : 'user');
       setAccessToken(token);
       setIsLoggedIn(true);
     }
@@ -30,7 +30,6 @@ export const UserProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);
 
-    // Aktualizujemy stan aplikacji
     setUsernameUser(user.username);
     setUserRole(user.is_admin ? 'admin' : 'user');
     setAccessToken(token);

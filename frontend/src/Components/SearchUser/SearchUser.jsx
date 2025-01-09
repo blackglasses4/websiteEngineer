@@ -32,8 +32,6 @@ const SearchUser = () => {
     const [numberOfPages, setNumberOfPages] = useState();
     const [numberOfItems, setNumberOfItems] = useState();
 
-    //filtrowanie
-    // const [gender, setGender] = useState();
     //sortortowanie
     const [role, setRole] = useState();
 
@@ -48,7 +46,6 @@ const SearchUser = () => {
                 params['role'] = role;
             }
             
-            //get Users do zmiany
             const response = await getUsers(params);
             const result = await response.json();
 
@@ -140,19 +137,14 @@ const SearchUser = () => {
             });
             toast.dismiss(toastId);
         } finally {
+            await fetchUsers();
             toast.dismiss(toastId);
         }
     };
 
-    const handleSaveUsers = (updatedUser) => {
-        setUsers((prevUsers) => prevUsers.map((user) => 
-            user.id === updatedUser.id ? updatedUser : user
-        ));
-    
-        setConfirmedResults((prevConfirmedResults) => prevConfirmedResults.map((user) => 
-            user.id === updatedUser.id ? updatedUser : user
-        ));
-    
+    const handleSaveUsers = async (updatedUser) => {
+        await fetchUsers();
+
         setUserToEdit(null);
     
         toast.success('Użytkownik został zaktualizowany!', {
@@ -252,7 +244,7 @@ const SearchUser = () => {
                                     <p><span>Rola: </span>{user.is_admin ? 'Admin' : 'Użytkownik'}</p>
 
                                     <div className="mobile-button">
-                                        {/* <button className='button-edit' onClick={() => setUserToEdit(user)}>Edytuj</button> */}
+                                        <button className='button-edit' onClick={() => setUserToEdit(user)}>Edytuj</button>
                                         <button className='button-delete' onClick={() => handleConfirmDelete(user.id)}>Usuń</button>
                                     </div>
                                 </div>

@@ -27,7 +27,6 @@ const Login = () => {
       [name]: value,
     }));
 
-    // Reset błędów dla danego pola
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: false,

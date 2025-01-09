@@ -88,7 +88,6 @@ const CreateProduct = () => {
             const picture_path = res['filepath'];
 
             const productData = {
-                // id: newId,
                 name: product.name,
                 category: product.category,
                 gender: product.gender,
@@ -131,7 +130,6 @@ const CreateProduct = () => {
                 progress: undefined,
             });
 
-            // Resetowanie formularza
             setProduct(initialProductState);
         }
         catch (err){

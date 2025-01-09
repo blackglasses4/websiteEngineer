@@ -60,7 +60,6 @@ const Order = () => {
       }
     });
   
-    // Niestandardowa walidacja
     if (orderDetails.phone && !validatePhone(orderDetails.phone)) {
       newErrors.phone = "Podaj prawidłowy numer telefonu (9 cyfr).";
       isValid = false;
@@ -71,7 +70,6 @@ const Order = () => {
       isValid = false;
     }
   
-    // Logika walidacji - jedno z pól (dom lub mieszkanie) musi być wypełnione
     if (!orderDetails.house_number && !orderDetails.apartment_number) {
       newErrors.house_number = "Musisz podać numer domu lub mieszkania!";
       isValid = false;

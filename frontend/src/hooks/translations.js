@@ -10,7 +10,6 @@ const colorTranslations = {
     purple: "fioletowy",
     gray: "szary",
     brown: "brązowy",
-    // Dodaj inne kolory według potrzeb
   };
   
 export default colorTranslations;  

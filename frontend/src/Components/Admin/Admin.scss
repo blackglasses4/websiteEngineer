@@ -84,7 +84,7 @@ header.header-admin {
     }
 }
 
-@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) { //795px
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
     .admin-container {
         flex-direction: column;
     

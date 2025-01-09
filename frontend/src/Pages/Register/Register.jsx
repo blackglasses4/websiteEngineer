@@ -31,7 +31,6 @@ const Register = () => {
       [name]: value,
     }));
 
-    // Reset błędów dla danego pola
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: false,
@@ -42,7 +41,6 @@ const Register = () => {
     const newErrors = {};
     let isValid = true;
 
-    // Sprawdzamy wymagane pola
     if (!userDetails.first_name && !userDetails.last_name && !userDetails.username) {
       newErrors.name = "Pole jest wymagane.";
       isValid = false;
