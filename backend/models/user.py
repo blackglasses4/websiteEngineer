@@ -28,8 +28,16 @@ class UserCreate(UserBase):
     password: str
     is_admin: Optional[bool] = False
 
+class UserUpdate(BaseModel):
+    first_name: str
+    last_name: str
+    username: str
+    email: EmailStr
+    is_admin: Optional[bool] = False
+
 class UserOut(UserBase):
     id: int
+    is_admin: bool
 
     class Config:
         from_attributes = True
