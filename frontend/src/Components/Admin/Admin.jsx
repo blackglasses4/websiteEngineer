@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -79,7 +79,7 @@ const Admin = () => {
     return (
         <>
             <header className='header-admin'>
-                <a href="/admin" className='a-name' rel='internal'>
+                <Link to="/admin" className='a-name' rel='internal'>
                     <LazyLoadImage
                         src="/images/logo.png"
                         effect="blur"
@@ -88,7 +88,7 @@ const Admin = () => {
                         width="100px"
                         height="auto"
                     />
-                </a>
+                </Link>
 
                 <div className='nav-icons'>
                     <ThemeSwitch />

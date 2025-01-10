@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../CartContext';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate, Link } from 'react-router-dom'; 
 import colorTranslations from '../../../hooks/translations';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -56,7 +56,7 @@ const CartPage = () => {
     <section className="cart">
       <h1>Twój koszyk</h1>
       {products.length === 0 ? (
-        <p className='cart-empty'>Koszyk jest pusty &nbsp;&rarr; &nbsp;<a href="/">Przejdź do sklepu</a></p>
+        <p className='cart-empty'>Koszyk jest pusty &nbsp;&rarr; &nbsp;<Link to="/">Przejdź do sklepu</Link></p>
       ) : (
         <>
           <table className="cart-table">
@@ -123,7 +123,7 @@ const CartPage = () => {
     <section className="cart-mobile">
         <h1>Twój koszyk</h1>
           {products.length === 0 ? (
-            <p className='cart-empty'>Koszyk jest pusty &nbsp;&rarr; &nbsp;<a href="/">Przejdź do sklepu</a></p>
+            <p className='cart-empty'>Koszyk jest pusty &nbsp;&rarr; &nbsp;<Link to="/">Przejdź do sklepu</Link></p>
           ) : (
             <>
           <div className="cart-cards">

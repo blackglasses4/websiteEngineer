@@ -304,6 +304,14 @@ const SearchProduct = () => {
                 <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
 
                 <div className="filter">
+                    <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
+                    <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
+                    <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage);}}></input>
+                    <span>{page} z {numberOfPages}</span>
+                    <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage);}}></input>
+                    <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage)}}></input>
+                    <span>Liczba sztuk: {numberOfItems}</span>
+
                     <div className="product-filter">
                         <button className="filter-toggle" onClick={() => setIsFilterOpen(!isFilterOpen)}>
                             <FaSlidersH />Wszystkie filtr

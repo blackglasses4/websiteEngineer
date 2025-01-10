@@ -21,8 +21,9 @@ app.mount(STATIC_FILES_URL_BASE_PATH, StaticFiles(directory=FILES_DIR), name="st
 
 # List of allowed origins (this should be the URL of your frontend)
 origins = [
-    "http://localhost:3000",  # React default local development port
-    "https://your-frontend-domain.com",  # You can add your production URL here
+    "http://localhost:3000",
+    "http://localhost:8080",  # React default local development port
+    "https://gearup.mooo.com",  # You can add your production URL here
 ]
 
 # Include the router
