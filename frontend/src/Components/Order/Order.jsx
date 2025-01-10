@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OrderItem from './OrderItem';
 import { addOrder } from '../../backend';
@@ -60,7 +60,6 @@ const Order = () => {
       }
     });
   
-    // Niestandardowa walidacja
     if (orderDetails.phone && !validatePhone(orderDetails.phone)) {
       newErrors.phone = "Podaj prawidłowy numer telefonu (9 cyfr).";
       isValid = false;
@@ -71,7 +70,6 @@ const Order = () => {
       isValid = false;
     }
   
-    // Logika walidacji - jedno z pól (dom lub mieszkanie) musi być wypełnione
     if (!orderDetails.house_number && !orderDetails.apartment_number) {
       newErrors.house_number = "Musisz podać numer domu lub mieszkania!";
       isValid = false;
@@ -100,6 +98,9 @@ const Order = () => {
       return;
     }
 
+
+    const user_id = JSON.parse(localStorage.getItem("user")).id;
+
     const orderData = {
       phone: parseInt(orderDetails.phone, 10),
       street: orderDetails.street,
@@ -111,12 +112,11 @@ const Order = () => {
       status: "W_trakcie_realizacji",
       total_amount: calculateTotal(),
       products_order: JSON.stringify(orderItems),
+      user_id: user_id,
     };
-
     console.log(orderData);
 
     try {
-      console.log(orderData);
       const response = await addOrder(orderData);
       
       if (!response.ok) {
@@ -264,7 +264,6 @@ const Order = () => {
               <button type="submit">Przejdź do płatności</button>
             </form>
           </div>
-          {/* <ToastContainer /> */}
         </div>
       </div>
     </section>

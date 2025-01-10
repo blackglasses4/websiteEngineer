@@ -9,7 +9,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import useClick from '../useClick.jsx';
 import { useUser } from '../../Pages/UserContext.jsx';
 import { useCart } from '../Cart/CartContext.jsx';
-import { getProducts, getUsers, getAllProducts } from '../../backend';
+import { getAllProducts } from '../../backend';
 
 import './Navbar.scss';
 
@@ -19,6 +19,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
   const searchWrapperRef = useRef(null);
+  const mobileMenuRef = useRef(null);
   const [products, setProducts] = useState();
 
   const { cart } = useCart();
@@ -26,13 +27,12 @@ const Navbar = () => {
   
   const navigate = useNavigate();
   useClick(searchWrapperRef, () => setInput(""));
+  useClick(mobileMenuRef, () => setIsMenuOpen(false));
 
   const fetchProducts = async () => {
       try {
-        //do zmiany później
         const response = await getAllProducts();
         const result = await response.json();
-        console.log(result);
 
         setProducts(result);
       }
@@ -90,7 +90,7 @@ const Navbar = () => {
 
   return (
     <header className='header-main'>
-      <a href="/" className="a-name" rel="internal" aria-label="Logo sklepu internetowego">
+      <Link to="/" className="a-name" rel="internal" aria-label="Logo sklepu internetowego">
         <LazyLoadImage
           src="/images/logo.png"
           effect="blur"
@@ -99,7 +99,7 @@ const Navbar = () => {
           width="100px"
           height="auto"
         />
-      </a>
+      </Link>
 
       <div className="nav-search" ref={searchWrapperRef}>
         <div className="input-wrapper">
@@ -117,7 +117,7 @@ const Navbar = () => {
           <ul>
             {searchResults.map((product) => (
               <li key={product.id}>
-                <a href={`/product/${product.id}`} onClick={toggleMenu}>{product.name}</a>
+                <Link to={`/product/${product.id}`}>{product.name}</Link>
               </li>
             ))}
           </ul>
@@ -127,17 +127,17 @@ const Navbar = () => {
 
       <div className={`nav-icons ${isMenuOpen ? 'menu-open' : ''}`}>
         <ThemeSwitch />
-        <a href="/cart" aria-label="Przycisk do przejścia na stronę z koszykiem">
+        <Link to="/cart" aria-label="Przycisk do przejścia na stronę z koszykiem">
           <FaShoppingCart />
           <div className="nav-icons-cart">{cart.length}</div>
-        </a>
+        </Link>
 
         {usernameUser ? (
           <div className="nav-user" onClick={toggleUserMenu}>
               <button onClick={buttonLogout}>Wyloguj się</button>
           </div>
         ) : (
-          <a href="/login" aria-label="Przycisk do przejścia na stronę logowania"><FaUserCircle /></a>
+          <Link to="/login" aria-label="Przycisk do przejścia na stronę logowania"><FaUserCircle /></Link>
         )}
       </div>
 
@@ -145,16 +145,16 @@ const Navbar = () => {
         <FaBars style={{color:"white"}}/>
       </div>
 
-      <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
+      <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`} ref={mobileMenuRef}>
         <div className="hamburger-menu" onClick={toggleMenu}>
           <FaTimes />
         </div>
         <div className="mobile-menu-icons">
           <ThemeSwitch />
-          <a href="/cart" onClick={toggleMenu} aria-label="Przycisk do przejścia na stronę z koszykiem">
+          <Link to="/cart" onClick={toggleMenu} aria-label="Przycisk do przejścia na stronę z koszykiem">
             <FaShoppingCart />
             <div className="nav-icons-cart">{cart.length}</div>
-          </a>
+          </Link>
           <p>Kategorie</p>
           <div className='mobile-nav-category'>
             <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
@@ -168,7 +168,7 @@ const Navbar = () => {
                 <button onClick={buttonLogout}>Wyloguj się</button>
             </div>
           ) : (
-            <a href="/login" aria-label="Przycisk do przejścia na stronę logowania"><FaUserCircle /></a>
+            <Link to="/login" aria-label="Przycisk do przejścia na stronę logowania"><FaUserCircle /></Link>
           )}
         </div>
       </div>

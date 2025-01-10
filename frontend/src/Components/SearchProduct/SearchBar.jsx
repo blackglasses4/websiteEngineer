@@ -10,12 +10,10 @@ const SearchBar = ({ data, setConfirmedResults, type }) => {
 
     useClick(inputWrapperRef, () => setInput("")); 
 
-    // Handle input change
     const handleInputChange = (e) => {
         setInput(e.target.value);
     };
 
-    // Handle Enter key
     const handleKey = (e) => {
         if (e.key === "Enter") {
             setConfirmedResults(searchResults);

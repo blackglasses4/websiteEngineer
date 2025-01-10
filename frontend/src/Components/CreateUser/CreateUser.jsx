@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getUsers, addUser } from '../../backend';
 
@@ -17,7 +17,6 @@ const CreateUser = () => {
 
     const [user, setUser] = useState(initialUserState);
     const [loading, setLoading] = useState(false);
-    // const [imagePreview, setImagePreview] = useState(null);
     const [users, setUsers] = useState([]);
     const [isFormOpen, setIsFormOpen] = useState(false);
 
@@ -34,14 +33,13 @@ const CreateUser = () => {
     const handleInputChange = (e) => {
         const { type, name, value, checked } = e.target;
 
-        // Dostosowanie dla checkboxów
         if (type === 'checkbox' && name === 'is_admin') {
             setUser((prev) => ({
                 ...prev,
                 is_admin: checked,
             }));
         }
-        // Dostosowanie dla tekstowych pól input
+
         else if (type !== 'checkbox' && name !== 'is_admin') {
             setUser((prev) => ({
                 ...prev,
@@ -57,6 +55,20 @@ const CreateUser = () => {
         try {
             const newId = users.length ? Math.max(...users.map(p => p.id)) + 1 : 1;
 
+            if (user.password.length < 6) {
+                toast.error('Hasło musi mieć co najmniej 6 znaków.', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setLoading(false);
+                return;
+            }
+
             const userData = {
                 id: newId,
                 first_name: user.first_name,
@@ -70,7 +82,6 @@ const CreateUser = () => {
             const response = await addUser(userData);
 
             const data = await response.json();
-            console.log(data);
 
             if (!response.ok) {
                 toast.error('Wystąpił błąd podczas dodawania użytkownika.', {
@@ -95,7 +106,6 @@ const CreateUser = () => {
                 progress: undefined,
             });
 
-            // Resetowanie formularza
             setUser(initialUserState);
             setUsers((prev) => Array.isArray(prev) ? [...prev, userData] : [userData]);
         }

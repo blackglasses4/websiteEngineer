@@ -1,13 +1,14 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
-from backend.models.user import User, UserCreate, UserOut
+from backend.models.user import User, UserCreate, UserOut, UserUpdate
 from backend.db_connect import SessionLocal
 from datetime import timedelta
 from backend.utils.hashing import hash_password
 from backend.utils.hashing import verify_password
 from backend.utils.token import create_access_token
 from sqlalchemy.sql import or_
+from backend.utils.token import admin_required
 
 
 # Tworzenie instancji routera
@@ -49,71 +50,11 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
 
     return db_user  # Zwracamy stworzonego użytkownika
 
-@router.post("/add_user", response_model=UserOut)
-def add_user(user: UserCreate, db: Session = Depends(get_db)):
-    # Sprawdzamy, czy użytkownik już istnieje
-    existing_user = db.query(User).filter(User.username == user.username).first()
-    if existing_user:
-        raise HTTPException(status_code=400, detail="Username already registered")
-
-    # Hashowanie hasła
-    hashed_password = hash_password(user.password)
-
-    # Tworzymy użytkownika w bazie danych
-    db_user = User(
-        first_name = user.first_name,
-        last_name= user.last_name,
-        username=user.username,
-        email=user.email,
-        hashed_password=hashed_password,
-        is_admin = user.is_admin
-    )
-    
-    # Dodanie użytkownika do sesji i zapisanie do bazy danych
-    db.add(db_user)
-    db.commit()
-    db.refresh(db_user)
-
-    return db_user  # Zwracamy stworzonego użytkownika
-
-@router.put("/edit_user/{id}", response_model=UserOut)
-def edit_user(id: int, user: UserCreate, db: Session = Depends(get_db)):
-    # Find the user in the database by ID
-    db_user = db.query(User).filter(User.id == id).first()
-    
-    # If the user does not exist, raise an error
-    if not db_user:
-        raise HTTPException(status_code=404, detail="User not found")
-    
-    # If a new username is provided, check if it is already taken
-    if user.username != db_user.username:
-        existing_user = db.query(User).filter(User.username == user.username).first()
-        if existing_user:
-            raise HTTPException(status_code=400, detail="Username already registered")
-    
-    # Update the user fields, only change those that are provided in the request
-    db_user.first_name = user.first_name
-    db_user.last_name = user.last_name
-    db_user.email = user.email
-    db_user.is_admin = user.is_admin
-    
-    # Update the password if it was provided
-    if user.password:
-        db_user.hashed_password = hash_password(user.password)
-    
-    # Commit the changes to the database
-    db.commit()
-    db.refresh(db_user)
-    
-    # Return the updated user object
-    return db_user
-
 @router.post("/login",)
 def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     """
     Funkcja obsługująca logowanie użytkownika.
     """
-    print("Received data:", form_data.username, form_data.password)  # Loguj dane
     # Pobieramy użytkownika z bazy danych
     user = db.query(User).filter(
         or_(
@@ -129,16 +70,17 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
     # Generujemy token dostępu
     access_token_expires = timedelta(minutes=30)
     access_token = create_access_token(
-        data={"sub": user.username}, expires_delta=access_token_expires
+        data={"sub": user.username, "is_admin": user.is_admin, "id": user.id}, expires_delta=access_token_expires
     )
 
     return {
+        "id": user.id,
         "access_token": access_token,
         "token_type": "bearer",
         "username": user.username,
         "is_admin": user.is_admin
     }
-    
+
 @router.get("/users")
 def get_users(
     page:int = Query(1,ge=1),
@@ -167,8 +109,105 @@ def get_users(
         "users": total_users,
     }
 
-@router.delete("/users/{id}")
-def delete_user(id: int, db: Session = Depends(get_db)):
+@router.post("/user", response_model=UserOut)
+def add_user(user: UserCreate, db: Session = Depends(get_db), current_user: dict = Depends(admin_required)):
+    # Sprawdzamy, czy użytkownik już istnieje
+    existing_user = db.query(User).filter(User.username == user.username).first()
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Username already registered")
+
+    # Hashowanie hasła
+    hashed_password = hash_password(user.password)
+
+    # Tworzymy użytkownika w bazie danych
+    db_user = User(
+        first_name = user.first_name,
+        last_name= user.last_name,
+        username=user.username,
+        email=user.email,
+        hashed_password=hashed_password,
+        is_admin = user.is_admin
+    )
+    
+    # Dodanie użytkownika do sesji i zapisanie do bazy danych
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+
+    return db_user  # Zwracamy stworzonego użytkownika
+
+@router.put("/user/{id}", response_model=UserOut)
+def edit_user(
+    id: int, 
+    user: UserUpdate, 
+    db: Session = Depends(get_db), 
+    current_user: dict = Depends(admin_required)
+):
+    # Find the user in the database by ID
+    db_user = db.query(User).filter(User.id == id).first()
+    
+    # If the user does not exist, raise an error
+    if not db_user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # If a new username is provided, check if it is already taken
+    if user.username and user.username != db_user.username:
+        existing_user = db.query(User).filter(User.username == user.username).first()
+        if existing_user:
+            raise HTTPException(status_code=400, detail="Username already registered")
+    
+    # Update only the fields that are provided in the request
+    if user.first_name:
+        db_user.first_name = user.first_name
+    if user.last_name:
+        db_user.last_name = user.last_name
+    if user.username:
+        db_user.username = user.username
+    if user.email:
+        db_user.email = user.email
+    if user.is_admin is not None:  # Explicitly check for None since False is a valid value
+        db_user.is_admin = user.is_admin
+    
+    # Commit the changes to the database
+    db.commit()
+    db.refresh(db_user)
+    
+    # Return the updated user object
+    return db_user
+
+@router.put("/user/{id}/change-password")
+def change_user_password(
+    id: int,
+    new_password: str,
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(admin_required)
+):
+    """
+    Endpoint dla administratora do zmiany hasła użytkownika.
+    """
+    # Znajdź użytkownika w bazie danych na podstawie ID
+    db_user = db.query(User).filter(User.id == id).first()
+    
+    # Jeśli użytkownik nie istnieje, zgłoś błąd
+    if not db_user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # Hashuj nowe hasło
+    hashed_password = hash_password(new_password)
+    
+    # Zaktualizuj hasło użytkownika
+    db_user.hashed_password = hashed_password
+    
+    # Zapisz zmiany w bazie danych
+    db.commit()
+    db.refresh(db_user)
+    
+    # Zwróć potwierdzenie
+    return {"message": f"Password for user {db_user.username} has been successfully updated."}
+
+
+@router.delete("/user/{id}")
+def delete_user(id: int, db: Session = Depends(get_db), current_user: dict = Depends(admin_required)):
     
     # Query the user by ID
     user = db.query(User).filter(User.id == id).first()

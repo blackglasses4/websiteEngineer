@@ -3,7 +3,10 @@ from sqlalchemy.orm import Session
 from backend.db_connect import SessionLocal
 from backend.models import Order
 from backend.models.orders import OrderCreate, StatusEnum, UpdateOrderStatusRequest
-from datetime import datetime 
+from datetime import datetime
+from backend.utils.token import get_current_user
+from sqlalchemy.orm import joinedload
+from backend.utils.token import admin_required
 
 #Tworzenie instancji routera
 order_router = APIRouter()
@@ -15,33 +18,6 @@ def get_db():
         yield db  # Zwracamy sesję do użycia w endpointach
     finally:
         db.close()  # Po zakończeniu zapytania sesja jest zamykana
-        
-@order_router.post("/orders")
-def order_add(order: OrderCreate, db: Session = Depends(get_db)):
-    # Tworzymy użytkownika w bazie danych
-    if not order.date:
-        order.date = datetime.utcnow()
-
-    new_order = Order(
-        phone = int(order.phone),
-        street = order.street,
-        postal_code = order.postal_code,
-        city = order.city,
-        house_number = order.house_number if order.house_number else None,
-        apartment_number = order.apartment_number if order.apartment_number else None,
-        comment = order.comment,
-        status=StatusEnum(order.status),
-        date = order.date,
-        total_amount = int(order.total_amount),
-        products_order = order.products_order
-    )
-
-    # Dodanie produktu do sesji i zapisanie do bazy danych
-    db.add(new_order)
-    db.commit()
-    db.refresh(new_order)
-
-    return new_order
 
 @order_router.get("/orders")
 def get_orders(
@@ -50,7 +26,7 @@ def get_orders(
     db: Session = Depends(get_db),
 ):
     # Pobranie zapytań dotyczących zamówień
-    query = db.query(Order)
+    query = db.query(Order).options(joinedload(Order.user)) 
 
     # Liczba wszystkich zamówień
     total_orders = query.count()
@@ -71,15 +47,43 @@ def get_orders(
         "pages": total_pages,
         "orders": total_orders,
     }
+
+@order_router.post("/order")
+def order_add(order: OrderCreate, db: Session = Depends(get_db), current_user: dict = Depends(get_current_user)):
+    # Tworzymy użytkownika w bazie danych
+    if not order.date:
+        order.date = datetime.utcnow()
+
+    new_order = Order(
+        phone = int(order.phone),
+        street = order.street,
+        postal_code = order.postal_code,
+        city = order.city,
+        house_number = order.house_number if order.house_number else None,
+        apartment_number = order.apartment_number if order.apartment_number else None,
+        comment = order.comment,
+        status=StatusEnum(order.status),
+        date = order.date,
+        total_amount = int(order.total_amount),
+        products_order = order.products_order,
+        user_id = current_user["id"]  # Powiązanie z użytkownikiem
+    )
+
+    # Dodanie produktu do sesji i zapisanie do bazy danych
+    db.add(new_order)
+    db.commit()
+    db.refresh(new_order)
+
+    return new_order
     
 @order_router.delete("/order/{id}")
-def delete_order(id: int, db: Session = Depends(get_db)):
+def delete_order(id: int, db: Session = Depends(get_db), current_user: dict = Depends(admin_required)):
     # Query the user by ID
     order = db.query(Order).filter(Order.id == id).first()
     
     # If the user does not exist, raise a 404 error
     if order is None:
-        raise HTTPException(status_code=404, detail="Nie znaleziono zamówienia")
+        raise HTTPException(status_code=404, detail="Nie znaleziono zamówienia")    
     
     # Delete the user from the database
     db.delete(order)
@@ -88,8 +92,8 @@ def delete_order(id: int, db: Session = Depends(get_db)):
     # Return a success message
     return {"message": f"Zamówienie o ID {id} zostało usunięte pomyślnie."}
 
-@order_router.patch("/orders/{id}")
-def update_order_status(id: int, request: UpdateOrderStatusRequest, db: Session = Depends(get_db)):
+@order_router.patch("/order/{id}")
+def update_order_status(id: int, request: UpdateOrderStatusRequest, db: Session = Depends(get_db), current_user: dict = Depends(admin_required)):
     status_map = {
         "W_trakcie_realizacji": StatusEnum.W_trakcie_realizacji,
         "Oplacone": StatusEnum.Oplacone,

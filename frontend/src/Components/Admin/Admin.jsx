@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-
-import { ToastContainer, toast } from 'react-toastify';
+import { Routes, Route, useNavigate, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { FiMenu } from "react-icons/fi";
+import { useUser } from '../../Pages/UserContext';
 
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 import SearchProduct from '../SearchProduct/SearchProduct';
@@ -15,34 +16,70 @@ import SearchUser from '../SearchUser/SearchUser';
 import Sidebar from '../Sidebar/Sidebar';
 import './Admin.scss';
 
+import useClick from '../useClick';
+
+const checkAdmin = () => {
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("user"));
+    
+    if (!token || !user || user.is_admin === undefined) {
+        console.error("Brak danych użytkownika lub nie jest administratorem.");
+        return false;
+    }
+
+    return user.is_admin;
+};
+
 const WelcomeAdmin = () => {
     return (
         <div className="welcome-admin">
             <h2>Witaj w panelu administracyjnym!</h2>
-            <p>Wybierz opcję z menu po lewej stronie, aby rozpocząć zarządzanie produktami.</p>
+            <p>Wybierz opcję z górnego menu, aby rozpocząć zarządzanie danymi.</p>
         </div>
     );
 };
 
 const Admin = () => {
     const navigate = useNavigate();
+    const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+    const sidebarRef = useRef(null);
+    const { logout } = useUser(); 
+    useClick(sidebarRef, () => setIsSidebarVisible(false));
+
+    const toggleSidebar = () => {
+        setIsSidebarVisible(!isSidebarVisible);
+    };
 
     useEffect(() => {
-        toast.success('Witaj w panelu administracyjnym!', {
-            position: 'top-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-    }, []);
+        if (!checkAdmin()) {
+            toast.error('Brak dostępu do panelu administracyjnego!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            
+            logout();
+            navigate("/login");
+            return;
+        }
+    }, [navigate]);
+
+    const handleLogout = () => {
+        logout();
+        toast.success("Wylogowałeś się!");
+        setTimeout(() => {
+            navigate("/login");
+        }, 1000);
+    };
 
     return (
         <>
             <header className='header-admin'>
-                <a href="/admin" className='a-name' rel='internal'>
+                <Link to="/admin" className='a-name' rel='internal'>
                     <LazyLoadImage
                         src="/images/logo.png"
                         effect="blur"
@@ -51,16 +88,25 @@ const Admin = () => {
                         width="100px"
                         height="auto"
                     />
-                </a>
+                </Link>
                 <div className='nav-icons'>
                     <ThemeSwitch />
-                    <a href="/login"><FaUserCircle /></a>
+                    <button onClick={handleLogout}>
+                        <FaUserCircle />
+                    </button>
+                    <button className="sidebar-toggle" onClick={toggleSidebar}>
+                        <FiMenu className="icon" />
+                    </button>
                 </div>
             </header>
 
             <div className="admin-container">
-                {/* Sidebar */}
-                <Sidebar onSelect={(view) => navigate(`/admin/${view}`)} />
+                <Sidebar 
+                    onSelect={(view) => navigate(`/admin/${view}`)} 
+                    isSidebarVisible={isSidebarVisible} 
+                    toggleSidebar={toggleSidebar} 
+                    ref={sidebarRef} 
+                />
 
                 {/* Main Content */}
                 <main className="admin-main">

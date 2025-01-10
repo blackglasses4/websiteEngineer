@@ -51,7 +51,7 @@ const SearchProduct = () => {
             }
     
             if (sort && sort !== 'none') {
-                params['_sort'] = sort;
+                params['sort'] = sort;
             }
     
             const response = await getProducts(params);
@@ -164,16 +164,7 @@ const SearchProduct = () => {
     };
 
     const handleSaveProduct = async (updatedProduct) => {
-        // setProducts((prevProducts) => prevProducts.map((product) => 
-        //     product.id === updatedProduct.id ? updatedProduct : product
-        // ));
-    
-        // setConfirmedResults((prevConfirmedResults) => prevConfirmedResults.map((product) => 
-        //     product.id === updatedProduct.id ? updatedProduct : product
-        // ));
-        
         await fetchProducts();
-    
         setProductToEdit(null);   
     };    
 
@@ -221,7 +212,7 @@ const SearchProduct = () => {
                                         <option value="man">Mężczyźni</option>
                                     </select>
                                 </div>
-                                {/* <div className="filter-group">
+                                <div className="filter-group">
                                     <label htmlFor="sort-filter">Sortuj według ceny:</label>
                                     <select
                                         id="sort-filter"
@@ -235,7 +226,7 @@ const SearchProduct = () => {
                                         <option value="new_price">Od najniższej do najwyższej</option>
                                         <option value="-new_price">Od najwyższej do najniższej</option>
                                     </select>
-                                </div> */}
+                                </div>
                             </div>
                         )}
                     </div>
@@ -310,6 +301,57 @@ const SearchProduct = () => {
 
             <section className="admin-search_products-mobile">
                 <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
+
+                <div className="filter">
+                    <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
+                    <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
+                    <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage);}}></input>
+                    <span>{page} z {numberOfPages}</span>
+                    <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage);}}></input>
+                    <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage)}}></input>
+                    <span>Liczba sztuk: {numberOfItems}</span>
+
+                    <div className="product-filter">
+                        <button className="filter-toggle" onClick={() => setIsFilterOpen(!isFilterOpen)}>
+                            <FaSlidersH />Wszystkie filtr
+                        </button>
+
+                        {isFilterOpen && (
+                            <div className="filter-panel" ref={filterPanelRef}>
+                                <div className="filter-group">
+                                    <label>Filtruj według płci:</label>
+                                    <select
+                                        id="gender-filter"
+                                        value={gender || 'all'}
+                                        onChange={(e) => {
+                                            const selectedGender = e.target.value === 'all' ? null : e.target.value;
+                                            setGender(selectedGender);
+                                            setPage(1);
+                                        }}>
+                                        <option value="all">Wszystko</option>
+                                        <option value="woman">Kobiety</option>
+                                        <option value="man">Mężczyźni</option>
+                                    </select>
+                                </div>
+                                <div className="filter-group">
+                                    <label htmlFor="sort-filter">Sortuj według ceny:</label>
+                                    <select
+                                        id="sort-filter"
+                                        value={sort || 'none'}
+                                        onChange={(e) => {
+                                            const selectedSort = e.target.value === 'none' ? null : e.target.value;
+                                            setSort(selectedSort === 'none' ? null : selectedSort);
+                                            setPage(1);
+                                        }}>
+                                        <option value="none">Brak sortowania</option>
+                                        <option value="new_price">Od najniższej do najwyższej</option>
+                                        <option value="-new_price">Od najwyższej do najniższej</option>
+                                    </select>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
                 {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
                 ) : (

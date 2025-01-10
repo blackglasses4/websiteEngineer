@@ -45,7 +45,6 @@ export const CartProvider = ({ children }) => {
         ];
       }
 
-      // If it exists, increase quantity
       return prevCart.map((item) =>
         item.uniqueId === uniqueId
           ? { ...item, quantity: item.quantity + 1 }

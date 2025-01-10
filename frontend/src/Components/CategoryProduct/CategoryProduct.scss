@@ -187,6 +187,10 @@
 
 @media only screen and (max-width: #{map-get($breakpoints, 'phablet')}) {
     .categoryProduct {
+        .filter-category {
+            padding: 0;
+        }
+        
         .numberOfPages {
             padding: 0 0 1em 0;
     

@@ -19,8 +19,6 @@ const CategoryProducts = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const filterPanelRef = useRef(null);
   useClick(filterPanelRef, () => setIsFilterOpen(false));
-
-  const [products, setProducts] = useState([]);
   const [confirmedResults, setConfirmedResults] = useState([]);
 
   // stronicowanie
@@ -31,8 +29,6 @@ const CategoryProducts = () => {
   const [lastPage, setLastPage] = useState();
 
   const [numberOfPages, setNumberOfPages] = useState();
-  const [numberOfItems, setNumberOfItems] = useState();
-
   //filtrowanie
   const [gender, setGender] = useState();
 
@@ -46,20 +42,17 @@ const CategoryProducts = () => {
         'per_page': 8,
         'category': category
       };
-      
-      console.log(category);
-
+    
       if (gender) {
         params['gender'] = gender;
       }
 
       if (sort && sort !== 'none') {
-          params['_sort'] = sort;
+          params['sort'] = sort;
       }
 
       const response = await getProducts(params);
       const result = await response.json();
-      console.log(result);
 
       if (result['data']) {
         setFirstPage(result['first']);
@@ -67,8 +60,6 @@ const CategoryProducts = () => {
         setNextPage(result['next']);
         setLastPage(result['last']);
         setNumberOfPages(result['pages']);
-        setNumberOfItems(result['items']);
-        setProducts(result['data']);
         setConfirmedResults(result['data']);
       } else {
         console.error('Brak danych w odpowiedzi');

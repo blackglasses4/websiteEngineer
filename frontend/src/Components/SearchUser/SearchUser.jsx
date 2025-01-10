@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaSlidersH } from 'react-icons/fa';
 import { getUsers, deleteUser} from '../../backend';
 import useClick from '../useClick';
 
@@ -32,26 +31,22 @@ const SearchUser = () => {
     const [numberOfPages, setNumberOfPages] = useState();
     const [numberOfItems, setNumberOfItems] = useState();
 
-    //filtrowanie
-    // const [gender, setGender] = useState();
     //sortortowanie
     const [role, setRole] = useState();
 
     const fetchUsers = async () => {
         try {
             const params = {
-                '_page': page,
-                '_per_page': 8
+                'page': page,
+                'per_page': 8
             }
             
             if (role) {
                 params['role'] = role;
             }
             
-            //get Users do zmiany
             const response = await getUsers(params);
             const result = await response.json();
-            console.log(result);
 
             if (result['data']) {
                 setFirstPage(result['first']);
@@ -59,7 +54,7 @@ const SearchUser = () => {
                 setNextPage(result['next']);
                 setLastPage(result['last']);
                 setNumberOfPages(result['pages']);
-                setNumberOfItems(result['items']);
+                setNumberOfItems(result['users']);
                 setUsers(result['data']);
                 setConfirmedResults(result['data']);
             } else {
@@ -141,19 +136,13 @@ const SearchUser = () => {
             });
             toast.dismiss(toastId);
         } finally {
+            await fetchUsers();
             toast.dismiss(toastId);
         }
     };
 
-    const handleSaveUsers = (updatedUser) => {
-        setUsers((prevUsers) => prevUsers.map((user) => 
-            user.id === updatedUser.id ? updatedUser : user
-        ));
-    
-        setConfirmedResults((prevConfirmedResults) => prevConfirmedResults.map((user) => 
-            user.id === updatedUser.id ? updatedUser : user
-        ));
-    
+    const handleSaveUsers = async (updatedUser) => {
+        await fetchUsers();
         setUserToEdit(null);
     
         toast.success('Użytkownik został zaktualizowany!', {
@@ -181,32 +170,6 @@ const SearchUser = () => {
                 <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage);}}></input>
                 <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage)}}></input>
                 <span>Liczba sztuk: {numberOfItems}</span>
-
-                <div className="product-filter">
-                    <button className="filter-toggle" onClick={() => setIsFilterOpen(!isFilterOpen)}>
-                        <FaSlidersH />Wszystkie filtr
-                    </button>
-
-                    {isFilterOpen && (
-                        <div className="filter-panel" ref={filterPanelRef}>
-                            <div className="filter-group">
-                                <label>Filtruj według płci:</label>
-                                {/* <select
-                                    id="role-filter"
-                                    value={role || 'all'}
-                                    onChange={(e) => {
-                                        const selectedRole = e.target.value === 'all' ? null : e.target.value;
-                                        setRole(selectedRole);
-                                        setPage(1);
-                                    }}>
-                                    <option value="all">Wszyscy</option>
-                                    <option value="user">Uzytkownicy</option>
-                                    <option value="admin">Administrator</option>
-                                </select> */}
-                            </div>
-                        </div>
-                    )}
-                </div>
             </div>
 
             <section className="admin-search_users">
@@ -224,7 +187,7 @@ const SearchUser = () => {
                                 <th>Email</th>
                                 <th>Hasło</th>
                                 <th>Rola</th>
-                                {/* <th>Edytuj</th> */}
+                                <th>Edytuj</th>
                                 <th>Usuń</th>
                             </tr>
                         </thead>
@@ -237,10 +200,10 @@ const SearchUser = () => {
                                     <td>{user.last_name || 'Brak'}</td>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
-                                    <td>{user.hashed_password}</td>
+                                    <td>{user.hashed_password ? '✔️' : '❌'}</td>
                                     <td>{user.is_admin ? 'Admin' : 'Użytkownik'}</td>
 
-                                    {/* <td><button className='button-edit' onClick={() => setUserToEdit(user)}>Edytuj</button></td> */}
+                                    <td><button className='button-edit' onClick={() => setUserToEdit(user)}>Edytuj</button></td>
                                     <td><button className='button-delete' onClick={() => handleConfirmDelete(user.id)}>Usuń</button></td>
                                 </tr>
                                 {userToEdit && userToEdit.id === user.id && (
@@ -275,11 +238,11 @@ const SearchUser = () => {
                                     <p><span>Nazwisko: </span>{user.last_name}</p>
                                     <p><span>Nazwa użytkownika: </span>{user.username}</p>
                                     <p><span>Email: </span>{user.email}</p>
-                                    <p><span>Hasło: </span>{user.hashed_password}</p>
+                                    <p><span>Hasło: </span>{user.hashed_password ? '✔️' : '❌'}</p>
                                     <p><span>Rola: </span>{user.is_admin ? 'Admin' : 'Użytkownik'}</p>
 
                                     <div className="mobile-button">
-                                        {/* <button className='button-edit' onClick={() => setUserToEdit(user)}>Edytuj</button> */}
+                                        <button className='button-edit' onClick={() => setUserToEdit(user)}>Edytuj</button>
                                         <button className='button-delete' onClick={() => handleConfirmDelete(user.id)}>Usuń</button>
                                     </div>
                                 </div>

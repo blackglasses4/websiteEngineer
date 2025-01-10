@@ -2,11 +2,16 @@ import jwt
 from datetime import datetime, timedelta
 from fastapi import HTTPException, Depends
 from fastapi.security import OAuth2PasswordBearer
+from dotenv import load_dotenv
+import os
+
+# Ładowanie zmiennych z pliku .env
+load_dotenv()
 
 # Sekretny klucz i algorytm (w produkcji używaj zmiennych środowiskowych!)
-SECRET_KEY = "your_secret_key"  # Powinno być ustawione jako ENV w produkcji!
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+SECRET_KEY = os.getenv("SECRET_KEY")  # Powinno być ustawione jako ENV w produkcji!
+ALGORITHM = os.getenv("JWT_ALGORITHM")
+ACCESS_TOKEN_EXPIRE_MINUTES = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
 
 # OAuth2PasswordBearer - punkt końcowy do logowania (potrzebny do zabezpieczonych endpointów)
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
@@ -32,10 +37,12 @@ def verify_access_token(token: str):
     """
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")  # Pobieramy nazwę użytkownika (sub)
-        if username is None:
-            raise HTTPException(status_code=401, detail="Invalid token")
-        return payload  # Zwracamy dane z tokenu
+        user_id: int = payload.get("id")
+        if user_id is None:
+            raise HTTPException(status_code=401, detail="Could not validate credentials")
+
+        return {"id": user_id, "username": payload.get("sub"), "is_admin": payload.get("is_admin")}
+        
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token has expired")
     except jwt.InvalidTokenError:
@@ -47,3 +54,13 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
     Pobiera aktualnego użytkownika na podstawie tokenu JWT.
     """
     return verify_access_token(token)
+    
+# Funkcja do wymuszenia dostępu administracyjnego
+def admin_required(current_user: dict = Depends(get_current_user)):
+    """
+    Wymaga, aby aktualny użytkownik był administratorem.
+    """
+    if not current_user.get("is_admin"):
+        raise HTTPException(status_code=403, detail="Admin access required")
+    return current_user
+

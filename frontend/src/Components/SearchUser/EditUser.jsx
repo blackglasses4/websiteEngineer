@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { editUser } from '../../backend';
+import { saveUser, changeUserPassword } from '../../backend';
 
 import '../SearchProduct/Edit.scss';
 
@@ -12,9 +12,9 @@ const EditUser = ({ user, onSave, onCancel }) => {
         last_name: user.last_name || '',
         username: user.username || '',
         email: user.email || '',
-        password: user.password || '',
+        new_password: '',
         is_admin: user.is_admin || false,
-    });    
+    });
 
     useEffect(() => {
         if (!user) {
@@ -29,7 +29,7 @@ const EditUser = ({ user, onSave, onCancel }) => {
                 last_name: user.last_name || '',
                 username: user.username || '',
                 email: user.email || '',
-                password: user.password || '',
+                new_password: '',
                 is_admin: user.is_admin || false,
             });
         }
@@ -43,54 +43,72 @@ const EditUser = ({ user, onSave, onCancel }) => {
         return null;
     };
 
-    const handleSaveUser = async (e) => {
+    const SaveUser = async (e) => {
         e.preventDefault();
+        
         const error = validateForm();
         if (error) {
             toast.error(error, { position: 'top-right', autoClose: 5000 });
             return;
         }
+    
         try {
-            const response = await editUser({
+            const response = await saveUser({
                 id: editForm.id,
                 first_name: editForm.first_name,
                 last_name: editForm.last_name,
                 username: editForm.username,
                 email: editForm.email,
-                password: editForm.password,
                 is_admin: editForm.is_admin,
             });
-
-            // const response = await fetch(`${BACKEND_URL2}/auth/edit_user/${editForm.id}`, {
-            //     method: 'PUT',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({
-            //         id: editForm.id,
-            //         first_name: editForm.firstName,
-            //         last_name: editForm.lastName,
-            //         username: editForm.username,
-            //         email: editForm.email,
-            //         password: editForm.password,
-            //         is_admin: editForm.is_admin,
-            //     }),
-            // });
-
+            
             if (!response.ok) {
                 throw new Error('Wystąpił błąd podczas aktualizacji użytkownika.');
             }
-
+    
             const updatedUser = await response.json();
             onSave(updatedUser);
+    
+            if (editForm.new_password) {
+                const passwordResponse = await handleChangePassword();
+                if (passwordResponse) {
+                    toast.success('Hasło zostało zaktualizowane.', { position: 'top-right', autoClose: 5000 });
+                }
+            }
+    
         } catch (error) {
-            toast.error(error.message || 'Nie udało się zaktualizować użytkownika.', {
+            toast.error(error.message || 'Nie udało się zaktualizować użytkownika lub zmienić hasła.', {
                 position: 'top-right',
                 autoClose: 5000,
             });
         }
     };
     
+    const handleChangePassword = async () => {
+        if (!editForm.new_password) {
+            toast.error('Nowe hasło jest wymagane.', { position: 'top-right', autoClose: 5000 });
+            return null;
+        }
+    
+        if (editForm.new_password.length < 6) {
+            toast.error('Hasło wymaga 6 cyfr.', { position: 'top-right', autoClose: 5000 });
+            return null;
+        }
+        
+        try {
+            const response = await changeUserPassword(editForm.id, editForm.new_password);
+    
+            if (!response.ok) {
+                throw new Error('Wystąpił błąd podczas zmiany hasła.');
+            }
+            
+            return true;
+        } catch (error) {
+            toast.error(error.message || 'Nie udało się zmienić hasła.', { position: 'top-right', autoClose: 5000 });
+            return null;
+        }
+    };    
+
     return (
         <>
         <table className="edit-user-form">
@@ -135,27 +153,27 @@ const EditUser = ({ user, onSave, onCancel }) => {
                     </td>
                 </tr>
                 <tr>
-                <td>
-                    <label>
-                        Email:
-                        <input
-                            id="input-text"
-                            type="email"
-                            value={editForm.email}
-                            onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
-                        />
-                    </label>
-                </td>
+                    <td>
+                        <label>
+                            Email:
+                            <input
+                                id="input-text"
+                                type="email"
+                                value={editForm.email}
+                                onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
+                            />
+                        </label>
+                    </td>
                 </tr>
                 <tr>
                     <td>
                         <label>
-                            Hasło:
+                            Nowe Hasło:
                             <input
-                                id="input-password"
+                                id="input-new-password"
                                 type="password"
-                                value={editForm.password || ''}
-                                onChange={(e) => setEditForm({ ...editForm, password: e.target.value })}
+                                value={editForm.new_password || ''}
+                                onChange={(e) => setEditForm({ ...editForm, new_password: e.target.value })}
                             />
                         </label>
                     </td>
@@ -175,7 +193,7 @@ const EditUser = ({ user, onSave, onCancel }) => {
                 </tr>
                 <tr>
                     <td>
-                        <button type="button" className="button-save" onClick={handleSaveUser}>Zapisz</button>
+                        <button type="button" className="button-save" onClick={SaveUser}>Zapisz</button>
                         <button type="button" className="button-cancel" onClick={onCancel}>Anuluj</button>
                     </td>
                 </tr>
@@ -188,8 +206,8 @@ const EditUser = ({ user, onSave, onCancel }) => {
                     <input
                         id="input-first-name"
                         type="text"
-                        value={editForm.firstName || ''}
-                        onChange={(e) => setEditForm({ ...editForm, firstName: e.target.value })}
+                        value={editForm.first_name || ''}
+                        onChange={(e) => setEditForm({ ...editForm, first_name: e.target.value })}
                     />
                 </label>
             </p>
@@ -199,8 +217,8 @@ const EditUser = ({ user, onSave, onCancel }) => {
                     <input
                         id="input-last-name"
                         type="text"
-                        value={editForm.lastName || ''}
-                        onChange={(e) => setEditForm({ ...editForm, lastName: e.target.value })}
+                        value={editForm.last_name || ''}
+                        onChange={(e) => setEditForm({ ...editForm, last_name: e.target.value })}
                     />
                 </label>
             </p>
@@ -227,13 +245,13 @@ const EditUser = ({ user, onSave, onCancel }) => {
                 </label>
             </p>
             <p>
-                <span>Hasło:</span>
+                <span>Nowe Hasło:</span>
                 <label>
                     <input
-                        id="input-password"
+                        id="input-new-password"
                         type="password"
-                        value={editForm.password || ''}
-                        onChange={(e) => setEditForm({ ...editForm, password: e.target.value })}
+                        value={editForm.new_password || ''}
+                        onChange={(e) => setEditForm({ ...editForm, new_password: e.target.value })}
                     />
                 </label>
             </p>
@@ -249,7 +267,7 @@ const EditUser = ({ user, onSave, onCancel }) => {
                 </label>
             </p>
             <div className="button-container">
-                <button type="button" className="button-save" onClick={handleSaveUser}>Zapisz</button>
+                <button type="button" className="button-save" onClick={SaveUser}>Zapisz</button>
                 <button type="button" className="button-cancel" onClick={onCancel}>Anuluj</button>
             </div>
         </div>

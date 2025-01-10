@@ -21,25 +21,23 @@ const SearchProduct = () => {
     const [orders, setOrders] = useState([]);
     const [confirmedResults, setConfirmedResults] = useState([]);
 
-    const fetchOrders = useCallback(async () => {
+    const fetchOrders = async () => {
         try {
             const params = {
-                '_page': page,
-                '_per_page': 8
+                'page': page,
+                'per_page': 8
             }
 
-            //get Orders
             const response = await getOrders(params);
             const result = await response.json();
-            console.log(result);
 
             if (result['data']) {
                 setFirstPage(result['first']);
                 setPrevPage(result['prev']);
                 setNextPage(result['next']);
                 setLastPage(result['last']);
-                setNumberOfPages(result['pages']);
-                setNumberOfItems(result['items']);
+                setNumberOfPages(result['pages'])
+                setNumberOfItems(result['orders']);
                 setOrders(result['data']);
                 setConfirmedResults(result['data']);
             } else {
@@ -56,19 +54,20 @@ const SearchProduct = () => {
                 progress: undefined,
             });
         }
-    }, [page]);
+    };
 
     useEffect(() => {
         fetchOrders();
-    }, []);
+    }, [page]);
 
     const statusOrderChange = async (id, newStatus) => {
-        try {
-            console.log(`Zmiana statusu zamówienia ${id} na ${newStatus}`);
-    
-            const response = await fetch(`${BACKEND_URL}/orders/${id}`, {
+        try {    
+            const response = await fetch(`${BACKEND_URL}/order/${id}`, {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}` 
+                },
                 body: JSON.stringify({ status: newStatus }),
             });
     
@@ -151,6 +150,7 @@ const SearchProduct = () => {
             });
             toast.dismiss(toastId);
         } finally {
+            fetchOrders();
             toast.dismiss(toastId);
         }
     };
@@ -190,7 +190,7 @@ const SearchProduct = () => {
                             <React.Fragment key={order.id}>
                                 <tr>
                                     <td>{order.id}</td>
-                                    <td>{order.customer}</td>
+                                    <td>{order.user?.username || 'Brak danych'}</td>
                                     <td>{new Date(order.date).toLocaleDateString('pl-PL')}</td>
                                     <td>
                                         {`${order.street} ${order.house_number}${

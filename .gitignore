@@ -8,6 +8,8 @@ __pycache__/
 *.pyc
 .venv*
 
+# Ignorowanie pliku .env
+# .env
+
 
 requirements-ada.txt
-static

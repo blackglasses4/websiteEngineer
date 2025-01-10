@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { StatusCodes } from 'http-status-codes';
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BACKEND_URL } from "../../config";
 import ThemeSwitch from '../../Components/ThemeSwitch/ThemeSwitch';
@@ -28,7 +27,6 @@ const Login = () => {
       [name]: value,
     }));
 
-    // Reset błędów dla danego pola
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: false,
@@ -83,24 +81,22 @@ const Login = () => {
       if (!response.ok) {
         throw new Error(data.detail || "Błędna nazwa użytkownika, email lub hasło.");
       }
-
-      login({ username: data.username });
-  
-      // Zapisujemy dane użytkownika w localStorage
-      localStorage.setItem("user", JSON.stringify({ username: data.username }));
-      toast.success("Zalogowano pomyślnie!");
-  
-      // Przekierowanie w zależności od użytkownika
-      if (data.is_admin) {
-        setTimeout(() => {
-          navigate("/admin");
-        }, 1000);
-      } else {
-        setTimeout(() => {
-          navigate("/");
-          window.location.reload();
-        }, 1000);
-      }
+      
+       // Zapisujemy dane użytkownika i token w localStorage
+      login({ id: data.id, username: data.username, is_admin: data.is_admin }, data.access_token);
+      toast.success("Zalogowałeś się!");
+    
+        // Przekierowanie w zależności od użytkownika
+        if (data.is_admin) {
+          setTimeout(() => {
+            navigate("/admin");
+          }, 1000);
+        } else {
+          setTimeout(() => {
+            navigate("/");
+            window.location.reload();
+          }, 1000);
+        }
     } catch (error) {
       toast.error(error.message || "Wystąpił problem podczas logowania.");
     }

@@ -264,7 +264,7 @@ const EditProduct = ({ product, onSave, onCancel }) => {
                       id="input-size"
                       type="checkbox"
                       value={size}
-                      checked={editForm.sizes.includes(size)} // Zmieniamy na checked
+                      checked={editForm.sizes.includes(size)}
                       onChange={() => handleSizeChange(size)}
                     />
                   </label>

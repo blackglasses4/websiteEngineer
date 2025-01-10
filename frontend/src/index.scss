@@ -13,8 +13,11 @@
 }
 
 html, body {
-  height: 100%; 
   margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: auto;
+  scroll-behavior: smooth;
 }
 
 .App {
@@ -23,6 +26,7 @@ html, body {
   flex-direction: column;
   min-height: 100vh; 
   background-color: var(--dominant-light);
+  overflow: auto;
 }
 
 h1,h2,h3,h4 {
@@ -34,4 +38,3 @@ a {
   color: #8e2ad6;
   border-bottom: 1px dotted;
 }
-

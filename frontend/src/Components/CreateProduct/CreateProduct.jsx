@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getProducts, addProduct } from '../../backend';
+import { addProduct } from '../../backend';
 
 import './Create.scss';
 import { BACKEND_URL } from '../../config';
@@ -23,7 +23,6 @@ const CreateProduct = () => {
 
     const [product, setProduct] = useState(initialProductState);
     const [loading, setLoading] = useState(false);
-    const [imagePreview, setImagePreview] = useState(null);
     const [isFormOpen, setIsFormOpen] = useState(false);
 
     const handleInputChange = (e) => {
@@ -87,10 +86,7 @@ const CreateProduct = () => {
             });
             const res = await result.json();
             const picture_path = res['filepath'];
-            console.log(res);
-
             const productData = {
-                // id: newId,
                 name: product.name,
                 category: product.category,
                 gender: product.gender,
@@ -109,7 +105,6 @@ const CreateProduct = () => {
             const response = await addProduct(productData);
 
             const data = await response.json();
-            console.log(data);
 
             if (!response.ok) {
                 toast.error('Wystąpił błąd podczas dodawania produktu.', {
@@ -134,7 +129,6 @@ const CreateProduct = () => {
                 progress: undefined,
             });
 
-            // Resetowanie formularza
             setProduct(initialProductState);
         }
         catch (err){
@@ -187,7 +181,7 @@ const CreateProduct = () => {
 
                     <label htmlFor="image">Obraz: 
                         <input type="file" name="image" accept='image/*' id="fileInput" required/>
-                        {imagePreview && <img className='add-img' src={imagePreview} alt="preview" />}
+                        {/* {imagePreview && <img className="add-img" src={imagePreview} alt="Podgląd" />} */}
                     </label>
                     <label htmlFor="popular">Czy jest popularny: <input type="checkbox" name="popular" id="popular" onChange={handleInputChange} checked={product.popular}/></label>
                     <label htmlFor="new_price">Nowa cena: <input type="number" name="new_price" id="new_price" min="0" step="0.01" value={product.new_price} onChange={handleInputChange} required/></label>

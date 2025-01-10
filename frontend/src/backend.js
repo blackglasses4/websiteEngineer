@@ -1,10 +1,25 @@
 import { BACKEND_URL } from "./config";
 
+function getToken() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        console.error("Brak tokenu w localStorage");
+    }
+    return token;
+}
+
 async function get(endpoint, params) {
     const paramsStr = params ? `?${Object.entries(params).map(([k, v]) => `${k}=${v}`).join('&')}` : "";
 
     const url = `${BACKEND_URL}${endpoint}${paramsStr}`;
-    const response = await fetch(url);
+    const token = getToken();
+
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
     
     if (response.status === 401) {
         alert('Twoja sesja wygasła. Zaloguj się ponownie.');
@@ -16,10 +31,13 @@ async function get(endpoint, params) {
 }
 
 async function post(endpoint, indata) {
+    const token = getToken();
+
     const response = await fetch(`${BACKEND_URL}${endpoint}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(indata),
     });
@@ -34,10 +52,13 @@ async function post(endpoint, indata) {
 }
 
 async function put(endpoint, indata) {
+    const token = getToken();
+
     const response = await fetch(`${BACKEND_URL}${endpoint}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(indata),
     });
@@ -51,9 +72,34 @@ async function put(endpoint, indata) {
     return response;
 }
 
+async function changeUserPassword(id, new_password) {
+    const token = getToken();
+
+    const response = await fetch(`${BACKEND_URL}/user/${id}/change-password?new_password=${new_password}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+
+    if (response.status === 401) {
+        alert('Twoja sesja wygasła. Zaloguj się ponownie.');
+        window.location = '/login';
+        return;
+    }
+
+    return response;
+}
+
 async function del(endpoint, id) {
+    const token = getToken();
+
     const response = await fetch(`${BACKEND_URL}${endpoint}${id}`, {
         method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
     });
 
     if (response.status === 401) {
@@ -95,20 +141,20 @@ async function getUsers(params) {
 
 //dodawanie
 async function addProduct(product) {
-    return post('/products', product);
+    return post('/product', product);
 }
 
 async function addOrder(order) {
-    return post('/orders', order);
+    return post('/order', order);
 }
 
 async function addUser(user) {
-    return post('/add_user', user); //do zmiany aby nie było auth
+    return post('/user', user);
 }
 
 //edytowanie
 async function saveProduct(product) {
-    return put(`/products/${product.id}`, {
+    return put(`/product/${product.id}`, {
         id: product.id,
         category: product.category,
         gender: product.gender,
@@ -124,8 +170,8 @@ async function saveProduct(product) {
 });
 }
 
-async function editUser(user) {
-    return put(`/edit_user/${user.id}`, {
+async function saveUser(user) {
+    return put(`/user/${user.id}`, {
         id: user.id,
         first_name: user.first_name,
         last_name: user.last_name,
@@ -142,26 +188,44 @@ async function deleteProduct(product) {
 }
 
 async function deleteUser(user) {
-    return del('/users/', user);
+    return del('/user/', user);
 }
 
 async function deleteOrder(order) {
     return del('/order/', order);
 }
 
+//edytowanie
+
+async function editUser(user) {
+    return put(`/edit_user/${user.id}`, {
+        id: user.id,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        is_admin: user.is_admin,
+    });
+}
+
 export {
     getProducts,
     getProduct,
     getOrders,
-    addOrder,
     getUsers,
     getAllProducts,
+
+    addOrder,
     addProduct,
     addUser,
 
     saveProduct,
-    editUser,
+    saveUser,
+
     deleteProduct,
     deleteUser,
-    deleteOrder
+    deleteOrder,
+
+    changeUserPassword
 };

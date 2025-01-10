@@ -1,42 +1,105 @@
-// DisplayProduct.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCart } from '../Cart/CartContext';
 import { toast } from 'react-toastify';
-// import { useProducts } from '../ProductContext';
-// import SimilarProducts from './SimilarProduct/SimilarProduct';
+import SimilarProducts from './SimilarProduct/SimilarProduct';
 import './DisplayProduct.scss';
-import { getProduct } from '../../backend';
+import { getProduct, getProducts } from '../../backend';
 import { BACKEND_URL } from '../../config';
 
 const DisplayProduct = () => {
   const { id } = useParams();
-  // const { products, error, loading } = useProducts();
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
+  const [similarProducts, setSimilarProducts] = useState([]);
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const topRef = useRef(null);
 
   const { addToCart } = useCart();
 
   async function fetchProduct() {
-    const response = await getProduct(id);
-    const product = await response.json();
-    product.sizes = product.sizes ? product.sizes.split(',') : [];
-    product.colors = product.colors ? product.colors.split(',') : [];
+    try {
+      const response = await getProduct(id);
+      const product = await response.json();
+      product.sizes = product.sizes ? product.sizes.split(',') : [];
+      product.colors = product.colors ? product.colors.split(',') : [];
 
-    setProduct(product);
+      setProduct(product);
+      fetchSimilarProducts(product.category);
+    } catch (error) {
+      toast.error('Nie udało się pobrać produktu.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function fetchSimilarProducts(category) {
+    try {
+      const params = {
+        'category': category
+      };
+      const response = await getProducts(params);
+      const result = await response.json();
+
+      if (result['data']) {
+        setSimilarProducts(result['data']);
+      }
+    } catch (error) {
+      toast.error('Nie udało się pobrać podobnych produktów.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
     fetchProduct();
+  }, [id]);
 
-}, [id]);
+  if (loading) {
+    return ( 
+    <section className="categoryProduct">
+      <p>Ładowanie...</p>
+    </section>
+    );
+  }
 
   if (!product) return <p className="error-product">Produkt nie został odnaleziony</p>;
 
   const handleAddToCart = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user || !user.username) {
+      toast.error('Musisz się zalogować, aby dodać produkt do koszyka!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+
     if (!selectedSize || !selectedColor) {
       toast.error('Wybierz rozmiar i kolor przed dodaniem do koszyka!', {
         position: "top-right",
@@ -74,11 +137,11 @@ const DisplayProduct = () => {
 
   return (
     <>
-      <section className="product-display">
+      <section className="product-display" ref={topRef}>
         <h1>{product.name}</h1>
         <div className="product-display__content">
           <div className="product-display__image-gallery">
-            <img src={BACKEND_URL + product.picture} alt="" />
+            <img src={BACKEND_URL + product.picture} alt="Zdjęcie pojedynczego produktu" />
           </div>
           <div className="product-display__details">
             <p className="description">{product.description}</p>
@@ -93,17 +156,23 @@ const DisplayProduct = () => {
                 {product.colors.map((color, index) => (
                   <div
                     key={`${color}-${index}`}
-                    className={`color-circle ${
-                      selectedColor === color ? 'selected' : ''
-                    }`}
+                    className={`color-circle ${selectedColor === color ? 'selected' : ''}`}
                     style={{
-                      backgroundColor: color,
-                      border: `3px solid ${
-                        selectedColor === color ? color : `var(--dominant-light)`
+                      backgroundColor:
+                        color.trim() === 'white' ? '#dcdcdc' :
+                        color.trim() === 'black' ? '#333333' : color,
+
+                      border: `5px solid ${
+                        selectedColor === color
+                          ? (color.trim() === 'white' ? '#dcdcdc' :
+                            color.trim() === 'black' ? '#333333' : color)
+                          : 'var(--dominant-light)'
                       }`,
                     }}
-                    onClick={() => setSelectedColor(color)}
-                  ></div>
+                    onClick={() => {
+                      setSelectedColor(color);
+                    }}
+                  />
                 ))}
               </div>
             </div>
@@ -130,8 +199,7 @@ const DisplayProduct = () => {
           </div>
         </div>
       </section>
-
-      {/* <SimilarProducts products={products} category={product.category} selectedProductId={product.id}/> */}
+      <SimilarProducts products={similarProducts} category={product.category} selectedProductId={product.id} />
     </>
   );
 };

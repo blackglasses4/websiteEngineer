@@ -16,7 +16,6 @@ export const ProductProvider = ({ children }) => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                //do zmiany
                 const response = await getProducts();
                 const data = await response.json();
                 

@@ -55,6 +55,20 @@ header.header-admin {
     .nav-icons {
         display: flex;
         gap: 1em;
+
+        button {
+            background: none;
+            color: $white;
+            border: none;
+
+        }
+
+        .sidebar-toggle {
+            border: none;
+            background: none;
+            color: $white;
+            font-size: 1em;
+        }
     }
 }
 
@@ -70,7 +84,7 @@ header.header-admin {
     }
 }
 
-@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) { //795px
+@media only screen and (max-width: #{map-get($breakpoints, 'tablet')}) {
     .admin-container {
         flex-direction: column;
     
@@ -104,7 +118,7 @@ header.header-admin {
     
         .nav-icons {
             display: flex;
-            gap: 0.5em;
+            gap: 0.9em;
         }
     }
 }

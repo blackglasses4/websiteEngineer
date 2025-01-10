@@ -46,7 +46,7 @@ const OrderSummary = () => {
         <p>Prosimy o przesłanie płatności na poniższy numer konta bankowego:</p>
         <p className="bank-account"><span>Numer konta:</span> 12 3456 7890 1234 5678 9012 3456</p>
         <p>W tytule przelewu prosimy podać: <span>{orderDetails.phone} - {new Date().toLocaleDateString()}</span></p>
-        <p>Dziękujemy za zamówienie! W razie pytań prosimy o kontakt na numer <span>+48 730 464 333.</span></p>
+        <p>Dziękujemy za zamówienie! W razie pytań prosimy o kontakt na numer <span>+48 710 364 383.</span></p>
     </div>
 
 

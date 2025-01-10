@@ -1,14 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PopularProduct from '../../Components/PopularProduct/PopularProduct';
-import CookieBanner from '../../Components/CookieBanner/CookieBanner';
 import './Home.scss';
 
 const Home = () => {
   return (
     <div>
-        <CookieBanner />
-
         <section id="welcome" className="section__welcome">
           <div className="section__welcome-content">
               <h2>„Z nami osiągniesz więcej – w stylu i komforcie.”</h2>
