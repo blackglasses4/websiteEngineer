@@ -182,16 +182,18 @@ header.header-main {
         box-shadow: 0 5px 6px rgba(0, 0, 0, 0.6);
         border-radius: 4px;
         padding: 2rem;
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: flex-end;
         z-index: 1000;
       
         transform: translateX(100%);
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease-in-out, display 0s ease 0.3s;
       
         &.open {
-          transform: translateX(0);
+            display: flex;
+            transform: translateX(0);
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; 
         }
       
         .mobile-menu-icons {

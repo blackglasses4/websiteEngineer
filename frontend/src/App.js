@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CartProvider } from './Components/Cart/CartContext'; 
 import { UserProvider } from './Pages/UserContext';
+import ScrollToTop from './ScrollTop'; 
 
 // Komponenty
 import Navbar from './Components/Navbar/Navbar';
@@ -10,7 +11,6 @@ import Footer from './Components/Footer/Footer';
 import NavbarCategory from './Components/Navbar/NavbarCategory';
 import CartPage from './Components/Cart/CartPage/CartPage';
 import { ProductProvider } from './Components/ProductContext';
-import ProtectedRoute from "./Pages/ProtectedRoute";
 
 // Strony
 import Login from './Pages/Login/Login';
@@ -43,6 +43,7 @@ function App() {
       <ProductProvider>
         <CartProvider>
           <Router>
+          <ScrollToTop />
             <div className="App">
               <Routes>
                 <Route path="/" element={<AppLayout />}>

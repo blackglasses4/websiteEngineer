@@ -9,6 +9,6 @@ __pycache__/
 .venv*
 
 # Ignorowanie pliku .env
-.env
+# .env
 
 requirements-ada.txt

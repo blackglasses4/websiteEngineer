@@ -3,7 +3,7 @@ import { BACKEND_URL } from "./config";
 function getToken() {
     const token = localStorage.getItem('token');
     if (!token) {
-        console.log('Brak tokenu w localStorage!');
+        console.error("Brak tokenu w localStorage");
     }
     return token;
 }

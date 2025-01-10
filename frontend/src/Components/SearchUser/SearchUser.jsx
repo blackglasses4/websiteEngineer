@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaSlidersH } from 'react-icons/fa';
 import { getUsers, deleteUser} from '../../backend';
 import useClick from '../useClick';
 
