@@ -2,8 +2,8 @@ Dane do bazy danych
 Użytkownicy
 INSERT INTO users (id, first_name, last_name, username, email, hashed_password, is_admin)
 VALUES
-(1, 'admin123', 'admin123', 'admin123', 'admin123@gmail.com', 'admin123', true),
-(2, 'user123', 'user123', 'user123', 'user@gmail.com', 'user123', false);
+(1, 'admin123', 'admin123', 'admin123', 'admin123@gmail.com', '$2b$12$p.IppCVYPKdYCAxuqoIOiu0cbNdOq8jWgS3xR5tKMcNTk/8U2Jq2O', true),
+(2, 'user123', 'user123', 'user123', 'user@gmail.com', '$2b$12$EQqHWPdpknuehEMUWIQ.fO5tnRAzloEvJFhCYXm4GBHJFPjU1/bSq', false);
 
 Produkty
 

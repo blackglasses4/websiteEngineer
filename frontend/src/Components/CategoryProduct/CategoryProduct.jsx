@@ -19,6 +19,7 @@ const CategoryProducts = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const filterPanelRef = useRef(null);
   useClick(filterPanelRef, () => setIsFilterOpen(false));
+  const [loading, setLoading] = useState(true);
 
   const [confirmedResults, setConfirmedResults] = useState([]);
 
@@ -38,6 +39,8 @@ const CategoryProducts = () => {
   const [sort, setSort] = useState("none");
 
   const fetchProducts = async () => {
+    setLoading(true);
+
     try {
       const params = {
         'page': page,
@@ -77,12 +80,22 @@ const CategoryProducts = () => {
         progress: undefined,
       });
       setError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchProducts();
   }, [category, page, gender, sort]);
+
+  if (loading) {
+    return (
+      <section className="categoryProduct">
+        <p>Ładowanie...</p>
+      </section>
+    );
+  }
 
   if (error) {
     return (

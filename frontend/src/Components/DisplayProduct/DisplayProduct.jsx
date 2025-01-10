@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCart } from '../Cart/CartContext';
 import { toast } from 'react-toastify';
@@ -13,6 +13,8 @@ const DisplayProduct = () => {
   const [selectedColor, setSelectedColor] = useState('');
   const [similarProducts, setSimilarProducts] = useState([]);
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const topRef = useRef(null); 
 
   const { addToCart } = useCart();
 
@@ -35,6 +37,8 @@ const DisplayProduct = () => {
         draggable: true,
         progress: undefined,
       });
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -63,10 +67,20 @@ const DisplayProduct = () => {
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
     fetchProduct();
   }, [id]);
+
+  if (loading) {
+    return ( 
+    <section className="categoryProduct">
+      <p>Ładowanie...</p>
+    </section>
+    );
+  }
 
   if (!product) return <p className="error-product">Produkt nie został odnaleziony</p>;
 
@@ -123,7 +137,7 @@ const DisplayProduct = () => {
 
   return (
     <>
-      <section className="product-display">
+      <section className="product-display" ref={topRef}>
         <h1>{product.name}</h1>
         <div className="product-display__content">
           <div className="product-display__image-gallery">
@@ -148,7 +162,7 @@ const DisplayProduct = () => {
                         color.trim() === 'white' ? '#dcdcdc' :
                         color.trim() === 'black' ? '#333333' : color,
 
-                      border: `3px solid ${
+                      border: `5px solid ${
                         selectedColor === color
                           ? (color.trim() === 'white' ? '#dcdcdc' :
                             color.trim() === 'black' ? '#333333' : color)
