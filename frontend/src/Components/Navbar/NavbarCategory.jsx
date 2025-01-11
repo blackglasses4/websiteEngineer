@@ -5,11 +5,11 @@ import './NavbarCategory.scss';
 const NavbarCategory = () => {
     return (
         <nav className='nav-category'>
-          <Link to="/koszulka" className='a-name' rel='internal'>Koszulki</Link>
-          <Link to="/kurtka" className='a-name' rel='internal'>Kurtki</Link>
-          <Link to="/spodnie" className='a-name' rel='internal'>Spodnie</Link>
-          <Link to="/czapka" className='a-name' rel='internal'>Czapki</Link>
-          <Link to="/stroje" className='a-name' rel='internal'>Stroje</Link>
+          <Link to="/koszulka" className='link-name' rel='internal'>Koszulki</Link>
+          <Link to="/kurtka" className='link-name' rel='internal'>Kurtki</Link>
+          <Link to="/spodnie" className='link-name' rel='internal'>Spodnie</Link>
+          <Link to="/czapka" className='link-name' rel='internal'>Czapki</Link>
+          <Link to="/stroje" className='link-name' rel='internal'>Stroje</Link>
         </nav>
     );
 }

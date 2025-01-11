@@ -13,6 +13,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .link-return {
+    padding: 2em 0;
+    font-size: 0.8em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: var(--dominant-dark);
+    text-decoration: none;
+    list-style-type: none;
+    border: none;
+    @include selection-whitedark;
+  }
 }
 
 .login-header {
@@ -24,6 +37,13 @@
   padding: 10px 20px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid var(--table_border);
+
+  .link-name {
+    text-decoration: none;
+    list-style-type: none;
+    border: none;
+    @include selection-light;
+  }
 
   .theme-switch-container {
     display: flex;

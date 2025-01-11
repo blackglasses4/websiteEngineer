@@ -105,6 +105,13 @@
                 }
             }
         }
+
+        .filter-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 0.5em;
+        }
     }
 }
 
@@ -143,6 +150,11 @@
                 .filter-toggle {
                     margin: 0;
                 }
+            }
+
+            .filter-center {
+                display: flex;
+                justify-content: left;
             }
         }
     }

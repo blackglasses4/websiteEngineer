@@ -132,7 +132,7 @@ const CreateUser = () => {
     return (
         <div className="create-user">
             <button className="toggle-form-btn" onClick={toggleForm}>
-                {isFormOpen ? 'Zwiń formularz' : 'Rozwiń formularz'}
+                {isFormOpen ? 'Anuluj' : 'Dodaj użytkownika'}
             </button>
 
             <div className={`form-container ${isFormOpen ? 'open' : ''}`}>

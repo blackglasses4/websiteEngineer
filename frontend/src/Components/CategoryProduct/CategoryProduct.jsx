@@ -14,6 +14,14 @@ import './CategoryProduct.scss';
 import '../Filter/Filter.scss';
 
 const CategoryProducts = () => {
+  const categoryItemRef = useRef(null);
+
+  const scrollToTop = () => {
+    if (categoryItemRef.current) {
+      categoryItemRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   const { category } = useParams();
   const [error, setError] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -96,7 +104,7 @@ const CategoryProducts = () => {
   }
 
   return (
-    <section className="categoryProduct">
+    <section className="categoryProduct" ref={categoryItemRef}>
       {category === "koszulka" && <h1>Koszulka</h1>}
       {category === "kurtka" && <h1>Kurtki</h1>}
       {category === "spodnie" && <h1>Spodnie</h1>}
@@ -170,11 +178,22 @@ const CategoryProducts = () => {
               <p>{item.name}</p>
               <div className="item-prices">
                 <div className="item-prices-new">{item.new_price}zł</div>
-                <div className="item-prices-old">{item.old_price}zł</div>
+                {item.old_price && (
+                  <div className="item-prices-old">{`${item.old_price} zł`}</div>
+                )}
               </div>
             </Link>
           </div>
         ))}
+      </div>
+      <div className="filter">
+        <div className="filter-category filter-center">
+            <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage); scrollToTop()}}></input>
+            <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage); scrollToTop()}}></input>
+            <span>{page} z {numberOfPages}</span>
+            <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage); scrollToTop()}}></input>
+            <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage); scrollToTop()}}></input>
+          </div>
       </div>
     </section>
   );

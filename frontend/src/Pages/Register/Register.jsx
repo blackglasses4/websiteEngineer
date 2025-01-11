@@ -117,14 +117,16 @@ const Register = () => {
   return (
     <div className="page-container">
       <header className="register-header">
-          <LazyLoadImage
-            src="/images/logo_dark.svg"
-            effect="blur"
-            alt="Logo sklepu"
-            className="theme-dependent-logo"
-            width="100px"
-            height="auto"
-          />
+          <Link to="/" className='link-name' rel='internal'>
+            <LazyLoadImage
+                src="/images/logo_dark.svg"
+                effect="blur"
+                alt="Logo sklepu"
+                className="theme-dependent-logo"
+                width="100px"
+                height="auto"
+            />
+          </Link>
         <div className="theme-switch-container">
           <ThemeSwitch/>
         </div>
@@ -228,6 +230,8 @@ const Register = () => {
           </p>
         </div>
       </section>
+
+      <Link to="/" className='link-return' rel='internal'>&lt; Powrót do strony głównej</Link>
     </div>
   );
 };

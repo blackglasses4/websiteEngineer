@@ -13,6 +13,14 @@ import '../Filter/Filter.scss';
 import '../SearchProduct/Search.scss';
 
 const SearchUser = () => {
+    const searchUserItemRef = useRef(null);
+
+    const scrollToTop = () => {
+      if (searchUserItemRef.current) {
+        searchUserItemRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const filterPanelRef = useRef(null);
     useClick(filterPanelRef, () => setIsFilterOpen(false));
@@ -157,10 +165,6 @@ const SearchUser = () => {
 
     return (
         <div className="search-user">
-            <h1 className='admin-h1'>Dodaj nowego użytkownika</h1>
-            <CreateUser/>
-            <h1 className='admin-h1'>Wyszukaj użytkownika</h1>
-
             <SearchBar data={users} setConfirmedResults={setConfirmedResults} type="users" />
 
             <div className="filter">
@@ -172,7 +176,7 @@ const SearchUser = () => {
                 <span>Liczba sztuk: {numberOfItems}</span>
             </div>
 
-            <section className="admin-search_users">
+            <section className="admin-search_users"  ref={searchUserItemRef}>
                 <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                 {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
@@ -222,9 +226,18 @@ const SearchUser = () => {
                         </tbody>
                     </table>
                 )}
+                <div className="filter">
+                    <div className="filter-category filter-center">
+                        <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage); scrollToTop()}}></input>
+                        <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage); scrollToTop()}}></input>
+                        <span>{page} z {numberOfPages}</span>
+                        <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage); scrollToTop()}}></input>
+                        <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage); scrollToTop()}}></input>
+                    </div>
+                </div>
             </section>
 
-            <section className="admin-search_users-mobile">
+            <section className="admin-search_users-mobile"ref={searchUserItemRef}>
                 <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                 {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać użytkowników powyżej.</p>
@@ -259,7 +272,17 @@ const SearchUser = () => {
                         ))}
                     </div>
                 )}
+                <div className="filter">
+                    <div className="filter-category filter-center">
+                        <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage); scrollToTop()}}></input>
+                        <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage); scrollToTop()}}></input>
+                        <span>{page} z {numberOfPages}</span>
+                        <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage); scrollToTop()}}></input>
+                        <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage); scrollToTop()}}></input>
+                    </div>
+                </div>
             </section>
+            <CreateUser/>
         </div>
     );
 };

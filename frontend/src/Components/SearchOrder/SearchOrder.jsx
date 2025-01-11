@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BACKEND_URL } from '../../config';
@@ -7,7 +7,15 @@ import { getOrders, deleteOrder } from '../../backend';
 import '../Filter/Filter.scss';
 import '../SearchProduct/Search.scss';
 
-const SearchProduct = () => {
+const SearchOrder = () => {
+    const searchOrderItemRef = useRef(null);
+
+    const scrollToTop = () => {
+      if (searchOrderItemRef.current) {
+        searchOrderItemRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+    
     // stronicowanie
     const [page, setPage] = useState(1);
     const [firstPage, setFirstPage] = useState();
@@ -166,7 +174,7 @@ const SearchProduct = () => {
                 <span>Liczba sztuk: {numberOfItems}</span>
             </div>
 
-            <section className="admin-search_orders">
+            <section className="admin-search_orders" ref={searchOrderItemRef}>
             {confirmedResults.length === 0 ? (
                 <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać zamówienie powyżej.</p>
             ) : (
@@ -244,9 +252,18 @@ const SearchProduct = () => {
                     </tbody>
                 </table>
             )}
+                <div className="filter">
+                    <div className="filter-category filter-center">
+                        <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage); scrollToTop()}}></input>
+                        <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage); scrollToTop()}}></input>
+                        <span>{page} z {numberOfPages}</span>
+                        <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage); scrollToTop()}}></input>
+                        <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage); scrollToTop()}}></input>
+                    </div>
+                </div>
             </section>
 
-            <section className="admin-search_orders-mobile">
+            <section className="admin-search_orders-mobile" ref={searchOrderItemRef}>
                 {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
                 ) : (
@@ -297,9 +314,18 @@ const SearchProduct = () => {
                         ))}
                     </div>
                 )}
+                <div className="filter">
+                    <div className="filter-category filter-center">
+                        <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage); scrollToTop()}}></input>
+                        <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage); scrollToTop()}}></input>
+                        <span>{page} z {numberOfPages}</span>
+                        <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage); scrollToTop()}}></input>
+                        <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage); scrollToTop()}}></input>
+                    </div>
+                </div>
             </section>
         </div>
     );
 };
 
-export default SearchProduct;
+export default SearchOrder;

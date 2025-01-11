@@ -42,9 +42,7 @@ const WelcomeAdmin = () => {
 const Admin = () => {
     const navigate = useNavigate();
     const [isSidebarVisible, setIsSidebarVisible] = useState(true);
-    const sidebarRef = useRef(null);
     const { logout } = useUser(); 
-    useClick(sidebarRef, () => setIsSidebarVisible(false));
 
     const toggleSidebar = () => {
         setIsSidebarVisible(!isSidebarVisible);
@@ -79,7 +77,7 @@ const Admin = () => {
     return (
         <>
             <header className='header-admin'>
-                <Link to="/admin" className='a-name' rel='internal'>
+                <Link to="/admin" className='link-name' rel='internal'>
                     <LazyLoadImage
                         src="/images/logo.png"
                         effect="blur"
@@ -105,7 +103,6 @@ const Admin = () => {
                     onSelect={(view) => navigate(`/admin/${view}`)} 
                     isSidebarVisible={isSidebarVisible} 
                     toggleSidebar={toggleSidebar} 
-                    ref={sidebarRef} 
                 />
 
                 {/* Main Content */}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,14 @@ import './PopularProduct.scss';
 import '../Filter/Filter.scss';
 
 const PopularProduct = () => {
+    const popularItemRef = useRef(null);
+
+    const scrollToTop = () => {
+      if (popularItemRef.current) {
+        popularItemRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
     const [error, setError] = useState(false);
     const [confirmedResults, setConfirmedResults] = useState([]);
 
@@ -78,7 +86,7 @@ const PopularProduct = () => {
   }
 
   return (
-    <section className='popularProduct'>
+    <section className='popularProduct' ref={popularItemRef}>
       <h1>Popularne Produkty</h1>
 
       <div className="filter-popular">
@@ -112,6 +120,16 @@ const PopularProduct = () => {
             </Link>
           </div>
         ))}
+      </div>
+
+      <div className="filter">
+        <div className="filter-category filter-center">
+            <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage); scrollToTop()}}></input>
+            <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage); scrollToTop()}}></input>
+            <span>{page} z {numberOfPages}</span>
+            <input type="button" value="&gt;" disabled={nextPage === null} onClick={() => { if (nextPage) setPage(nextPage); scrollToTop()}}></input>
+            <input type="button" value="&gt;&gt;" disabled={page === numberOfPages} onClick={() => {setPage(lastPage); scrollToTop()}}></input>
+          </div>
       </div>
     </section>
   );

@@ -154,7 +154,7 @@ const CreateProduct = () => {
     return (
         <div className="create-product">
             <button className="toggle-form-btn" onClick={toggleForm}>
-                {isFormOpen ? 'Zwiń formularz' : 'Rozwiń formularz'}
+                {isFormOpen ? 'Anuluj' : 'Dodaj produkt'}
             </button>
 
             <div className={`form-container ${isFormOpen ? 'open' : ''}`}>
