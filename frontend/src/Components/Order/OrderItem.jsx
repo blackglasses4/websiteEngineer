@@ -4,16 +4,29 @@ const OrderItem = ({ setOrderItems }) => {
   const [orderData, setOrderData] = useState([]);
 
   useEffect(() => {
-    const storedOrderData = JSON.parse(localStorage.getItem('order'));
-  
-    if (storedOrderData && storedOrderData.length > 0) {
-      setOrderData(storedOrderData);
-      setOrderItems(storedOrderData);
+    const storedOrderData = localStorage.getItem('order');
+    
+    if (storedOrderData) {
+        let parsedData;
+        try {
+            parsedData = JSON.parse(storedOrderData);
+        } catch (error) {
+            console.error("Błąd parsowania JSON:", error);
+            return;
+        }
+
+        // Jeżeli dane to tablica z jednym obiektem, wyciągamy obiekt
+        const cleanedData = Array.isArray(parsedData) && parsedData.length === 1
+            ? parsedData[0]
+            : parsedData;
+
+        setOrderData(cleanedData);
+        setOrderItems(cleanedData);
     } else {
-      setOrderData([]);
-      setOrderItems([]);
+        setOrderData([]);
+        setOrderItems([]);
     }
-  }, [setOrderItems]);  
+  }, [setOrderItems]); 
 
   const calculateTotal = () => {
     return orderData.reduce((total, item) => total + item.price * item.quantity, 0);

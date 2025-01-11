@@ -211,21 +211,24 @@ const SearchOrder = () => {
                                         {order.phone}
                                     </td>
                                     <td>
-                                        {order.products_order && Array.isArray(order.products_order) ? (
-                                            order.products_order.map((product, index) => (
-                                                <p key={index}>
-                                                    <span>Id:</span> {product.productId || "Brak danych"}, 
-                                                    <span> Ilość:</span> {product.quantity || "Brak danych"}, 
-                                                    <span> Cena:</span> {product.price || "Brak danych"} zł
-                                                </p>
-                                            ))
-                                        ) : (
-                                            <span>
-                                                {typeof order.products_order === 'string'
-                                                    ? order.products_order
-                                                    : "Brak produktów"}
-                                            </span>
-                                        )}
+                                    {(() => {
+                                        try {
+                                        const parsedProducts = JSON.parse(order.products_order);
+                                        if (Array.isArray(parsedProducts)) {
+                                            return parsedProducts.map((product, index) => (
+                                            <p key={index}>
+                                                <span>Nazwa:</span> {product.name || "Brak danych"}, 
+                                                <span>Ilość:</span> {product.quantity || "Brak danych"}, 
+                                                <span>Cena:</span> {product.price || "Brak danych"} zł
+                                            </p>
+                                            ));
+                                        } else {
+                                            return <span>Brak produktów</span>;
+                                        }
+                                        } catch (error) {
+                                        return <span>Brak produktów</span>;
+                                        }
+                                    })()}
                                     </td>
                                     <td>{order.total_amount} zł</td>
                                     <td>
@@ -285,15 +288,26 @@ const SearchOrder = () => {
                                     <p><span>Kod pocztowy: </span>{order.postalCode}</p>
                                     <p><span>Miasto: </span>{order.city}</p>
                                     <p><span>Telefon: </span>{order.phone}</p>  
-                                    <p><span>Produkty: </span>{order.items && Array.isArray(order.items) ? (
-                                            order.items.map((product) => (
-                                                <p key={product.productId}>
-                                                    <span>Id:</span> {product.productId}, <span>Ilość:</span> {product.quantity}, <span>Cena:</span> {product.price} zł
+                                    <p><span>Produkty: </span>
+                                        {(() => {
+                                            try {
+                                            const parsedProducts = JSON.parse(order.products_order);
+                                            if (Array.isArray(parsedProducts)) {
+                                                return parsedProducts.map((product, index) => (
+                                                <p key={index} className='p-products'>
+                                                    <span>Nazwa:</span> {product.name || "Brak danych"}, 
+                                                    <span>Ilość:</span> {product.quantity || "Brak danych"}, 
+                                                    <span>Cena:</span> {product.price || "Brak danych"} zł
                                                 </p>
-                                            ))
-                                        ) : (
-                                            <span>Brak produktów</span>
-                                        )}</p>  
+                                                ));
+                                            } else {
+                                                return <span>Brak produktów</span>;
+                                            }
+                                            } catch (error) {
+                                            return <span>Brak produktów</span>;
+                                            }
+                                        })()}
+                                        </p>
                                     <p><span>Całkowita cena: </span>{order.total_amount} zł</p>  
                                     <p><span>Status: </span>
                                         <select value={order.status || ""} onChange={(e) => statusOrderChange(order.id, e.target.value)}>

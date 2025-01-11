@@ -1,34 +1,6 @@
 {
   "orders": [
     {
-      "id": "7038",
-      "customerDetails": {
-        "phone": "505718024",
-        "street": "orła białego",
-        "postalCode": "61-251",
-        "city": "Poznań",
-        "houseNumber": "76",
-        "apartmentNumber": "110",
-        "comments": "Kocham Adę Dzień dobry"
-      },
-      "items": [
-        {
-          "productId": "7",
-          "quantity": 8,
-          "price": 50
-        },
-        {
-          "productId": "43",
-          "quantity": 6,
-          "price": 50
-        }
-      ],
-      "totalAmount": 700,
-      "date": "2024-12-19T18:48:14.500Z",
-      "status": "Dostarczone",
-      "customer": "Anonimowy użytkownik"
-    },
-    {
       "id": "d573",
       "customerDetails": {
         "phone": "555555555",

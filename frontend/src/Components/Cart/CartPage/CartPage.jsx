@@ -43,6 +43,7 @@ const CartPage = () => {
   const handleCheckout = () => {
     const orderData = cart.map((product) => ({
       productId: product.productId,
+      name: product.name,
       quantity: product.quantity || 1,
       price: product.price || 0,
     }));
