@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const loggedUser = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
    
 
     if (loggedUser && token) {
@@ -28,7 +28,7 @@ export const UserProvider = ({ children }) => {
 
   const login = (user, token) => {
     localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
+    sessionStorage.setItem("token", token);
 
     setUsernameUser(user.username);
     setUserRole(user.is_admin ? 'admin' : 'user');
@@ -38,7 +38,7 @@ export const UserProvider = ({ children }) => {
   
   const logout = () => {
     localStorage.removeItem("user");
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
 
     setUsernameUser(null);
     setUserRole(null);

@@ -1,9 +1,9 @@
 import { BACKEND_URL } from "./config";
 
 function getToken() {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     if (!token) {
-        console.error("Brak tokenu w localStorage");
+        console.error("Brak tokenu w sessionStorage");
     }
     return token;
 }

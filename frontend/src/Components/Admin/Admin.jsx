@@ -19,7 +19,7 @@ import './Admin.scss';
 import useClick from '../useClick';
 
 const checkAdmin = () => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user"));
     
     if (!token || !user || user.is_admin === undefined) {
