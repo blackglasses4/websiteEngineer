@@ -115,7 +115,9 @@ const PopularProduct = () => {
               <p>{item.name}</p>
               <div className="item-prices">
                 <div className="item-prices-new">{item.new_price}zł</div>
-                <div className="item-prices-old">{item.old_price}zł</div>
+                <div className="item-prices-old">{item.old_price && (
+                  <div className="item-prices-old">{`${item.old_price} zł`}</div>
+                )}</div>
               </div>
             </Link>
           </div>
