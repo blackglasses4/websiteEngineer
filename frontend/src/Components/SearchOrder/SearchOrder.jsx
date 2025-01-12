@@ -200,12 +200,11 @@ const SearchOrder = () => {
                                     <td>{order.id}</td>
                                     <td>{order.user?.username || 'Brak danych'}</td>
                                     <td>{new Date(order.date).toLocaleDateString('pl-PL')}</td>
-                                    <td>
-                                        {`${order.street} ${order.house_number}${
-                                            order.apartment_number
-                                                ? `/${order.apartment_number}`
-                                                : ""
-                                        }, ${order.postal_code} ${order.city}`}
+                                    <td>{`${order.street}, ${
+                                        order.house_number || order.apartment_number
+                                        ? `${order.house_number || ""}${order.house_number && order.apartment_number ? "/" : ""}${order.apartment_number || ""}`
+                                        : "brak"
+                                    }, ${order.postal_code} ${order.city}`}
                                     </td>
                                     <td>
                                         {order.phone}
