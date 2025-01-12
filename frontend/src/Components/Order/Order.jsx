@@ -80,9 +80,12 @@ const Order = () => {
   };  
 
   const calculateTotal = () => {
+    if (!Array.isArray(orderItems)) {
+        console.error("orderItems nie jest tablicą:", orderItems);
+        return 0;
+    }
     return orderItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
-
   
   const sendDataOrder = async (e) => {
     e.preventDefault();

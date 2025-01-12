@@ -186,7 +186,6 @@ const SearchProduct = () => {
             
             <section className="admin-search_products" ref={searchItemRef}>
                 <div className="filter">
-                    <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                     <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
                     <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage);}}></input>
                     <span>{page} z {numberOfPages}</span>
@@ -313,10 +312,7 @@ const SearchProduct = () => {
             </section>
 
             <section className="admin-search_products-mobile" ref={searchItemRef}>
-                <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
-
                 <div className="filter">
-                    <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                     <input type="button" value="&lt;&lt;" disabled={page === 1} onClick={() => {setPage(firstPage)}}></input>
                     <input type="button" value="&lt;" disabled={prevPage === null} onClick={() => { if (prevPage) setPage(prevPage);}}></input>
                     <span>{page} z {numberOfPages}</span>

@@ -177,7 +177,6 @@ const SearchUser = () => {
             </div>
 
             <section className="admin-search_users"  ref={searchUserItemRef}>
-                <button className='button-reset' onClick={() => setConfirmedResults([])}>Resetuj</button>
                 {confirmedResults.length === 0 ? (
                     <p className='search-empty'>Brak wyników do wyświetlenia. Spróbuj wyszukać produkt powyżej.</p>
                 ) : (

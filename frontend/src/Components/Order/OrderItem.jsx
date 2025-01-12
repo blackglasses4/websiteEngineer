@@ -15,11 +15,7 @@ const OrderItem = ({ setOrderItems }) => {
             return;
         }
 
-        // Jeżeli dane to tablica z jednym obiektem, wyciągamy obiekt
-        const cleanedData = Array.isArray(parsedData) && parsedData.length === 1
-            ? parsedData[0]
-            : parsedData;
-
+        const cleanedData = Array.isArray(parsedData) ? parsedData : [parsedData];
         setOrderData(cleanedData);
         setOrderItems(cleanedData);
     } else {

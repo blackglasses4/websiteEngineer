@@ -278,11 +278,11 @@ const SearchOrder = () => {
                                     <p><span>Kupujący: </span>{order.customer}</p>
                                     <p><span>Data: </span>{new Date(order.date).toLocaleDateString('pl-PL')}</p>
                                     <p><span>Numer domu/mieszkania: </span>
-                                        {`${order.houseNumber}${
-                                            order.apartmentNumber
-                                                ? `/${order.apartmentNumber}`
-                                                : ""
-                                        }`}
+                                        {order.house_number
+                                            ? `${order.house_number}${order.apartment_number ? `/${order.apartment_number}` : ""}`
+                                            : order.apartment_number
+                                            ? order.apartment_number
+                                            : "brak"}
                                     </p>
                                     <p><span>Ulica: </span>{order.street > 20 ? `${order.street.slice(0, 20)}...` : order.street}</p>
                                     <p><span>Kod pocztowy: </span>{order.postalCode}</p>
