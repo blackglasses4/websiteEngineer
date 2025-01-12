@@ -1,10 +1,16 @@
 import email
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, Boolean, Enum
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from pydantic import BaseModel, EmailStr
 from backend.base import Base
 from typing import Optional
+import enum
+
+class UserStatus(enum.Enum):
+    PENDING = "Oczekujący"
+    ACTIVE = "Aktywny"
+    SUSPENDED = "Zawieszony"
 
 class User(Base):
     __tablename__ = 'users' #Nazwa tabeli w bazie danych
@@ -17,6 +23,7 @@ class User(Base):
     hashed_password = Column(String(255), nullable=False)       #
     is_admin = Column(Boolean, default=False, nullable=False)
     orders = relationship("Order", back_populates="user")  # Relacja do zamówień
+    status = Column(Enum(UserStatus), default=UserStatus.PENDING)
     
 class UserBase(BaseModel):
     first_name: str
@@ -38,6 +45,7 @@ class UserUpdate(BaseModel):
 class UserOut(UserBase):
     id: int
     is_admin: bool
+    status: UserStatus
 
     class Config:
         from_attributes = True

@@ -9,6 +9,10 @@ from backend.utils.hashing import verify_password
 from backend.utils.token import create_access_token
 from sqlalchemy.sql import or_
 from backend.utils.token import admin_required
+from backend.utils.email_verify import send_verification_email
+from backend.utils.token_storage import verification_tokens
+from backend.models.verify import VerifyResponse
+import uuid
 
 
 # Tworzenie instancji routera
@@ -33,6 +37,10 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
     # Hashowanie hasła
     hashed_password = hash_password(user.password)
 
+     # Generate a verification token
+    token = str(uuid.uuid4())
+    verification_tokens[token] = user.email
+    
     # Tworzymy użytkownika w bazie danych
     db_user = User(
         first_name = user.first_name,
@@ -40,7 +48,8 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
         username=user.username,
         email=user.email,
         hashed_password=hashed_password,
-        is_admin = user.is_admin
+        is_admin = user.is_admin,
+        status="pending"
     )
     
     # Dodanie użytkownika do sesji i zapisanie do bazy danych
@@ -48,6 +57,8 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_user)
 
+    send_verification_email(user.email, token)
+    
     return db_user  # Zwracamy stworzonego użytkownika
 
 @router.post("/login",)
@@ -66,6 +77,9 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
     # Jeśli użytkownik nie istnieje lub hasło jest nieprawidłowe
     if not user or not verify_password(form_data.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Invalid username or password")
+    
+    if user.status != "active":
+        raise HTTPException(status_code=403, detail="Account not verified. Please verify your email.")
     
     # Generujemy token dostępu
     access_token_expires = timedelta(minutes=30)
@@ -223,3 +237,19 @@ def delete_user(id: int, db: Session = Depends(get_db), current_user: dict = Dep
 
     # Return a success message
     return {"message": f"User with ID {id} has been deleted successfully."}
+
+@router.get("/verify", response_model=VerifyResponse)
+def verify_user(token: str, db: Session = Depends(get_db)):
+    email = verification_tokens.pop(token, None)
+    if not email:
+        raise HTTPException(status_code=400, detail="Invalid or expired token")
+
+    db_user = db.query(User).filter(User.email == email).first()
+    if not db_user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    db_user.status = "active"
+    db.commit()
+    db.refresh(db_user)
+
+    return {"message": f"Email {email} verified successfully"}
